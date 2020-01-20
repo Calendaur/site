@@ -84,7 +84,7 @@ function Header({ type, month, year }) {
             Фильмы
           </a>
         </Link>
-        <span className={styles.TypeSeparator}>|</span>
+        <span className={styles.TypeSeparator}></span>
         <Link
           href="/[type]/[date]"
           as={generateHref(

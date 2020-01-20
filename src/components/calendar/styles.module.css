@@ -65,6 +65,18 @@
 
   &.someReleases {
     background: transparent;
+
+    .Release {
+      margin-right: 16px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &.hasRelease {
+    background: initial;
   }
 }
 
@@ -93,7 +105,7 @@
 .Releases {
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 160px;
 }
 
 .Release {
@@ -112,7 +124,7 @@
   p {
     padding: 0 8px;
     margin-bottom: 4px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
     line-height: 1.2;
     color: #fff;
@@ -120,6 +132,7 @@
 
     &.Extra {
       margin-bottom: 0;
+      font-size: 12px;
       font-style: italic;
       font-weight: normal;
     }
@@ -141,6 +154,7 @@
     margin-bottom: 24px;
 
     .Release {
+      height: 200px;
       background-position: 50% 50%;
     }
   }

@@ -118,6 +118,7 @@ function Calendar({ type, year, month }) {
                         className={cx(styles.DayItem, {
                           [styles.isNotWithinRange]: day === undefined,
                           [styles.someReleases]: dayReleases.length > 1,
+                          [styles.hasRelease]: dayReleases.length > 0,
                         })}
                         key={`day_${index}`}
                       >
