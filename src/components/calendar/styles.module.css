@@ -67,7 +67,7 @@
     background: transparent;
 
     .Release {
-      margin-right: 16px;
+      margin-right: 8px;
 
       &:last-child {
         margin-right: 0;
@@ -150,8 +150,13 @@
   }
 
   > li {
+    display: flex;
     height: 200px;
     margin-bottom: 24px;
+
+    .Releases {
+      height: 200px;
+    }
 
     .Release {
       height: 200px;

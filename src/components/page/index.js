@@ -1,7 +1,12 @@
 import React from 'react'
 import Head from 'next/head'
+import { useFirebase } from '../../hooks'
 
 function Page({ children }) {
+  useFirebase(firebase => {
+    firebase.analytics()
+  }, [])
+
   return (
     <>
       <Head>
