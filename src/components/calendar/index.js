@@ -71,7 +71,9 @@ function Calendar({ type, year, month }) {
         </div>
       </div>
       {!loading && releases.length === 0 ? (
-        <div>не заполнено</div>
+        <div className={styles.NotYetFilled}>
+          <p>Релизы для этого месяца еще заполняются</p>
+        </div>
       ) : (
         <>
           <table ref={tableRef} className={styles.DesktopCalendar}>

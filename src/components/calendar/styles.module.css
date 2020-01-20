@@ -145,3 +145,17 @@
     }
   }
 }
+
+.NotYetFilled {
+  min-height: calc(100vh - 90px);
+  background-color: #000;
+
+  p {
+    max-width: 760px;
+    padding-top: 200px;
+    margin: 0 auto;
+    font-size: 40px;
+    color: #fff;
+    text-align: center;
+  }
+}
