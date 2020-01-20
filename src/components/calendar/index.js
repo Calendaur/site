@@ -50,7 +50,7 @@ function Calendar({ type, year, month }) {
     [type, year, month],
   )
 
-  const date = new Date(`${year}-${+month + 1}-1`)
+  const date = new Date(Date.UTC(year, month, 1))
   const daysQty = getDaysInMonth(date)
   const daysArray = range(1, daysQty)
   const firstDay = format(startOfMonth(date), 'EEEEEE', { locale: ruLocale })
