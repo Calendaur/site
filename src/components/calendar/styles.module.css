@@ -17,7 +17,7 @@
       var(--primary) 100%
     );
 
-    div {
+    img {
       position: relative;
       z-index: -1;
       display: block;
