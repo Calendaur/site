@@ -18,7 +18,7 @@ function Page({ children }) {
         />
         <meta httpEquiv="content-type" content="text/html;charset=utf-8" />
         <meta name="keywords" content="" />
-        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="shortcut icon" type="image/png" href="/images/logo.png" />
         <link
           href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"
           rel="stylesheet"

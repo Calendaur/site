@@ -65,17 +65,17 @@ function Calendar({ type, year, month }) {
 
   return (
     <main>
-      <div className={styles.Cover}>
-        <div className={styles.Gradient}>
-          <img src={cover} alt="" />
-        </div>
-      </div>
       {!loading && releases.length === 0 ? (
         <div className={styles.NotYetFilled}>
           <p>Релизы для этого месяца еще заполняются</p>
         </div>
       ) : (
         <>
+          <div className={styles.Cover}>
+            <div className={styles.Gradient}>
+              <img src={cover} alt="" />
+            </div>
+          </div>
           <table ref={tableRef} className={styles.DesktopCalendar}>
             <thead>
               <tr>
@@ -139,10 +139,10 @@ function Calendar({ type, year, month }) {
                               }}
                             >
                               <div className={styles.Info}>
-                                <Dotdotdot clamp={1}>
+                                <Dotdotdot clamp="auto">
                                   <p>{release.name}</p>
                                 </Dotdotdot>
-                                <Dotdotdot clamp={1}>
+                                <Dotdotdot clamp="auto">
                                   <p className={styles.Extra}>{release.info}</p>
                                 </Dotdotdot>
                               </div>
