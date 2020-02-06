@@ -40,10 +40,7 @@ function Page({ children }) {
           href="/pwa/apple-icon-120.png"
         />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta
-          name="apple-mobile-web-app-status-bar-style"
-          content="black-translucent"
-        />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <link
           rel="apple-touch-startup-image"
           href="/pwa/apple-splash-dark-2048-2732.png"
