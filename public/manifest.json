@@ -1,6 +1,7 @@
 {
   "name": "Calendaur",
   "short_name": "Calendaur",
+  "display": "standalone",
   "icons": [
     {
       "src": "pwa/manifest-icon-192.png",
@@ -15,7 +16,6 @@
   ],
   "background_color": "#FFFFFF",
   "description": "Будьте в курсе новых релизов",
-  "display": "fullscreen",
   "start_url": "/",
   "theme_color": "#000"
 }

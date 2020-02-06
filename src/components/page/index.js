@@ -163,12 +163,12 @@ function Page({ children }) {
           sizes="16x16"
           href="/pwa/favicon-16x16.png"
         />
-        <meta name="msapplication-TileColor" content="#fff" />
+        <meta name="msapplication-TileColor" content="#281b24" />
         <meta
           name="msapplication-TileImage"
           content="/pwa/ms-icon-144x144.png"
         />
-        <meta name="theme-color" content="#fff" />
+        <meta name="theme-color" content="#281b24" />
         <link
           href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"
           rel="stylesheet"
