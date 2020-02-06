@@ -13,7 +13,19 @@ html {
   @media (display-mode: standalone) {
     min-height: 100vh;
     -webkit-user-select: none;
-    background-color: var(--primary);
+
+    &::before {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      content: '';
+      background-color: var(--primary);
+      background-repeat: repeat;
+      will-change: transform;
+    }
   }
 }
 
