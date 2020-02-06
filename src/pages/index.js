@@ -6,6 +6,8 @@ function IndexPage() {
 
 IndexPage.getInitialProps = ctx => {
   redirect(ctx, checkAndCorrectURL(ctx.asPath).url)
+
+  return {}
 }
 
 export default IndexPage

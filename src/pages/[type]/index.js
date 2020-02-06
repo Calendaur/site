@@ -6,6 +6,8 @@ function TypePage() {
 
 TypePage.getInitialProps = ctx => {
   redirect(ctx, checkAndCorrectURL(ctx.asPath).url)
+
+  return {}
 }
 
 export default TypePage
