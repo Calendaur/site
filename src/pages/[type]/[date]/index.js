@@ -10,7 +10,8 @@ function MainPage({ parsedURL }) {
     <>
       <Head>
         <title>
-          Релизы {type === 'games' ? 'игр' : 'фильмов'} | {month.rus} {year}
+          Calendaur | {type === 'games' ? 'игры' : 'фильмы'} за {month.rus}{' '}
+          {year}
         </title>
       </Head>
       <Header type={type} month={month} year={year} />
@@ -23,7 +24,11 @@ function MainPage({ parsedURL }) {
 MainPage.getInitialProps = ctx => {
   const { url, isCorrect } = checkAndCorrectURL(ctx.asPath)
 
-  if (!isCorrect) redirect(ctx, url)
+  if (!isCorrect) {
+    redirect(ctx, url)
+
+    return {}
+  }
 
   return { parsedURL: parseCorrectURL(url) }
 }
