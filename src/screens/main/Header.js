@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from 'react'
-import { useSpring, animated } from 'react-spring'
+import React, { useEffect, useRef, useState, useMemo } from 'react'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 import cx from 'classnames'
@@ -12,16 +11,22 @@ function generateHref(type, month, year) {
   return `/${type}/${month.eng}-${year}`
 }
 
-function Header({ type, month, year, animationStyle }) {
+function Header({ type, month, year }) {
   const currentMonth = month.rus
 
   const ref = useRef(null)
   const isMobileVersion = useMediaQuery('(max-width: 768px)')
-  const [animationProps, setAnimationProps] = useSpring(() => animationStyle)
+  const [height, setHeight] = useState(0)
+  const [visible, setVisible] = useState(true)
+  const animationStyle = useMemo(() => ({ top: visible ? 0 : -height }), [
+    height,
+    visible,
+  ])
 
   useDidUpdate(() => {
-    setAnimationProps(animationStyle)
-  }, [ref.current?.clientHeight])
+    setHeight(ref.current.clientHeight)
+    setVisible(true)
+  }, [ref.current?.clientHeight, setHeight, setVisible])
 
   useEffect(() => {
     let prevScrollPos = window.pageYOffset
@@ -29,16 +34,16 @@ function Header({ type, month, year, animationStyle }) {
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset
 
-      setAnimationProps({
-        top: prevScrollPos > currentScrollPos ? 0 : -ref.current.clientHeight,
-      })
+      if (prevScrollPos && isMobileVersion) {
+        setVisible(prevScrollPos > currentScrollPos)
+      }
       prevScrollPos = currentScrollPos
     }
 
     window.addEventListener('scroll', handleScroll)
 
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [setAnimationProps])
+  }, [setVisible, isMobileVersion])
 
   const findMonth = conditionFunc => months.find(conditionFunc)
   const nextMonth =
@@ -62,11 +67,7 @@ function Header({ type, month, year, animationStyle }) {
     ).length > 0
 
   return (
-    <animated.header
-      ref={ref}
-      className={styles.Header}
-      style={isMobileVersion ? animationProps : null}
-    >
+    <header ref={ref} className={styles.Header} style={animationStyle}>
       <div className={styles.Logo}>
         <img src="/images/logo.png" alt="" />
       </div>
@@ -142,12 +143,8 @@ function Header({ type, month, year, animationStyle }) {
           </a>
         </Link>
       </div>
-    </animated.header>
+    </header>
   )
-}
-
-Header.defaultProps = {
-  animationStyle: { top: 0 },
 }
 
 export default Header
