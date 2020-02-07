@@ -1,7 +1,6 @@
-import checkAndCorrectURL from './check-and-correct-url'
-import chunkify from './chunkify'
-import parseCorrectURL from './parse-correct-url'
-import range from './range'
+import api from './api'
+import checkAndCorrectURL from './checkAndCorrectURL'
 import redirect from './redirect'
+import withRedux from './withRedux'
 
-export { checkAndCorrectURL, chunkify, parseCorrectURL, range, redirect }
+export { api, checkAndCorrectURL, redirect, withRedux }

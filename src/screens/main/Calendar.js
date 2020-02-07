@@ -1,54 +1,77 @@
-import React, { useState, useRef } from 'react'
-import { getDaysInMonth, startOfMonth, format } from 'date-fns'
+import React, { useRef } from 'react'
+import { useSelector } from 'react-redux'
+import { getDaysInMonth, startOfMonth, format, compareAsc } from 'date-fns'
 import ruLocale from 'date-fns/locale/ru'
 import cx from 'classnames'
 import Dotdotdot from 'react-dotdotdot'
-import MobileVersion from './mobile-version'
-import { useFirebase, useWindowSize } from '../../hooks'
-import { chunkify, range } from '../../lib'
-import styles from './styles.module.css'
+import useWindowSize from './useWindowSize'
+import { chunkify, range, getPlatformIcon } from './helpers'
+
+import styles from './Calendar.module.css'
 
 const daysOfWeek = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс']
 
-function Calendar({ type, year, month }) {
-  const [releases, setReleases] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [cover, setCover] = useState('')
+function MobileCalendar({ releases }) {
+  return (
+    <ul className={styles.MobileCalendar}>
+      {releases
+        .sort((a, b) => compareAsc(new Date(a.date), new Date(b.date)))
+        .map(r => {
+          const day = new Date(r.date).getDate()
+
+          return (
+            <li className={styles.DayItem} key={`day_${r.id}`}>
+              <div className={cx(styles.Date, styles.hasRelease)}>{day}</div>
+              <div className={styles.Releases}>
+                <div
+                  className={styles.Release}
+                  style={{
+                    backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%), url(${r.cover})`,
+                  }}
+                >
+                  <div className={styles.Info}>
+                    <p>{r.name}</p>
+                    <p className={styles.Extra}>{r.director}</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+          )
+        })}
+    </ul>
+  )
+}
+
+function Calendar({ type, month, year }) {
+  const releases = useSelector(state =>
+    state.releases.filter(r => {
+      const date = new Date(r.date)
+
+      const m = date.getMonth()
+      const y = date.getFullYear()
+
+      return m === month && y === year && type.replace('s', '') === r.type
+    }),
+  )
+
+  const cover = useSelector(state => {
+    const bg = state.backgrounds.find(b => {
+      const date = new Date(b.date)
+
+      const m = date.getMonth()
+      const y = date.getFullYear()
+
+      return m === month && y === year && type.replace('s', '') === b.type
+    })
+
+    if (bg) return bg.cover
+
+    return ''
+  })
 
   const tableRef = useRef()
 
   const { width } = useWindowSize()
-
-  useFirebase(
-    firebase => {
-      firebase
-        .database()
-        .ref(`/${type}/${year}/${month}`)
-        .once('value')
-        .then(snapshot => {
-          const releases = snapshot.val()
-
-          if (!releases) {
-            setLoading(false)
-            setReleases([])
-            setCover('')
-            return
-          }
-
-          const releasesToArray = () =>
-            Object.entries(releases)
-              .map(([key, value]) => ({
-                ...value,
-                id: key,
-              }))
-              .filter(r => r.id !== 'main')
-          setLoading(false)
-          setCover(releases.main)
-          setReleases(releasesToArray())
-        })
-    },
-    [type, year, month],
-  )
 
   const date = new Date(Date.UTC(year, month, 1))
   const daysQty = getDaysInMonth(date)
@@ -65,7 +88,7 @@ function Calendar({ type, year, month }) {
 
   return (
     <main>
-      {!loading && releases.length === 0 ? (
+      {releases.length === 0 ? (
         <div className={styles.NotYetFilled}>
           <p>Релизы для этого месяца еще заполняются</p>
         </div>
@@ -73,7 +96,7 @@ function Calendar({ type, year, month }) {
         <>
           <div className={styles.Cover}>
             <div className={styles.Gradient}>
-              <img src={cover} alt="" />
+              {cover && <img src={cover} alt="" />}
             </div>
           </div>
           <table ref={tableRef} className={styles.DesktopCalendar}>
@@ -91,7 +114,7 @@ function Calendar({ type, year, month }) {
                 <tr key={`week_${index}`}>
                   {week.map((day, index) => {
                     const dayReleases = releases.filter(
-                      release => +release.release_day === day,
+                      r => new Date(r.date).getDate() === day,
                     )
 
                     function getTableItemWidth() {
@@ -100,7 +123,9 @@ function Calendar({ type, year, month }) {
                           .map(release => +release.width)
                           .reduce((acc, curr) => acc + curr, 0)
 
-                        const percentageWidth = `${(pxWidth / width) * 100}%`
+                        const percentageWidth = `${(pxWidth / width) * 85}%`
+
+                        if (!width) return pxWidth
 
                         return percentageWidth
                       }
@@ -142,9 +167,21 @@ function Calendar({ type, year, month }) {
                                 <Dotdotdot clamp="auto">
                                   <p>{release.name}</p>
                                 </Dotdotdot>
-                                <Dotdotdot clamp="auto">
-                                  <p className={styles.Extra}>{release.info}</p>
-                                </Dotdotdot>
+                                {release.type === 'film' ? (
+                                  <Dotdotdot clamp="auto">
+                                    <p className={styles.Extra}>
+                                      {release.director}
+                                    </p>
+                                  </Dotdotdot>
+                                ) : (
+                                  <ul className={styles.PlatformList}>
+                                    {release.platforms.map(platform => (
+                                      <li key={platform}>
+                                        {getPlatformIcon(platform)}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )}
                               </div>
                             </div>
                           ))}
@@ -156,7 +193,7 @@ function Calendar({ type, year, month }) {
               ))}
             </tbody>
           </table>
-          <MobileVersion releases={releases} />
+          <MobileCalendar releases={releases} />
         </>
       )}
     </main>
