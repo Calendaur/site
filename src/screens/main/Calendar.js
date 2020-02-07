@@ -30,8 +30,20 @@ function MobileCalendar({ releases }) {
                   }}
                 >
                   <div className={styles.Info}>
-                    <p>{r.name}</p>
-                    <p className={styles.Extra}>{r.director}</p>
+                    <Dotdotdot clamp="auto">
+                      <p>{r.name}</p>
+                    </Dotdotdot>
+                    {r.type === 'film' ? (
+                      <Dotdotdot clamp="auto">
+                        <p className={styles.Extra}>{r.director}</p>
+                      </Dotdotdot>
+                    ) : (
+                      <ul className={styles.PlatformList}>
+                        {r.platforms.map(platform => (
+                          <li key={platform}>{getPlatformIcon(platform)}</li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </div>
               </div>
