@@ -1,15 +1,42 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
+import { useSpring, animated } from 'react-spring'
 import Link from 'next/link'
 import cx from 'classnames'
 import { months } from '../../constants/months'
+import { useMediaQuery, useDidUpdate } from '../../hooks'
 import styles from './styles.module.css'
 
 function generateHref(type, month, year) {
   return `/${type}/${month.eng}-${year}`
 }
 
-function Header({ type, month, year }) {
+function Header({ type, month, year, animationStyle }) {
   const currentMonth = month.rus
+
+  const ref = useRef(null)
+  const isMobileVersion = useMediaQuery('(max-width: 768px)')
+  const [animationProps, setAnimationProps] = useSpring(() => animationStyle)
+
+  useDidUpdate(() => {
+    setAnimationProps(animationStyle)
+  }, [ref.current?.clientHeight])
+
+  useEffect(() => {
+    let prevScrollPos = window.pageYOffset
+
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset
+
+      setAnimationProps({
+        top: prevScrollPos > currentScrollPos ? 0 : -ref.current.clientHeight,
+      })
+      prevScrollPos = currentScrollPos
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [setAnimationProps])
 
   const findMonth = conditionFunc => months.find(conditionFunc)
 
@@ -26,7 +53,11 @@ function Header({ type, month, year }) {
   const prevYear = prevMonth === 'декабрь' ? year - 1 : year
 
   return (
-    <header className={styles.Header}>
+    <animated.header
+      ref={ref}
+      className={styles.Header}
+      style={isMobileVersion ? animationProps : null}
+    >
       <div className={styles.Logo}>
         <img src="/images/logo.png" alt="" />
       </div>
@@ -102,8 +133,12 @@ function Header({ type, month, year }) {
           </a>
         </Link>
       </div>
-    </header>
+    </animated.header>
   )
+}
+
+Header.defaultProps = {
+  animationStyle: { top: 0 },
 }
 
 export default Header
