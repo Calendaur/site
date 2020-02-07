@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from 'react'
 import { useSpring, animated } from 'react-spring'
 import Link from 'next/link'
+import { useSelector } from 'react-redux'
 import cx from 'classnames'
 import { months } from '../../constants/months'
 import { useMediaQuery, useDidUpdate } from '../../hooks'
-import styles from './styles.module.css'
+
+import styles from './Header.module.css'
 
 function generateHref(type, month, year) {
   return `/${type}/${month.eng}-${year}`
@@ -39,18 +41,25 @@ function Header({ type, month, year, animationStyle }) {
   }, [setAnimationProps])
 
   const findMonth = conditionFunc => months.find(conditionFunc)
-
   const nextMonth =
     month.jsNumber === 11
       ? 'январь'
       : findMonth(m => m.jsNumber === month.jsNumber + 1).rus
   const nextYear = nextMonth === 'январь' ? year + 1 : year
-
   const prevMonth =
     month.jsNumber === 0
       ? 'декабрь'
       : findMonth(m => m.jsNumber === month.jsNumber - 1).rus
   const prevYear = prevMonth === 'декабрь' ? year - 1 : year
+
+  const releases = useSelector(state => state.releases)
+
+  const hasReleasesInNextMonth =
+    releases.filter(
+      r =>
+        new Date(r.date).getMonth() ===
+        findMonth(m => m.rus === nextMonth).jsNumber,
+    ).length > 0
 
   return (
     <animated.header
@@ -91,7 +100,7 @@ function Header({ type, month, year, animationStyle }) {
         >
           <a
             className={cx(styles.Link, styles.isDate, {
-              [styles.isDisable]: prevYear > 2030,
+              [styles.isDisable]: prevYear > 2030 || !hasReleasesInNextMonth,
             })}
           >
             <span>{nextMonth}</span> →
