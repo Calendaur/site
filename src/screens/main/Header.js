@@ -7,9 +7,11 @@ import { useMediaQuery, useDidUpdate } from '../../hooks'
 
 import styles from './Header.module.css'
 
-function generateHref(type, month, year) {
+export function generateHref(type, month, year) {
   return `/${type}/${month.eng}-${year}`
 }
+
+export const findMonth = conditionFunc => months.find(conditionFunc)
 
 function Header({ type, month, year }) {
   const currentMonth = month.rus
@@ -18,10 +20,13 @@ function Header({ type, month, year }) {
   const isMobileVersion = useMediaQuery('(max-width: 768px)')
   const [height, setHeight] = useState(0)
   const [visible, setVisible] = useState(true)
-  const animationStyle = useMemo(() => ({ top: visible ? 0 : -height }), [
-    height,
-    visible,
-  ])
+  const animationStyle = useMemo(
+    () => ({
+      top: visible ? 0 : -height,
+      background: visible ? 'rgba(15, 32, 39, 0.89)' : 'rgba(15, 32, 39, 0.4)',
+    }),
+    [height, visible],
+  )
 
   useDidUpdate(() => {
     setHeight(ref.current.clientHeight)
@@ -45,12 +50,12 @@ function Header({ type, month, year }) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [setVisible, isMobileVersion])
 
-  const findMonth = conditionFunc => months.find(conditionFunc)
   const nextMonth =
     month.jsNumber === 11
       ? 'январь'
       : findMonth(m => m.jsNumber === month.jsNumber + 1).rus
   const nextYear = nextMonth === 'январь' ? year + 1 : year
+
   const prevMonth =
     month.jsNumber === 0
       ? 'декабрь'

@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import { useSelector } from 'react-redux'
+import { useTransition, useChain, animated } from 'react-spring'
 import { getDaysInMonth, startOfMonth, format, compareAsc } from 'date-fns'
 import ruLocale from 'date-fns/locale/ru'
 import cx from 'classnames'
@@ -12,33 +13,111 @@ import styles from './Calendar.module.css'
 const daysOfWeek = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс']
 
 function MobileCalendar({ releases }) {
+  const data = releases.sort((a, b) =>
+    compareAsc(new Date(a.date), new Date(b.date)),
+  )
+
+  const transRef = useRef()
+  const transitions = useTransition(data, item => item.name, {
+    ref: transRef,
+    unique: true,
+    trail: 200 / data.length,
+    from: { opacity: 0, transform: 'scale(0)' },
+    enter: { opacity: 1, transform: 'scale(1)' },
+    leave: { opacity: 0, transform: 'scale(0)' },
+  })
+
+  useChain([transRef], [0.1])
+
   return (
     <ul className={styles.MobileCalendar}>
-      {releases
-        .sort((a, b) => compareAsc(new Date(a.date), new Date(b.date)))
-        .map(r => {
-          const day = new Date(r.date).getDate()
+      {transitions.map(({ item, key, props }) => {
+        const day = new Date(item.date).getDate()
 
-          return (
-            <li className={styles.DayItem} key={`day_${r.id}`}>
-              <div className={cx(styles.Date, styles.hasRelease)}>{day}</div>
-              <div className={styles.Releases}>
-                <div
-                  className={styles.Release}
-                  style={{
-                    backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%), url(${r.cover})`,
-                  }}
-                >
-                  <div className={styles.Info}>
-                    <p>{r.name}</p>
-                    <p className={styles.Extra}>{r.director}</p>
-                  </div>
+        return (
+          <animated.li
+            className={styles.DayItem}
+            key={key}
+            style={{ ...props }}
+          >
+            <div className={cx(styles.Date, styles.hasRelease)}>{day}</div>
+            <div className={styles.Releases}>
+              <div
+                className={styles.Release}
+                style={{
+                  backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%), url(${item.cover})`,
+                }}
+              >
+                <div className={styles.Info}>
+                  <Dotdotdot clamp="auto">
+                    <p>{item.name}</p>
+                  </Dotdotdot>
+                  {item.type === 'film' ? (
+                    <Dotdotdot clamp="auto">
+                      <p className={styles.Extra}>{item.director}</p>
+                    </Dotdotdot>
+                  ) : (
+                    <ul className={styles.PlatformList}>
+                      {item.platforms.map(platform => (
+                        <li key={platform}>{getPlatformIcon(platform)}</li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </div>
-            </li>
-          )
-        })}
+            </div>
+          </animated.li>
+        )
+      })}
     </ul>
+  )
+}
+
+function Releases({ dayReleases }) {
+  const transRef = useRef()
+  const transitions = useTransition(dayReleases, item => item.name, {
+    ref: transRef,
+    unique: true,
+    trail: 200 / dayReleases.length,
+    from: { opacity: 0, transform: 'scale(0)' },
+    enter: { opacity: 1, transform: 'scale(1)' },
+    leave: { opacity: 0, transform: 'scale(0)' },
+  })
+
+  useChain([transRef], [0.1])
+
+  return (
+    <div className={styles.Releases}>
+      {transitions.map(({ item: release, key, props }) => {
+        return (
+          <animated.div
+            key={key}
+            className={styles.Release}
+            style={{
+              backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%), url(${release.cover})`,
+              ...props,
+            }}
+          >
+            <div className={styles.Info}>
+              <Dotdotdot clamp="auto">
+                <p>{release.name}</p>
+              </Dotdotdot>
+              {release.type === 'film' ? (
+                <Dotdotdot clamp="auto">
+                  <p className={styles.Extra}>{release.director}</p>
+                </Dotdotdot>
+              ) : (
+                <ul className={styles.PlatformList}>
+                  {release.platforms.map(platform => (
+                    <li key={platform}>{getPlatformIcon(platform)}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </animated.div>
+        )
+      })}
+    </div>
   )
 }
 
@@ -98,6 +177,7 @@ function Calendar({ type, month, year }) {
             <div className={styles.Gradient}>
               {cover && <img src={cover} alt="" />}
             </div>
+            <div className={styles.BottomGradient}></div>
           </div>
           <table ref={tableRef} className={styles.DesktopCalendar}>
             <thead>
@@ -154,38 +234,7 @@ function Calendar({ type, month, year }) {
                         >
                           {day}
                         </div>
-                        <div className={styles.Releases}>
-                          {dayReleases.map((release, index) => (
-                            <div
-                              key={`release_${index}`}
-                              className={styles.Release}
-                              style={{
-                                backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%), url(${release.cover})`,
-                              }}
-                            >
-                              <div className={styles.Info}>
-                                <Dotdotdot clamp="auto">
-                                  <p>{release.name}</p>
-                                </Dotdotdot>
-                                {release.type === 'film' ? (
-                                  <Dotdotdot clamp="auto">
-                                    <p className={styles.Extra}>
-                                      {release.director}
-                                    </p>
-                                  </Dotdotdot>
-                                ) : (
-                                  <ul className={styles.PlatformList}>
-                                    {release.platforms.map(platform => (
-                                      <li key={platform}>
-                                        {getPlatformIcon(platform)}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                )}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
+                        <Releases dayReleases={dayReleases} />
                       </td>
                     )
                   })}
