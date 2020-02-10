@@ -3,7 +3,8 @@ import Link from 'next/link'
 import { useSelector } from 'react-redux'
 import cx from 'classnames'
 import { months } from '../../constants/months'
-import { useMediaQuery, useDidUpdate } from '../../hooks'
+import { useDidUpdate } from '../../hooks'
+import useWindowSize from './useWindowSize'
 
 import styles from './Header.module.css'
 
@@ -15,14 +16,16 @@ export const findMonth = conditionFunc => months.find(conditionFunc)
 
 function Header({ type, month, year }) {
   const currentMonth = month.rus
+  const { width } = useWindowSize()
 
   const ref = useRef(null)
-  const isMobileVersion = useMediaQuery('(max-width: 768px)')
+  const isMobileVersion = width <= 768
   const [height, setHeight] = useState(0)
   const [visible, setVisible] = useState(true)
+
   const animationStyle = useMemo(
     () => ({
-      top: visible ? 0 : -height,
+      transform: visible ? `translateY(0px)` : `translateY(${-height}px)`,
       background: visible ? 'rgba(15, 32, 39, 0.89)' : 'rgba(15, 32, 39, 0.4)',
     }),
     [height, visible],
@@ -38,17 +41,24 @@ function Header({ type, month, year }) {
 
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset
-
-      if (prevScrollPos && isMobileVersion) {
-        setVisible(prevScrollPos > currentScrollPos)
+      if (isMobileVersion) {
+        setVisible(Math.abs(prevScrollPos) > currentScrollPos)
       }
+
       prevScrollPos = currentScrollPos
     }
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, {
+      capture: true,
+      passive: true,
+    })
 
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [setVisible, isMobileVersion])
+    return () =>
+      window.removeEventListener('scroll', handleScroll, {
+        capture: true,
+        passive: true,
+      })
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const nextMonth =
     month.jsNumber === 11

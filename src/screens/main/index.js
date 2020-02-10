@@ -44,7 +44,7 @@ function MainPage({ parsedURL }) {
       distance,
       cancel,
     }) => {
-      if (down && distance > window.innerWidth / 3) {
+      if (down && distance > window.innerWidth / 4) {
         if (xDir <= 0 && !hasReleasesInNextMonth) return
 
         if (xDir >= 0 && prevYear < 2020) return
@@ -84,11 +84,12 @@ function MainPage({ parsedURL }) {
       </Head>
       <Header type={type} month={month} year={year} />
       <PageTransition
-        timeout={350}
+        timeout={250}
         loadingClassNames="loading-indicator"
-        loadingDelay={500}
+        classNames=""
+        loadingDelay={350}
         loadingTimeout={{
-          enter: 350,
+          enter: 250,
           exit: 0,
         }}
       >

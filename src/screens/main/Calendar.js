@@ -22,9 +22,9 @@ function MobileCalendar({ releases }) {
     ref: transRef,
     unique: true,
     trail: 200 / data.length,
-    from: { opacity: 0, transform: 'scale(0)' },
+    from: { opacity: 0, transform: 'scale(0.4)' },
     enter: { opacity: 1, transform: 'scale(1)' },
-    leave: { opacity: 0, transform: 'scale(0)' },
+    leave: { opacity: 0, transform: 'scale(0.4)' },
   })
 
   useChain([transRef], [0.1])

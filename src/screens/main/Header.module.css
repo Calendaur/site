@@ -10,7 +10,8 @@
   padding: 8px 16px;
   background-color: rgba(15, 32, 39, 0.4);
   box-shadow: 0 3px 6px rgba(12, 25, 27, 0.16), 0 3px 6px rgba(12, 25, 27, 0.23);
-  transition: top 0.5s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  will-change: transform;
 
   @media (max-width: 768px) {
     flex-direction: column;

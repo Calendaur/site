@@ -10,7 +10,7 @@ function useMediaQuery(query) {
     window.matchMedia(query).addEventListener('change', updateMatch)
     return () =>
       window.matchMedia(query).removeEventListener('change', updateMatch)
-  }, [setMatch])
+  }, [setMatch]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return match
 }
