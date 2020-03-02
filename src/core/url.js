@@ -1,4 +1,4 @@
-const months = [
+export const months = [
   { eng: 'january', rus: 'январь', jsNumber: 0, calendarNumber: 1 },
   { eng: 'february', rus: 'февраль', jsNumber: 1, calendarNumber: 2 },
   { eng: 'march', rus: 'март', jsNumber: 2, calendarNumber: 3 },
@@ -16,13 +16,22 @@ const months = [
 const types = ['films', 'games']
 
 export function checkUrl(url) {
+  if (!url) {
+    return {
+      isCorrectType: false,
+      isCorrectMonth: false,
+      isCorrectYear: false,
+      isCorrect: false,
+    }
+  }
+
   let isCorrectType = false
   let isCorrectMonth = false
   let isCorrectYear = false
 
   const [, type, monthAndYear] = url.split('/')
 
-  isCorrectYear = Boolean(typeof type === 'string' && types.includes(type))
+  isCorrectType = Boolean(typeof type === 'string' && types.includes(type))
 
   if (typeof monthAndYear !== 'string') {
     isCorrectMonth = false
@@ -45,8 +54,29 @@ export function checkUrl(url) {
   }
 }
 
-function fixUrl() {}
+export function fixUrl(url, { isCorrectType, isCorrectMonth, isCorrectYear }) {
+  const date = new Date()
+  const fallbackType = 'films'
+  const fallbackMonth = months.find(m => m.jsNumber === date.getMonth())
+  const fallbackYear = date.getFullYear()
+
+  if (!url) return `/${fallbackType}/${fallbackMonth}-${fallbackYear}`
+
+  const [, typeFromUrl, monthAndYearFromUrl] = url.split('/')
+
+  const type = isCorrectType ? typeFromUrl : fallbackType
+  const month = isCorrectMonth
+    ? monthAndYearFromUrl.split('-')[0]
+    : fallbackMonth
+  const year = isCorrectYear ? monthAndYearFromUrl.split('-')[1] : fallbackYear
+
+  return `/${type}/${month}-${year}`
+}
 
 function parseUrl() {}
 
 function redirect() {}
+
+// const { isCorrect, ...rest } = checkUrl('')
+
+// if (!isCorrect) fixUrl({ url: '', ...rest })
