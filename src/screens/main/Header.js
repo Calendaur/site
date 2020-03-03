@@ -1,23 +1,71 @@
-import React from 'react'
+import React, { useEffect, useRef, useState, useMemo } from 'react'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 import cx from 'classnames'
 import { months } from '../../constants/months'
+import { useDidUpdate } from '../../hooks'
+import useWindowSize from './useWindowSize'
 
 import styles from './Header.module.css'
 
-function generateHref(type, month, year) {
+export function generateHref(type, month, year) {
   return `/${type}/${month.eng}-${year}`
 }
 
+export const findMonth = conditionFunc => months.find(conditionFunc)
+
 function Header({ type, month, year }) {
   const currentMonth = month.rus
-  const findMonth = conditionFunc => months.find(conditionFunc)
+  const { width } = useWindowSize()
+
+  const ref = useRef(null)
+  const isMobileVersion = width <= 768
+  const [height, setHeight] = useState(0)
+  const [visible, setVisible] = useState(true)
+
+  const animationStyle = useMemo(
+    () => ({
+      transform: visible ? `translateY(0px)` : `translateY(${-height}px)`,
+      background: visible ? 'rgba(15, 32, 39, 0.89)' : 'rgba(15, 32, 39, 0.4)',
+    }),
+    [height, visible],
+  )
+
+  useDidUpdate(() => {
+    setHeight(ref.current.clientHeight)
+    setVisible(true)
+  }, [ref.current?.clientHeight, setHeight, setVisible])
+
+  useEffect(() => {
+    let prevScrollPos = window.pageYOffset
+
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset
+      if (isMobileVersion) {
+        setVisible(Math.abs(prevScrollPos) > currentScrollPos)
+      }
+
+      prevScrollPos = currentScrollPos
+    }
+
+    window.addEventListener('scroll', handleScroll, {
+      capture: true,
+      passive: true,
+    })
+
+    return () =>
+      window.removeEventListener('scroll', handleScroll, {
+        capture: true,
+        passive: true,
+      })
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
   const nextMonth =
     month.jsNumber === 11
       ? 'январь'
       : findMonth(m => m.jsNumber === month.jsNumber + 1).rus
   const nextYear = nextMonth === 'январь' ? year + 1 : year
+
   const prevMonth =
     month.jsNumber === 0
       ? 'декабрь'
@@ -34,7 +82,7 @@ function Header({ type, month, year }) {
     ).length > 0
 
   return (
-    <header className={styles.Header}>
+    <header ref={ref} className={styles.Header} style={animationStyle}>
       <div className={styles.Logo}>
         <img src="/images/logo.png" alt="" />
       </div>
