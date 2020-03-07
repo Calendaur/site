@@ -7,9 +7,9 @@ import { PageTransition } from 'next-page-transitions'
 import Header, { generateHref, findMonth } from './Header'
 import Calendar from './Calendar'
 import Footer from './Footer'
-import { parseCorrectURL } from './helpers'
 import { actions } from './redux'
-import { checkAndCorrectURL, redirect, api, withRedux } from '../../lib'
+import { api, withRedux } from '../../lib'
+import { checkFixRedirect, parseUrl } from '../../core/url'
 
 function MainPage({ parsedURL }) {
   const { year, month, type } = parsedURL
@@ -103,13 +103,7 @@ function MainPage({ parsedURL }) {
 }
 
 MainPage.getInitialProps = async ctx => {
-  const { url, isCorrect } = checkAndCorrectURL(ctx.asPath)
-
-  if (!isCorrect) {
-    redirect(ctx, url)
-
-    return {}
-  }
+  checkFixRedirect(ctx)
 
   const { getState, dispatch } = ctx.reduxStore
 
@@ -124,7 +118,7 @@ MainPage.getInitialProps = async ctx => {
     dispatch(actions.setBackgrounds(await api.getBackgrounds()))
   }
 
-  return { parsedURL: parseCorrectURL(url) }
+  return { parsedURL: parseUrl(ctx.asPath) }
 }
 
 export default withRedux(MainPage)

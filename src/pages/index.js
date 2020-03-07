@@ -1,13 +1,15 @@
-import { redirect, checkAndCorrectURL } from '../lib'
+import { checkFixRedirect } from '../core/url'
 
 function IndexPage() {
   return null
 }
 
 IndexPage.getInitialProps = ctx => {
-  redirect(ctx, checkAndCorrectURL(ctx.asPath).url)
+  checkFixRedirect(ctx)
 
-  return {}
+  return {
+    props: {},
+  }
 }
 
 export default IndexPage

@@ -1,3 +1,5 @@
+import Router from 'next/router'
+
 export const months = [
   { eng: 'january', rus: 'январь', jsNumber: 0, calendarNumber: 1 },
   { eng: 'february', rus: 'февраль', jsNumber: 1, calendarNumber: 2 },
@@ -54,15 +56,18 @@ export function checkUrl(url) {
   }
 }
 
-export function fixUrl(url, { isCorrectType, isCorrectMonth, isCorrectYear }) {
+export function fixUrl(
+  incorrectUrl,
+  { isCorrectType, isCorrectMonth, isCorrectYear },
+) {
   const date = new Date()
   const fallbackType = 'films'
-  const fallbackMonth = months.find(m => m.jsNumber === date.getMonth())
+  const fallbackMonth = months.find(m => m.jsNumber === date.getMonth()).eng
   const fallbackYear = date.getFullYear()
 
-  if (!url) return `/${fallbackType}/${fallbackMonth}-${fallbackYear}`
+  if (!incorrectUrl) return `/${fallbackType}/${fallbackMonth}-${fallbackYear}`
 
-  const [, typeFromUrl, monthAndYearFromUrl] = url.split('/')
+  const [, typeFromUrl, monthAndYearFromUrl] = incorrectUrl.split('/')
 
   const type = isCorrectType ? typeFromUrl : fallbackType
   const month = isCorrectMonth
@@ -73,10 +78,28 @@ export function fixUrl(url, { isCorrectType, isCorrectMonth, isCorrectYear }) {
   return `/${type}/${month}-${year}`
 }
 
-function parseUrl() {}
+export function parseUrl(correctUrl) {
+  const [, type, monthAndYear] = correctUrl.split('/')
+  const [month, year] = monthAndYear.split('-')
 
-function redirect() {}
+  return { type, month: months.find(m => month === m.eng), year: +year }
+}
 
-// const { isCorrect, ...rest } = checkUrl('')
+export function redirect(ctx, to) {
+  if (ctx.asPath === '/service-worker.js') return
+  if (ctx.res) {
+    ctx.res.writeHead(303, { Location: to })
+    ctx.res.end()
+  } else {
+    Router.replace(to)
+  }
+}
 
-// if (!isCorrect) fixUrl({ url: '', ...rest })
+export function checkFixRedirect(ctx) {
+  const url = ctx.asPath
+  const { isCorrect, ...rest } = checkUrl(url)
+
+  if (!isCorrect) {
+    redirect(ctx, fixUrl(url, rest))
+  }
+}
