@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import FirebaseContext from '../firebase-context'
 
 function FirebaseProvider({ features, children }) {
-  const [firebase, setFirebase] = React.useState(null)
+  const [firebase, setFirebase] = useState(null)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!firebase && typeof window !== 'undefined') {
       const app = import('firebase/app')
       const auth = features.auth ? import('firebase/auth') : null

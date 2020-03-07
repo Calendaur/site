@@ -1,5 +1,3 @@
-import 'firebase/messaging'
-import firebase from 'firebase/app'
 import localforage from 'localforage'
 
 const firebaseCloudMessaging = {
@@ -7,7 +5,7 @@ const firebaseCloudMessaging = {
     return localforage.getItem('fcm_token')
   },
 
-  init: async function() {
+  init: async function(firebase) {
     try {
       if ((await this.tokenInlocalforage()) !== null) {
         return false
