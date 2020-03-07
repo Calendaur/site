@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
 import { useSelector } from 'react-redux'
@@ -7,21 +7,11 @@ import { PageTransition } from 'next-page-transitions'
 import Header, { generateHref, findMonth } from './Header'
 import Calendar from './Calendar'
 import Footer from './Footer'
-import FirebaseContext from '../../components/firebase-context'
 import { actions } from './redux'
 import { api, withRedux } from '../../lib'
 import { checkFixRedirect, parseUrl } from '../../core/url'
-import { firebaseCloudMessaging } from './webPush'
 
 function MainPage({ parsedURL, ...rest }) {
-  const firebase = useContext(FirebaseContext)
-
-  useEffect(() => {
-    if (firebase) {
-      firebaseCloudMessaging.init(firebase)
-    }
-  }, [firebase])
-
   const { year, month, type } = parsedURL
 
   const nextMonth =

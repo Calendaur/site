@@ -43,6 +43,19 @@ function FirebaseProvider({ features, children }) {
         const firebaseInstance = values[0]
         if (!firebaseInstance.apps.length) {
           firebaseInstance.initializeApp(config)
+
+          const messaging = firebaseInstance.messaging()
+          messaging
+            .requestPermission()
+            .then(() => messaging.getToken())
+            .then(token => console.log(token))
+            .catch(error => {
+              console.error('Error Occured.', error)
+            })
+
+          messaging.onMessage(payload => {
+            console.log('onMessage:', payload)
+          })
         }
         setFirebase(firebaseInstance)
       })
