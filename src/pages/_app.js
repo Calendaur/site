@@ -16,7 +16,7 @@ class CustomApp extends App {
           database: true,
           firestore: false,
           storage: false,
-          messaging: false,
+          messaging: true,
           functions: true,
           performance: true,
           analytics: true,
