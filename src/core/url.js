@@ -86,7 +86,11 @@ export function parseUrl(correctUrl) {
 }
 
 export function redirect(ctx, to) {
-  if (ctx.asPath === '/service-worker.js') return
+  if (
+    ctx.asPath === '/service-worker.js' ||
+    ctx.asPath === '/firebase-messaging-sw.js'
+  )
+    return
   if (ctx.res) {
     ctx.res.writeHead(303, { Location: to })
     ctx.res.end()
