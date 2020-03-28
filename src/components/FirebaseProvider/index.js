@@ -50,6 +50,7 @@ function FirebaseProvider({ features, children }) {
             .requestPermission()
             .then(() => messaging.getToken())
             .then(token => {
+              console.log(token)
               firebaseInstance
                 .database()
                 .ref(`v2/subscribers`)
@@ -68,6 +69,9 @@ function FirebaseProvider({ features, children }) {
                       .ref(`v2/subscribers`)
                       .set([token])
                   }
+                })
+                .catch(error => {
+                  console.error('Error Occured.', error)
                 })
             })
             .catch(error => {

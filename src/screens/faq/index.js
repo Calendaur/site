@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import { Header, Footer } from '../../components'
+import { withRedux } from '../../lib'
 
 import styles from './styles.module.css'
 
@@ -120,4 +121,4 @@ function Faq() {
   )
 }
 
-export default Faq
+export default withRedux(Faq)
