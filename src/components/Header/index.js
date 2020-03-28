@@ -1,11 +1,15 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react'
 import Link from 'next/link'
 import { useDidUpdate, useWindowSize } from '../../hooks'
+import useGoogleAuth from '../../auth/useGoogleAuth'
+import useAuthorization from '../../auth/useAuthorization'
 
 import styles from './styles.module.css'
 
 function Header() {
   const { width } = useWindowSize()
+  const [login, logout] = useGoogleAuth()
+  const authUser = useAuthorization()
 
   const ref = useRef(null)
   const isMobileVersion = width <= 768
@@ -62,8 +66,18 @@ function Header() {
         <Link href="/faq">
           <a>FAQ</a>
         </Link>
-        <button className={styles.AuthButton} type="button">
-          Войти <img src="/icons/google.svg" alt="" />
+        <button
+          className={styles.AuthButton}
+          type="button"
+          onClick={authUser ? logout : login}
+        >
+          {authUser ? (
+            'Выйти'
+          ) : (
+            <>
+              Войти <img src="/icons/google.svg" alt="" />
+            </>
+          )}
         </button>
       </div>
     </header>

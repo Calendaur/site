@@ -9,6 +9,7 @@ import { Header, Footer } from '../../components'
 import FilterBar from './FilterBar'
 import { actions } from './redux'
 import { api, withRedux } from '../../lib'
+import useAuthentication from '../../auth/useAuthentication'
 import { checkFixRedirect, parseUrl, getNextAndPrevDate } from '../../core/url'
 
 const Calendar = dynamic(() => import('./Calendar'), {
@@ -19,6 +20,7 @@ const PWAPrompt = dynamic(() => import('react-ios-pwa-prompt'), {
 })
 
 function MainPage({ parsedURL }) {
+  useAuthentication()
   const { year, month, type } = parsedURL
 
   const { prevMonth, prevYear, nextMonth, nextYear } = getNextAndPrevDate(
@@ -105,6 +107,8 @@ function MainPage({ parsedURL }) {
 
 MainPage.getInitialProps = async ctx => {
   checkFixRedirect(ctx)
+
+  console.log(ctx)
 
   const { getState, dispatch } = ctx.reduxStore
   const parsedURL = parseUrl(ctx.asPath)
