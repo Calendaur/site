@@ -1,1 +1,26 @@
+.Wrapper {
+  width: calc(100% - 32px);
+  max-width: 768px;
+  min-height: calc(100vh - 80px);
+  padding-top: 120px;
+  margin: 0 auto;
 
+  > div {
+    margin-bottom: 32px;
+
+    > h2 {
+      margin-bottom: 16px;
+      font-size: 32px;
+      line-height: 1.2;
+      color: #ddd;
+    }
+
+    > p {
+      color: #ddd;
+
+      a {
+        color: inherit;
+      }
+    }
+  }
+}

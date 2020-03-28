@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import FirebaseContext from '../firebase-context'
+import FirebaseContext from '../FirebaseContext'
 
 export const config = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -49,7 +49,27 @@ function FirebaseProvider({ features, children }) {
           messaging
             .requestPermission()
             .then(() => messaging.getToken())
-            .then(token => console.log(token))
+            .then(token => {
+              firebaseInstance
+                .database()
+                .ref(`v2/subscribers`)
+                .once('value')
+                .then(snapshot => {
+                  const tokens = snapshot.val()
+
+                  if (Array.isArray(tokens) && !tokens.includes(token)) {
+                    firebaseInstance
+                      .database()
+                      .ref(`v2/subscribers`)
+                      .set([...tokens, token])
+                  } else {
+                    firebaseInstance
+                      .database()
+                      .ref(`v2/subscribers`)
+                      .set([token])
+                  }
+                })
+            })
             .catch(error => {
               console.error('Error Occured.', error)
             })

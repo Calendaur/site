@@ -62,9 +62,6 @@ function Header() {
         <Link href="/faq">
           <a>FAQ</a>
         </Link>
-        <Link href="/about">
-          <a>О нас</a>
-        </Link>
         <button className={styles.AuthButton} type="button">
           Войти <img src="/icons/google.svg" alt="" />
         </button>
