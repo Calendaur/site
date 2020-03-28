@@ -3,10 +3,11 @@ import App from 'next/app'
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
 import { reducers as mainPageReducer } from '../screens/main/redux'
+import session from '../auth/session'
 
 const initializeStore = preloadedState => {
   return configureStore({
-    reducer: { ...mainPageReducer },
+    reducer: { ...mainPageReducer, session: session.reducer },
     preloadedState,
   })
 }

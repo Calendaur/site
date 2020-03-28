@@ -1,4 +1,4 @@
-import { checkUrl, fixUrl, months } from '../url'
+import { checkUrl, fixUrl, parseUrl, months, getNextAndPrevDate } from '../url'
 
 test('check correct urls', () => {
   const correctResult = {
@@ -56,7 +56,7 @@ test('fix incorrect urls', () => {
   const date = new Date()
 
   const fallbackType = 'films'
-  const fallbackMonth = months.find(m => m.jsNumber === date.getMonth())
+  const fallbackMonth = months.find(m => m.jsNumber === date.getMonth()).eng
   const fallbackYear = date.getFullYear()
 
   const fallbackUrl = `/${fallbackType}/${fallbackMonth}-${fallbackYear}`
@@ -74,7 +74,7 @@ test('fix partially incorrect urls', () => {
   const date = new Date()
 
   const fallbackType = 'films'
-  const fallbackMonth = months.find(m => m.jsNumber === date.getMonth())
+  const fallbackMonth = months.find(m => m.jsNumber === date.getMonth()).eng
   const fallbackYear = date.getFullYear()
 
   expect(fixUrl('/games/asd-1888', { ...checkUrl('/games/asd-1888') })).toEqual(
@@ -91,4 +91,35 @@ test('fix partially incorrect urls', () => {
   expect(
     fixUrl('/asdasd/asda-2019', { ...checkUrl('/asdasd/asda-2019') }),
   ).toEqual(`/${fallbackType}/${fallbackMonth}-${fallbackYear}`)
+})
+
+test('parse url', () => {
+  expect(parseUrl('/films/february-2020')).toEqual({
+    type: 'films',
+    month: { eng: 'february', rus: 'февраль', jsNumber: 1, calendarNumber: 2 },
+    year: 2020,
+  })
+})
+
+test('check formation of next and prev date', () => {
+  expect(getNextAndPrevDate(2, 2020)).toEqual({
+    nextMonth: months[3],
+    nextYear: 2020,
+    prevMonth: months[1],
+    prevYear: 2020,
+  })
+
+  expect(getNextAndPrevDate(0, 2020)).toEqual({
+    nextMonth: months[1],
+    nextYear: 2020,
+    prevMonth: months[11],
+    prevYear: 2019,
+  })
+
+  expect(getNextAndPrevDate(11, 2020)).toEqual({
+    nextMonth: months[0],
+    nextYear: 2021,
+    prevMonth: months[10],
+    prevYear: 2020,
+  })
 })

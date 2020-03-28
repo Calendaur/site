@@ -1,0 +1,106 @@
+.Content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: #fff;
+
+  * {
+    cursor: default;
+    user-select: none;
+  }
+
+  @media (min-width: 1200px) {
+    flex-direction: row;
+  }
+
+  h2 {
+    margin-bottom: 32px;
+    font-size: 32px;
+    line-height: 1;
+
+    @media (min-width: 1200px) {
+      font-size: 48px;
+      line-height: 1.2;
+    }
+  }
+
+  > div {
+    width: 100%;
+
+    @media (min-width: 1200px) {
+      width: 50%;
+    }
+  }
+}
+
+.Info {
+  display: flex;
+  margin-bottom: 8px;
+
+  span {
+    color: #999;
+  }
+}
+
+.Desc {
+  margin-top: 24px;
+}
+
+.About {
+  padding: 16px;
+
+  @media (min-width: 1200px) {
+    padding: 32px 48px;
+  }
+}
+
+.Cover {
+  position: relative;
+  display: none;
+  background: linear-gradient(
+    90deg,
+    rgb(5, 4, 1) 0%,
+    rgba(5, 4, 1, 0.94) 7.25%,
+    rgba(5, 4, 1, 0.86) 12.45%,
+    rgba(5, 4, 1, 0.78) 16.48%,
+    rgba(5, 4, 1, 0.09) 40.26%,
+    rgba(5, 4, 1, 0.04) 44%,
+    rgba(5, 4, 1, 0) 52%
+  );
+
+  @media (min-width: 1200px) {
+    display: block;
+  }
+
+  img {
+    position: relative;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.PlatformList {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 8px;
+  margin: -4px;
+  list-style-type: none;
+
+  li {
+    --size: 18px;
+
+    display: flex;
+    width: var(--size);
+    min-width: var(--size);
+    height: var(--size);
+    min-height: var(--size);
+    margin: 4px;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

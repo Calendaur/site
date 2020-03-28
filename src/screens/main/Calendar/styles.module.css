@@ -1,0 +1,114 @@
+.Cover {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 0;
+  width: 50%;
+  user-select: none;
+
+  * {
+    user-select: none;
+  }
+
+  .Gradient {
+    --height: 550px;
+
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-width: 100%;
+    height: var(--height);
+    background:
+      linear-gradient(90deg, rgb(15, 32, 39) 0%, rgba(40, 27, 36, 0) 100%),
+      linear-gradient(0deg, rgb(15, 32, 39) 0%, rgba(40, 27, 36, 0) 100%);
+
+    img {
+      position: relative;
+      z-index: -1;
+      display: block;
+      width: 100%;
+      height: var(--height);
+      object-fit: cover;
+    }
+  }
+}
+
+.DesktopCalendar {
+  position: relative;
+  display: none;
+  width: 100%;
+  padding-top: 280px;
+  border-spacing: 16px;
+  border-collapse: separate;
+  user-select: none;
+
+  @media (min-width: 1200px) {
+    display: table;
+  }
+}
+
+.DayOfWeek {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 16px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  user-select: none;
+}
+
+.DayItem {
+  position: relative;
+  min-width: 46px;
+  height: 160px;
+  user-select: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.1);
+  will-change: transform, opacity;
+
+  &.isNotWithinRange {
+    opacity: 0.25;
+  }
+
+  &.someReleases {
+    background: transparent;
+  }
+
+  &.hasRelease {
+    background: initial;
+  }
+}
+
+.Date {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+  line-height: 29px;
+  color: #fff;
+  cursor: default;
+  user-select: none;
+  border-radius: 50%;
+}
+
+.NotYetFilled {
+  min-height: 100vh;
+  background-color: #000;
+
+  p {
+    max-width: 760px;
+    padding-top: 200px;
+    margin: 0 auto;
+    font-size: 40px;
+    color: #fff;
+    text-align: center;
+  }
+}
