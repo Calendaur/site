@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import Router from 'next/router'
@@ -9,13 +9,20 @@ import { Header, Footer } from '../../components'
 import FilterBar from './FilterBar'
 import { actions } from './redux'
 import { api, withRedux } from '../../lib'
+import { usePWAPrompt } from '../../hooks'
 import { checkFixRedirect, parseUrl, getNextAndPrevDate } from '../../core/url'
 
 const Calendar = dynamic(() => import('./Calendar'), {
   ssr: false,
 })
+const PWAPrompt = dynamic(() => import('react-ios-pwa-prompt'), {
+  ssr: false,
+})
 
 function MainPage({ parsedURL }) {
+  const [prompt, promptToInstall] = usePWAPrompt()
+  const [isVisiblePWAButton, setIsVisiblePWAButton] = useState(false)
+
   const { year, month, type } = parsedURL
 
   const { prevMonth, prevYear, nextMonth, nextYear } = getNextAndPrevDate(
@@ -27,6 +34,14 @@ function MainPage({ parsedURL }) {
   const nextLink = `/${type}/${nextMonth.eng}-${nextYear}`
 
   const releases = useSelector(state => state.releases)
+
+  const hidePWAButton = () => setIsVisiblePWAButton(false)
+
+  useEffect(() => {
+    if (prompt) {
+      setIsVisiblePWAButton(true)
+    }
+  }, [prompt])
 
   const hasReleasesInNextMonth =
     releases.filter(r => new Date(r.date).getMonth() === nextMonth.jsNumber)
@@ -87,6 +102,17 @@ function MainPage({ parsedURL }) {
             toNext={toNext}
           />
           <Calendar type={type} month={month.jsNumber} year={year} />
+          <div onClick={hidePWAButton}>
+            <button onClick={hidePWAButton}>Close</button>
+            Hello! Wanna add to homescreen?
+            <button onClick={promptToInstall}>Add to homescreen</button>
+          </div>
+          <PWAPrompt
+            promptOnVisit={1}
+            timesToShow={3}
+            copyClosePrompt="Close"
+            permanentlyHideOnDismiss={false}
+          />
           <Footer />
         </Fragment>
       </PageTransition>
