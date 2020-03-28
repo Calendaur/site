@@ -1,3 +1,5 @@
+import { getDaysInMonth, format } from 'date-fns'
+
 async function fetchDB() {
   const firebase = await import('firebase/app')
   await import('firebase/database')
@@ -29,8 +31,22 @@ class Api {
     this.db = fetchDB()
   }
 
+  async getDB() {
+    return await this.db()
+  }
+
   async getReleases() {
     const snapshot = await (await this.db).child('releases').once('value')
+    return Object.values(snapshot.val())
+  }
+
+  async getReleasesByDate(date) {
+    const snapshot = await (await this.db)
+      .child('releases')
+      .orderByChild('date')
+      .startAt(format(date, 'yyyy-MM-dd'))
+      .limitToFirst(getDaysInMonth(date))
+      .once('value')
     return Object.values(snapshot.val())
   }
 

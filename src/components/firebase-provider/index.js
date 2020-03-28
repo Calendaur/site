@@ -45,6 +45,7 @@ function FirebaseProvider({ features, children }) {
           firebaseInstance.initializeApp(config)
 
           const messaging = firebaseInstance.messaging()
+
           messaging
             .requestPermission()
             .then(() => messaging.getToken())

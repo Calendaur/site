@@ -1,39 +1,43 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
 import Router from 'next/router'
 import { useSelector } from 'react-redux'
 import { useDrag } from 'react-use-gesture'
 import { PageTransition } from 'next-page-transitions'
-import Header, { generateHref, findMonth } from './Header'
-import Calendar from './Calendar'
-import Footer from './Footer'
+import { Header, Footer } from '../../components'
+import FilterBar from './FilterBar'
 import { actions } from './redux'
 import { api, withRedux } from '../../lib'
-import { checkFixRedirect, parseUrl } from '../../core/url'
+import { checkFixRedirect, parseUrl, getNextAndPrevDate } from '../../core/url'
 
-function MainPage({ parsedURL, ...rest }) {
+const Calendar = dynamic(() => import('./Calendar'), {
+  ssr: false,
+})
+
+function MainPage({ parsedURL }) {
   const { year, month, type } = parsedURL
 
-  const nextMonth =
-    month.jsNumber === 11
-      ? 'январь'
-      : findMonth(m => m.jsNumber === month.jsNumber + 1).rus
-  const nextYear = nextMonth === 'январь' ? year + 1 : year
+  const { prevMonth, prevYear, nextMonth, nextYear } = getNextAndPrevDate(
+    month.jsNumber,
+    year,
+  )
 
-  const prevMonth =
-    month.jsNumber === 0
-      ? 'декабрь'
-      : findMonth(m => m.jsNumber === month.jsNumber - 1).rus
-  const prevYear = prevMonth === 'декабрь' ? year - 1 : year
+  const prevLink = `/${type}/${prevMonth.eng}-${prevYear}`
+  const nextLink = `/${type}/${nextMonth.eng}-${nextYear}`
 
   const releases = useSelector(state => state.releases)
 
   const hasReleasesInNextMonth =
-    releases.filter(
-      r =>
-        new Date(r.date).getMonth() ===
-        findMonth(m => m.rus === nextMonth).jsNumber,
-    ).length > 0
+    releases.filter(r => new Date(r.date).getMonth() === nextMonth.jsNumber)
+      .length > 0
+
+  function toNext() {
+    Router.push('/[type]/[date]', nextLink)
+  }
+  function toPrev() {
+    Router.push('/[type]/[date]', prevLink)
+  }
 
   const bind = useDrag(
     ({
@@ -49,24 +53,7 @@ function MainPage({ parsedURL, ...rest }) {
 
         if (xDir >= 0 && prevYear < 2020) return
 
-        const swipeRoute =
-          xDir > 0
-            ? Router.push(
-                '/[type]/[date]',
-                generateHref(
-                  type,
-                  findMonth(m => m.rus === prevMonth),
-                  prevYear,
-                ),
-              )
-            : Router.push(
-                '/[type]/[date]',
-                generateHref(
-                  type,
-                  findMonth(m => m.rus === nextMonth),
-                  nextYear,
-                ),
-              )
+        const swipeRoute = xDir > 0 ? toPrev() : toNext()
 
         cancel(swipeRoute)
       }
@@ -82,21 +69,26 @@ function MainPage({ parsedURL, ...rest }) {
           {year}
         </title>
       </Head>
-      <Header type={type} month={month} year={year} />
-      <PageTransition
-        timeout={250}
-        loadingClassNames="loading-indicator"
-        classNames=""
-        loadingDelay={350}
-        loadingTimeout={{
-          enter: 250,
-          exit: 0,
-        }}
-      >
-        <>
+      <Header />
+      <PageTransition loadingClassNames="" classNames="" timeout={0}>
+        <Fragment key={`${type}-${month.eng}-${year}`}>
+          <FilterBar
+            type={type}
+            month={month}
+            year={year}
+            prevYear={prevYear}
+            nextYear={nextYear}
+            prevMonth={prevMonth}
+            nextMonth={nextMonth}
+            prevLink={prevLink}
+            nextLink={nextLink}
+            hasReleasesInNextMonth={hasReleasesInNextMonth}
+            toPrev={toPrev}
+            toNext={toNext}
+          />
           <Calendar type={type} month={month.jsNumber} year={year} />
           <Footer />
-        </>
+        </Fragment>
       </PageTransition>
     </div>
   )
@@ -106,6 +98,7 @@ MainPage.getInitialProps = async ctx => {
   checkFixRedirect(ctx)
 
   const { getState, dispatch } = ctx.reduxStore
+  const parsedURL = parseUrl(ctx.asPath)
 
   const hasLoadedReleases = getState().releases.length > 0
   const hasLoaderBgs = getState().backgrounds.length > 0
@@ -118,7 +111,7 @@ MainPage.getInitialProps = async ctx => {
     dispatch(actions.setBackgrounds(await api.getBackgrounds()))
   }
 
-  return { parsedURL: parseUrl(ctx.asPath) }
+  return { parsedURL }
 }
 
 export default withRedux(MainPage)

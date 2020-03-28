@@ -1,4 +1,4 @@
-import { checkUrl, fixUrl, parseUrl, months } from '../url'
+import { checkUrl, fixUrl, parseUrl, months, getNextAndPrevDate } from '../url'
 
 test('check correct urls', () => {
   const correctResult = {
@@ -98,5 +98,28 @@ test('parse url', () => {
     type: 'films',
     month: { eng: 'february', rus: 'февраль', jsNumber: 1, calendarNumber: 2 },
     year: 2020,
+  })
+})
+
+test('check formation of next and prev date', () => {
+  expect(getNextAndPrevDate(2, 2020)).toEqual({
+    nextMonth: months[3],
+    nextYear: 2020,
+    prevMonth: months[1],
+    prevYear: 2020,
+  })
+
+  expect(getNextAndPrevDate(0, 2020)).toEqual({
+    nextMonth: months[1],
+    nextYear: 2020,
+    prevMonth: months[11],
+    prevYear: 2019,
+  })
+
+  expect(getNextAndPrevDate(11, 2020)).toEqual({
+    nextMonth: months[0],
+    nextYear: 2021,
+    prevMonth: months[10],
+    prevYear: 2020,
   })
 })

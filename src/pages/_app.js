@@ -12,7 +12,7 @@ class CustomApp extends App {
     return (
       <FirebaseProvider
         features={{
-          auth: false,
+          auth: true,
           database: true,
           firestore: false,
           storage: false,

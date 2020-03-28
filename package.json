@@ -15,6 +15,7 @@
     "classnames": "^2.2.6",
     "date-fns": "^2.9.0",
     "dotenv-webpack": "^1.7.0",
+    "downshift": "^5.0.5",
     "express": "^4.17.1",
     "firebase": "^7.7.0",
     "lodash.throttle": "^4.1.1",
@@ -29,6 +30,7 @@
     "react-spring": "^8.0.27",
     "react-use-gesture": "^7.0.4",
     "redux": "^4.0.5",
+    "rodal": "^1.8.1",
     "sanitize.css": "^11.0.0"
   },
   "devDependencies": {

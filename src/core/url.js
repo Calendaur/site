@@ -107,3 +107,20 @@ export function checkFixRedirect(ctx) {
     redirect(ctx, fixUrl(url, rest))
   }
 }
+
+export function getNextAndPrevDate(currentMonthJSNumber, currentYear) {
+  const nextMonthIndex =
+    currentMonthJSNumber === 11 ? 0 : currentMonthJSNumber + 1
+  const nextYear = nextMonthIndex === 0 ? currentYear + 1 : currentYear
+
+  const prevMonthIndex =
+    currentMonthJSNumber === 0 ? 11 : currentMonthJSNumber - 1
+  const prevYear = prevMonthIndex === 11 ? currentYear - 1 : currentYear
+
+  return {
+    nextMonth: months[nextMonthIndex],
+    nextYear,
+    prevMonth: months[prevMonthIndex],
+    prevYear,
+  }
+}

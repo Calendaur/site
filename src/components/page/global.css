@@ -18,6 +18,7 @@ body {
   -webkit-tap-highlight-color: transparent;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
+  background-color: rgb(15, 32, 39);
 }
 
 main {
@@ -25,53 +26,312 @@ main {
   overflow-x: auto;
 }
 
-.page-transition-enter {
-  opacity: 0;
+button {
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  user-select: none;
+  background-color: #fff;
+  border: none;
+  outline: none;
 }
 
-.page-transition-enter-active {
-  opacity: 1;
-  transition: opacity 400ms;
+button:disabled,
+button[disabled] {
+  pointer-events: none;
+  opacity: 0.3;
 }
 
-.page-transition-exit {
-  opacity: 1;
+/* Rodal styles */
+
+/* -- container -- */
+.rodal,
+.rodal-mask {
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
 }
 
-.page-transition-exit-active {
-  opacity: 0;
-  transition: opacity 400ms;
+.rodal {
+  position: fixed;
 }
 
-.loading-indicator-appear,
-.loading-indicator-enter {
-  opacity: 0;
+/* -- mask -- */
+.rodal-mask {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
 }
 
-.loading-indicator-appear-active,
-.loading-indicator-enter-active {
-  opacity: 1;
-  transition: opacity 400ms;
+/* -- dialog -- */
+.rodal-dialog {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 101;
+  width: 100% !important;
+  height: 80vh !important;
+  margin: auto;
+  background: rgb(5, 4, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+
+  @media (min-width: 1200px) {
+    height: 45% !important;
+  }
 }
 
-.loader {
+.rodal-dialog:focus {
+  outline: none;
+}
+
+/* -- close button -- */
+.rodal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
   width: 40px;
   height: 40px;
-  margin-top: 40px;
-  margin-right: auto;
-  margin-left: auto;
-  border: 8px solid #bcbcbc;
-  border-top: 8px solid #bcbcbc;
-  border-radius: 50%;
-  animation: spin 2s linear infinite;
+  cursor: pointer;
+  outline: none;
+}
 
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
+.rodal-close::before,
+.rodal-close::after {
+  position: absolute;
+  top: 20px;
+  left: 4px;
+  width: 32px;
+  height: 3px;
+  margin-top: -1px;
+  content: '';
+  background: hsla(0, 0%, 100%, 0.8);
+  transition: background 0.2s;
+}
 
-    100% {
-      transform: rotate(360deg);
-    }
+.rodal-close::before {
+  transform: rotate(45deg);
+}
+
+.rodal-close::after {
+  transform: rotate(-45deg);
+}
+
+.rodal-close:hover::before,
+.rodal-close:hover::after {
+  background: #eee;
+}
+
+/* -- fade -- */
+@keyframes rodal-fade-enter {
+  from {
+    opacity: 0;
   }
+}
+
+.rodal-fade-enter {
+  animation: rodal-fade-enter both ease-in;
+}
+
+@keyframes rodal-fade-leave {
+  to {
+    opacity: 0;
+  }
+}
+
+.rodal-fade-leave {
+  animation: rodal-fade-leave both ease-out;
+}
+
+/* -- zoom -- */
+@keyframes rodal-zoom-enter {
+  from {
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+}
+
+.rodal-zoom-enter {
+  animation: rodal-zoom-enter both cubic-bezier(0.4, 0, 0, 1.5);
+}
+
+@keyframes rodal-zoom-leave {
+  to {
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+}
+
+.rodal-zoom-leave {
+  animation: rodal-zoom-leave both;
+}
+
+/* -- slideDown -- */
+@keyframes rodal-slideDown-enter {
+  from {
+    transform: translate3d(0, -100px, 0);
+  }
+}
+
+.rodal-slideDown-enter {
+  animation: rodal-slideDown-enter both cubic-bezier(0.4, 0, 0, 1.5);
+}
+
+@keyframes rodal-slideDown-leave {
+  to {
+    transform: translate3d(0, -100px, 0);
+  }
+}
+
+.rodal-slideDown-leave {
+  animation: rodal-slideDown-leave both;
+}
+
+/* -- slideLeft -- */
+@keyframes rodal-slideLeft-enter {
+  from {
+    transform: translate3d(-150px, 0, 0);
+  }
+}
+
+.rodal-slideLeft-enter {
+  animation: rodal-slideLeft-enter both cubic-bezier(0.4, 0, 0, 1.5);
+}
+
+@keyframes rodal-slideLeft-leave {
+  to {
+    transform: translate3d(-150px, 0, 0);
+  }
+}
+
+.rodal-slideLeft-leave {
+  animation: rodal-slideLeft-leave both;
+}
+
+@keyframes rodal-slideRight-enter {
+  from {
+    transform: translate3d(150px, 0, 0);
+  }
+}
+
+.rodal-slideRight-enter {
+  animation: rodal-slideRight-enter both cubic-bezier(0.4, 0, 0, 1.5);
+}
+
+@keyframes rodal-slideRight-leave {
+  to {
+    transform: translate3d(150px, 0, 0);
+  }
+}
+
+.rodal-slideRight-leave {
+  animation: rodal-slideRight-leave both;
+}
+
+/* -- slideUp -- */
+@keyframes rodal-slideUp-enter {
+  from {
+    transform: translate3d(0, 100px, 0);
+  }
+}
+
+.rodal-slideUp-enter {
+  animation: rodal-slideUp-enter both cubic-bezier(0.4, 0, 0, 1.5);
+}
+
+@keyframes rodal-slideUp-leave {
+  to {
+    transform: translate3d(0, 100px, 0);
+  }
+}
+
+.rodal-slideUp-leave {
+  animation: rodal-slideUp-leave both;
+}
+
+/* -- flip -- */
+@keyframes rodal-flip-enter {
+  from {
+    transform: perspective(400px) rotate3d(1, 0, 0, 60deg);
+  }
+
+  70% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -15deg);
+  }
+
+  to {
+    transform: perspective(400px);
+  }
+}
+
+.rodal-flip-enter {
+  animation: rodal-flip-enter both ease-in;
+  backface-visibility: visible !important;
+}
+
+@keyframes rodal-flip-leave {
+  from {
+    transform: perspective(400px);
+  }
+
+  30% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -15deg);
+  }
+
+  to {
+    transform: perspective(400px) rotate3d(1, 0, 0, 45deg);
+  }
+}
+
+.rodal-flip-leave {
+  animation: rodal-flip-leave both;
+  backface-visibility: visible !important;
+}
+
+/* -- rotate -- */
+@keyframes rodal-rotate-enter {
+  from {
+    transform: rotate3d(0, 0, 1, -180deg) scale3d(0.3, 0.3, 0.3);
+  }
+}
+
+.rodal-rotate-enter {
+  transform-origin: center;
+  animation: rodal-rotate-enter both;
+}
+
+@keyframes rodal-rotate-leave {
+  to {
+    transform: rotate3d(0, 0, 1, 180deg) scale3d(0.3, 0.3, 0.3);
+  }
+}
+
+.rodal-rotate-leave {
+  transform-origin: center;
+  animation: rodal-rotate-leave both;
+}
+
+/* -- door -- */
+@keyframes rodal-door-enter {
+  from {
+    transform: scale3d(0, 1, 1);
+  }
+}
+
+.rodal-door-enter {
+  animation: rodal-door-enter both cubic-bezier(0.4, 0, 0, 1.5);
+}
+
+@keyframes rodal-door-leave {
+  60% {
+    transform: scale3d(0.01, 1, 1);
+  }
+
+  to {
+    transform: scale3d(0, 1, 0.1);
+  }
+}
+
+.rodal-door-leave {
+  animation: rodal-door-leave both;
 }
