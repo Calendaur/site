@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react'
 
 function useDidUpdate(callback, inputs) {
   const mounted = useRef(false)
@@ -7,7 +7,7 @@ function useDidUpdate(callback, inputs) {
     if (mounted.current) {
       callback()
     } else mounted.current = true
-  }, inputs)
+  }, inputs) // eslint-disable-line
 }
 
 export default useDidUpdate

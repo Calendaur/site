@@ -2,24 +2,37 @@ import React, { Fragment } from 'react'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import Router from 'next/router'
-import { useSelector } from 'react-redux'
 import { useDrag } from 'react-use-gesture'
 import { PageTransition } from 'next-page-transitions'
+import useSWR from 'swr'
 import { Header, Footer } from '../../components'
 import FilterBar from './FilterBar'
-import { actions } from './redux'
-import { api, withRedux } from '../../lib'
-import useAuthentication from '../../auth/useAuthentication'
-import { checkFixRedirect, parseUrl, getNextAndPrevDate } from '../../core/url'
+import Calendar from './Calendar'
+import useAuthentication from '../../core/auth/useAuthentication'
+import { getNextAndPrevDate } from '../../core/url'
+import { fetchReleases, fetchBackgrounds } from '../../core/api'
 
-const Calendar = dynamic(() => import('./Calendar'), {
-  ssr: false,
-})
 const PWAPrompt = dynamic(() => import('react-ios-pwa-prompt'), {
   ssr: false,
 })
 
-function MainPage({ parsedURL }) {
+function MainPage({
+  parsedURL,
+  date,
+  releases: initialReleases,
+  backgrounds: initialBackgrounds,
+}) {
+  const { data: releases } = useSWR('releases', fetchReleases, {
+    initialData: initialReleases,
+  })
+  const { data: backgrounds } = useSWR(
+    `backgrounds-${date}`,
+    () => fetchBackgrounds(date),
+    {
+      initialData: initialBackgrounds,
+    },
+  )
+
   useAuthentication()
   const { year, month, type } = parsedURL
 
@@ -30,8 +43,6 @@ function MainPage({ parsedURL }) {
 
   const prevLink = `/${type}/${prevMonth.eng}-${prevYear}`
   const nextLink = `/${type}/${nextMonth.eng}-${nextYear}`
-
-  const releases = useSelector(state => state.releases)
 
   const hasReleasesInNextMonth =
     releases.filter(r => new Date(r.date).getMonth() === nextMonth.jsNumber)
@@ -91,7 +102,13 @@ function MainPage({ parsedURL }) {
             toPrev={toPrev}
             toNext={toNext}
           />
-          <Calendar type={type} month={month.jsNumber} year={year} />
+          <Calendar
+            type={type}
+            month={month.jsNumber}
+            year={year}
+            releases={releases}
+            backgrounds={backgrounds}
+          />
           <PWAPrompt
             promptOnVisit={1}
             timesToShow={3}
@@ -105,24 +122,4 @@ function MainPage({ parsedURL }) {
   )
 }
 
-MainPage.getInitialProps = async ctx => {
-  checkFixRedirect(ctx)
-
-  const { getState, dispatch } = ctx.reduxStore
-  const parsedURL = parseUrl(ctx.asPath)
-
-  const hasLoadedReleases = getState().releases.length > 0
-  const hasLoaderBgs = getState().backgrounds.length > 0
-
-  if (!hasLoadedReleases) {
-    dispatch(actions.setReleases(await api.getReleases()))
-  }
-
-  if (!hasLoaderBgs) {
-    dispatch(actions.setBackgrounds(await api.getBackgrounds()))
-  }
-
-  return { parsedURL }
-}
-
-export default withRedux(MainPage)
+export default MainPage

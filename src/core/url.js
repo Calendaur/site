@@ -100,7 +100,7 @@ export function redirect(ctx, to) {
 }
 
 export function checkFixRedirect(ctx) {
-  const url = ctx.asPath
+  const url = ctx.asPath || ctx.req.url
   const { isCorrect, ...rest } = checkUrl(url)
 
   if (!isCorrect) {

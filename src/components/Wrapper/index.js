@@ -1,10 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Head from 'next/head'
-import { useFirebase } from '../../hooks'
+import firebase from '../../core/firebase'
+import { fetchSubscribers } from '../../core/api'
 
-function Page({ children }) {
-  useFirebase(firebase => {
+async function pushNotification() {
+  try {
+    const messaging = firebase.messaging()
+    const db = firebase.database()
+
+    await messaging.requestPermission()
+    const token = await messaging.getToken()
+    const tokens = await fetchSubscribers()
+
+    if (Array.isArray(tokens) && tokens.includes(token)) return
+
+    db.ref(`v2/subscribers`).set([...tokens, token])
+
+    messaging.onMessage(payload => {
+      console.log('onMessage:', payload)
+    })
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+function Wrapper({ children }) {
+  useEffect(() => {
     firebase.analytics()
+
+    pushNotification()
   }, [])
 
   return (
@@ -160,12 +184,12 @@ function Page({ children }) {
           sizes="16x16"
           href="/pwa/favicon-16x16.png"
         />
-        <meta name="msapplication-TileColor" content="#281b24" />
+        <meta name="msapplication-TileColor" content="#0f2027" />
         <meta
           name="msapplication-TileImage"
           content="/pwa/ms-icon-144x144.png"
         />
-        <meta name="theme-color" content="#281b24" />
+        <meta name="theme-color" content="#0f2027" />
         <link
           href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"
           rel="stylesheet"
@@ -176,4 +200,4 @@ function Page({ children }) {
   )
 }
 
-export default Page
+export default Wrapper

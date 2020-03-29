@@ -54,14 +54,21 @@ export function getCellWidth(vw, releases, dayInCalendar) {
 
   if (!allReleasesInDay.length) return 'inherit'
 
+  let measure
+
   const cellWidth = allReleasesInDay.reduce((acc, curr) => {
     let width
 
-    if (curr.percentageWidth) width = +curr.percentageWidth
-    else width = (+curr.width / vw) * 85
+    if (curr.percentageWidth) {
+      width = +curr.percentageWidth
+      measure = '%'
+    } else {
+      width = +curr.width
+      measure = 'px'
+    }
 
     return acc + width
   }, 0)
 
-  return Math.trunc(cellWidth) + '%'
+  return cellWidth + measure
 }

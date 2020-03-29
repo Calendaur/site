@@ -1,9 +1,6 @@
-import { useContext } from 'react'
-import { FirebaseContext } from '../components'
+import firebase from '../firebase'
 
 function useGoogleAuth() {
-  const firebase = useContext(FirebaseContext)
-
   const login = async () => {
     const auth = firebase.auth()
     const db = firebase.database()

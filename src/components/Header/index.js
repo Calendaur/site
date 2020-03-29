@@ -2,8 +2,8 @@ import React, { useRef, useState, useMemo } from 'react'
 import Link from 'next/link'
 import Router from 'next/router'
 import { useDidUpdate, useHideOnScroll } from '../../hooks'
-import useGoogleAuth from '../../auth/useGoogleAuth'
-import useAuthorization from '../../auth/useAuthorization'
+import useGoogleAuth from '../../core/auth/useGoogleAuth'
+import useAuthorization from '../../core/auth/useAuthorization'
 
 import styles from './styles.module.css'
 

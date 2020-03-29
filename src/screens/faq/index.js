@@ -1,7 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
 import { Header, Footer } from '../../components'
-import { withRedux } from '../../lib'
 
 import styles from './styles.module.css'
 
@@ -90,16 +89,6 @@ function Faq() {
                 Юрий Ягупов
               </a>
             </p>
-            <p>
-              <span>Дизайнер:</span>{' '}
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://tele.click/jdavydko"
-              >
-                Роман Давыдко
-              </a>
-            </p>
           </p>
         </div>
       </div>
@@ -108,4 +97,4 @@ function Faq() {
   )
 }
 
-export default withRedux(Faq)
+export default Faq

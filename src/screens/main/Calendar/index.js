@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import cx from 'classnames'
 import ReleaseListInDay from '../ReleaseListInDay'
 import MobileCalendar from '../MobileCalendar'
@@ -11,24 +10,24 @@ import styles from './styles.module.css'
 
 const daysOfWeek = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс']
 
-function Calendar({ type, month, year }) {
+function Calendar({ type, month, year, releases, backgrounds }) {
   const [openedRelease, setOpenedRelease] = useState({
     visible: false,
     release: null,
   })
-  const releases = useSelector(state =>
-    state.releases.filter(r => {
+  const filteredReleases = useMemo(() => {
+    return releases.filter(r => {
       const date = new Date(r.date)
 
       const m = date.getMonth()
       const y = date.getFullYear()
 
       return m === month && y === year && type.replace('s', '') === r.type
-    }),
-  )
+    })
+  }, [type, month, year]) // eslint-disable-line
 
-  const cover = useSelector(state => {
-    const bg = state.backgrounds.find(b => {
+  const cover = useMemo(() => {
+    const bg = backgrounds.find(b => {
       const date = new Date(b.date)
 
       const m = date.getMonth()
@@ -40,14 +39,15 @@ function Calendar({ type, month, year }) {
     if (bg) return bg.cover
 
     return ''
-  })
+  }, [type, month, year]) // eslint-disable-line
+
   const { width } = useWindowSize()
 
   const getReleasesCellWidth = useCallback(
     day => {
-      return getCellWidth(width, releases, day)
+      return getCellWidth(width, filteredReleases, day)
     },
-    [releases, width],
+    [filteredReleases, width],
   )
 
   const weeks = getWeeks(year, month)
@@ -69,7 +69,7 @@ function Calendar({ type, month, year }) {
 
   return (
     <main>
-      {releases.length === 0 ? (
+      {filteredReleases.length === 0 ? (
         <div className={styles.NotYetFilled}>
           <p>Релизы для этого месяца еще заполняются</p>
         </div>
@@ -94,7 +94,7 @@ function Calendar({ type, month, year }) {
               {weeks.map((week, index) => (
                 <tr key={`week_${index}`}>
                   {week.map((day, index) => {
-                    const dayReleases = releases.filter(
+                    const dayReleases = filteredReleases.filter(
                       r => new Date(r.date).getDate() === day,
                     )
 
@@ -126,7 +126,7 @@ function Calendar({ type, month, year }) {
               ))}
             </tbody>
           </table>
-          <MobileCalendar releases={releases} openModal={openModal} />
+          <MobileCalendar releases={filteredReleases} openModal={openModal} />
           <ReleaseInfoModal
             release={openedRelease.release}
             isOpen={openedRelease.visible}

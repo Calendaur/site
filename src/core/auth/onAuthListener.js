@@ -1,4 +1,6 @@
-function onAuthListener(firebase, next, fallback) {
+import firebase from '../firebase'
+
+function onAuthListener(next, fallback) {
   const db = firebase.database()
   const auth = firebase.auth()
 
