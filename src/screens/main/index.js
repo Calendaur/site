@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
-import Router from 'next/router'
+import { useRouter } from 'next/router'
 import { useDrag } from 'react-use-gesture'
 import { PageTransition } from 'next-page-transitions'
 import useSWR from 'swr'
@@ -48,11 +48,13 @@ function MainPage({
     releases.filter(r => new Date(r.date).getMonth() === nextMonth.jsNumber)
       .length > 0
 
+  const { push } = useRouter()
+
   function toNext() {
-    Router.push('/[type]/[date]', nextLink)
+    push('/[type]/[date]', nextLink)
   }
   function toPrev() {
-    Router.push('/[type]/[date]', prevLink)
+    push('/[type]/[date]', prevLink)
   }
 
   const bind = useDrag(
