@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import Router from 'next/router'
 import { Dropdown } from '../../../components'
 
@@ -11,6 +12,8 @@ function FilterBar({
   hasReleasesInNextMonth,
   prevYear,
   nextYear,
+  nextLink,
+  prevLink,
   toPrev,
   toNext,
 }) {
@@ -39,19 +42,19 @@ function FilterBar({
         }}
       />
       <div className={styles.DateBar}>
-        <button type="button" onClick={toPrev} disabled={prevYear < 2020}>
-          <img src="/icons/arrow.svg" alt="" />
-        </button>
+        <Link href="/[type]/[date]" as={prevLink}>
+          <a disabled={prevYear < 2020}>
+            <img src="/icons/arrow.svg" alt="" />
+          </a>
+        </Link>
         <div className={styles.Date}>
           <span>{month.rus}</span> {year}
         </div>
-        <button
-          type="button"
-          onClick={toNext}
-          disabled={!hasReleasesInNextMonth || nextYear > 2030}
-        >
-          <img src="/icons/arrow.svg" alt="" />
-        </button>
+        <Link href="/[type]/[date]" as={nextLink}>
+          <a disabled={!hasReleasesInNextMonth || nextYear > 2030}>
+            <img src="/icons/arrow.svg" alt="" />
+          </a>
+        </Link>
       </div>
     </div>
   )

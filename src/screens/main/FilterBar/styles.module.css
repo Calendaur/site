@@ -47,13 +47,21 @@
     margin-left: 16px;
   }
 
-  button {
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 38px;
     height: 100%;
     transition: all 0.2s ease-in-out;
 
     &:hover {
       background-color: #ddd;
+    }
+
+    &[disabled] {
+      pointer-events: none;
+      opacity: 0.5;
     }
 
     &:last-child {
