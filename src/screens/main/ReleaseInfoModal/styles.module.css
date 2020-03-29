@@ -35,6 +35,7 @@
 
 .Info {
   display: flex;
+  align-items: center;
   margin-bottom: 8px;
 
   span {
@@ -56,9 +57,9 @@
 
 .Cover {
   position: relative;
-  display: none;
+  order: -1;
   background: linear-gradient(
-    90deg,
+    0deg,
     rgb(5, 4, 1) 0%,
     rgba(5, 4, 1, 0.94) 7.25%,
     rgba(5, 4, 1, 0.86) 12.45%,
@@ -69,7 +70,17 @@
   );
 
   @media (min-width: 1200px) {
-    display: block;
+    order: initial;
+    background: linear-gradient(
+      90deg,
+      rgb(5, 4, 1) 0%,
+      rgba(5, 4, 1, 0.94) 7.25%,
+      rgba(5, 4, 1, 0.86) 12.45%,
+      rgba(5, 4, 1, 0.78) 16.48%,
+      rgba(5, 4, 1, 0.09) 40.26%,
+      rgba(5, 4, 1, 0.04) 44%,
+      rgba(5, 4, 1, 0) 52%
+    );
   }
 
   img {

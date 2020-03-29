@@ -1,20 +1,19 @@
-import React, { useEffect, useRef, useState, useMemo } from 'react'
+import React, { useRef, useState, useMemo } from 'react'
 import Link from 'next/link'
-import { useDidUpdate, useWindowSize } from '../../hooks'
+import Router from 'next/router'
+import { useDidUpdate, useHideOnScroll } from '../../hooks'
 import useGoogleAuth from '../../auth/useGoogleAuth'
 import useAuthorization from '../../auth/useAuthorization'
 
 import styles from './styles.module.css'
 
-function Header() {
-  const { width } = useWindowSize()
+function Header({ hasBack }) {
   const [login, logout] = useGoogleAuth()
   const authUser = useAuthorization()
+  const [visible, setVisible] = useHideOnScroll()
 
   const ref = useRef(null)
-  const isMobileVersion = width <= 768
   const [height, setHeight] = useState(0)
-  const [visible, setVisible] = useState(true)
 
   const animationStyle = useMemo(
     () => ({
@@ -29,33 +28,19 @@ function Header() {
     setVisible(true)
   }, [ref.current?.clientHeight, setHeight, setVisible])
 
-  useEffect(() => {
-    let prevScrollPos = window.pageYOffset
-
-    const handleScroll = () => {
-      const currentScrollPos = window.pageYOffset
-      if (isMobileVersion) {
-        setVisible(Math.abs(prevScrollPos) > currentScrollPos)
-      }
-
-      prevScrollPos = currentScrollPos
-    }
-
-    window.addEventListener('scroll', handleScroll, {
-      capture: true,
-      passive: true,
-    })
-
-    return () =>
-      window.removeEventListener('scroll', handleScroll, {
-        capture: true,
-        passive: true,
-      })
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
   return (
     <header ref={ref} className={styles.Header} style={animationStyle}>
       <div className={styles.Logo}>
+        {hasBack && (
+          <button
+            className={styles.Back}
+            onClick={() => {
+              Router.back()
+            }}
+          >
+            <img src="/icons/back.svg" alt="" />
+          </button>
+        )}
         <Link href="/">
           <a>
             <img src="/images/logo.png" alt="calendaur.com" />

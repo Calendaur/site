@@ -19,8 +19,7 @@
     width: 100%;
     min-width: 100%;
     height: var(--height);
-    background:
-      linear-gradient(90deg, rgb(15, 32, 39) 0%, rgba(40, 27, 36, 0) 100%),
+    background: linear-gradient(90deg, rgb(15, 32, 39) 0%, rgba(40, 27, 36, 0) 100%),
       linear-gradient(0deg, rgb(15, 32, 39) 0%, rgba(40, 27, 36, 0) 100%);
 
     img {

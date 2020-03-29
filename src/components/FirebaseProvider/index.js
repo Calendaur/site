@@ -12,6 +12,27 @@ export const config = {
   measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 }
 
+async function pushNotification(firebase) {
+  try {
+    const messaging = firebase.messaging()
+    const db = firebase.database()
+
+    await messaging.requestPermission()
+    const token = await messaging.getToken()
+    const tokens = await db.ref(`v2/subscribers`).once('value')
+
+    if (tokens.includes(token)) return
+
+    db.ref(`v2/subscribers`).set([...tokens, token])
+
+    messaging.onMessage(payload => {
+      console.log('onMessage:', payload)
+    })
+  } catch (e) {
+    console.error(e)
+  }
+}
+
 function FirebaseProvider({ features, children }) {
   const [firebase, setFirebase] = useState(null)
 
@@ -43,45 +64,10 @@ function FirebaseProvider({ features, children }) {
         const firebaseInstance = values[0]
         if (!firebaseInstance.apps.length) {
           firebaseInstance.initializeApp(config)
-
-          const messaging = firebaseInstance.messaging()
-
-          messaging
-            .requestPermission()
-            .then(() => messaging.getToken())
-            .then(token => {
-              console.log(token)
-              firebaseInstance
-                .database()
-                .ref(`v2/subscribers`)
-                .once('value')
-                .then(snapshot => {
-                  const tokens = snapshot.val()
-
-                  if (Array.isArray(tokens) && !tokens.includes(token)) {
-                    firebaseInstance
-                      .database()
-                      .ref(`v2/subscribers`)
-                      .set([...tokens, token])
-                  } else {
-                    firebaseInstance
-                      .database()
-                      .ref(`v2/subscribers`)
-                      .set([token])
-                  }
-                })
-                .catch(error => {
-                  console.error('Error Occured.', error)
-                })
-            })
-            .catch(error => {
-              console.error('Error Occured.', error)
-            })
-
-          messaging.onMessage(payload => {
-            console.log('onMessage:', payload)
-          })
         }
+
+        pushNotification(firebaseInstance)
+
         setFirebase(firebaseInstance)
       })
     }

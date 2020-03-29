@@ -3,5 +3,13 @@ import useDidUpdate from './use-did-update'
 import useMediaQuery from './use-media-query'
 import useWindowSize from './useWindowSize'
 import usePWAPrompt from './usePWAPrompt'
+import useHideOnScroll from './useHideOnScroll'
 
-export { useFirebase, useDidUpdate, useMediaQuery, useWindowSize, usePWAPrompt }
+export {
+  useFirebase,
+  useDidUpdate,
+  useMediaQuery,
+  useWindowSize,
+  usePWAPrompt,
+  useHideOnScroll,
+}

@@ -4,7 +4,6 @@ function useAddToHomescreenPrompt() {
   const [prompt, setState] = useState(null)
 
   const promptToInstall = () => {
-    console.log(prompt)
     if (prompt) {
       return prompt.prompt()
     }

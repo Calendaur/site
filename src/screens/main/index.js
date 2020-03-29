@@ -108,8 +108,6 @@ function MainPage({ parsedURL }) {
 MainPage.getInitialProps = async ctx => {
   checkFixRedirect(ctx)
 
-  console.log(ctx)
-
   const { getState, dispatch } = ctx.reduxStore
   const parsedURL = parseUrl(ctx.asPath)
 

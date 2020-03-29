@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import cx from 'classnames'
 import ReleaseListInDay from '../ReleaseListInDay'
@@ -58,6 +58,14 @@ function Calendar({ type, month, year }) {
       release,
     })
   }
+
+  useEffect(() => {
+    if (openedRelease.visible) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'inherit'
+    }
+  }, [openedRelease.visible])
 
   return (
     <main>

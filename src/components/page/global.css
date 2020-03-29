@@ -66,20 +66,23 @@ button[disabled] {
 
 /* -- dialog -- */
 .rodal-dialog {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   z-index: 101;
-  width: 100% !important;
-  height: 80vh !important;
+  width: 100%;
+  height: 100vh !important;
+  min-height: 100vh;
   margin: auto;
+  overflow: auto;
   background: rgb(5, 4, 1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 
   @media (min-width: 1200px) {
     height: 45% !important;
+    min-height: 45%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   }
 }
 

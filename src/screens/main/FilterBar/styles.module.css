@@ -6,6 +6,7 @@
   z-index: 1;
   display: flex;
   height: 40px;
+  opacity: 0.82;
 
   @media (min-width: 768px) {
     position: fixed;
@@ -15,6 +16,7 @@
     left: 12%;
     z-index: 99;
     width: fit-content;
+    opacity: 1;
   }
 
   @media (min-width: 1200px) {

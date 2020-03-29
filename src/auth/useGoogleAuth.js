@@ -3,15 +3,30 @@ import { FirebaseContext } from '../components'
 
 function useGoogleAuth() {
   const firebase = useContext(FirebaseContext)
-  const auth = firebase?.auth()
 
-  const login = () => {
+  const login = async () => {
+    const auth = firebase.auth()
+    const db = firebase.database()
     const googleProvider = new firebase.auth.GoogleAuthProvider()
+    let token = ''
 
-    auth.signInWithPopup(googleProvider)
+    try {
+      const messaging = firebase.messaging()
+      token = await messaging.getToken()
+    } catch (e) {
+      console.error(e)
+    }
+
+    auth.signInWithPopup(googleProvider).then(socialAuthUser =>
+      db.ref(`v2/users/${socialAuthUser.user.uid}`).set({
+        username: socialAuthUser.user.displayName,
+        email: socialAuthUser.user.email,
+        notificationToken: token,
+      }),
+    )
   }
   const logout = () => {
-    auth.signOut()
+    firebase.auth().signOut()
   }
 
   return [login, logout]

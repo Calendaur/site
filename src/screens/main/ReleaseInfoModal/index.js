@@ -11,7 +11,6 @@ function ReleaseInfoModal({ isOpen, onClose, release }) {
     <Rodal
       className={styles.Modal}
       width={100}
-      height={45}
       measure="%"
       visible={isOpen}
       onClose={onClose}
