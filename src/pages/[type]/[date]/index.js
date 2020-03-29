@@ -2,10 +2,10 @@ import MainPage from '../../../screens/main'
 import { checkFixRedirect, parseUrl } from '../../../core/url'
 import { fetchReleases, fetchBackgrounds } from '../../../core/api'
 
-export async function getServerSideProps(context) {
+MainPage.getInitialProps = async context => {
   checkFixRedirect(context)
 
-  const parsedURL = parseUrl(context.req.url)
+  const parsedURL = parseUrl(context.asPath || context.req.url)
   const month = parsedURL.month.calendarNumber
   const date = `${parsedURL.year}-${month > 9 ? month : '0' + month}-01`
 
@@ -13,12 +13,10 @@ export async function getServerSideProps(context) {
   const backgrounds = await fetchBackgrounds(date)
 
   return {
-    props: {
-      parsedURL,
-      releases,
-      backgrounds,
-      date,
-    },
+    parsedURL,
+    releases,
+    backgrounds,
+    date,
   }
 }
 
