@@ -47,6 +47,9 @@ function MainPage({
   const hasReleasesInNextMonth =
     releases.filter(r => new Date(r.date).getMonth() === nextMonth.jsNumber)
       .length > 0
+  const hasReleasesInPrevMonth =
+    releases.filter(r => new Date(r.date).getMonth() === nextMonth.jsNumber - 1)
+      .length > 0
 
   const { push } = useRouter()
 
@@ -101,6 +104,7 @@ function MainPage({
             prevLink={prevLink}
             nextLink={nextLink}
             hasReleasesInNextMonth={hasReleasesInNextMonth}
+            hasReleasesInPrevMonth={hasReleasesInPrevMonth}
             toPrev={toPrev}
             toNext={toNext}
           />

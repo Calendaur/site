@@ -10,6 +10,19 @@ import styles from './styles.module.css'
 
 const daysOfWeek = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс']
 
+function modifyType(type) {
+  switch (type) {
+    case 'films':
+      return 'film'
+    case 'games':
+      return 'game'
+    case 'series':
+      return type
+    default:
+      break
+  }
+}
+
 function Calendar({ type, month, year, releases, backgrounds }) {
   const [openedRelease, setOpenedRelease] = useState({
     visible: false,
@@ -22,7 +35,7 @@ function Calendar({ type, month, year, releases, backgrounds }) {
       const m = date.getMonth()
       const y = date.getFullYear()
 
-      return m === month && y === year && type.replace('s', '') === r.type
+      return m === month && y === year && modifyType(type) === r.type
     })
   }, [type, month, year]) // eslint-disable-line
 
@@ -33,7 +46,7 @@ function Calendar({ type, month, year, releases, backgrounds }) {
       const m = date.getMonth()
       const y = date.getFullYear()
 
-      return m === month && y === year && type.replace('s', '') === b.type
+      return m === month && y === year && modifyType(type) === b.type
     })
 
     if (bg) return bg.cover

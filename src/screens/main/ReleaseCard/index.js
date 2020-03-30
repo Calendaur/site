@@ -19,6 +19,33 @@ export function getPlatformIcon(platform) {
   }
 }
 
+function Info({ release }) {
+  switch (release.type) {
+    case 'film':
+      return (
+        <Dotdotdot clamp="auto">
+          <p className={styles.Extra}>{release.director}</p>
+        </Dotdotdot>
+      )
+    case 'game':
+      return (
+        <ul className={styles.PlatformList}>
+          {release.platforms.map(platform => (
+            <li key={platform}>{getPlatformIcon(platform)}</li>
+          ))}
+        </ul>
+      )
+    case 'series':
+      return (
+        <Dotdotdot clamp="auto">
+          <p className={styles.Extra}>{release.season} сезон</p>
+        </Dotdotdot>
+      )
+    default:
+      return null
+  }
+}
+
 function ReleaseCard({ release, transitionProps, openModal }) {
   return (
     <animated.div
@@ -34,17 +61,7 @@ function ReleaseCard({ release, transitionProps, openModal }) {
         <Dotdotdot clamp="auto">
           <p>{release.name}</p>
         </Dotdotdot>
-        {release.type === 'film' ? (
-          <Dotdotdot clamp="auto">
-            <p className={styles.Extra}>{release.director}</p>
-          </Dotdotdot>
-        ) : (
-          <ul className={styles.PlatformList}>
-            {release.platforms.map(platform => (
-              <li key={platform}>{getPlatformIcon(platform)}</li>
-            ))}
-          </ul>
-        )}
+        <Info release={release} />
       </div>
     </animated.div>
   )

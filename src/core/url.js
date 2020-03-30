@@ -15,7 +15,7 @@ export const months = [
   { eng: 'december', rus: 'декабрь', jsNumber: 11, calendarNumber: 12 },
 ]
 
-const types = ['films', 'games']
+const types = ['films', 'games', 'series']
 
 export function checkUrl(url) {
   if (!url) {

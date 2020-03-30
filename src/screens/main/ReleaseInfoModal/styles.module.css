@@ -28,7 +28,13 @@
     width: 100%;
 
     @media (min-width: 1200px) {
-      width: 50%;
+      &:first-child {
+        width: 55%;
+      }
+
+      &:last-child {
+        width: 45%;
+      }
     }
   }
 }
