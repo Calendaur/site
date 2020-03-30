@@ -31,7 +31,7 @@ export const fetchBackgrounds = date => {
     .child(endpoints.backgrounds)
     .orderByChild('date')
     .startAt(format(startOfMonth(d), 'yyyy-MM-dd'))
-    .limitToFirst(2)
+    .limitToFirst(3)
     .once('value')
     .then(snapshot => toArray(snapshot.val()))
 }

@@ -110,7 +110,7 @@ button[disabled] {
   height: 3px;
   margin-top: -1px;
   content: '';
-  background: hsla(0, 0%, 100%, 0.8);
+  background: #dc6175;
   transition: background 0.2s;
 }
 
@@ -124,7 +124,7 @@ button[disabled] {
 
 .rodal-close:hover::before,
 .rodal-close:hover::after {
-  background: #eee;
+  background: rgba(220,97,117, 0.75);
 }
 
 /* -- fade -- */
