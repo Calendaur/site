@@ -1,6 +1,5 @@
 import React from 'react'
 import { animated } from 'react-spring'
-import Dotdotdot from 'react-dotdotdot'
 
 import styles from './styles.module.css'
 
@@ -19,15 +18,11 @@ export function getPlatformIcon(platform) {
   }
 }
 
-function Info({ release }) {
-  switch (release.type) {
-    case 'film':
-      return (
-        <Dotdotdot clamp="auto">
-          <p className={styles.Extra}>{release.director}</p>
-        </Dotdotdot>
-      )
-    case 'game':
+function Info({ release, type }) {
+  switch (type) {
+    case 'films':
+      return <p className={styles.Extra}>{release.director}</p>
+    case 'games':
       return (
         <ul className={styles.PlatformList}>
           {release.platforms.map(platform => (
@@ -36,17 +31,15 @@ function Info({ release }) {
         </ul>
       )
     case 'series':
-      return (
-        <Dotdotdot clamp="auto">
-          <p className={styles.Extra}>{release.season} сезон</p>
-        </Dotdotdot>
-      )
+      return <p className={styles.Extra}>{release.season} сезон</p>
     default:
       return null
   }
 }
 
-function ReleaseCard({ release, transitionProps, openModal }) {
+function ReleaseCard({ release, transitionProps, openModal, type }) {
+  const day = new Date(release.released).getDate()
+
   return (
     <animated.div
       className={styles.Release}
@@ -56,12 +49,10 @@ function ReleaseCard({ release, transitionProps, openModal }) {
         ...transitionProps,
       }}
     >
-      <div className={styles.Date}>{new Date(release.date).getDate()}</div>
+      <div className={styles.Date}>{day}</div>
       <div className={styles.Info}>
-        <Dotdotdot clamp="auto">
-          <p>{release.name}</p>
-        </Dotdotdot>
-        <Info release={release} />
+        <p>{release.title}</p>
+        <Info release={release} type={type} />
       </div>
     </animated.div>
   )

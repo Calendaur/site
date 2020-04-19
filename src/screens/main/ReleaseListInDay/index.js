@@ -5,7 +5,7 @@ import useReleaseAnimation from '../useReleaseAnimation'
 
 import styles from './styles.module.css'
 
-function ReleaseListInDay({ releases, openModal }) {
+function ReleaseListInDay({ releases, openModal, type }) {
   const transitionRef = createRef()
   const transitions = useReleaseAnimation(transitionRef, releases)
 
@@ -19,6 +19,7 @@ function ReleaseListInDay({ releases, openModal }) {
         return (
           <ReleaseCard
             key={key}
+            type={type}
             release={release}
             transitionProps={props}
             openModal={openModal}

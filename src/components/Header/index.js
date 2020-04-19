@@ -2,14 +2,10 @@ import React, { useRef, useState, useMemo } from 'react'
 import Link from 'next/link'
 import Router from 'next/router'
 import { useDidUpdate, useHideOnScroll } from '../../hooks'
-import useGoogleAuth from '../../core/auth/useGoogleAuth'
-import useAuthorization from '../../core/auth/useAuthorization'
 
 import styles from './styles.module.css'
 
 function Header({ hasBack }) {
-  const [login, logout] = useGoogleAuth()
-  const authUser = useAuthorization()
   const [visible, setVisible] = useHideOnScroll()
 
   const ref = useRef(null)
@@ -51,19 +47,6 @@ function Header({ hasBack }) {
         <Link href="/faq">
           <a>FAQ</a>
         </Link>
-        <button
-          className={styles.AuthButton}
-          type="button"
-          onClick={authUser ? logout : login}
-        >
-          {authUser ? (
-            'Выйти'
-          ) : (
-            <>
-              Войти <img src="/icons/google.svg" alt="" />
-            </>
-          )}
-        </button>
       </div>
     </header>
   )

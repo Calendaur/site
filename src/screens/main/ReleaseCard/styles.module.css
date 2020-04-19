@@ -21,7 +21,7 @@
 
   p {
     padding: 0 8px;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
     font-size: 14px;
     font-weight: bold;
     line-height: 1.2;
@@ -62,17 +62,20 @@
 }
 
 .Date {
+  --size: 30px;
+  --offset: 8px;
+
   position: absolute;
-  top: 8px;
-  left: 8px;
+  top: var(--offset);
+  left: var(--offset);
   z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  width: var(--size);
+  height: var(--size);
   font-size: 14px;
-  line-height: 29px;
+  line-height: var(--size);
   color: #fff;
   user-select: none;
   background-color: #dc6175;

@@ -49,7 +49,7 @@ export function getWeeks(year, jsMonthNumber) {
 
 export function getCellWidth(vw, releases, dayInCalendar) {
   const allReleasesInDay = releases.filter(
-    release => new Date(release.date).getDate() === dayInCalendar,
+    release => new Date(release.released).getDate() === dayInCalendar,
   )
 
   if (!allReleasesInDay.length) return 'inherit'
@@ -59,11 +59,11 @@ export function getCellWidth(vw, releases, dayInCalendar) {
   const cellWidth = allReleasesInDay.reduce((acc, curr) => {
     let width
 
-    if (curr.percentageWidth) {
-      width = +curr.percentageWidth
+    if (curr.width) {
+      width = +curr.width
       measure = '%'
     } else {
-      width = +curr.width
+      width = +curr.legacy_px_width
       measure = 'px'
     }
 

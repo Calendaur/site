@@ -5,9 +5,9 @@ import useReleaseAnimation from '../useReleaseAnimation'
 
 import styles from './styles.module.css'
 
-function MobileCalendar({ releases, openModal }) {
+function MobileCalendar({ releases, openModal, type }) {
   const data = releases.sort((a, b) =>
-    compareAsc(new Date(a.date), new Date(b.date)),
+    compareAsc(new Date(a.released), new Date(b.released)),
   )
 
   const transitionRef = createRef()
@@ -17,6 +17,7 @@ function MobileCalendar({ releases, openModal }) {
     <ul className={styles.MobileCalendar}>
       {transitions.map(({ item: release, key, props }) => (
         <ReleaseCard
+          type={type}
           key={key}
           release={release}
           transitionProps={props}

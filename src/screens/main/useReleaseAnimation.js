@@ -1,16 +1,16 @@
 import { useTransition, useChain } from 'react-spring'
 
 function useReleaseAnimation(ref, releases) {
-  const transitions = useTransition(releases, item => item.id, {
+  const transitions = useTransition(releases, item => item.title, {
     ref,
     unique: true,
     reset: true,
     trail: 500 / releases.length,
-    from: { opacity: 0, transform: 'scale(0)' },
-    enter: { opacity: 1, transform: 'scale(1)' },
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
   })
 
-  useChain([ref], [0.3])
+  useChain([ref], [0.45])
 
   return transitions
 }

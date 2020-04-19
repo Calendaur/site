@@ -1,23 +1,53 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-regular.woff2') format('woff2');
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-italic.woff2') format('woff2');
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-bold.woff2') format('woff2');
+  font-weight: bold;
+  font-display: swap;
+}
+
 :root {
   --primary: #281b24;
   --secondary: #a6b12e;
 }
 
+html {
+  box-sizing: border-box;
+}
+
 *,
 *::before,
 *::after {
+  box-sizing: inherit;
   margin: 0;
 }
 
 body {
   overflow-x: hidden;
-  font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: Inter, Roboto, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
+  font-size: 16px;
+  line-height: 22px;
   background-color: rgb(15, 32, 39);
 }
 
@@ -124,7 +154,7 @@ button[disabled] {
 
 .rodal-close:hover::before,
 .rodal-close:hover::after {
-  background: rgba(220,97,117, 0.75);
+  background: rgba(220, 97, 117, 0.75);
 }
 
 /* -- fade -- */
@@ -148,27 +178,6 @@ button[disabled] {
   animation: rodal-fade-leave both ease-out;
 }
 
-/* -- zoom -- */
-@keyframes rodal-zoom-enter {
-  from {
-    transform: scale3d(0.3, 0.3, 0.3);
-  }
-}
-
-.rodal-zoom-enter {
-  animation: rodal-zoom-enter both cubic-bezier(0.4, 0, 0, 1.5);
-}
-
-@keyframes rodal-zoom-leave {
-  to {
-    transform: scale3d(0.3, 0.3, 0.3);
-  }
-}
-
-.rodal-zoom-leave {
-  animation: rodal-zoom-leave both;
-}
-
 /* -- slideDown -- */
 @keyframes rodal-slideDown-enter {
   from {
@@ -188,153 +197,4 @@ button[disabled] {
 
 .rodal-slideDown-leave {
   animation: rodal-slideDown-leave both;
-}
-
-/* -- slideLeft -- */
-@keyframes rodal-slideLeft-enter {
-  from {
-    transform: translate3d(-150px, 0, 0);
-  }
-}
-
-.rodal-slideLeft-enter {
-  animation: rodal-slideLeft-enter both cubic-bezier(0.4, 0, 0, 1.5);
-}
-
-@keyframes rodal-slideLeft-leave {
-  to {
-    transform: translate3d(-150px, 0, 0);
-  }
-}
-
-.rodal-slideLeft-leave {
-  animation: rodal-slideLeft-leave both;
-}
-
-@keyframes rodal-slideRight-enter {
-  from {
-    transform: translate3d(150px, 0, 0);
-  }
-}
-
-.rodal-slideRight-enter {
-  animation: rodal-slideRight-enter both cubic-bezier(0.4, 0, 0, 1.5);
-}
-
-@keyframes rodal-slideRight-leave {
-  to {
-    transform: translate3d(150px, 0, 0);
-  }
-}
-
-.rodal-slideRight-leave {
-  animation: rodal-slideRight-leave both;
-}
-
-/* -- slideUp -- */
-@keyframes rodal-slideUp-enter {
-  from {
-    transform: translate3d(0, 100px, 0);
-  }
-}
-
-.rodal-slideUp-enter {
-  animation: rodal-slideUp-enter both cubic-bezier(0.4, 0, 0, 1.5);
-}
-
-@keyframes rodal-slideUp-leave {
-  to {
-    transform: translate3d(0, 100px, 0);
-  }
-}
-
-.rodal-slideUp-leave {
-  animation: rodal-slideUp-leave both;
-}
-
-/* -- flip -- */
-@keyframes rodal-flip-enter {
-  from {
-    transform: perspective(400px) rotate3d(1, 0, 0, 60deg);
-  }
-
-  70% {
-    transform: perspective(400px) rotate3d(1, 0, 0, -15deg);
-  }
-
-  to {
-    transform: perspective(400px);
-  }
-}
-
-.rodal-flip-enter {
-  animation: rodal-flip-enter both ease-in;
-  backface-visibility: visible !important;
-}
-
-@keyframes rodal-flip-leave {
-  from {
-    transform: perspective(400px);
-  }
-
-  30% {
-    transform: perspective(400px) rotate3d(1, 0, 0, -15deg);
-  }
-
-  to {
-    transform: perspective(400px) rotate3d(1, 0, 0, 45deg);
-  }
-}
-
-.rodal-flip-leave {
-  animation: rodal-flip-leave both;
-  backface-visibility: visible !important;
-}
-
-/* -- rotate -- */
-@keyframes rodal-rotate-enter {
-  from {
-    transform: rotate3d(0, 0, 1, -180deg) scale3d(0.3, 0.3, 0.3);
-  }
-}
-
-.rodal-rotate-enter {
-  transform-origin: center;
-  animation: rodal-rotate-enter both;
-}
-
-@keyframes rodal-rotate-leave {
-  to {
-    transform: rotate3d(0, 0, 1, 180deg) scale3d(0.3, 0.3, 0.3);
-  }
-}
-
-.rodal-rotate-leave {
-  transform-origin: center;
-  animation: rodal-rotate-leave both;
-}
-
-/* -- door -- */
-@keyframes rodal-door-enter {
-  from {
-    transform: scale3d(0, 1, 1);
-  }
-}
-
-.rodal-door-enter {
-  animation: rodal-door-enter both cubic-bezier(0.4, 0, 0, 1.5);
-}
-
-@keyframes rodal-door-leave {
-  60% {
-    transform: scale3d(0.01, 1, 1);
-  }
-
-  to {
-    transform: scale3d(0, 1, 0.1);
-  }
-}
-
-.rodal-door-leave {
-  animation: rodal-door-leave both;
 }

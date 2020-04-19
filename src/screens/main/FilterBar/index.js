@@ -61,7 +61,7 @@ function FilterBar({
       />
       <div className={styles.DateBar}>
         <Link href="/[type]/[date]" as={prevLink}>
-          <a disabled={!hasReleasesInPrevMonth || prevYear < 2020}>
+          <a>
             <img src="/icons/arrow.svg" alt="" />
           </a>
         </Link>
@@ -69,7 +69,7 @@ function FilterBar({
           <span>{month.rus}</span> {year}
         </div>
         <Link href="/[type]/[date]" as={nextLink}>
-          <a disabled={!hasReleasesInNextMonth || nextYear > 2030}>
+          <a>
             <img src="/icons/arrow.svg" alt="" />
           </a>
         </Link>

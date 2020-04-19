@@ -1,22 +1,22 @@
 import MainPage from '../../../screens/main'
 import { checkFixRedirect, parseUrl } from '../../../core/url'
-import { fetchReleases, fetchBackgrounds } from '../../../core/api'
+import { api } from '../../../core/api'
+import { monthString, toApiType } from '../../../core/helpers'
 
 MainPage.getInitialProps = async context => {
   checkFixRedirect(context)
 
-  const parsedURL = parseUrl(context.asPath || context.req.url)
-  const month = parsedURL.month.calendarNumber
-  const date = `${parsedURL.year}-${month > 9 ? month : '0' + month}-01`
+  const parsedURL = parseUrl(context.asPath)
+  const requestDate = `${monthString(parsedURL.month.calendarNumber)}-${
+    parsedURL.year
+  }`
+  const type = toApiType(parsedURL.type)
 
-  const releases = await fetchReleases()
-  const backgrounds = await fetchBackgrounds(date)
+  const releases = await api.getReleases(type, requestDate)
 
   return {
     parsedURL,
     releases,
-    backgrounds,
-    date,
   }
 }
 

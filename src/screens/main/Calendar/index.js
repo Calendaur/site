@@ -1,66 +1,29 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import cx from 'classnames'
 import ReleaseListInDay from '../ReleaseListInDay'
 import MobileCalendar from '../MobileCalendar'
 import ReleaseInfoModal from '../ReleaseInfoModal'
 import { getWeeks, getCellWidth } from '../../../core/calendar'
+import { monthString, getTypeWithoutS } from '../../../core/helpers'
 import { useWindowSize } from '../../../hooks'
 
 import styles from './styles.module.css'
 
 const daysOfWeek = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс']
 
-function modifyType(type) {
-  switch (type) {
-    case 'films':
-      return 'film'
-    case 'games':
-      return 'game'
-    case 'series':
-      return type
-    default:
-      break
-  }
-}
-
-function Calendar({ type, month, year, releases, backgrounds }) {
+function Calendar({ type, month, year, releases }) {
   const [openedRelease, setOpenedRelease] = useState({
     visible: false,
     release: null,
   })
-  const filteredReleases = useMemo(() => {
-    return releases.filter(r => {
-      const date = new Date(r.date)
-
-      const m = date.getMonth()
-      const y = date.getFullYear()
-
-      return m === month && y === year && modifyType(type) === r.type
-    })
-  }, [type, month, year]) // eslint-disable-line
-
-  const cover = useMemo(() => {
-    const bg = backgrounds.find(b => {
-      const date = new Date(b.date)
-
-      const m = date.getMonth()
-      const y = date.getFullYear()
-
-      return m === month && y === year && modifyType(type) === b.type
-    })
-
-    if (bg) return bg.cover
-
-    return ''
-  }, [type, month, year]) // eslint-disable-line
 
   const { width } = useWindowSize()
 
   const getReleasesCellWidth = useCallback(
     day => {
-      return getCellWidth(width, filteredReleases, day)
+      return getCellWidth(width, releases, day)
     },
-    [filteredReleases, width],
+    [releases, width],
   )
 
   const weeks = getWeeks(year, month)
@@ -82,7 +45,7 @@ function Calendar({ type, month, year, releases, backgrounds }) {
 
   return (
     <main>
-      {filteredReleases.length === 0 ? (
+      {releases.length === 0 ? (
         <div className={styles.NotYetFilled}>
           <p>Релизы для этого месяца еще заполняются</p>
         </div>
@@ -90,7 +53,12 @@ function Calendar({ type, month, year, releases, backgrounds }) {
         <>
           <div className={styles.Cover}>
             <div className={styles.Gradient}>
-              {cover && <img src={cover} alt="" />}
+              <img
+                src={`https://api.calendaur.com/uploads/bg/${year}-${monthString(
+                  month + 1,
+                )}-${getTypeWithoutS(type)}.jpg`}
+                alt=""
+              />
             </div>
           </div>
           <table className={styles.DesktopCalendar}>
@@ -107,8 +75,8 @@ function Calendar({ type, month, year, releases, backgrounds }) {
               {weeks.map((week, index) => (
                 <tr key={`week_${index}`}>
                   {week.map((day, index) => {
-                    const dayReleases = filteredReleases.filter(
-                      r => new Date(r.date).getDate() === day,
+                    const dayReleases = releases.filter(
+                      r => new Date(r.released).getDate() === day,
                     )
 
                     const hasReleases = dayReleases.length > 0
@@ -129,6 +97,7 @@ function Calendar({ type, month, year, releases, backgrounds }) {
                           <div className={styles.Date}>{day}</div>
                         )}
                         <ReleaseListInDay
+                          type={type}
                           releases={dayReleases}
                           openModal={openModal}
                         />
@@ -139,8 +108,13 @@ function Calendar({ type, month, year, releases, backgrounds }) {
               ))}
             </tbody>
           </table>
-          <MobileCalendar releases={filteredReleases} openModal={openModal} />
+          <MobileCalendar
+            type={type}
+            releases={releases}
+            openModal={openModal}
+          />
           <ReleaseInfoModal
+            type={type}
             release={openedRelease.release}
             isOpen={openedRelease.visible}
             onClose={() => {

@@ -1,4 +1,3 @@
-import 'sanitize.css'
 import '../components/Wrapper/global.css'
 
 import React from 'react'

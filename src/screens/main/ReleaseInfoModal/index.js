@@ -6,7 +6,7 @@ import { getPlatformIcon } from '../ReleaseCard'
 
 import styles from './styles.module.css'
 
-function ReleaseInfoModal({ isOpen, onClose, release }) {
+function ReleaseInfoModal({ isOpen, onClose, release, type }) {
   return (
     <Rodal
       className={styles.Modal}
@@ -19,17 +19,19 @@ function ReleaseInfoModal({ isOpen, onClose, release }) {
       {release ? (
         <div className={styles.Content}>
           <div className={styles.About}>
-            <h2>{release.name}</h2>
+            <h2>{release.title}</h2>
             <p className={styles.Info}>
               <span>Дата выхода:</span>&nbsp;
-              {format(new Date(release.date), 'd MMMM yyyy', { locale: ru })}
+              {format(new Date(release.released), 'd MMMM yyyy', {
+                locale: ru,
+              })}
             </p>
-            {release.type === 'film' && (
+            {type === 'films' && (
               <p className={styles.Info}>
                 <span>Режиссёры:</span>&nbsp;{release.director}
               </p>
             )}
-            {release.type === 'game' && (
+            {type === 'games' && (
               <div className={styles.Info}>
                 <span>Платформы:</span>&nbsp;
                 <ul className={styles.PlatformList}>
@@ -39,7 +41,7 @@ function ReleaseInfoModal({ isOpen, onClose, release }) {
                 </ul>
               </div>
             )}
-            {release.type === 'series' && (
+            {type === 'series' && (
               <p className={styles.Info}>
                 <span>Сезон:</span>&nbsp;{release.season}
               </p>
@@ -47,7 +49,7 @@ function ReleaseInfoModal({ isOpen, onClose, release }) {
             <p className={styles.Desc}>{release.description}</p>
           </div>
           <div className={styles.Cover}>
-            <img src={release.cover} alt={release.name} />
+            <img src={release.cover} alt={release.title} />
           </div>
         </div>
       ) : null}
