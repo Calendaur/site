@@ -1,7 +1,7 @@
 import { useTransition, useChain } from 'react-spring'
 
 function useReleaseAnimation(ref, releases) {
-  const transitions = useTransition(releases, item => item.title, {
+  const transitions = useTransition(releases, item => item.id, {
     ref,
     unique: true,
     reset: true,
