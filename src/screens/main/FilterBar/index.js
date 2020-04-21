@@ -22,8 +22,6 @@ function FilterBar({
   type,
   month,
   year,
-  hasReleasesInNextMonth,
-  hasReleasesInPrevMonth,
   prevYear,
   nextYear,
   nextLink,
@@ -61,7 +59,7 @@ function FilterBar({
       />
       <div className={styles.DateBar}>
         <Link href="/[type]/[date]" as={prevLink}>
-          <a>
+          <a disabled={prevYear < 2020}>
             <img src="/icons/arrow.svg" alt="" />
           </a>
         </Link>
@@ -69,7 +67,7 @@ function FilterBar({
           <span>{month.rus}</span> {year}
         </div>
         <Link href="/[type]/[date]" as={nextLink}>
-          <a>
+          <a disabled={nextYear > 2030}>
             <img src="/icons/arrow.svg" alt="" />
           </a>
         </Link>

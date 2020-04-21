@@ -49,6 +49,7 @@ function ReleaseCard({ release, transitionProps, openModal, type }) {
         ...transitionProps,
       }}
     >
+      <div className={styles.Substrate}></div>
       <div className={styles.Date}>{day}</div>
       <div className={styles.Info}>
         <p>{release.title}</p>

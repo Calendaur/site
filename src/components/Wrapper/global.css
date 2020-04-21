@@ -72,6 +72,10 @@ button[disabled] {
   opacity: 0.3;
 }
 
+a {
+  cursor: pointer;
+}
+
 /* Rodal styles */
 
 /* -- container -- */
@@ -107,11 +111,11 @@ button[disabled] {
   min-height: 100vh;
   margin: auto;
   overflow: auto;
-  background: rgb(5, 4, 1);
+  background: rgb(15, 14, 18);
 
   @media (min-width: 1200px) {
-    height: 45% !important;
-    min-height: 45%;
+    height: 50% !important;
+    min-height: 50%;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   }
 }

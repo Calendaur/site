@@ -19,14 +19,6 @@ function MainPage({ parsedURL, releases, apiUrl }) {
   const prevLink = `/${type}/${prevMonth.eng}-${prevYear}`
   const nextLink = `/${type}/${nextMonth.eng}-${nextYear}`
 
-  const hasReleasesInNextMonth =
-    releases.filter(r => new Date(r.released).getMonth() === nextMonth.jsNumber)
-      .length > 0
-  const hasReleasesInPrevMonth =
-    releases.filter(
-      r => new Date(r.released).getMonth() === nextMonth.jsNumber - 1,
-    ).length > 0
-
   const { push } = useRouter()
 
   function toNext() {
@@ -46,7 +38,7 @@ function MainPage({ parsedURL, releases, apiUrl }) {
       cancel,
     }) => {
       if (down && distance > window.innerWidth / 4) {
-        if (xDir <= 0 && !hasReleasesInNextMonth) return
+        if (xDir <= 0 && nextYear > 2030) return
 
         if (xDir >= 0 && prevYear < 2020) return
 
@@ -77,8 +69,6 @@ function MainPage({ parsedURL, releases, apiUrl }) {
           nextMonth={nextMonth}
           prevLink={prevLink}
           nextLink={nextLink}
-          hasReleasesInNextMonth={hasReleasesInNextMonth}
-          hasReleasesInPrevMonth={hasReleasesInPrevMonth}
           toPrev={toPrev}
           toNext={toNext}
         />
