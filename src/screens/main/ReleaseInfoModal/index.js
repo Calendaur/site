@@ -63,6 +63,8 @@ function Buttons({ type, release }) {
       </div>
     )
   }
+
+  return null
 }
 
 function ReleaseInfoModal({ isOpen, onClose, release, type }) {

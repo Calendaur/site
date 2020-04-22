@@ -17,7 +17,7 @@
     background-position: 50% 50%;
   }
 
-  @media (min-width: 1440px) {
+  @media (min-width: 1920px) {
     height: 250px;
   }
 }
