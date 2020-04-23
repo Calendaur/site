@@ -12,6 +12,7 @@
 
   .Gradient {
     --height: 550px;
+    --to-transparent: rgba(40, 27, 36, 0);
 
     position: relative;
     top: 0;
@@ -19,8 +20,8 @@
     width: 100%;
     min-width: 100%;
     height: var(--height);
-    background: linear-gradient(90deg, rgb(15, 32, 39) 0%, rgba(40, 27, 36, 0) 100%),
-      linear-gradient(0deg, rgb(15, 32, 39) 0%, rgba(40, 27, 36, 0) 100%);
+    background: linear-gradient(90deg, rgb(var(--bg-rgb)) 0%, var(--to-transparent) 100%),
+      linear-gradient(0deg, rgb(var(--bg-rgb)) 0%, var(--to-transparent) 100%);
 
     img {
       position: relative;
@@ -54,25 +55,27 @@
 .DayOfWeek {
   font-size: 14px;
   font-weight: normal;
-  line-height: 16px;
+  line-height: 1;
   color: #fff;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 1px;
   user-select: none;
 }
 
 .DayItem {
+  --height: 160px;
+
   position: relative;
   min-width: 46px;
-  height: 160px;
+  height: var(--height);
   user-select: none;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 14px;
   box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.1);
-  will-change: transform, opacity;
+  will-change: opacity;
 
   @media (min-width: 1920px) {
-    height: 250px;
+    --height: 250px;
   }
 
   &.isNotWithinRange {
@@ -89,21 +92,31 @@
 }
 
 .Date {
+  --size: 30px;
+  --offset: 8px;
+
   position: absolute;
-  top: 8px;
-  left: 8px;
+  top: var(--offset);
+  left: var(--offset);
   z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  width: var(--size);
+  height: var(--size);
   font-size: 14px;
-  line-height: 29px;
+  line-height: var(--size);
   color: #fff;
-  cursor: default;
   user-select: none;
   border-radius: 50%;
+
+  &.hasRelease {
+    background-color: var(--pink);
+  }
+
+  &.isToday {
+    background-color: var(--blue);
+  }
 }
 
 .NotYetFilled {

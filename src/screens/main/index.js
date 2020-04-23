@@ -37,6 +37,8 @@ function MainPage({ parsedURL, releases, apiUrl }) {
       distance,
       cancel,
     }) => {
+      if (window.innerWidth > 1120) return
+
       if (down && distance > window.innerWidth / 4) {
         if (xDir <= 0 && nextYear > 2030) return
 

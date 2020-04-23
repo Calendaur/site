@@ -1,7 +1,10 @@
 import React from 'react'
 import { animated } from 'react-spring'
+import cx from 'classnames'
+import isToday from 'date-fns/isToday'
 
 import styles from './styles.module.css'
+import calendarStyles from '../Calendar/styles.module.css'
 
 export function getPlatformIcon(platform) {
   switch (platform) {
@@ -38,7 +41,8 @@ function Info({ release, type }) {
 }
 
 function ReleaseCard({ release, transitionProps, openModal, type }) {
-  const day = new Date(release.released).getDate()
+  const date = new Date(release.released)
+  const day = date.getDate()
 
   return (
     <animated.div
@@ -50,7 +54,13 @@ function ReleaseCard({ release, transitionProps, openModal, type }) {
       }}
     >
       <div className={styles.Substrate}></div>
-      <div className={styles.Date}>{day}</div>
+      <div
+        className={cx(calendarStyles.Date, calendarStyles.hasRelease, {
+          [calendarStyles.isToday]: isToday(date),
+        })}
+      >
+        {day}
+      </div>
       <div className={styles.Info}>
         <p>{release.title}</p>
         <Info release={release} type={type} />

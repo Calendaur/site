@@ -1,7 +1,7 @@
 .Content {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  overflow-y: auto;
   color: #fff;
 
   * {
@@ -17,6 +17,7 @@
     margin-bottom: 32px;
     font-size: 32px;
     line-height: 1;
+    user-select: text;
 
     @media (min-width: 1200px) {
       font-size: 48px;
@@ -68,6 +69,7 @@
 
   position: relative;
   order: -1;
+  height: 30vh;
   background: linear-gradient(
     0deg,
     rgb(var(--gradient-rgb)) 0%,
@@ -81,6 +83,7 @@
 
   @media (min-width: 1200px) {
     order: initial;
+    height: inherit;
     background: linear-gradient(
       90deg,
       rgb(var(--gradient-rgb)) 0%,
@@ -126,6 +129,31 @@
   }
 }
 
+.Sharing {
+  display: flex;
+  align-items: center;
+  margin-top: 28px;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-left: 12px;
+    opacity: 0.85;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
 .Buttons {
   display: flex;
   flex-direction: column;
@@ -137,12 +165,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 220px;
-  height: 48px;
+  width: 100%;
+  height: 42px;
   border-radius: 8px;
 
+  @media (min-width: 768px) {
+    width: 220px;
+  }
+
   &.Kinopoisk {
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     background-color: #f60;
   }
 

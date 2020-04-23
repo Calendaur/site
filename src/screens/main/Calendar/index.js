@@ -36,6 +36,17 @@ function Calendar({ type, month, year, releases }) {
   }
 
   useEffect(() => {
+    if (window.location.hash) {
+      const { hash } = window.location
+      const release = releases.find(r => r.id === +hash.replace('#', ''))
+
+      if (release) {
+        openModal(release)
+      }
+    }
+  }, [releases])
+
+  useEffect(() => {
     if (openedRelease.visible) {
       document.body.style.overflow = 'hidden'
     } else {
@@ -94,7 +105,16 @@ function Calendar({ type, month, year, releases }) {
                         key={`day_${index}`}
                       >
                         {!hasReleases && (
-                          <div className={styles.Date}>{day}</div>
+                          <div
+                            className={cx(styles.Date, {
+                              [styles.isToday]:
+                                day === new Date().getDate() &&
+                                month === new Date().getMonth() &&
+                                year === new Date().getFullYear(),
+                            })}
+                          >
+                            {day}
+                          </div>
                         )}
                         <ReleaseListInDay
                           type={type}

@@ -161,10 +161,6 @@ function Wrapper({ children }) {
           content="/pwa/ms-icon-144x144.png"
         />
         <meta name="theme-color" content="#0f2027" />
-        {/* <link
-          href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"
-          rel="stylesheet"
-        /> */}
         <link
           rel="preload"
           href="/fonts/inter-bold.woff2"
