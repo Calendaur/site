@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react'
+import { useRouter } from 'next/router'
 import cx from 'classnames'
 import ReleaseListInDay from '../ReleaseListInDay'
 import MobileCalendar from '../MobileCalendar'
 import ReleaseInfoModal from '../ReleaseInfoModal'
 import { getWeeks, getCellWidth } from '../../../core/calendar'
 import { monthString, getTypeWithoutS } from '../../../core/helpers'
+import { months, getNextAndPrevDate } from '../../../core/url'
 import { useWindowSize } from '../../../hooks'
 
 import styles from './styles.module.css'
@@ -16,6 +18,8 @@ function Calendar({ type, month, year, releases }) {
     visible: false,
     release: null,
   })
+
+  const router = useRouter()
 
   const { width } = useWindowSize()
 
@@ -54,99 +58,135 @@ function Calendar({ type, month, year, releases }) {
     }
   }, [openedRelease.visible])
 
+  const { prevMonth, nextMonth, prevYear, nextYear } = getNextAndPrevDate(
+    month,
+    year,
+  )
+
   return (
-    <main>
-      {releases.length === 0 ? (
-        <div className={styles.NotYetFilled}>
-          <p>Релизы для этого месяца еще заполняются</p>
+    <>
+      <div className={styles.MonthChanger}>
+        <button
+          className={styles.toPrevMonth}
+          type="button"
+          onClick={() => {
+            router.push(
+              '/[type]/[date]',
+              `/${type}/${prevMonth.eng}-${prevYear}`,
+            )
+          }}
+        >
+          {prevMonth.rus}
+        </button>
+        <div className={styles.CurrentMonth}>
+          <span>{months[month].rus}</span> {year}
         </div>
-      ) : (
-        <>
-          <div className={styles.Cover}>
-            <div className={styles.Gradient}>
-              <img
-                src={`https://api.calendaur.com/uploads/bg/${year}-${monthString(
-                  month + 1,
-                )}-${getTypeWithoutS(type)}.jpg`}
-                alt=""
-              />
-            </div>
+        <button
+          className={styles.toNextMonth}
+          type="button"
+          onClick={() => {
+            router.push(
+              '/[type]/[date]',
+              `/${type}/${nextMonth.eng}-${nextYear}`,
+            )
+          }}
+        >
+          {nextMonth.rus}
+        </button>
+      </div>
+      <main>
+        {releases.length === 0 ? (
+          <div className={styles.NotYetFilled}>
+            <p>Релизы для этого месяца еще заполняются</p>
           </div>
-          <table className={styles.DesktopCalendar}>
-            <thead>
-              <tr>
-                {daysOfWeek.map(dayOfWeek => (
-                  <th className={styles.DayOfWeek} key={dayOfWeek}>
-                    {dayOfWeek}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {weeks.map((week, index) => (
-                <tr key={`week_${index}`}>
-                  {week.map((day, index) => {
-                    const dayReleases = releases.filter(
-                      r => new Date(r.released).getDate() === day,
-                    )
-
-                    const hasReleases = dayReleases.length > 0
-
-                    return (
-                      <td
-                        style={{
-                          width: getReleasesCellWidth(day),
-                        }}
-                        className={cx(styles.DayItem, {
-                          [styles.isNotWithinRange]: day === undefined,
-                          [styles.someReleases]: dayReleases.length > 1,
-                          [styles.hasRelease]: dayReleases.length > 0,
-                        })}
-                        key={`day_${index}`}
-                      >
-                        {!hasReleases && (
-                          <div
-                            className={cx(styles.Date, {
-                              [styles.isToday]:
-                                day === new Date().getDate() &&
-                                month === new Date().getMonth() &&
-                                year === new Date().getFullYear(),
-                            })}
-                          >
-                            {day}
-                          </div>
-                        )}
-                        <ReleaseListInDay
-                          type={type}
-                          releases={dayReleases}
-                          openModal={openModal}
-                        />
-                      </td>
-                    )
-                  })}
+        ) : (
+          <>
+            <div className={styles.Cover}>
+              <div className={styles.Gradient}>
+                <img
+                  src={`https://api.calendaur.com/uploads/bg/${year}-${monthString(
+                    month + 1,
+                  )}-${getTypeWithoutS(type)}.jpg`}
+                  alt=""
+                />
+              </div>
+            </div>
+            <table className={styles.DesktopCalendar}>
+              <thead>
+                <tr>
+                  {daysOfWeek.map(dayOfWeek => (
+                    <th className={styles.DayOfWeek} key={dayOfWeek}>
+                      {dayOfWeek}
+                    </th>
+                  ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
-          <MobileCalendar
-            type={type}
-            releases={releases}
-            openModal={openModal}
-          />
-          <ReleaseInfoModal
-            type={type}
-            release={openedRelease.release}
-            isOpen={openedRelease.visible}
-            onClose={() => {
-              setOpenedRelease({
-                visible: false,
-                release: null,
-              })
-            }}
-          />
-        </>
-      )}
-    </main>
+              </thead>
+              <tbody>
+                {weeks.map((week, index) => (
+                  <tr key={`week_${index}`}>
+                    {week.map((day, index) => {
+                      const dayReleases = releases.filter(
+                        r => new Date(r.released).getDate() === day,
+                      )
+
+                      const hasReleases = dayReleases.length > 0
+
+                      return (
+                        <td
+                          style={{
+                            width: getReleasesCellWidth(day),
+                          }}
+                          className={cx(styles.DayItem, {
+                            [styles.isNotWithinRange]: day === undefined,
+                            [styles.someReleases]: dayReleases.length > 1,
+                            [styles.hasRelease]: dayReleases.length > 0,
+                          })}
+                          key={`day_${index}`}
+                        >
+                          {!hasReleases && (
+                            <div
+                              className={cx(styles.Date, {
+                                [styles.isToday]:
+                                  day === new Date().getDate() &&
+                                  month === new Date().getMonth() &&
+                                  year === new Date().getFullYear(),
+                              })}
+                            >
+                              {day}
+                            </div>
+                          )}
+                          <ReleaseListInDay
+                            type={type}
+                            releases={dayReleases}
+                            openModal={openModal}
+                          />
+                        </td>
+                      )
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <MobileCalendar
+              type={type}
+              releases={releases}
+              openModal={openModal}
+            />
+            <ReleaseInfoModal
+              type={type}
+              release={openedRelease.release}
+              isOpen={openedRelease.visible}
+              onClose={() => {
+                setOpenedRelease({
+                  visible: false,
+                  release: null,
+                })
+              }}
+            />
+          </>
+        )}
+      </main>
+    </>
   )
 }
 

@@ -18,6 +18,21 @@ function getLabel(type) {
   }
 }
 
+const types = [
+  {
+    label: 'Кино',
+    value: 'films',
+  },
+  {
+    label: 'Сериалы',
+    value: 'series',
+  },
+  {
+    label: 'Игры',
+    value: 'games',
+  },
+]
+
 function FilterBar({
   type,
   month,
@@ -32,20 +47,7 @@ function FilterBar({
   return (
     <div className={styles.Wrapper}>
       <Dropdown
-        items={[
-          {
-            label: 'Кино',
-            value: 'films',
-          },
-          {
-            label: 'Сериалы',
-            value: 'series',
-          },
-          {
-            label: 'Игры',
-            value: 'games',
-          },
-        ]}
+        items={types}
         defaultSelectedItem={{
           label: getLabel(type),
           value: type,

@@ -1,13 +1,64 @@
+.MonthChanger {
+  position: sticky;
+  top: 0;
+  z-index: 11;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 16px;
+  padding-top: 10px;
+  margin-top: 60px;
+  color: #fff;
+  background-color: rgb(var(--bg-rgb));
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+
+  .CurrentMonth {
+    width: 180px;
+    font-size: 18px;
+    text-align: center;
+    text-transform: uppercase;
+
+    span {
+      font-weight: bold;
+    }
+  }
+
+  button {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 14px;
+    color: rgba(#fff, 0.65);
+    background-color: transparent;
+
+    &.toPrevMonth {
+      padding-right: 12px;
+    }
+
+    &.toNextMonth {
+      padding-left: 12px;
+    }
+  }
+}
+
 .Cover {
   position: absolute;
   top: 0;
   left: 50%;
   z-index: 0;
+  display: none;
   width: 50%;
   user-select: none;
 
   * {
     user-select: none;
+  }
+
+  @media (min-width: 1200px) {
+    display: block;
   }
 
   .Gradient {
@@ -26,14 +77,9 @@
     img {
       position: relative;
       z-index: -1;
-      display: none;
       width: 100%;
       height: var(--height);
       object-fit: cover;
-
-      @media (min-width: 1200px) {
-        display: block;
-      }
     }
   }
 }
