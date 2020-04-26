@@ -93,7 +93,7 @@
 
 .Desc {
   margin-top: 24px;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.4;
 
   @media (width >= 768px) and (width <= 1200px) {
