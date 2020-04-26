@@ -92,7 +92,7 @@ function ReleaseInfoModal({ isOpen, onClose, release, type }) {
       {release ? (
         <div className={styles.Content} ref={contentRef}>
           <div className={styles.About}>
-            <h2>{release.title}</h2>
+            <h2 className={styles.Title}>{release.title}</h2>
             <p className={styles.Info}>
               <span>Дата выхода:</span>&nbsp;
               {format(new Date(release.released), 'd MMMM yyyy', {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Router from 'next/router'
 import { Dropdown } from '../../../components'
@@ -44,8 +44,32 @@ function FilterBar({
   toPrev,
   toNext,
 }) {
+  const wrapperRef = useRef()
+
+  useEffect(() => {
+    const changeTypePickerPosition = () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        wrapperRef.current.classList.add(styles.isBottom)
+      } else {
+        wrapperRef.current.classList.remove(styles.isBottom)
+      }
+    }
+
+    window.addEventListener('scroll', changeTypePickerPosition, {
+      capture: true,
+      passive: true,
+    })
+
+    return function cleanup() {
+      window.removeEventListener('scroll', changeTypePickerPosition, {
+        capture: true,
+        passive: true,
+      })
+    }
+  }, [])
+
   return (
-    <div className={styles.Wrapper}>
+    <div className={styles.Wrapper} ref={wrapperRef}>
       <Dropdown
         items={types}
         defaultSelectedItem={{

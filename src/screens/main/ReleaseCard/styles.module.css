@@ -16,6 +16,10 @@
     height: 200px;
     margin-bottom: 24px;
     background-position: 50% 50%;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 

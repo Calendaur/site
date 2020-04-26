@@ -23,10 +23,16 @@
 :root {
   --primary: #281b24;
   --secondary: #a6b12e;
-  --transition: 0.25s;
-  --bg-rgb: 15, 32, 39;
-  --pink: #dc6175;
   --blue: #4287f5;
+  --pink: #dc6175;
+  --kinopoisk: #f60;
+  --imdb: #f5c518;
+  --bg-rgb: 15, 32, 39;
+  --transition: 0.25s;
+  --drop-shadow: 0 2px 8px rgba(244, 244, 244, 0.15);
+  --tablet: 768px;
+  --desktop: 1200px;
+  --desktop-2k: 1920px;
 }
 
 html {
@@ -116,6 +122,7 @@ a {
   width: 100%;
   max-height: initial;
   margin: auto;
+  overflow-y: auto;
   background: rgb(15, 14, 18);
 
   @media (max-width: 1199px) {
@@ -140,9 +147,18 @@ a {
   width: 32px;
   height: 32px;
   cursor: pointer;
-  background-color: #fff;
+  background-color: rgba(#fff, 0.8);
   border-radius: 50%;
   outline: none;
+  transition: var(--transition);
+
+  &:hover {
+    background-color: #fff;
+  }
+
+  @media (max-width: 1199px) {
+    position: fixed;
+  }
 }
 
 .rodal-close::before {

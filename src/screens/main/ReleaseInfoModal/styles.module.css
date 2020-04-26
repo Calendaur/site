@@ -4,63 +4,37 @@
   overflow-y: auto;
   color: #fff;
 
-  * {
-    user-select: none;
-  }
-
-  @media (min-width: 1200px) {
+  @media (width >= 1200px) {
     flex-direction: row;
     justify-content: space-between;
   }
 
-  h2 {
+  .Title {
     margin-bottom: 32px;
-    font-size: 32px;
-    line-height: 1;
+    font-size: 42px;
+    line-height: 1.2;
     user-select: text;
 
-    @media (min-width: 1200px) {
+    @media (width <= 576px) {
+      margin-bottom: 24px;
+      font-size: 24px;
+    }
+
+    @media (width >= 768px) {
       font-size: 48px;
-      line-height: 1.2;
     }
   }
-
-  > div {
-    width: 100%;
-
-    @media (min-width: 1200px) {
-      &:first-child {
-        width: 45%;
-        max-width: 768px;
-      }
-
-      &:last-child {
-        width: 55%;
-      }
-    }
-  }
-}
-
-.Info {
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-
-  span {
-    color: #999;
-  }
-}
-
-.Desc {
-  margin-top: 24px;
-  line-height: 22px;
 }
 
 .About {
-  padding: 16px;
+  padding: 32px 16px;
 
-  @media (min-width: 1200px) {
-    padding: 32px 48px;
+  @media (width >= 768px) {
+    padding: 42px 24px;
+  }
+
+  @media (width >= 1200px) {
+    max-width: 650px;
   }
 }
 
@@ -69,7 +43,7 @@
 
   position: relative;
   order: -1;
-  height: 30vh;
+  height: 25vh;
   background: linear-gradient(
     0deg,
     rgb(var(--gradient-rgb)) 0%,
@@ -81,9 +55,11 @@
     rgba(var(--gradient-rgb), 0) 52%
   );
 
-  @media (min-width: 1200px) {
-    order: initial;
-    height: inherit;
+  @media (width >= 1200px) {
+    position: absolute;
+    right: 0;
+    width: 45%;
+    height: 100%;
     background: linear-gradient(
       90deg,
       rgb(var(--gradient-rgb)) 0%,
@@ -102,6 +78,26 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+}
+
+.Info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+
+  span {
+    color: #999;
+  }
+}
+
+.Desc {
+  margin-top: 24px;
+  font-size: 20px;
+  line-height: 1.4;
+
+  @media (width >= 768px) and (width <= 1200px) {
+    font-size: 28px;
   }
 }
 
@@ -167,7 +163,8 @@
   justify-content: center;
   width: 100%;
   height: 42px;
-  border-radius: 8px;
+  border-radius: 4px;
+  box-shadow: var(--drop-shadow);
 
   @media (min-width: 768px) {
     width: 220px;
@@ -175,10 +172,14 @@
 
   &.Kinopoisk {
     margin-bottom: 12px;
-    background-color: #f60;
+    background-color: var(--kinopoisk);
+
+    img {
+      width: 50%;
+    }
   }
 
   &.Imdb {
-    background-color: #f5c518;
+    background-color: var(--imdb);
   }
 }

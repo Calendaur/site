@@ -1,23 +1,24 @@
 .Footer {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 80px;
   padding: 0 16px;
-  background-color: rgba(15, 32, 39, 1);
+  margin-top: 60px;
+  margin-bottom: 16px;
 
-  @media (max-width: 560px) {
-    flex-direction: column;
-    height: auto;
-    padding: 16px;
+  @media (width >= 768px) {
+    display: flex;
+    justify-content: space-between;
   }
 }
 
 .Copyright {
+  max-width: 260px;
+  margin-bottom: 16px;
   color: #fff;
 
   a {
+    display: block;
+    margin-top: 4px;
     color: inherit;
+    text-decoration: underline;
   }
 }
 
@@ -29,10 +30,6 @@
 
   li {
     margin-right: 24px;
-
-    @media (max-width: 560px) {
-      margin-top: 12px;
-    }
 
     &:last-child {
       margin-right: 0;

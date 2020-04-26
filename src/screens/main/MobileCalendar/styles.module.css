@@ -1,14 +1,16 @@
 .MobileCalendar {
   display: flex;
   flex-direction: column;
-  padding: 0 16px;
-  padding-top: 24px;
+  padding: 24px 16px;
+  padding-bottom: 0;
 
-  @media (min-width: 769px) {
+  @media (width > 768px) {
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 0 6px;
     padding-top: 100px;
+    padding-right: 6px;
+    padding-bottom: 24px;
+    padding-left: 6px;
 
     > div {
       width: calc(33% - 20px);
@@ -16,7 +18,7 @@
     }
   }
 
-  @media (min-width: 1200px) {
+  @media (width >= 1200px) {
     display: none;
   }
 }
