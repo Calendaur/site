@@ -5,7 +5,7 @@ import useReleaseAnimation from '../useReleaseAnimation'
 
 import styles from './styles.module.css'
 
-function MobileCalendar({ releases, openModal, type }) {
+function MobileCalendar({ releases, type }) {
   const data = releases.sort((a, b) =>
     compareAsc(new Date(a.released), new Date(b.released)),
   )
@@ -21,7 +21,6 @@ function MobileCalendar({ releases, openModal, type }) {
           key={key}
           release={release}
           transitionProps={props}
-          openModal={openModal}
         />
       ))}
     </ul>

@@ -24,6 +24,26 @@ class Api {
       }
     }
   }
+
+  async getRelease(id) {
+    try {
+      const response = await fetch(`${this.base}/releases/${id}`)
+      const json = await response.json()
+
+      if (response.ok) {
+        return json
+      } else {
+        return {
+          error: json,
+        }
+      }
+    } catch (e) {
+      console.error(e)
+      return {
+        error: e,
+      }
+    }
+  }
 }
 
 const api = new Api()

@@ -1,12 +1,13 @@
 import React from 'react'
+import cx from 'classnames'
 
 import styles from './styles.module.css'
 
 const year = new Date().getFullYear()
 
-function Footer() {
+function Footer({ className }) {
   return (
-    <footer className={styles.Footer}>
+    <footer className={cx(styles.Footer, className)}>
       <p className={styles.Copyright}>
         © {year},&nbsp;Библиотека вымерших динозавров
         <br />

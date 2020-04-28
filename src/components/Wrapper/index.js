@@ -14,6 +14,7 @@ function Wrapper({ children }) {
         <meta httpEquiv="content-type" content="text/html;charset=utf-8" />
         <meta name="keywords" content="" />
         <meta name="description" content="Будьте в курсе новых релизов" />
+        <meta property="og:type" content="website" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"

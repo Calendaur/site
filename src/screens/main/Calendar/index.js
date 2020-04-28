@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import cx from 'classnames'
 import ReleaseListInDay from '../ReleaseListInDay'
 import MobileCalendar from '../MobileCalendar'
-import ReleaseInfoModal from '../ReleaseInfoModal'
 import { getWeeks, getCellWidth } from '../../../core/calendar'
 import { monthString, getTypeWithoutS } from '../../../core/helpers'
 import { months, getNextAndPrevDate } from '../../../core/url'
@@ -14,11 +13,6 @@ import styles from './styles.module.css'
 const daysOfWeek = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс']
 
 function Calendar({ type, month, year, releases }) {
-  const [openedRelease, setOpenedRelease] = useState({
-    visible: false,
-    release: null,
-  })
-
   const router = useRouter()
 
   const { width } = useWindowSize()
@@ -31,32 +25,6 @@ function Calendar({ type, month, year, releases }) {
   )
 
   const weeks = getWeeks(year, month)
-
-  function openModal(release) {
-    setOpenedRelease({
-      visible: true,
-      release,
-    })
-  }
-
-  useEffect(() => {
-    if (window.location.hash) {
-      const { hash } = window.location
-      const release = releases.find(r => r.id === +hash.replace('#', ''))
-
-      if (release) {
-        openModal(release)
-      }
-    }
-  }, [releases])
-
-  useEffect(() => {
-    if (openedRelease.visible) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'inherit'
-    }
-  }, [openedRelease.visible])
 
   const { prevMonth, nextMonth, prevYear, nextYear } = getNextAndPrevDate(
     month,
@@ -158,7 +126,6 @@ function Calendar({ type, month, year, releases }) {
                           <ReleaseListInDay
                             type={type}
                             releases={dayReleases}
-                            openModal={openModal}
                           />
                         </td>
                       )
@@ -167,22 +134,7 @@ function Calendar({ type, month, year, releases }) {
                 ))}
               </tbody>
             </table>
-            <MobileCalendar
-              type={type}
-              releases={releases}
-              openModal={openModal}
-            />
-            <ReleaseInfoModal
-              type={type}
-              release={openedRelease.release}
-              isOpen={openedRelease.visible}
-              onClose={() => {
-                setOpenedRelease({
-                  visible: false,
-                  release: null,
-                })
-              }}
-            />
+            <MobileCalendar type={type} releases={releases} />
           </>
         )}
       </main>
