@@ -1,11 +1,13 @@
 import React, { useRef, useState, useMemo } from 'react'
 import Link from 'next/link'
-import Router from 'next/router'
+import { useRouter } from 'next/router'
 import { useDidUpdate, useHideOnScroll } from '../../hooks'
 
 import styles from './styles.module.css'
 
 function Header({ hasBack }) {
+  const { asPath, back } = useRouter()
+
   const [visible, setVisible] = useHideOnScroll()
 
   const ref = useRef(null)
@@ -31,7 +33,7 @@ function Header({ hasBack }) {
           <button
             className={styles.Back}
             onClick={() => {
-              Router.back()
+              back()
             }}
           >
             <img src="/icons/back.svg" alt="" />
@@ -47,6 +49,11 @@ function Header({ hasBack }) {
         <Link href="/faq">
           <a>FAQ</a>
         </Link>
+        {!asPath.includes('subscribe') && (
+          <Link href="/subscribe">
+            <a className={styles.Subscribe}>Подписаться</a>
+          </Link>
+        )}
       </div>
     </header>
   )

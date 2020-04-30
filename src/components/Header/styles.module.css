@@ -15,6 +15,9 @@
 }
 
 .Logo {
+  display: flex;
+  align-items: center;
+
   img {
     --size: 65px;
 
@@ -44,6 +47,24 @@
 
     @media (max-width: 767px) {
       font-size: 14px;
+    }
+  }
+
+  .Subscribe {
+    display: flex;
+    padding: 4px 8px;
+    color: #000;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: var(--drop-shadow);
+
+    &:hover {
+      background-color: #eee;
+      box-shadow: none;
+    }
+
+    @media (width >= 768px) {
+      padding: 8px 16px;
     }
   }
 }

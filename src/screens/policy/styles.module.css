@@ -1,0 +1,27 @@
+.Main {
+  width: 100%;
+  padding: 0 16px;
+  padding-top: 100px;
+  line-height: 1.7;
+  color: #fff;
+
+  @media (width >= 768px) {
+    max-width: 688px;
+    padding: 0;
+    padding-top: 120px;
+    margin: 0 auto;
+  }
+
+  @media (width >= 1200px) {
+    max-width: 1120px;
+  }
+
+  a {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+}
