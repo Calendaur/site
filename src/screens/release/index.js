@@ -61,7 +61,7 @@ function Release({
           <PlatformList className={styles.PlatformList} platforms={platforms} />
         )
       case 'series':
-        return <p className={styles.Season}>{season}</p>
+        return <p className={styles.Season}>{season} сезон</p>
     }
   }
 
@@ -148,7 +148,9 @@ function Release({
           </div>
           {renderMetaBlock()}
           <p className={styles.Description}>{description}</p>
-          {type === 'films' ? renderFilmInfoButtons() : null}
+          {type === 'films' || type === 'series'
+            ? renderFilmInfoButtons()
+            : null}
         </div>
       </main>
       <Footer className={styles.Footer} />
