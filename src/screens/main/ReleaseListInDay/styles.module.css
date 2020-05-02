@@ -11,7 +11,7 @@
     height: 250px;
   }
 
-  &.hasSomeReleases > a {
+  &.hasSomeReleases > * {
     margin-right: 8px;
 
     &:last-child {

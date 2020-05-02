@@ -46,28 +46,30 @@ function ReleaseCard({ release, transitionProps, type }) {
   const day = date.getDate()
 
   return (
-    <Link href="/release/[id]" as={`/release/${release.release_id}`}>
-      <animated.a
-        className={styles.Release}
-        style={{
-          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%), url(${release.cover})`,
-          ...transitionProps,
-        }}
-      >
-        <div className={styles.Substrate}></div>
-        <div
-          className={cx(calendarStyles.Date, calendarStyles.hasRelease, {
-            [calendarStyles.isToday]: isToday(date),
-          })}
-        >
-          {day}
-        </div>
-        <div className={styles.Info}>
-          <p>{release.title}</p>
-          <Info release={release} type={type} />
-        </div>
-      </animated.a>
-    </Link>
+    <animated.div
+      className={styles.Release}
+      style={{
+        backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%), url(${release.cover})`,
+        ...transitionProps,
+      }}
+    >
+      <Link href="/release/[id]" as={`/release/${release.release_id}`}>
+        <a>
+          <div className={styles.Substrate}></div>
+          <div
+            className={cx(calendarStyles.Date, calendarStyles.hasRelease, {
+              [calendarStyles.isToday]: isToday(date),
+            })}
+          >
+            {day}
+          </div>
+          <div className={styles.Info}>
+            <p>{release.title}</p>
+            <Info release={release} type={type} />
+          </div>
+        </a>
+      </Link>
+    </animated.div>
   )
 }
 
