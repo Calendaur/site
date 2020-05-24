@@ -9,6 +9,17 @@ export function rusType(type) {
   }
 }
 
+export function getRusReleaseType(type) {
+  switch (type) {
+    case 'series':
+      return 'Сериал'
+    case 'films':
+      return 'Кино'
+    case 'games':
+      return 'Игра'
+  }
+}
+
 export function monthString(monthNum) {
   const monthStr = monthNum.toString()
 

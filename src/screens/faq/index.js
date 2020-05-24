@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
-import { Header, Footer } from '../../components'
+import { Header } from '../../components'
 
 import styles from './styles.module.css'
 
@@ -92,7 +92,6 @@ function Faq() {
           </p>
         </div>
       </div>
-      <Footer />
     </>
   )
 }

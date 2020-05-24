@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
+import Footer from '../Footer'
 
 function Wrapper({ children }) {
   return (
@@ -163,25 +164,20 @@ function Wrapper({ children }) {
         />
         <meta name="theme-color" content="#0f2027" />
         <link
-          rel="preload"
-          href="/fonts/inter-bold.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="true"
         />
         <link
           rel="preload"
-          href="/fonts/inter-italic.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
+          as="style"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
         />
         <link
-          rel="preload"
-          href="/fonts/inter-regular.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+          media="print"
+          onload="this.media='all'"
         />
         <script
           async
@@ -191,6 +187,7 @@ function Wrapper({ children }) {
         ></script>
       </Head>
       {children}
+      <Footer />
     </>
   )
 }

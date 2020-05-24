@@ -14,6 +14,8 @@ MainPage.getInitialProps = async context => {
 
   const releases = await api.getReleases(type, requestDate)
 
+  console.log(requestDate, parsedURL)
+
   return {
     parsedURL,
     releases,

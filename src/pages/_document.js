@@ -8,7 +8,6 @@ class CustomDocument extends Document {
         <Head />
         <body>
           <Main />
-          <div id="release-info-modal" />
           <NextScript />
         </body>
       </html>

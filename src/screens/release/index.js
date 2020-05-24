@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import cx from 'classnames'
 import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
-import { TargetBlankA, PlatformList, Footer } from '../../components'
+import getYouTubeId from 'get-youtube-id'
+import { TargetBlankA, PlatformList, Header } from '../../components'
+import { getRusReleaseType } from '../../core/helpers'
 
 import styles from './styles.module.css'
 
@@ -20,14 +22,10 @@ function Release({
   season,
   kinopoisk_url,
   imdb_url,
+  trailer_url,
 }) {
-  const [referrer, setReferrer] = useState('')
-  const { back, query, push } = useRouter()
+  const { query } = useRouter()
   const url = `https://calendaur.com/release/${query.id}`
-
-  useEffect(() => {
-    setReferrer(window.document.referrer)
-  }, [id])
 
   function renderFilmInfoButtons() {
     return (
@@ -55,13 +53,31 @@ function Release({
   function renderMetaBlock() {
     switch (type) {
       case 'films':
-        return <p className={styles.Director}>{director}</p>
+        return (
+          <>
+            <div className={styles.Label}>Режиссер:</div>
+            <div className={styles.Value}>{director}</div>
+          </>
+        )
       case 'games':
         return (
-          <PlatformList className={styles.PlatformList} platforms={platforms} />
+          <>
+            <div className={styles.Label}>Платформы:</div>
+            <div className={styles.Value}>
+              <PlatformList
+                className={styles.PlatformList}
+                platforms={platforms}
+              />
+            </div>
+          </>
         )
       case 'series':
-        return <p className={styles.Season}>{season} сезон</p>
+        return (
+          <>
+            <div className={styles.Label}>Сезон:</div>
+            <div className={styles.Value}>{season}</div>
+          </>
+        )
     }
   }
 
@@ -81,79 +97,92 @@ function Release({
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={cover} />
         <link rel="image_src" href={cover} />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap"
+          rel="stylesheet"
+        />
         <style
           dangerouslySetInnerHTML={{
             __html: `
               body {
                 background-color: #000 !important;
               }
-
-              main {
-                min-height: calc(100vh - 195px) !important;
-              }
-
-              @media (min-width: 768px) {
-                main {
-                  min-height: calc(100vh - 162px) !important;
-                }
-              }
             `,
           }}
         ></style>
       </Head>
-      <button
-        type="button"
-        className={styles.Back}
-        onClick={() => {
-          if (!referrer || !referrer.includes('calendaur.com')) {
-            push('/')
-          } else {
-            back()
-          }
-        }}
-      >
-        <img src="/icons/back-1.svg" alt="Назад" />
-      </button>
+      <Header hasBack />
       <main className={styles.Content}>
         <div className={styles.Cover}>
           <div className={styles.Gradient}></div>
-          <img src={cover} alt={title} />
+          <img loading="lazy" src={cover} alt={title} />
         </div>
-        <div className={styles.Info}>
-          <p className={styles.Date}>
-            {format(new Date(released), 'd MMMM yyyy', {
-              locale: ru,
-            })}
-          </p>
-          <h1 className={styles.Title}>{title}</h1>
-          <div className={styles.Sharing}>
-            <TargetBlankA
-              href={`https://www.facebook.com/sharer/sharer.php?u=${url}&t=${title}`}
-            >
-              <img src="/icons/facebook.svg" alt="Поделиться через Facebook" />
-            </TargetBlankA>
-            <TargetBlankA
-              href={`https://vk.com/share.php?url=${url}&title=${title}&utm_source=share2`}
-            >
-              <img src="/icons/vk.svg" alt="Поделиться через VK" />
-            </TargetBlankA>
-            <TargetBlankA
-              href={`https://twitter.com/intent/tweet/?text=${title}&url=${url}`}
-            >
-              <img src="/icons/twitter.svg" alt="Поделиться через Twitter" />
-            </TargetBlankA>
-            <TargetBlankA href={`tg://msg_url?url=${url}&text=${title}`}>
-              <img src="/icons/telegram.svg" alt="Поделиться через Telegram" />
-            </TargetBlankA>
+        <h1 className={styles.Title}>{title}</h1>
+        <div className={styles.Description}>
+          <div className={styles.Data}>
+            <header>
+              <span>
+                {format(new Date(released), 'd MMMM yyyy', {
+                  locale: ru,
+                })}
+              </span>
+              <span>{getRusReleaseType(type)}</span>
+            </header>
+            <div className={styles.Sharing}>
+              <span>Поделиться:</span>
+              <div>
+                <TargetBlankA
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${url}&t=${title}`}
+                >
+                  <img
+                    src="/icons/facebook.svg"
+                    alt="Поделиться через Facebook"
+                  />
+                </TargetBlankA>
+                <TargetBlankA
+                  href={`https://vk.com/share.php?url=${url}&title=${title}&utm_source=share2`}
+                >
+                  <img src="/icons/vk.svg" alt="Поделиться через VK" />
+                </TargetBlankA>
+                <TargetBlankA
+                  href={`https://twitter.com/intent/tweet/?text=${title}&url=${url}`}
+                >
+                  <img
+                    src="/icons/twitter.svg"
+                    alt="Поделиться через Twitter"
+                  />
+                </TargetBlankA>
+                <TargetBlankA href={`tg://msg_url?url=${url}&text=${title}`}>
+                  <img
+                    src="/icons/telegram.svg"
+                    alt="Поделиться через Telegram"
+                  />
+                </TargetBlankA>
+              </div>
+            </div>
+            <div className={styles.Text}>{description}</div>
+            <div className={styles.Meta}>{renderMetaBlock()}</div>
+            {type === 'films' || type === 'series'
+              ? renderFilmInfoButtons()
+              : null}
           </div>
-          {renderMetaBlock()}
-          <p className={styles.Description}>{description}</p>
-          {type === 'films' || type === 'series'
-            ? renderFilmInfoButtons()
-            : null}
+          {trailer_url && (
+            <div className={styles.Trailer}>
+              <div className={styles.aspectRatio}>
+                <iframe
+                  title="Trailer"
+                  frameBorder="0"
+                  width="100%"
+                  height="100%"
+                  src={`https://www.youtube.com/embed/${getYouTubeId(
+                    trailer_url,
+                  )}`}
+                />
+              </div>
+            </div>
+          )}
         </div>
       </main>
-      <Footer className={styles.Footer} />
     </>
   )
 }

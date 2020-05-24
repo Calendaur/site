@@ -16,7 +16,6 @@ function Header({ hasBack }) {
   const animationStyle = useMemo(
     () => ({
       transform: visible ? `translateY(0px)` : `translateY(${-height}px)`,
-      background: visible ? 'rgba(15, 32, 39, 0.89)' : 'rgba(15, 32, 39, 0.4)',
     }),
     [height, visible],
   )

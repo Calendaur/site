@@ -72,6 +72,7 @@ function Calendar({ type, month, year, releases }) {
             <div className={styles.Cover}>
               <div className={styles.Gradient}>
                 <img
+                  loading="lazy"
                   src={`https://api.calendaur.com/uploads/bg/${year}-${monthString(
                     month + 1,
                   )}-${getTypeWithoutS(type)}.jpg`}

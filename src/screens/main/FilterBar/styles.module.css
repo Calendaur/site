@@ -19,7 +19,7 @@
 
   @media (min-width: 768px) {
     position: fixed;
-    top: calc((81px - 40px) / 2);
+    top: calc((72px - 40px) / 2);
     right: 0;
     bottom: unset;
     left: 12%;

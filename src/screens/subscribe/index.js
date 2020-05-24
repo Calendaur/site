@@ -47,8 +47,10 @@ function SubscribePage() {
             <div id="mc_embed_signup_scroll">
               <h1>Подписаться</h1>
               <p className={styles.Desc}>
-                Подписавшись на&nbsp;рассылку, вы&nbsp;будете получать каждые
-                две недели красивые письма с&nbsp;популярными релизами
+                Раз в&nbsp;две недели мы&nbsp;будем отправлять красивые письма
+                с&nbsp;несколькими ключевыми релизами. Ничего
+                лишнего&nbsp;&mdash; лаконично и&nbsp;по&nbsp;существу, чтобы
+                вы&nbsp;могли оставаться в&nbsp;курсе событий.
               </p>
               <div className={styles.Field}>
                 <label htmlFor="mce-EMAIL">Email</label>
@@ -113,7 +115,6 @@ function SubscribePage() {
           </form>
         </div>
       </main>
-      <Footer />
     </>
   )
 }

@@ -8,7 +8,7 @@ import Calendar from './Calendar'
 import { getNextAndPrevDate } from '../../core/url'
 import { rusType } from '../../core/helpers'
 
-function MainPage({ parsedURL, releases, apiUrl }) {
+function MainPage({ parsedURL, releases }) {
   const { year, month, type } = parsedURL
 
   const { prevMonth, prevYear, nextMonth, nextYear } = getNextAndPrevDate(

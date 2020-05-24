@@ -1,25 +1,37 @@
 import React from 'react'
+import Link from 'next/link'
 import cx from 'classnames'
 
 import styles from './styles.module.css'
 
-const year = new Date().getFullYear()
-
 function Footer({ className }) {
   return (
     <footer className={cx(styles.Footer, className)}>
-      <p className={styles.Copyright}>
-        © {year},&nbsp;Библиотека вымерших динозавров
-        <br />
+      <div className={styles.Projects}>
         <a
+          href="https://vk.com/deaddinos"
           target="_blank"
           rel="noopener noreferrer"
-          href="mailto:deaddinocalendar@gmail.com"
         >
-          Свяжитесь с нами
+          <img src="/images/dinos.png" alt="" />
         </a>
-      </p>
+        <span>✕</span>
+        <Link href="/">
+          <a>
+            <img src="/images/logo.png" alt="" />
+          </a>
+        </Link>
+      </div>
       <ul className={styles.Socials}>
+        <li>
+          <a
+            href="mailto:deaddinocalendar@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/icons/mail.svg" alt="" />
+          </a>
+        </li>
         <li>
           <a
             href="https://teleg.run/deaddinos"

@@ -239,7 +239,6 @@ function PrivacyPolicyPage() {
           .
         </p>
       </main>
-      <Footer />
     </>
   )
 }

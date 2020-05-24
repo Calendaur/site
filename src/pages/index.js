@@ -1,15 +1,24 @@
-import { checkFixRedirect } from '../core/url'
+import MainPage from '../screens/main'
+import { months } from '../core/url'
+import { api } from '../core/api'
 
-function IndexPage() {
-  return null
-}
+MainPage.getInitialProps = async () => {
+  const currentMonth = new Date().getMonth() + 1
+  const currentYear = new Date().getFullYear()
 
-IndexPage.getInitialProps = ctx => {
-  checkFixRedirect(ctx)
+  const releases = await api.getReleases(
+    'movies',
+    `${currentMonth}-${currentYear}`,
+  )
 
   return {
-    props: {},
+    parsedURL: {
+      type: 'films',
+      month: months[currentMonth - 1],
+      year: currentYear,
+    },
+    releases,
   }
 }
 
-export default IndexPage
+export default MainPage
