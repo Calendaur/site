@@ -1,8 +1,10 @@
-import MainPage from '../screens/main'
-import { months } from '../core/url'
+import IndexPage from '../screens/main'
+import { checkFixRedirect, months } from '../core/url'
 import { api } from '../core/api'
 
-MainPage.getInitialProps = async () => {
+IndexPage.getInitialProps = async context => {
+  checkFixRedirect(context)
+
   const currentMonth = new Date().getMonth() + 1
   const currentYear = new Date().getFullYear()
 
@@ -21,4 +23,4 @@ MainPage.getInitialProps = async () => {
   }
 }
 
-export default MainPage
+export default IndexPage
