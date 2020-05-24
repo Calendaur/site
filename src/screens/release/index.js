@@ -23,6 +23,7 @@ function Release({
   kinopoisk_url,
   imdb_url,
   trailer_url,
+  is_digital,
 }) {
   const { query } = useRouter()
   const url = `https://calendaur.com/release/${query.id}`
@@ -121,12 +122,22 @@ function Release({
         <div className={styles.Description}>
           <div className={styles.Data}>
             <header>
-              <span>
+              <div>
                 {format(new Date(released), 'd MMMM yyyy', {
                   locale: ru,
                 })}
-              </span>
-              <span>{getRusReleaseType(type)}</span>
+              </div>
+              <div>{getRusReleaseType(type)}</div>
+              {type === 'films' && is_digital === true ? (
+                <div title="Цифровой релиз">
+                  <img src="/icons/digital.svg" alt="" />
+                </div>
+              ) : null}
+              {type === 'films' && is_digital === false ? (
+                <div title="Релиз в кинотеатре">
+                  <img src="/icons/cinema.svg" alt="" />
+                </div>
+              ) : null}
             </header>
             <div className={styles.Sharing}>
               <span>Поделиться:</span>

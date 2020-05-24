@@ -140,7 +140,15 @@
 
   .Data {
     flex: 1;
-    margin-right: 80px;
+    margin-right: 0;
+
+    @media (min-width: 768px) {
+      margin-right: 40px;
+    }
+
+    @media (min-width: 1024px) {
+      margin-right: 80px;
+    }
 
     header {
       display: flex;
@@ -149,12 +157,18 @@
       height: 24px;
       margin-bottom: 24px;
 
-      > span {
+      > div {
+        display: flex;
+        align-items: center;
         margin-right: 16px;
         font-family: Montserrat, sans-serif;
         font-size: 18px;
         line-height: 22px;
         letter-spacing: 0.05em;
+
+        img {
+          width: 24px;
+        }
       }
     }
 
@@ -251,6 +265,7 @@
 .Buttons {
   display: flex;
   flex-direction: column;
+  margin-bottom: 24px;
 
   @media (width >= 768px) {
     flex-direction: row;
