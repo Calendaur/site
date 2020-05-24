@@ -177,7 +177,9 @@ function Wrapper({ children }) {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
           media="print"
-          onload="this.media='all'"
+          onLoad={function load() {
+            this.media = 'all'
+          }}
         />
         <script
           async

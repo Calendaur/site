@@ -86,7 +86,6 @@ export function parseUrl(correctUrl) {
 }
 
 export function redirect(ctx, to) {
-  if (ctx.asPath === '/service-worker.js') return
   if (ctx.res) {
     ctx.res.writeHead(303, { Location: to })
     ctx.res.end()
@@ -97,11 +96,14 @@ export function redirect(ctx, to) {
 
 export function checkFixRedirect(ctx) {
   const url = ctx.asPath || ctx.req.url
+
+  if (url.includes('service-worker')) return
+
   const { isCorrect, ...rest } = checkUrl(url)
 
-  if (!isCorrect) {
-    redirect(ctx, fixUrl(url, rest))
-  }
+  if (isCorrect) return
+
+  redirect(ctx, fixUrl(url, rest))
 }
 
 export function getNextAndPrevDate(currentMonthJSNumber, currentYear) {

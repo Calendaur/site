@@ -22,10 +22,10 @@ function MainPage({ parsedURL, releases }) {
   const { push } = useRouter()
 
   function toNext() {
-    push('/[type]/[date]', nextLink)
+    push(`/${type}/[date]`, nextLink)
   }
   function toPrev() {
-    push('/[type]/[date]', prevLink)
+    push(`/${type}/[date]`, prevLink)
   }
 
   const bind = useDrag(

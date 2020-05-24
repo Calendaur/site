@@ -78,13 +78,13 @@ function FilterBar({
         }}
         onSelect={({ selectedItem }) => {
           Router.push(
-            '/[type]/[date]',
+            `/${selectedItem.value}/[date]`,
             `/${selectedItem.value}/${month.eng}-${year}`,
           )
         }}
       />
       <div className={styles.DateBar}>
-        <Link href="/[type]/[date]" as={prevLink}>
+        <Link href={`/${type}/[date]`} as={prevLink}>
           <a disabled={prevYear < 2020}>
             <img src="/icons/arrow.svg" alt="" />
           </a>
@@ -92,7 +92,7 @@ function FilterBar({
         <div className={styles.Date}>
           <span>{month.rus}</span> {year}
         </div>
-        <Link href="/[type]/[date]" as={nextLink}>
+        <Link href={`/${type}/[date]`} as={nextLink}>
           <a disabled={nextYear > 2030}>
             <img src="/icons/arrow.svg" alt="" />
           </a>
