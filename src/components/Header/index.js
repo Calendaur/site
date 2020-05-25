@@ -45,6 +45,9 @@ function Header({ hasBack }) {
         </Link>
       </div>
       <div className={styles.Right}>
+        <Link href="/whats-new">
+          <a>Что нового?</a>
+        </Link>
         <Link href="/faq">
           <a>FAQ</a>
         </Link>
