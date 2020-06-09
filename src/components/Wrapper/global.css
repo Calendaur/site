@@ -5,6 +5,8 @@
   --pink: #dc6175;
   --kinopoisk: #f60;
   --imdb: #f5c518;
+  --primary-text: #c9c9c9;
+  --secondary-text: #b5b5b5;
   --bg-rgb: 15, 32, 39;
   --transition: 0.25s;
   --drop-shadow: 0 2px 8px rgba(244, 244, 244, 0.15);
@@ -12,6 +14,7 @@
   --desktop: 1200px;
   --desktop-2k: 1920px;
   --footer-height: 124px;
+  --animation-time: 0.25s;
 }
 
 html {
@@ -41,6 +44,7 @@ body {
   font-size: 16px;
   line-height: 22px;
   background-color: rgb(var(--bg-rgb));
+  text-size-adjust: 100%;
 }
 
 main {

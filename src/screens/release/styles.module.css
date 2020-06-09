@@ -312,3 +312,17 @@
 .Footer {
   background-color: #000 !important;
 }
+
+.StoreButtons {
+  margin: -12px;
+}
+
+.StoreButton {
+  height: inherit;
+  margin: 12px;
+
+  img {
+    height: 24px;
+    margin-right: 8px;
+  }
+}

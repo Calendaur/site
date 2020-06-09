@@ -6,6 +6,7 @@ import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
 import getYouTubeId from 'get-youtube-id'
 import { TargetBlankA, PlatformList, Header } from '../../components'
+import StoreButtons from './StoreButtons'
 import { getRusReleaseType } from '../../core/helpers'
 
 import styles from './styles.module.css'
@@ -176,6 +177,7 @@ function Release({
             {type === 'films' || type === 'series'
               ? renderFilmInfoButtons()
               : null}
+            {type === 'games' && <StoreButtons />}
           </div>
           {trailer_url && (
             <div className={styles.Trailer}>

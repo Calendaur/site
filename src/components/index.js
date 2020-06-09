@@ -6,6 +6,7 @@ import PlatformList from './PlatformList'
 import TargetBlankA from './TargetBlankA'
 import Footer from './Footer'
 import Emoji from './Emoji'
+import Button from './Button'
 
 export {
   Header,
@@ -16,4 +17,5 @@ export {
   Wrapper,
   Dropdown,
   Emoji,
+  Button,
 }
