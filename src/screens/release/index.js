@@ -25,6 +25,7 @@ function Release({
   imdb_url,
   trailer_url,
   is_digital,
+  stores,
 }) {
   const { query } = useRouter()
   const url = `https://calendaur.com/release/${query.id}`
@@ -177,7 +178,7 @@ function Release({
             {type === 'films' || type === 'series'
               ? renderFilmInfoButtons()
               : null}
-            {type === 'games' && <StoreButtons />}
+            {type === 'games' && <StoreButtons stores={stores} />}
           </div>
           {trailer_url && (
             <div className={styles.Trailer}>
