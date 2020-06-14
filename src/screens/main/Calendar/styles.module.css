@@ -8,7 +8,6 @@
   width: 100%;
   padding: 10px 16px;
   margin-top: 60px;
-  color: #fff;
   background-color: rgb(var(--bg-rgb));
 
   @media (width > 768px) {
@@ -102,7 +101,6 @@
   font-size: 14px;
   font-weight: normal;
   line-height: 1;
-  color: #fff;
   text-transform: uppercase;
   letter-spacing: 1px;
   user-select: none;
@@ -152,7 +150,6 @@
   height: var(--size);
   font-size: 14px;
   line-height: var(--size);
-  color: #fff;
   user-select: none;
   border-radius: 50%;
 
@@ -174,7 +171,6 @@
     margin: 0 auto;
     font-size: 40px;
     line-height: 1.56;
-    color: #fff;
     text-align: center;
 
     @media (width > 768px) {

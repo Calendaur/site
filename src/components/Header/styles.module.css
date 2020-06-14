@@ -58,22 +58,11 @@
   }
 
   a {
-    font-size: 14px;
-    color: #fff;
+    font-size: 0.875rem;
   }
 
   .Subscribe {
-    display: flex;
-    padding: 4px 8px;
-    color: #000;
-    background-color: #fff;
-    border-radius: 4px;
-    box-shadow: var(--drop-shadow);
-
-    &:hover {
-      background-color: #eee;
-      box-shadow: none;
-    }
+    font-size: 0.875rem;
   }
 }
 

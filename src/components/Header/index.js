@@ -2,11 +2,12 @@ import React, { useRef, useState, useMemo } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useDidUpdate, useHideOnScroll } from '../../hooks'
+import Button from '../Button'
 
 import styles from './styles.module.css'
 
 function Header({ hasBack }) {
-  const { asPath, back } = useRouter()
+  const { asPath, back, push } = useRouter()
 
   const [visible, setVisible] = useHideOnScroll()
 
@@ -52,9 +53,15 @@ function Header({ hasBack }) {
           <a>FAQ</a>
         </Link>
         {!asPath.includes('subscribe') && (
-          <Link href="/subscribe">
-            <a className={styles.Subscribe}>Подписаться</a>
-          </Link>
+          <Button
+            className={styles.Subscribe}
+            isPrimary
+            onClick={() => {
+              push('/subscribe')
+            }}
+          >
+            Подписаться
+          </Button>
         )}
       </div>
     </header>

@@ -8,10 +8,21 @@ function Button({
   children,
   type,
   className = '',
+  isPrimary = false,
   ...rest
 }) {
   return (
-    <Component type={type} className={cx(styles.button, className)} {...rest}>
+    <Component
+      type={type}
+      className={cx(
+        styles.button,
+        {
+          [styles.isPrimary]: isPrimary,
+        },
+        className,
+      )}
+      {...rest}
+    >
       {children}
     </Component>
   )

@@ -31,7 +31,6 @@
 .Projects {
   display: flex;
   align-items: center;
-  color: #fff;
 
   a {
     --size: 56px;

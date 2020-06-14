@@ -1,12 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import { Header, Footer } from '../../components'
+import { Header, MainPageContent, Title, Text, Button } from '../../components'
 
 import styles from './styles.module.css'
 
 function SubscribePage() {
+  const inputRef = useRef()
   const [email, setEmail] = useState('')
+
+  useEffect(() => {
+    if (inputRef.current) inputRef.current.focus()
+  }, [inputRef])
 
   return (
     <>
@@ -16,10 +21,7 @@ function SubscribePage() {
           rel="stylesheet"
           type="text/css"
         />
-        <script
-          type="text/javascript"
-          src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"
-        />
+        <script src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js" />
         <script
           dangerouslySetInnerHTML={{
             __html: `(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);`,
@@ -33,7 +35,7 @@ function SubscribePage() {
         ></style>
       </Head>
       <Header hasBack />
-      <main className={styles.Main}>
+      <MainPageContent>
         <div id="mc_embed_signup">
           <form
             action="https://calendaur.us4.list-manage.com/subscribe/post?u=323bb705c0e362f6f4fd8143c&amp;id=509c02cc4c"
@@ -45,13 +47,13 @@ function SubscribePage() {
             noValidate
           >
             <div id="mc_embed_signup_scroll">
-              <h1>Подписаться</h1>
-              <p className={styles.Desc}>
+              <Title className={styles.Title}>Подписаться</Title>
+              <Text className={styles.Desc}>
                 Раз в&nbsp;две недели мы&nbsp;будем отправлять красивые письма
                 с&nbsp;несколькими ключевыми релизами. Ничего
                 лишнего&nbsp;&mdash; лаконично и&nbsp;по&nbsp;существу, чтобы
                 вы&nbsp;могли оставаться в&nbsp;курсе событий.
-              </p>
+              </Text>
               <div className={styles.Field}>
                 <label htmlFor="mce-EMAIL">Email</label>
                 <input
@@ -61,6 +63,8 @@ function SubscribePage() {
                   className="required email"
                   id="mce-EMAIL"
                   onChange={e => setEmail(e.target.value)}
+                  placeholder="email@domain.com"
+                  ref={inputRef}
                 />
               </div>
               <div id="mce-responses" className="clear">
@@ -87,13 +91,15 @@ function SubscribePage() {
                 />
               </div>
               <div className="clear">
-                <input
+                <Button
                   type="submit"
-                  value="Подписаться"
                   name="subscribe"
                   id="mc-embedded-subscribe"
-                  className="button"
-                />
+                  className={styles.Button}
+                  isPrimary
+                >
+                  Подписаться
+                </Button>
               </div>
               <p className={styles.Privacy}>
                 Подписываясь, вы соглашаетесь с{' '}
@@ -102,19 +108,10 @@ function SubscribePage() {
                 </Link>{' '}
                 сайта calendaur.com
               </p>
-              <p className={styles.PoweredBy}>
-                Powered by{' '}
-                <a
-                  href="http://eepurl.com/g1CEZz"
-                  title="MailChimp - email marketing made easy and fun"
-                >
-                  <img src="/icons/mailchimp.svg" alt="Mailchimp" />
-                </a>
-              </p>
             </div>
           </form>
         </div>
-      </main>
+      </MainPageContent>
     </>
   )
 }

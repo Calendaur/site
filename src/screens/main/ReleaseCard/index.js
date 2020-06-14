@@ -25,21 +25,7 @@ export function getPlatformIcon(platform) {
 function Info({ release, type }) {
   switch (type) {
     case 'films':
-      return (
-        <>
-          <p className={styles.Extra}>{release.director}</p>
-          {type === 'films' && release.is_digital === true ? (
-            <div title="Цифровой релиз" className={styles.DigitalLabel}>
-              <img src="/icons/digital.svg" alt="" />
-            </div>
-          ) : null}
-          {type === 'films' && release.is_digital === false ? (
-            <div title="Релиз в кинотеатре" className={styles.DigitalLabel}>
-              <img src="/icons/cinema.svg" alt="" />
-            </div>
-          ) : null}
-        </>
-      )
+      return <p className={styles.Extra}>{release.director}</p>
     case 'games':
       return (
         <ul className={styles.PlatformList}>

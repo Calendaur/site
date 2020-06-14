@@ -3,7 +3,6 @@
   padding: 0 16px;
   padding-top: 100px;
   line-height: 1.7;
-  color: #fff;
 
   @media (width >= 768px) {
     max-width: 688px;
@@ -17,7 +16,6 @@
   }
 
   a {
-    color: #fff;
     text-decoration: underline;
   }
 

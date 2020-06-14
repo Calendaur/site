@@ -1,5 +1,6 @@
 .Wrapper {
   position: relative;
+  color: var(--black);
 
   @media (max-width: 767px) {
     position: absolute;

@@ -7,6 +7,8 @@ import TargetBlankA from './TargetBlankA'
 import Footer from './Footer'
 import Emoji from './Emoji'
 import Button from './Button'
+import Title from './Title'
+import Text from './Text'
 
 export {
   Header,
@@ -18,4 +20,6 @@ export {
   Dropdown,
   Emoji,
   Button,
+  Title,
+  Text,
 }
