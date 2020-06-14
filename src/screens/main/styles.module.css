@@ -21,6 +21,7 @@
     position: relative;
     top: initial;
     left: initial;
+    z-index: 0;
     padding-top: 120px !important;
     margin-top: 0;
     background-color: initial;
