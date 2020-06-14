@@ -16,7 +16,7 @@
 
   .CurrentMonth {
     width: 180px;
-    font-size: 18px;
+    font-size: 1.125rem;
     text-align: center;
     text-transform: uppercase;
 
@@ -28,7 +28,7 @@
   button {
     padding-top: 12px;
     padding-bottom: 12px;
-    font-size: 14px;
+    font-size: 0.875rem;
     color: rgba(#fff, 0.65);
     background-color: transparent;
 
@@ -98,7 +98,7 @@
 }
 
 .DayOfWeek {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: normal;
   line-height: 1;
   text-transform: uppercase;
@@ -148,7 +148,7 @@
   justify-content: center;
   width: var(--size);
   height: var(--size);
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: var(--size);
   user-select: none;
   border-radius: 50%;
@@ -169,7 +169,7 @@
     max-width: 760px;
     padding-top: 10vh;
     margin: 0 auto;
-    font-size: 40px;
+    font-size: 2.5rem;
     line-height: 1.56;
     text-align: center;
 

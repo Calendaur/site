@@ -18,7 +18,7 @@
   height: 42px;
   padding: 0 16px;
   font-family: inherit;
-  font-size: 16px;
+  font-size: 1rem;
   color: #000;
   border-radius: 4px;
   box-shadow: var(--drop-shadow);
@@ -66,6 +66,6 @@
 
 .ListItem {
   padding: 10px 16px;
-  font-size: 16px;
+  font-size: 1rem;
   transition: all 0.2s ease-in-out;
 }
