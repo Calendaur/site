@@ -117,7 +117,7 @@
       flex-wrap: wrap;
       align-items: center;
       height: 24px;
-      margin-bottom: var(--vertical-4);
+      margin-bottom: var(--vertical-1);
 
       > div {
         display: flex;
