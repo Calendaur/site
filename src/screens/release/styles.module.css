@@ -124,9 +124,13 @@
         align-items: center;
         margin-right: var(--horizontal-4);
         font-family: Montserrat, sans-serif;
-        font-size: 1.125rem;
+        font-size: 1rem;
         line-height: 22px;
         letter-spacing: 0.05em;
+
+        @media (width >= 768px) {
+          font-size: 1.125rem;
+        }
 
         img {
           width: 24px;
@@ -149,6 +153,14 @@
         color: var(--primary-text);
       }
     }
+  }
+}
+
+.WatchTrailer {
+  margin-bottom: var(--vertical-6);
+
+  @media (width >= 768px) {
+    display: none;
   }
 }
 
@@ -302,7 +314,10 @@
 
 .Breadcrumbs {
   margin-bottom: var(--vertical-4);
+  overflow: hidden;
   color: var(--secondary-text);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   a:hover {
     color: var(--primary-text);

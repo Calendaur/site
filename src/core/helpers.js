@@ -9,14 +9,14 @@ export function rusType(type) {
   }
 }
 
-export function getRusReleaseType(type) {
+export function getRusReleaseType(type, some = false) {
   switch (type) {
     case 'series':
-      return 'Сериал'
+      return 'Сериал' + some ? 'ы' : ''
     case 'films':
       return 'Кино'
     case 'games':
-      return 'Игра'
+      return `Игр${some ? 'ы' : 'а'}`
   }
 }
 

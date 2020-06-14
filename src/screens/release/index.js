@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
-import { Header, MainPageContent, Title } from '../../components'
+import { Header, MainPageContent, Title, Button } from '../../components'
 import Head from './Head'
 import ExtraInfo from './ExtraInfo'
 import StoreButtons from './StoreButtons'
@@ -47,7 +47,7 @@ function Release({
             )}`.toLowerCase()}
           >
             <a>
-              {getRusReleaseType(type)}{' '}
+              {getRusReleaseType(type, true)}{' '}
               {format(new Date(released), 'MMM yyyy', {
                 locale: ru,
               })}
@@ -79,6 +79,19 @@ function Release({
                 <div>В кино</div>
               ) : null}
             </header>
+            {trailer_url && (
+              <Button
+                className={styles.WatchTrailer}
+                onClick={() => {
+                  const trailerEl = document.querySelector(`.${styles.Trailer}`)
+                  trailerEl.scrollIntoView({
+                    behavior: 'smooth',
+                  })
+                }}
+              >
+                Смотреть трейлер
+              </Button>
+            )}
             <ExtraInfo
               type={type}
               director={director}
@@ -92,8 +105,8 @@ function Release({
               kinopoisk={kinopoisk_url}
               imdb={imdb_url}
             />
-            {/* <StreamingServicesButtons type={type} />
-            <StoreButtons type={type} stores={stores} /> */}
+            <StreamingServicesButtons type={type} />
+            <StoreButtons type={type} stores={stores} />
           </div>
           {trailer_url && <Trailer url={trailer_url} />}
         </div>
