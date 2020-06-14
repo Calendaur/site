@@ -148,7 +148,7 @@
   justify-content: center;
   width: var(--size);
   height: var(--size);
-  font-size: 0.875rem;
+  font-size: 14px;
   line-height: var(--size);
   user-select: none;
   border-radius: 50%;
