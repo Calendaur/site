@@ -1,5 +1,4 @@
 import Wrapper from './Wrapper'
-import Dropdown from './Dropdown'
 import Header from './Header'
 import MainPageContent from './MainPageContent'
 import PlatformList from './PlatformList'
@@ -17,7 +16,6 @@ export {
   TargetBlankA,
   Footer,
   Wrapper,
-  Dropdown,
   Emoji,
   Button,
   Title,

@@ -14,7 +14,7 @@ function MobileCalendar({ releases, type }) {
   const transitions = useReleaseAnimation(transitionRef, data)
 
   return (
-    <ul className={styles.MobileCalendar}>
+    <div className={styles.MobileCalendar}>
       {transitions.map(({ item: release, key, props }) => (
         <ReleaseCard
           type={type}
@@ -23,7 +23,7 @@ function MobileCalendar({ releases, type }) {
           transitionProps={props}
         />
       ))}
-    </ul>
+    </div>
   )
 }
 

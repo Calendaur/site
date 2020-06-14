@@ -3,10 +3,13 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useDrag } from 'react-use-gesture'
 import { Header, Footer } from '../../components'
-import FilterBar from './FilterBar'
+import ReleaseTypeChooser from './ReleaseTypeChooser'
+import MonthChooser from './MonthChooser'
 import Calendar from './Calendar'
 import { getNextAndPrevDate } from '../../core/url'
 import { rusType } from '../../core/helpers'
+
+import styles from './styles.module.css'
 
 function MainPage({ parsedURL, releases }) {
   const { year, month, type } = parsedURL
@@ -53,7 +56,7 @@ function MainPage({ parsedURL, releases }) {
   )
 
   return (
-    <div {...bind()}>
+    <div {...bind()} className={styles.Wrapper}>
       <Head>
         <title>
           Calendaur | {rusType(type)} за {month.rus} {year}
@@ -61,19 +64,22 @@ function MainPage({ parsedURL, releases }) {
       </Head>
       <Header />
       <Fragment key={`${type}-${month.eng}-${year}`}>
-        <FilterBar
-          type={type}
-          month={month}
-          year={year}
-          prevYear={prevYear}
-          nextYear={nextYear}
-          prevMonth={prevMonth}
-          nextMonth={nextMonth}
-          prevLink={prevLink}
-          nextLink={nextLink}
-          toPrev={toPrev}
-          toNext={toNext}
-        />
+        <div className={styles.FilterBar}>
+          <ReleaseTypeChooser type={type} month={month} year={year} />
+          <MonthChooser
+            type={type}
+            month={month}
+            year={year}
+            prevYear={prevYear}
+            nextYear={nextYear}
+            prevMonth={prevMonth}
+            nextMonth={nextMonth}
+            prevLink={prevLink}
+            nextLink={nextLink}
+            toPrev={toPrev}
+            toNext={toNext}
+          />
+        </div>
         <Calendar
           type={type}
           month={month.jsNumber}

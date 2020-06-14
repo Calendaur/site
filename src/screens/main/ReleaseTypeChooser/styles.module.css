@@ -1,0 +1,29 @@
+.ReleaseTypeChooser {
+  display: flex;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin-right: var(--horizontal-4);
+  }
+
+  li a {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--secondary-text);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    @media (width >= 768px) {
+      font-size: 2rem;
+    }
+
+    &.isActive {
+      color: var(--primary-text);
+    }
+
+    &:hover {
+      color: var(--primary-text);
+    }
+  }
+}

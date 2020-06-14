@@ -14,7 +14,6 @@
 
   @media (max-width: 1199px) {
     height: 200px;
-    margin-bottom: 24px;
     background-position: 50% 50%;
 
     &:last-child {

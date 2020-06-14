@@ -1,20 +1,13 @@
 .MobileCalendar {
-  display: flex;
-  flex-direction: column;
-  padding: 24px 16px;
-  padding-bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 16px;
 
   @media (width > 768px) {
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding-top: 100px;
-    padding-right: 6px;
-    padding-bottom: 24px;
-    padding-left: 6px;
+    grid-template-columns: repeat(3, 1fr);
 
     > div {
-      width: calc(33% - 20px);
-      margin: 10px;
+      margin: 0;
     }
   }
 
