@@ -14,11 +14,6 @@ DigitalFilmPage.getInitialProps = async context => {
 
   const releases = await api.getReleases('movies', requestDate)
 
-  console.log(
-    releases,
-    releases.filter(r => r.is_digital && !r.is_premier),
-  )
-
   return {
     parsedURL,
     releases: releases.filter(r => r.is_digital && !r.is_premier),
