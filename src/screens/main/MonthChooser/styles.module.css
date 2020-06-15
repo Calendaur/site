@@ -17,10 +17,10 @@
   }
 
   a {
-    color: var(--secondary-text);
+    opacity: 0.4;
 
     &:hover {
-      color: var(--primary-text);
+      opacity: 1;
     }
   }
 }
