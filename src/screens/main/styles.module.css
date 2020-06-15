@@ -38,4 +38,22 @@
   @media (width >= 1920px) {
     padding: 0 80px;
   }
+
+  > div {
+    display: flex;
+    align-items: center;
+  }
+
+  .ToDigital {
+    margin-left: var(--horizontal-4);
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    opacity: 0.4;
+    transition: var(--transition);
+
+    &:hover {
+      opacity: 1;
+    }
+  }
 }

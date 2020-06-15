@@ -66,19 +66,36 @@ function MainPage({ parsedURL, releases }) {
       <Fragment key={`${type}-${month.eng}-${year}`}>
         <div className={styles.FilterBar}>
           <ReleaseTypeChooser type={type} month={month} year={year} />
-          <MonthChooser
-            type={type}
-            month={month}
-            year={year}
-            prevYear={prevYear}
-            nextYear={nextYear}
-            prevMonth={prevMonth}
-            nextMonth={nextMonth}
-            prevLink={prevLink}
-            nextLink={nextLink}
-            toPrev={toPrev}
-            toNext={toNext}
-          />
+          <div>
+            <MonthChooser
+              type={type}
+              month={month}
+              year={year}
+              prevYear={prevYear}
+              nextYear={nextYear}
+              prevMonth={prevMonth}
+              nextMonth={nextMonth}
+              prevLink={prevLink}
+              nextLink={nextLink}
+              toPrev={toPrev}
+              toNext={toNext}
+            />
+            {(type === 'films' || type === 'digital') && (
+              <button
+                onClick={() => {
+                  if (type === 'digital') {
+                    push('/films/[date]', `/films/${month.eng}-${year}`)
+                    return
+                  }
+
+                  push('/digital/[date]', `/digital/${month.eng}-${year}`)
+                }}
+                className={styles.ToDigital}
+              >
+                {type === 'digital' ? 'премьеры' : 'в цифре'}
+              </button>
+            )}
+          </div>
         </div>
         <Calendar
           type={type}

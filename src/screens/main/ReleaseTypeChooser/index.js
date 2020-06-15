@@ -20,6 +20,8 @@ const types = [
 ]
 
 function ReleaseTypeChooser({ type, month, year }) {
+  if (type === 'digital') type = 'films'
+
   return (
     <ul className={styles.ReleaseTypeChooser}>
       {types.map(({ type: t, title }) => (
