@@ -130,9 +130,5 @@
     font-size: 2.5rem;
     line-height: 1.56;
     text-align: center;
-
-    @media (width > 768px) {
-      padding-top: 50vh;
-    }
   }
 }
