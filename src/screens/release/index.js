@@ -105,8 +105,8 @@ function Release({
               kinopoisk={kinopoisk_url}
               imdb={imdb_url}
             />
-            <StreamingServicesButtons type={type} />
-            <StoreButtons type={type} stores={stores} />
+            {/* <StreamingServicesButtons type={type} />
+            <StoreButtons type={type} stores={stores} /> */}
           </div>
           {trailer_url && <Trailer url={trailer_url} />}
         </div>

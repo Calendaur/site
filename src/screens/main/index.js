@@ -80,7 +80,7 @@ function MainPage({ parsedURL, releases }) {
               toPrev={toPrev}
               toNext={toNext}
             />
-            {(type === 'films' || type === 'digital') && (
+            {/* {(type === 'films' || type === 'digital') && (
               <button
                 onClick={() => {
                   if (type === 'digital') {
@@ -94,7 +94,7 @@ function MainPage({ parsedURL, releases }) {
               >
                 {type === 'digital' ? 'премьеры' : 'в цифре'}
               </button>
-            )}
+            )} */}
           </div>
         </div>
         <Calendar
