@@ -1,0 +1,82 @@
+.User {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--vertical-1);
+
+  h1 {
+    margin-left: var(--horizontal-3);
+  }
+
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+}
+
+.Settings {
+  margin-bottom: var(--vertical-1);
+
+  h2 {
+    margin-bottom: var(--vertical-5);
+  }
+
+  .SettingsItem {
+    margin-bottom: var(--vertical-5);
+
+    p {
+      margin-bottom: var(--vertical-6);
+      color: var(--secondary-text);
+    }
+
+    .Buttons {
+      display: flex;
+      flex-wrap: wrap;
+
+      button {
+        margin-right: var(--horizontal-6);
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+.ExpectedReleases {
+  margin-bottom: var(--vertical-1);
+
+  .Note {
+    margin-bottom: var(--vertical-5);
+    font-size: 14px;
+    color: var(--secondary-text);
+
+    span {
+      padding: 1px 4px;
+      margin-left: var(--horizontal-6);
+      color: var(--black);
+      background-color: #dbdbdb;
+      border-radius: 4px;
+    }
+  }
+
+  h3 {
+    margin-bottom: var(--vertical-6);
+  }
+
+  .ReleasesSection {
+    margin-bottom: var(--vertical-4);
+  }
+
+  .ReleasesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
+    grid-gap: 16px;
+
+    > div {
+      height: 200px;
+      background-position: 50% 50%;
+    }
+  }
+}
