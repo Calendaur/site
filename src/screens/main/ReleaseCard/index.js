@@ -25,6 +25,7 @@ export function getPlatformIcon(platform) {
 function Info({ release, type }) {
   switch (type) {
     case 'films':
+    case 'digital':
       return <p className={styles.Extra}>{release.director}</p>
     case 'games':
       return (
