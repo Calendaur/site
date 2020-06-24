@@ -43,6 +43,7 @@ function Info({ release, type }) {
 }
 
 function ReleaseCard({ release, transitionProps, type }) {
+  console.log(123)
   const date = new Date(release.released)
   const day = date.getDate()
 
