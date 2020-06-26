@@ -59,7 +59,7 @@ function MainPage({ parsedURL, releases }) {
     <div {...bind()} className={styles.Wrapper}>
       <Head>
         <title>
-          Calendaur | {rusType(type)} за {month.rus} {year}
+          Postergaze | {rusType(type)} за {month.rus} {year}
         </title>
       </Head>
       <Header />

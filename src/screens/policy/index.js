@@ -8,7 +8,7 @@ function PrivacyPolicyPage() {
   return (
     <>
       <Head>
-        <title>Calendaur | Политика конфиденциальности</title>
+        <title>Postergaze | Политика конфиденциальности</title>
         <meta
           name="description"
           content="График релизов игр, график релизов кино"
@@ -26,7 +26,7 @@ function PrivacyPolicyPage() {
           <nobr>27.07.2006</nobr>. &#8470;&nbsp;<nobr>152-ФЗ</nobr>{' '}
           &laquo;О&nbsp;персональных данных&raquo; и&nbsp;определяет порядок
           обработки персональных данных и&nbsp;меры по&nbsp;обеспечению
-          безопасности персональных данных Calendaur (далее&nbsp;&mdash;
+          безопасности персональных данных Postergaze (далее&nbsp;&mdash;
           Оператор).
           <br />
           Оператор ставит своей важнейшей целью и&nbsp;условием осуществления

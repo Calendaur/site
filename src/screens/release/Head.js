@@ -4,7 +4,7 @@ import NextHead from 'next/head'
 function Head({ title, description, url, cover }) {
   return (
     <NextHead>
-      <title>Calendaur | {title}</title>
+      <title>Postergaze | {title}</title>
       <meta name="title" content={title} />
       <meta name="description" content={description} />
       <meta property="og:title" content={title} />

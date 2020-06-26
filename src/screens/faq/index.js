@@ -8,7 +8,7 @@ function Faq() {
   return (
     <>
       <Head>
-        <title>Calendaur | F.A.Q.</title>
+        <title>Postergaze | F.A.Q.</title>
         <meta
           name="description"
           content="График релизов игр, график релизов кино"
