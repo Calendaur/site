@@ -1,11 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 import { animated } from 'react-spring'
-import cx from 'classnames'
-import isToday from 'date-fns/isToday'
 
 import styles from './styles.module.css'
-import calendarStyles from '../Calendar/styles.module.css'
 
 export function getPlatformIcon(platform) {
   switch (platform) {
@@ -43,9 +40,6 @@ function Info({ release, type }) {
 }
 
 function ReleaseCard({ release, transitionProps, type }) {
-  const date = new Date(release.released)
-  const day = date.getDate()
-
   if (!transitionProps) {
     return (
       <div
@@ -57,13 +51,6 @@ function ReleaseCard({ release, transitionProps, type }) {
         <Link href="/release/[id]" as={`/release/${release.release_id}`}>
           <a>
             <div className={styles.Substrate}></div>
-            {/* <div
-              className={cx(calendarStyles.Date, calendarStyles.hasRelease, {
-                [calendarStyles.isToday]: isToday(date),
-              })}
-            >
-              {day}
-            </div> */}
             <div className={styles.Info}>
               <p>{release.title}</p>
               <Info release={release} type={type} />
@@ -85,13 +72,6 @@ function ReleaseCard({ release, transitionProps, type }) {
       <Link href="/release/[id]" as={`/release/${release.release_id}`}>
         <a>
           <div className={styles.Substrate}></div>
-          {/* <div
-            className={cx(calendarStyles.Date, calendarStyles.hasRelease, {
-              [calendarStyles.isToday]: isToday(date),
-            })}
-          >
-            {day}
-          </div> */}
           <div className={styles.Info}>
             <p>{release.title}</p>
             <Info release={release} type={type} />

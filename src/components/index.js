@@ -8,6 +8,7 @@ import Emoji from './Emoji'
 import Button from './Button'
 import Title from './Title'
 import Text from './Text'
+import Subtitle from './Subtitle'
 
 export {
   Header,
@@ -20,4 +21,5 @@ export {
   Button,
   Title,
   Text,
+  Subtitle,
 }

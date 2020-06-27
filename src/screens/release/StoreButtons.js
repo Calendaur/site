@@ -93,7 +93,7 @@ const renderStores = stores =>
       target="_blank"
     >
       {getStoreLinkContent(store)}
-      {store.price && <span>&nbsp;[{store.price}$]</span>}
+      {store.price && <span>&nbsp;[{store.price}]</span>}
     </Button>
   ))
 
@@ -103,7 +103,7 @@ function StoreButtons({ stores, type }) {
   return (
     <div className={styles.StoreButtons}>
       <p>Где купить:</p>
-      <div className={styles.Stores}>{renderStores(mockStore)}</div>
+      <div className={styles.Stores}>{renderStores(stores)}</div>
     </div>
   )
 }

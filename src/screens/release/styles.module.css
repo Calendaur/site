@@ -70,6 +70,10 @@
   margin-bottom: var(--vertical-6);
 }
 
+.OriginalTitle {
+  margin-bottom: var(--vertical-5);
+}
+
 .Description {
   display: flex;
   flex-direction: column;
