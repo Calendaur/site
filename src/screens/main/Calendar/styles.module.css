@@ -25,7 +25,11 @@
     width: 100%;
     min-width: 100%;
     height: var(--height);
-    background: linear-gradient(90deg, rgb(var(--bg-rgb)) 0%, var(--to-transparent) 100%),
+    background: linear-gradient(
+        90deg,
+        rgb(var(--bg-rgb)) 0%,
+        var(--to-transparent) 100%
+      ),
       linear-gradient(0deg, rgb(var(--bg-rgb)) 0%, var(--to-transparent) 100%);
 
     img {
@@ -41,44 +45,20 @@
 .DesktopCalendar {
   position: relative;
   display: none;
-  width: 100%;
-  margin-bottom: 32px;
-  border-spacing: 16px;
-  border-collapse: separate;
   user-select: none;
 
-  @media (min-width: 1200px) {
-    display: table;
-    width: calc(100% + 32px);
-    margin-left: -16px;
+  @media (width >= 1200px) {
+    display: block;
   }
 }
 
-.DayOfWeek {
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 1;
-  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
-  text-transform: lowercase;
-  letter-spacing: 1px;
-  user-select: none;
-}
-
 .DayItem {
-  --height: 160px;
-
   position: relative;
-  min-width: 46px;
-  height: var(--height);
   user-select: none;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 14px;
   box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.1);
   will-change: opacity;
-
-  @media (min-width: 1920px) {
-    --height: 250px;
-  }
 
   &.isNotWithinRange {
     opacity: 0.25;
@@ -90,6 +70,12 @@
 
   &.hasRelease {
     background: initial;
+
+    .Date {
+      font-weight: bold;
+      color: #000;
+      background-color: #fff;
+    }
   }
 }
 
@@ -111,11 +97,8 @@
   user-select: none;
   border-radius: 50%;
 
-  &.hasRelease {
-    background-color: var(--pink);
-  }
-
   &.isToday {
+    font-weight: bold;
     background-color: var(--blue);
   }
 }
@@ -130,5 +113,31 @@
     font-size: 2.5rem;
     line-height: 1.56;
     text-align: center;
+  }
+}
+
+.DayOfWeek {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 16px;
+  justify-items: center;
+  margin-bottom: var(--vertical-5);
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+  text-transform: lowercase;
+  letter-spacing: 1px;
+  user-select: none;
+}
+
+.Calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: minmax(140px, auto);
+  grid-gap: 16px;
+
+  @media (width >= 2200px) {
+    grid-auto-rows: minmax(220px, auto);
   }
 }

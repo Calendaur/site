@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 const withOffline = require('next-offline')
+const withTranspileModules = require('next-transpile-modules')(['date-fns'])
 const { join } = require('path')
 const Dotenv = require('dotenv-webpack')
 
@@ -46,4 +47,4 @@ const nextConfig = {
   },
 }
 
-module.exports = withOffline(nextConfig)
+module.exports = withOffline(withTranspileModules(nextConfig))

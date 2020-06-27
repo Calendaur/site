@@ -1,7 +1,5 @@
 .Release {
-  position: relative;
   width: 100%;
-  height: 100%;
   cursor: pointer;
   background-position: center;
   background-size: cover;
@@ -10,15 +8,6 @@
 
   &:hover .Substrate {
     opacity: 0.3;
-  }
-
-  @media (max-width: 1199px) {
-    height: 200px;
-    background-position: 50% 50%;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
   }
 }
 

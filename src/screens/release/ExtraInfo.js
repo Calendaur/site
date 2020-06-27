@@ -6,12 +6,10 @@ import styles from './styles.module.css'
 function ExtraInfo({ type, director, platforms, season }) {
   return (
     <div className={styles.Meta}>
-      {type === 'films' && (
-        <div className={styles.Label}>Режиссер {director}</div>
-      )}
+      {type === 'films' && <i className={styles.Label}>Режиссер: {director}</i>}
       {type === 'games' && (
         <>
-          <div className={styles.Label}>Платформы:</div>
+          <i className={styles.Label}>Платформы:</i>
           <div className={styles.Value}>
             <PlatformList
               className={styles.PlatformList}
@@ -20,7 +18,7 @@ function ExtraInfo({ type, director, platforms, season }) {
           </div>
         </>
       )}
-      {type === 'series' && <div className={styles.Label}>Сезон {season}</div>}
+      {type === 'series' && <i className={styles.Label}>Сезон: {season}</i>}
     </div>
   )
 }
