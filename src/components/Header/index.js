@@ -39,18 +39,10 @@ function Header({ hasBack }) {
             <img src="/icons/back.svg" alt="" />
           </button>
         )}
-        <Link href="/">
-          <a>
-            <img src="/images/logo.png" alt="calendaur.com" />
-          </a>
-        </Link>
       </div>
       <div className={styles.Right}>
         <Link href="/whats-new">
           <a>Что нового?</a>
-        </Link>
-        <Link href="/faq">
-          <a>FAQ</a>
         </Link>
         {!asPath.includes('subscribe') && (
           <Button

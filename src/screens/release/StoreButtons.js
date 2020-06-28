@@ -3,39 +3,6 @@ import { Button } from '../../components'
 
 import styles from './styles.module.css'
 
-const mockStore = [
-  {
-    type: 'playstation-store',
-    link: '#',
-    price: 68,
-  },
-  {
-    type: 'gog',
-    link: '#',
-    price: 68,
-  },
-  {
-    type: 'egs',
-    link: '#',
-    price: 68,
-  },
-  {
-    type: 'steam',
-    link: '#',
-    price: 68,
-  },
-  {
-    type: 'xbox-store',
-    link: '#',
-    price: 68,
-  },
-  {
-    type: 'nintendo',
-    link: '#',
-    price: 68,
-  },
-]
-
 const getStoreLinkContent = store => {
   switch (store.type) {
     case 'playstation-store':

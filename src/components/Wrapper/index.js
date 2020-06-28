@@ -169,7 +169,7 @@ function Wrapper({ children }) {
           crossOrigin="true"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap"
           rel="stylesheet"
         />
         <script

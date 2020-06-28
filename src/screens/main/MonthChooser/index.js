@@ -1,4 +1,5 @@
 import React from 'react'
+import { isThisMonth, parseISO } from 'date-fns'
 import Link from 'next/link'
 
 import styles from './styles.module.css'
@@ -14,15 +15,21 @@ function MonthChooser({
   prevMonth,
   nextMonth,
 }) {
+  const currentMonth = new Date().getMonth()
+
   return (
     <div className={styles.MonthChooser}>
-      <Link href={`/${type}/[date]`} as={prevLink}>
-        <a disabled={prevYear < 2020}>{prevMonth.rus}</a>
-      </Link>
+      {currentMonth < month.jsNumber ? (
+        <Link href={`/${type}/[date]`} as={prevLink}>
+          <a>← предыдущий месяц</a>
+        </Link>
+      ) : null}
       <div className={styles.Date}>{month.rus}</div>
-      <Link href={`/${type}/[date]`} as={nextLink}>
-        <a disabled={nextYear > 2030}>{nextMonth.rus}</a>
-      </Link>
+      {currentMonth === month.jsNumber ? (
+        <Link href={`/${type}/[date]`} as={nextLink}>
+          <a>следующий месяц →</a>
+        </Link>
+      ) : null}
     </div>
   )
 }

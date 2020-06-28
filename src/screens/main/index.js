@@ -80,21 +80,6 @@ function MainPage({ parsedURL, releases }) {
               toPrev={toPrev}
               toNext={toNext}
             />
-            {(type === 'films' || type === 'digital') && (
-              <button
-                onClick={() => {
-                  if (type === 'digital') {
-                    push('/films/[date]', `/films/${month.eng}-${year}`)
-                    return
-                  }
-
-                  push('/digital/[date]', `/digital/${month.eng}-${year}`)
-                }}
-                className={styles.ToDigital}
-              >
-                {type === 'digital' ? 'премьеры' : 'в цифре'}
-              </button>
-            )}
           </div>
         </div>
         <Calendar

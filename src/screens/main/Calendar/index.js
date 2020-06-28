@@ -3,7 +3,6 @@ import cx from 'classnames'
 import ReleaseListInDay from '../ReleaseListInDay'
 import MobileCalendar from '../MobileCalendar'
 import NoReleases from './NoReleases'
-import Cover from './Cover'
 import { MainPageContent } from '../../../components'
 import { getWeeks } from '../../../core/calendar'
 
@@ -20,7 +19,6 @@ function Calendar({ type, month, year, releases }) {
         <NoReleases />
       ) : (
         <>
-          <Cover type={type} month={month} year={year} />
           <div className={styles.DesktopCalendar}>
             <div className={styles.DayOfWeek}>
               {daysOfWeek.map(weekDay => (
