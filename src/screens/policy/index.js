@@ -8,7 +8,7 @@ function PrivacyPolicyPage() {
   return (
     <>
       <Head>
-        <title>Postergaze | Политика конфиденциальности</title>
+        <title>Политика конфиденциальности</title>
         <meta
           name="description"
           content="График релизов игр, график релизов кино"
@@ -26,7 +26,7 @@ function PrivacyPolicyPage() {
           <nobr>27.07.2006</nobr>. &#8470;&nbsp;<nobr>152-ФЗ</nobr>{' '}
           &laquo;О&nbsp;персональных данных&raquo; и&nbsp;определяет порядок
           обработки персональных данных и&nbsp;меры по&nbsp;обеспечению
-          безопасности персональных данных Postergaze (далее&nbsp;&mdash;
+          безопасности персональных данных released.at (далее&nbsp;&mdash;
           Оператор).
           <br />
           Оператор ставит своей важнейшей целью и&nbsp;условием осуществления
@@ -39,7 +39,7 @@ function PrivacyPolicyPage() {
           данных (далее&nbsp;&mdash; Политика) применяется ко&nbsp;всей
           информации, которую Оператор может получить о&nbsp;посетителях{' '}
           <nobr>веб-сайта</nobr>{' '}
-          <a href="https://calendaur.com/.">https://calendaur.com/.</a>
+          <a href="https://released.at/.">https://released.at/.</a>
           <br />
           2. Основные понятия, используемые в&nbsp;Политике
           <br />
@@ -55,7 +55,7 @@ function PrivacyPolicyPage() {
           и&nbsp;информационных материалов, а&nbsp;также программ для ЭВМ
           и&nbsp;баз данных, обеспечивающих их&nbsp;доступность в&nbsp;сети
           интернет по&nbsp;сетевому адресу{' '}
-          <a href="https://calendaur.com/">https://calendaur.com/</a>;<br />
+          <a href="https://released.at/">https://released.at/</a>;<br />
           Информационная система персональных данных&nbsp;&mdash; совокупность
           содержащихся в&nbsp;базах данных персональных данных,
           и&nbsp;обеспечивающих их&nbsp;обработку информационных технологий
@@ -86,9 +86,9 @@ function PrivacyPolicyPage() {
           Персональные данные&nbsp;&mdash; любая информация, относящаяся прямо
           или косвенно к&nbsp;определенному или определяемому Пользователю{' '}
           <nobr>веб-сайта</nobr>{' '}
-          <a href="https://calendaur.com/">https://calendaur.com/</a>;<br />
+          <a href="https://released.at/">https://released.at/</a>;<br />
           Пользователь&nbsp;&mdash; любой посетитель <nobr>веб-сайта</nobr>{' '}
-          <a href="https://calendaur.com/">https://calendaur.com/</a>;<br />
+          <a href="https://released.at/">https://released.at/</a>;<br />
           Предоставление персональных данных&nbsp;&mdash; действия, направленные
           на&nbsp;раскрытие персональных данных определенному лицу или
           определенному кругу лиц;
@@ -140,8 +140,8 @@ function PrivacyPolicyPage() {
           и&nbsp;различных событиях. Пользователь всегда может отказаться
           от&nbsp;получения информационных сообщений, направив Оператору письмо
           на&nbsp;адрес электронной почты{' '}
-          <a href="mailto:deaddinocalendar@gmail.com">
-            deaddinocalendar@gmail.com
+          <a href="mailto:shashkovdanil@gmail.com">
+            shashkovdanil@gmail.com
           </a>{' '}
           с&nbsp;пометкой &laquo;Отказ от&nbsp;уведомлениях о&nbsp;новых
           продуктах и&nbsp;услугах и&nbsp;специальных предложениях&raquo;.
@@ -156,7 +156,7 @@ function PrivacyPolicyPage() {
           Оператор обрабатывает персональные данные Пользователя только
           в&nbsp;случае их&nbsp;заполнения и/или отправки Пользователем
           самостоятельно через специальные формы, расположенные на&nbsp;сайте{' '}
-          <a href="https://calendaur.com/.">https://calendaur.com/.</a> Заполняя
+          <a href="https://released.at/">https://released.at/.</a> Заполняя
           соответствующие формы и/или отправляя свои персональные данные
           Оператору, Пользователь выражает свое согласие с&nbsp;данной
           Политикой.
@@ -187,8 +187,8 @@ function PrivacyPolicyPage() {
           Пользователь может актуализировать их&nbsp;самостоятельно, путем
           направления Оператору уведомление на&nbsp;адрес электронной почты
           Оператора{' '}
-          <a href="mailto:deaddinocalendar@gmail.com">
-            deaddinocalendar@gmail.com
+          <a href="mailto:shashkovdanil@gmail.com">
+            shashkovdanil@gmail.com
           </a>{' '}
           с&nbsp;пометкой &laquo;Актуализация персональных данных&raquo;.
           <br />
@@ -196,8 +196,8 @@ function PrivacyPolicyPage() {
           Пользователь может в&nbsp;любой момент отозвать свое согласие
           на&nbsp;обработку персональных данных, направив Оператору уведомление
           посредством электронной почты на&nbsp;электронный адрес Оператора{' '}
-          <a href="mailto:deaddinocalendar@gmail.com">
-            deaddinocalendar@gmail.com
+          <a href="mailto:shashkovdanil@gmail.com">
+            shashkovdanil@gmail.com
           </a>{' '}
           с&nbsp;пометкой &laquo;Отзыв согласия на&nbsp;обработку персональных
           данных&raquo;.
@@ -223,9 +223,7 @@ function PrivacyPolicyPage() {
           Пользователь может получить любые разъяснения по&nbsp;интересующим
           вопросам, касающимся обработки его персональных данных, обратившись
           к&nbsp;Оператору с&nbsp;помощью электронной почты{' '}
-          <a href="mailto:deaddinocalendar@gmail.com">
-            deaddinocalendar@gmail.com
-          </a>
+          <a href="mailto:shashkovdanil@gmail.com">shashkovdanil@gmail.com</a>
           .<br />
           В&nbsp;данном документе будут отражены любые изменения политики
           обработки персональных данных Оператором. Политика действует бессрочно
@@ -233,8 +231,8 @@ function PrivacyPolicyPage() {
           <br />
           Актуальная версия Политики в&nbsp;свободном доступе расположена
           в&nbsp;сети Интернет по&nbsp;адресу{' '}
-          <a href="https://calendaur.com/privacy-policy">
-            https://calendaur.com/privacy-policy
+          <a href="https://released.at/privacy-policy">
+            https://released.at/privacy-policy
           </a>
           .
         </p>

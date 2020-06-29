@@ -8,7 +8,7 @@ function WhatsNew() {
   return (
     <>
       <Head>
-        <title>Postergaze | Что нового?</title>
+        <title>Что нового?</title>
       </Head>
       <Header />
       <MainPageContent>
