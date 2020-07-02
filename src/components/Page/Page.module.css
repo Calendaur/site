@@ -1,0 +1,11 @@
+.Wrapper {
+  display: grid;
+  grid-template-columns: 100%;
+  width: 100vw;
+  min-height: 100vh;
+
+  > main {
+    padding: 0 var(--page-padding);
+    margin-bottom: var(--vertical-2);
+  }
+}

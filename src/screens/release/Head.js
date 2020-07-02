@@ -17,13 +17,13 @@ function Head({ title, description, url, cover }) {
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={cover} />
       <link rel="image_src" href={cover} />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap"
-        rel="stylesheet"
-      />
       <style
         dangerouslySetInnerHTML={{
           __html: `
+              html {
+                background-color: unset !important;
+              }
+
               body {
                 background-color: #000 !important;
               }

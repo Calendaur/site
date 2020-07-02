@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useDrag } from 'react-use-gesture'
-import { Header, Footer } from '../../components'
+import { Button } from '../../components'
 import ReleaseTypeChooser from './ReleaseTypeChooser'
 import MonthChooser from './MonthChooser'
 import Calendar from './Calendar'
@@ -62,7 +62,6 @@ function MainPage({ parsedURL, releases }) {
           {rusType(type)} за {month.rus} {year}
         </title>
       </Head>
-      <Header />
       <Fragment key={`${type}-${month.eng}-${year}`}>
         <div className={styles.FilterBar}>
           <ReleaseTypeChooser type={type} month={month} year={year} />
@@ -82,13 +81,26 @@ function MainPage({ parsedURL, releases }) {
             />
           </div>
         </div>
+        <div className={styles.Survay}>
+          <Button
+            isPrimary
+            onClick={() => {
+              window.open('https://forms.gle/WVkrED3NpJx7naht9', '_blank')
+            }}
+          >
+            Пройти опрос
+          </Button>
+          <p>
+            Просим вас потратить 1 минуту, это очень поможет поможет нам
+            улучшить проект
+          </p>
+        </div>
         <Calendar
           type={type}
           month={month.jsNumber}
           year={year}
           releases={releases}
         />
-        <Footer />
       </Fragment>
     </div>
   )

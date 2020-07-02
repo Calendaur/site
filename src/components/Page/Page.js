@@ -1,8 +1,17 @@
 import React from 'react'
 import Head from 'next/head'
+import Header from '../Header'
 import Footer from '../Footer'
 
-function Wrapper({ children }) {
+import styles from './Page.module.css'
+
+function Page({
+  children,
+  hasHeader = true,
+  hasFooter = true,
+  headerProps = {},
+  footerProps = {},
+}) {
   return (
     <>
       <Head>
@@ -169,7 +178,11 @@ function Wrapper({ children }) {
           crossOrigin="true"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&text=R&display=swap"
           rel="stylesheet"
         />
         <script
@@ -179,10 +192,23 @@ function Wrapper({ children }) {
           src="https://plausible.io/js/plausible.js"
         ></script>
       </Head>
-      {children}
-      <Footer />
+      <section
+        aria-label="page"
+        className={styles.Wrapper}
+        style={{
+          gridTemplateRows: `${hasHeader ? 'auto' : ''} 1fr ${
+            hasFooter ? 'auto' : ''
+          }`,
+        }}
+      >
+        {hasHeader && <Header {...headerProps} />}
+        <main role="main" aria-label="content">
+          {children}
+        </main>
+        {hasFooter && <Footer {...footerProps} />}
+      </section>
     </>
   )
 }
 
-export default Wrapper
+export default Page

@@ -65,7 +65,7 @@ const renderStores = stores =>
   ))
 
 function StoreButtons({ stores, type }) {
-  if (type !== 'games') return null
+  if (type !== 'games' || stores.length === 0) return null
 
   return (
     <div className={styles.StoreButtons}>

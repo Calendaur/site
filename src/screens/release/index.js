@@ -44,85 +44,78 @@ function Release({
   return (
     <>
       <Head title={title} description={description} url={url} cover={cover} />
-      <Header hasBack />
-      <MainPageContent className={styles.Content}>
-        <div className={styles.Breadcrumbs}>
-          <Link
-            href={`/${type}/${format(
-              new Date(released),
-              'MMMM-yyyy',
-            )}`.toLowerCase()}
-          >
-            <a>
-              {getRusReleaseType(type, true)}{' '}
-              {format(new Date(released), 'MMM yyyy', {
+      <div className={styles.Breadcrumbs}>
+        <Link
+          href={`/${type}/${format(
+            new Date(released),
+            'MMMM-yyyy',
+          )}`.toLowerCase()}
+        >
+          <a>
+            {getRusReleaseType(type, true)}{' '}
+            {format(new Date(released), 'MMM yyyy', {
+              locale: ru,
+            })}
+          </a>
+        </Link>
+        <span> / </span>
+        <Link href={`/release/${query.id}`}>
+          <a>{title}</a>
+        </Link>
+      </div>
+      <div className={styles.Cover}>
+        <div className={styles.Gradient}></div>
+        <img loading="lazy" src={cover} alt={title} />
+      </div>
+      <Title className={styles.Title}>{title}</Title>
+      {original_title && (
+        <Subtitle className={styles.OriginalTitle} size={5}>
+          {original_title}
+        </Subtitle>
+      )}
+      <div className={styles.Description}>
+        <div className={styles.Data}>
+          <header>
+            <div>
+              {format(new Date(released), 'd MMMM yyyy', {
                 locale: ru,
               })}
-            </a>
-          </Link>
-          <span> / </span>
-          <Link href={`/release/${query.id}`}>
-            <a>{title}</a>
-          </Link>
+            </div>
+            <div>{getRusReleaseType(type)}</div>
+            {type === 'films' && is_digital === true ? (
+              <div>Цифровой релиз</div>
+            ) : null}
+            {type === 'films' && is_digital === false ? (
+              <div>Релиз в кинотеатре</div>
+            ) : null}
+          </header>
+          {trailer_url && (
+            <Button
+              className={styles.WatchTrailer}
+              onClick={() => {
+                const trailerEl = document.querySelector(`.${styles.Trailer}`)
+                trailerEl.scrollIntoView({
+                  behavior: 'smooth',
+                })
+              }}
+            >
+              Смотреть трейлер
+            </Button>
+          )}
+          <ExtraInfo
+            type={type}
+            director={director}
+            platforms={platforms}
+            season={season}
+          />
+          <div className={styles.Text}>{description}</div>
+          <Sharing title={title} url={url} />
+          <FilmButtons type={type} kinopoisk={kinopoisk_url} imdb={imdb_url} />
+          {/* <StreamingServicesButtons type={type} /> */}
+          <StoreButtons type={type} stores={stores} />
         </div>
-        <div className={styles.Cover}>
-          <div className={styles.Gradient}></div>
-          <img loading="lazy" src={cover} alt={title} />
-        </div>
-        <Title className={styles.Title}>{title}</Title>
-        {original_title && (
-          <Subtitle className={styles.OriginalTitle} size={5}>
-            {original_title}
-          </Subtitle>
-        )}
-        <div className={styles.Description}>
-          <div className={styles.Data}>
-            <header>
-              <div>
-                {format(new Date(released), 'd MMMM yyyy', {
-                  locale: ru,
-                })}
-              </div>
-              <div>{getRusReleaseType(type)}</div>
-              {type === 'films' && is_digital === true ? (
-                <div>В цифре</div>
-              ) : null}
-              {type === 'films' && is_digital === false ? (
-                <div>В кино</div>
-              ) : null}
-            </header>
-            {trailer_url && (
-              <Button
-                className={styles.WatchTrailer}
-                onClick={() => {
-                  const trailerEl = document.querySelector(`.${styles.Trailer}`)
-                  trailerEl.scrollIntoView({
-                    behavior: 'smooth',
-                  })
-                }}
-              >
-                Смотреть трейлер
-              </Button>
-            )}
-            <ExtraInfo
-              type={type}
-              director={director}
-              platforms={platforms}
-              season={season}
-            />
-            <div className={styles.Text}>{description}</div>
-            <Sharing title={title} url={url} />
-            <FilmButtons
-              type={type}
-              kinopoisk={kinopoisk_url}
-              imdb={imdb_url}
-            />
-            {/* <StreamingServicesButtons type={type} /> */}
-            <StoreButtons type={type} stores={stores} />
-          </div>
-          {trailer_url && <Trailer url={trailer_url} />}
-        </div>
-      </MainPageContent>
+        {trailer_url && <Trailer url={trailer_url} />}
+      </div>
     </>
   )
 }

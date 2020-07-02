@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import { Header, MainPageContent, Title, Text, Button } from '../../components'
+import {  Text, Button } from '../../components'
 
 import styles from './styles.module.css'
 
@@ -34,84 +34,82 @@ function SubscribePage() {
           }}
         ></style>
       </Head>
-      <Header hasBack />
-      <MainPageContent>
-        <div id="mc_embed_signup">
-          <form
-            action="https://calendaur.us4.list-manage.com/subscribe/post?u=323bb705c0e362f6f4fd8143c&amp;id=509c02cc4c"
-            method="post"
-            id="mc-embedded-subscribe-form"
-            name="mc-embedded-subscribe-form"
-            className="validate"
-            target="_blank"
-            noValidate
-          >
-            <div id="mc_embed_signup_scroll">
-              <Title className={styles.Title}>Подписаться</Title>
-              <Text className={styles.Desc}>
-                Раз в&nbsp;две недели мы&nbsp;будем отправлять красивые письма
-                с&nbsp;несколькими ключевыми релизами. Ничего
-                лишнего&nbsp;&mdash; лаконично и&nbsp;по&nbsp;существу, чтобы
-                вы&nbsp;могли оставаться в&nbsp;курсе событий.
-              </Text>
-              <div className={styles.Field}>
-                <label htmlFor="mce-EMAIL">Email</label>
-                <input
-                  type="email"
-                  value={email}
-                  name="EMAIL"
-                  className="required email"
-                  id="mce-EMAIL"
-                  onChange={e => setEmail(e.target.value)}
-                  placeholder="email@domain.com"
-                  ref={inputRef}
-                />
-              </div>
-              <div id="mce-responses" className="clear">
-                <div
-                  className="response"
-                  id="mce-error-response"
-                  style={{ display: 'none' }}
-                ></div>
-                <div
-                  className="response"
-                  id="mce-success-response"
-                  style={{ display: 'none' }}
-                ></div>
-              </div>
-              <div
-                style={{ position: 'absolute', left: -5000 }}
-                aria-hidden="true"
-              >
-                <input
-                  type="text"
-                  name="b_323bb705c0e362f6f4fd8143c_509c02cc4c"
-                  tabIndex="-1"
-                  value=""
-                />
-              </div>
-              <div className="clear">
-                <Button
-                  type="submit"
-                  name="subscribe"
-                  id="mc-embedded-subscribe"
-                  className={styles.Button}
-                  isPrimary
-                >
-                  Подписаться
-                </Button>
-              </div>
-              <p className={styles.Privacy}>
-                Подписываясь, вы соглашаетесь с{' '}
-                <Link href="/privacy-policy">
-                  <a>политикой конфиденциальности</a>
-                </Link>{' '}
-                сайта calendaur.com
-              </p>
+      <div id="mc_embed_signup">
+        <form
+          action="https://calendaur.us4.list-manage.com/subscribe/post?u=323bb705c0e362f6f4fd8143c&amp;id=509c02cc4c"
+          method="post"
+          id="mc-embedded-subscribe-form"
+          name="mc-embedded-subscribe-form"
+          className="validate"
+          target="_blank"
+          noValidate
+          style={{ padding: 0 }}
+        >
+          <div id="mc_embed_signup_scroll">
+            <h1 className={styles.Title}>Подписаться</h1>
+            <Text className={styles.Desc}>
+              Раз в&nbsp;две недели мы&nbsp;будем отправлять красивые письма
+              с&nbsp;несколькими ключевыми релизами. Ничего лишнего&nbsp;&mdash;
+              лаконично и&nbsp;по&nbsp;существу, чтобы вы&nbsp;могли оставаться
+              в&nbsp;курсе событий.
+            </Text>
+            <div className={styles.Field}>
+              <label htmlFor="mce-EMAIL">Email</label>
+              <input
+                type="email"
+                value={email}
+                name="EMAIL"
+                className="required email"
+                id="mce-EMAIL"
+                onChange={e => setEmail(e.target.value)}
+                placeholder="email@domain.com"
+                ref={inputRef}
+              />
             </div>
-          </form>
-        </div>
-      </MainPageContent>
+            <div id="mce-responses" className="clear">
+              <div
+                className="response"
+                id="mce-error-response"
+                style={{ display: 'none' }}
+              ></div>
+              <div
+                className="response"
+                id="mce-success-response"
+                style={{ display: 'none' }}
+              ></div>
+            </div>
+            <div
+              style={{ position: 'absolute', left: -5000 }}
+              aria-hidden="true"
+            >
+              <input
+                type="text"
+                name="b_323bb705c0e362f6f4fd8143c_509c02cc4c"
+                tabIndex="-1"
+                value=""
+              />
+            </div>
+            <div className="clear">
+              <Button
+                type="submit"
+                name="subscribe"
+                id="mc-embedded-subscribe"
+                className={styles.Button}
+                isPrimary
+              >
+                Подписаться
+              </Button>
+            </div>
+            <p className={styles.Privacy}>
+              Подписываясь, вы соглашаетесь с{' '}
+              <Link href="/privacy-policy">
+                <a>политикой конфиденциальности</a>
+              </Link>{' '}
+              сайта released.at
+            </p>
+          </div>
+        </form>
+      </div>
     </>
   )
 }

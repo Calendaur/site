@@ -1,7 +1,7 @@
 .ReleaseTypeChooser {
   display: flex;
   padding: 0;
-  margin-bottom: var(--vertical-4);
+  margin: 0;
   list-style: none;
 
   li {
@@ -16,33 +16,12 @@
     letter-spacing: 0.05em;
     opacity: 0.4;
 
-    &:hover::after {
-      width: 100%;
-    }
-
-    &::after {
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      width: 0;
-      height: 5px;
-      content: '';
-      background: var(--primary-text);
-      transition: width 0.4s;
-      transition-timing-function: cubic-bezier(1, -0.65, 0, 2.31);
-      transform: translateX(-50%);
-    }
-
     @media (width >= 768px) {
       font-size: 2.4rem;
     }
 
     &.isActive {
       opacity: 1;
-
-      &::after {
-        width: 100%;
-      }
     }
 
     &:hover {

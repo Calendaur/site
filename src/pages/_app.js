@@ -1,17 +1,17 @@
-import '../components/Wrapper/global.css'
+import '../components/base.css'
 
 import React from 'react'
 import App from 'next/app'
-import { Wrapper } from '../components'
+import { Page } from '../components'
 
 class CustomApp extends App {
   render() {
     const { Component, pageProps } = this.props
 
     return (
-      <Wrapper>
+      <Page>
         <Component {...pageProps} />
-      </Wrapper>
+      </Page>
     )
   }
 }

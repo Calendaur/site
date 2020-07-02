@@ -9,6 +9,7 @@ import Button from './Button'
 import Title from './Title'
 import Text from './Text'
 import Subtitle from './Subtitle'
+import Page from './Page'
 
 export {
   Header,
@@ -22,4 +23,5 @@ export {
   Title,
   Text,
   Subtitle,
+  Page,
 }

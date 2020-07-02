@@ -1,13 +1,9 @@
-.Log {
-  h1 {
-    margin-bottom: 24px;
-    font-size: 2rem;
-    line-height: 1;
+.Title {
+  margin-bottom: var(--vertical-4);
+}
 
-    @media (min-width: 768px) {
-      font-size: 2.75rem;
-    }
-  }
+.Log {
+  margin-bottom: var(--vertical-2);
 
   ul {
     padding: 0;

@@ -42,43 +42,38 @@ function Info({ release, type }) {
 function ReleaseCard({ release, transitionProps, type }) {
   if (!transitionProps) {
     return (
-      <div
-        className={styles.Release}
-        style={{
-          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%), url(${release.cover})`,
-        }}
-      >
-        <Link href="/release/[id]" as={`/release/${release.release_id}`}>
-          <a>
-            <div className={styles.Substrate}></div>
-            <div className={styles.Info}>
-              <p>{release.title}</p>
-              <Info release={release} type={type} />
-            </div>
-          </a>
-        </Link>
-      </div>
-    )
-  }
-
-  return (
-    <animated.div
-      className={styles.Release}
-      style={{
-        backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%), url(${release.cover})`,
-        ...transitionProps,
-      }}
-    >
       <Link href="/release/[id]" as={`/release/${release.release_id}`}>
-        <a>
-          <div className={styles.Substrate}></div>
+        <a
+          className={styles.Release}
+          style={{
+            backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%), url(${release.cover})`,
+          }}
+        >
           <div className={styles.Info}>
             <p>{release.title}</p>
             <Info release={release} type={type} />
           </div>
         </a>
       </Link>
-    </animated.div>
+    )
+  }
+
+  return (
+    <Link href="/release/[id]" as={`/release/${release.release_id}`}>
+      <animated.a
+        className={styles.Release}
+        style={{
+          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%), url(${release.cover})`,
+          ...transitionProps,
+        }}
+        onCompositionEnd={console.log}
+      >
+        <div className={styles.Info}>
+          <p>{release.title}</p>
+          <Info release={release} type={type} />
+        </div>
+      </animated.a>
+    </Link>
   )
 }
 

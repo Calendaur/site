@@ -52,9 +52,9 @@
 
 .Button {
   margin: 0 !important;
-  margin-bottom: var(--vertical-6) !important;
 }
 
 .Privacy {
+  margin: 0;
   font-size: 0.625rem;
 }

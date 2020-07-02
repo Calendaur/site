@@ -38,18 +38,18 @@
 
   &.isPrimary {
     color: var(--primary-text);
-    background-color: #00d1b2;
+    background-color: #4287f5;
 
     &:hover {
-      background-color: #00c4a7;
+      background-color: #367ff4;
     }
 
     &:active {
-      background-color: #00b89c;
+      background-color: #307bf4;
     }
 
     &:focus:not(:active) {
-      box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
+      box-shadow: 0 0 0 0.125em rgba(66, 135, 245, 0.25);
     }
   }
 }

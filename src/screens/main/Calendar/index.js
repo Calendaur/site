@@ -3,7 +3,6 @@ import cx from 'classnames'
 import ReleaseListInDay from '../ReleaseListInDay'
 import MobileCalendar from '../MobileCalendar'
 import NoReleases from './NoReleases'
-import { MainPageContent } from '../../../components'
 import { getWeeks } from '../../../core/calendar'
 
 import styles from './styles.module.css'
@@ -14,7 +13,7 @@ function Calendar({ type, month, year, releases }) {
   const weeks = getWeeks(year, month)
 
   return (
-    <MainPageContent>
+    <>
       {releases.length === 0 ? (
         <NoReleases />
       ) : (
@@ -26,7 +25,7 @@ function Calendar({ type, month, year, releases }) {
               ))}
             </div>
             <div className={styles.Calendar}>
-              {weeks.flat().map(day => {
+              {weeks.flat().map((day, index) => {
                 const dayReleases = releases.filter(
                   r => new Date(r.released).getDate() === day,
                 )
@@ -34,7 +33,7 @@ function Calendar({ type, month, year, releases }) {
 
                 return (
                   <div
-                    key={day}
+                    key={index}
                     className={cx(styles.DayItem, {
                       [styles.isNotWithinRange]: day === undefined,
                       [styles.someReleases]: dayReleases.length > 1,
@@ -60,7 +59,7 @@ function Calendar({ type, month, year, releases }) {
           <MobileCalendar type={type} releases={releases} />
         </>
       )}
-    </MainPageContent>
+    </>
   )
 }
 
