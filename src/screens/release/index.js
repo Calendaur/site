@@ -3,13 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
-import {
-  Header,
-  MainPageContent,
-  Title,
-  Button,
-  Subtitle,
-} from '../../components'
+import { Title, Button, Subtitle } from '../../components'
 import Head from './Head'
 import ExtraInfo from './ExtraInfo'
 import StoreButtons from './StoreButtons'
@@ -39,7 +33,7 @@ function Release({
   original_title,
 }) {
   const { query } = useRouter()
-  const url = `https://calendaur.com/release/${query.id}`
+  const url = `https://released.at/release/${query.id}`
 
   return (
     <>
