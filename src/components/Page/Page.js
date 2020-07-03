@@ -25,6 +25,7 @@ function Page({
         <meta name="keywords" content="" />
         <meta name="description" content="Будьте в курсе новых релизов" />
         <meta property="og:type" content="website" />
+        <meta name="yandex-verification" content="5db1a243ea86b573" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
