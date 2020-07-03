@@ -1,25 +1,15 @@
-.Main {
-  width: 100%;
-  padding: 0 16px;
-  padding-top: 100px;
-  line-height: 1.7;
-
-  @media (width >= 768px) {
-    max-width: 688px;
-    padding: 0;
-    padding-top: 120px;
-    margin: 0 auto;
+.TextWrapper {
+  h1 {
+    margin-bottom: var(--vertical-1);
   }
 
-  @media (width >= 1200px) {
-    max-width: 1120px;
+  h1,
+  p {
+    max-width: 768px;
+    margin: 0 auto;
   }
 
   a {
     text-decoration: underline;
-  }
-
-  h1 {
-    font-size: 1.75rem;
   }
 }

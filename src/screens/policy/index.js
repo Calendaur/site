@@ -1,6 +1,5 @@
 import React from 'react'
 import Head from 'next/head'
-import { Header, Footer } from '../../components'
 
 import styles from './styles.module.css'
 
@@ -14,8 +13,7 @@ function PrivacyPolicyPage() {
           content="График релизов игр, график релизов кино"
         />
       </Head>
-      <Header hasBack />
-      <main className={styles.Main}>
+      <div className={styles.TextWrapper}>
         <h1>Политика в&nbsp;отношении обработки персональных данных</h1>
         <p>
           <br />
@@ -236,7 +234,7 @@ function PrivacyPolicyPage() {
           </a>
           .
         </p>
-      </main>
+      </div>
     </>
   )
 }
