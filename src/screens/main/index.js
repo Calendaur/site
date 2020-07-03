@@ -81,7 +81,7 @@ function MainPage({ parsedURL, releases }) {
             />
           </div>
         </div>
-        <div className={styles.Survay}>
+        {/* <div className={styles.Survay}>
           <Button
             isPrimary
             onClick={() => {
@@ -94,7 +94,7 @@ function MainPage({ parsedURL, releases }) {
             Просим вас потратить 1 минуту, это очень поможет поможет нам
             улучшить проект
           </p>
-        </div>
+        </div> */}
         <Calendar
           type={type}
           month={month.jsNumber}
