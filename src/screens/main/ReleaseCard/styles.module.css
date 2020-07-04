@@ -10,7 +10,7 @@
 
   @media (width >= 768px) {
     &:hover {
-      transform: scale(1.04);
+      transform: scale(1.03);
     }
 
     &:active {

@@ -72,7 +72,7 @@
     background: initial;
 
     .Date {
-      font-weight: bold;
+      font-weight: 500;
       color: #000;
       background-color: #fff;
     }
@@ -93,12 +93,11 @@
   width: var(--size);
   height: var(--size);
   font-size: 14px;
-  line-height: var(--size);
   user-select: none;
   border-radius: 50%;
 
   &.isToday {
-    font-weight: bold;
+    font-weight: 500;
     background-color: var(--blue);
   }
 }
