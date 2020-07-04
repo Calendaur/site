@@ -64,13 +64,29 @@ const renderStores = stores =>
     </Button>
   ))
 
-function StoreButtons({ stores, type }) {
-  if (type !== 'games' || stores.length === 0) return null
+function prepareStores(stores, rawgStores) {
+  if (stores.length) return stores
+
+  if (rawgStores && rawgStores.length)
+    return rawgStores.map(store => ({
+      link: store.url,
+      type: store.store.slug,
+    }))
+
+  return []
+}
+
+function StoreButtons({ stores, rawgStores, type }) {
+  if (type !== 'games') return null
+
+  const preparedStores = prepareStores(stores, rawgStores)
+
+  if (!preparedStores.length) return null
 
   return (
     <div className={styles.StoreButtons}>
       <p>Где купить:</p>
-      <div className={styles.Stores}>{renderStores(stores)}</div>
+      <div className={styles.Stores}>{renderStores(preparedStores)}</div>
     </div>
   )
 }

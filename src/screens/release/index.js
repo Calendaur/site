@@ -31,6 +31,7 @@ function Release({
   is_digital,
   stores,
   original_title,
+  rawg_io_fields,
 }) {
   const { query } = useRouter()
   const url = `https://released.at/release/${query.id}`
@@ -106,7 +107,11 @@ function Release({
           <Sharing title={title} url={url} />
           <FilmButtons type={type} kinopoisk={kinopoisk_url} imdb={imdb_url} />
           {/* <StreamingServicesButtons type={type} /> */}
-          <StoreButtons type={type} stores={stores} />
+          <StoreButtons
+            type={type}
+            rawgStores={rawg_io_fields.stores}
+            stores={stores}
+          />
         </div>
         {trailer_url && <Trailer url={trailer_url} />}
       </div>
