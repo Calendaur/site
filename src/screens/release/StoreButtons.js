@@ -19,7 +19,7 @@ const getStoreLinkContent = store => {
           GOG
         </>
       )
-    case 'egs':
+    case 'epic-games':
       return (
         <>
           <img src="/icons/egs.svg" alt="Epic Games" />
