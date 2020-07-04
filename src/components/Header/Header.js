@@ -22,7 +22,7 @@ function Header({ hasBack }) {
           </button>
         )}
         <Link href="/">
-          <a>R</a>
+          <a data-text="released">released</a>
         </Link>
       </div>
       <div className={styles.Right}>
