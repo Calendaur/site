@@ -109,7 +109,7 @@ function Release({
           {/* <StreamingServicesButtons type={type} /> */}
           <StoreButtons
             type={type}
-            rawgStores={rawg_io_fields.stores}
+            rawgStores={rawg_io_fields?.stores}
             stores={stores}
           />
         </div>
