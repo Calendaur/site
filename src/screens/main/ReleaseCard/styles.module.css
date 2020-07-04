@@ -6,15 +6,15 @@
   background-size: cover;
   border-radius: 14px;
   will-change: transform, opacity;
-  transition: transform 0.25s;
+  transition: transform 0.3s;
 
   @media (width >= 768px) {
     &:hover {
-      transform: scale(1.03);
+      transform: translate(0, -4px);
     }
 
     &:active {
-      transform: scale(1);
+      transform: translate(0, 0);
     }
   }
 }
