@@ -75,6 +75,12 @@
       font-weight: 500;
       color: #000;
       background-color: #fff;
+
+      &.isToday {
+        font-weight: 500;
+        color: #fff;
+        background-color: var(--blue);
+      }
     }
   }
 }

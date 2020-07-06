@@ -16,7 +16,7 @@ FilmPage.getInitialProps = async context => {
 
   return {
     parsedURL,
-    releases: releases.filter(r => r.is_premier === true),
+    releases,
   }
 }
 
