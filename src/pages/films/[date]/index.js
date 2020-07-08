@@ -1,5 +1,6 @@
 import React from 'react'
 import ReleasesScreenComponent from '../../../screens/main'
+import { meta } from '../../index'
 import { parseUrl } from '../../../core/url'
 import { api } from '../../../core/api'
 import { monthString } from '../../../core/helpers'
@@ -17,6 +18,7 @@ FilmPage.getInitialProps = async context => {
   return {
     parsedURL,
     releases,
+    meta,
   }
 }
 

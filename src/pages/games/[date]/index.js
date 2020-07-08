@@ -6,6 +6,11 @@ import { monthString } from '../../../core/helpers'
 
 const GamesPage = props => <ReleasesScreenComponent {...props} />
 
+const meta = {
+  title: `Hовые игры ${new Date().getFullYear()}. Новинки игр, собранные в одном месте в удобном формате`,
+  description: `Не пропустите игры на пк и консоли. Взгляните на календарь и выберите лучшие игры. Игра на switch также есть в календаре`,
+}
+
 GamesPage.getInitialProps = async context => {
   const parsedURL = parseUrl(context.asPath)
   const requestDate = `${monthString(parsedURL.month.calendarNumber)}-${
@@ -17,6 +22,7 @@ GamesPage.getInitialProps = async context => {
   return {
     parsedURL,
     releases,
+    meta,
   }
 }
 

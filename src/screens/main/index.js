@@ -2,16 +2,14 @@ import React, { Fragment } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useDrag } from 'react-use-gesture'
-import { Button } from '../../components'
 import ReleaseTypeChooser from './ReleaseTypeChooser'
 import MonthChooser from './MonthChooser'
 import Calendar from './Calendar'
 import { getNextAndPrevDate } from '../../core/url'
-import { rusType } from '../../core/helpers'
 
 import styles from './styles.module.css'
 
-function MainPage({ parsedURL, releases }) {
+function MainPage({ parsedURL, releases, meta }) {
   const { year, month, type } = parsedURL
 
   const { prevMonth, prevYear, nextMonth, nextYear } = getNextAndPrevDate(
@@ -58,9 +56,29 @@ function MainPage({ parsedURL, releases }) {
   return (
     <div {...bind()} className={styles.Wrapper}>
       <Head>
-        <title>
-          {rusType(type)} за {month.rus} {year}
-        </title>
+        <meta name="keywords" content />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://released.at" />
+        <meta property="twitter:url" content="https://released.at" />
+        <meta name="title" content={meta.title} />
+        <meta name="description" content={meta.description} />
+        <meta property="og:site_name" content={meta.title} />
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:description" content={meta.description} />
+        <meta
+          property="og:image"
+          content="https://released.at/images/banner.jpg"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={meta.title} />
+        <meta name="twitter:text:title" content={meta.title} />
+        <meta name="twitter:description" content={meta.description} />
+        <meta
+          name="twitter:image:src"
+          content="https://released.at/images/banner.jpg"
+        />
+        <link rel="image_src" href="https://released.at/images/banner.jpg" />
+        <title>{meta.title}</title>
       </Head>
       <Fragment key={`${type}-${month.eng}-${year}`}>
         <div className={styles.FilterBar}>

@@ -6,6 +6,11 @@ import { monthString } from '../../../core/helpers'
 
 const SeriesPage = props => <ReleasesScreenComponent {...props} />
 
+const meta = {
+  title: `Смотреть новые сериалы ${new Date().getFullYear()}. Новые сезоны сериалов, а также премьеры сериалов, собранные в одном месте в удобном формате`,
+  description: `Не пропустите премьеры сериалов. Смотрите сериалы, которое выйдет уже сегодня. Взгляние на календарь и выберите сериал на любой вкус`,
+}
+
 SeriesPage.getInitialProps = async context => {
   const parsedURL = parseUrl(context.asPath)
   const requestDate = `${monthString(parsedURL.month.calendarNumber)}-${
@@ -17,6 +22,7 @@ SeriesPage.getInitialProps = async context => {
   return {
     parsedURL,
     releases,
+    meta,
   }
 }
 

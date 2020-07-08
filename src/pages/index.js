@@ -5,6 +5,11 @@ import { api } from '../core/api'
 
 const MainPage = props => <ReleasesScreenComponent {...props} />
 
+export const meta = {
+  title: `Смотреть новые фильмы ${new Date().getFullYear()}. Новинки кино, собранные в одном месте в удобном формате`,
+  description: `Не пропустите новинки фильмов. Смотрите кино, которое выйдет уже сегодня. Взгляните на календарь и выберите, что посмотреть вечером`,
+}
+
 MainPage.getInitialProps = async context => {
   const currentMonth = new Date().getMonth() + 1
   const currentYear = new Date().getFullYear()
@@ -21,6 +26,7 @@ MainPage.getInitialProps = async context => {
       year: currentYear,
     },
     releases,
+    meta,
   }
 }
 
