@@ -22,7 +22,14 @@ function Header({ hasBack }) {
           </button>
         )}
         <Link href="/">
-          <a data-text="released">released</a>
+          <a className={styles.DesktopLogo} data-text="released">
+            released
+          </a>
+        </Link>
+        <Link href="/">
+          <a className={styles.MobileLogo}>
+            <img src="/images/logo.png" alt="" />
+          </a>
         </Link>
       </div>
       <div className={styles.Right}>

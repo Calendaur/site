@@ -18,9 +18,9 @@
   display: flex;
   align-items: center;
 
-  a {
+  .DesktopLogo {
     position: relative;
-    display: flex;
+    display: none;
     font-family: Montserrat, sans-serif;
     font-size: 32px;
     font-weight: 200;
@@ -50,16 +50,19 @@
       content: attr(data-text);
       animation: glitch-anim2 5s infinite linear alternate-reverse;
     }
+
+    @media (width >= 768px) {
+      display: flex;
+    }
   }
 
-  img {
-    --size: 56px;
+  .MobileLogo {
+    display: flex;
+    width: 32px;
+    height: 32px;
 
-    width: var(--size);
-    height: var(--size);
-
-    @media (max-width: 767px) {
-      --size: 36px;
+    @media (width >= 768px) {
+      display: none;
     }
   }
 }

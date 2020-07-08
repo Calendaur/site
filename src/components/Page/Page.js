@@ -149,24 +149,7 @@ function Page({
           media="(prefers-color-scheme: dark) and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
         />
         <link rel="manifest" href="/manifest.json" />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/pwa/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="96x96"
-          href="/pwa/favicon-96x96.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/pwa/favicon-16x16.png"
-        />
+        <link rel="icon" type="image/png" href="/images/logo.png" />
         <meta name="msapplication-TileColor" content="#0f2027" />
         <meta
           name="msapplication-TileImage"
