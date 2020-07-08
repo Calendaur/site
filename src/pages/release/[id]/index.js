@@ -1,6 +1,6 @@
 import smoothscroll from 'smoothscroll-polyfill'
-import ReleasePage from '../../screens/release'
-import { api } from '../../core/api'
+import ReleasePage from '../../../screens/release'
+import { api } from '../../../core/api'
 
 if (typeof window !== 'undefined') smoothscroll.polyfill()
 

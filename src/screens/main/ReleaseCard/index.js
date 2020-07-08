@@ -42,10 +42,7 @@ function Info({ release, type }) {
 function ReleaseCard({ release, transitionProps, type }) {
   if (!transitionProps) {
     return (
-      <Link
-        href={`/release/?id=${release.release_id}`}
-        as={`/release/${release.release_id}`}
-      >
+      <Link href="/release/[id]" as={`/release/${release.release_id}`}>
         <a
           className={styles.Release}
           style={{
@@ -62,10 +59,7 @@ function ReleaseCard({ release, transitionProps, type }) {
   }
 
   return (
-    <Link
-      href={`/release/?id=${release.release_id}`}
-      as={`/release/${release.release_id}`}
-    >
+    <Link href="/release/[id]" as={`/release/${release.release_id}`}>
       <animated.a
         className={styles.Release}
         style={{
