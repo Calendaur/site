@@ -6,6 +6,7 @@ import ReleaseTypeChooser from './ReleaseTypeChooser'
 import MonthChooser from './MonthChooser'
 import Calendar from './Calendar'
 import { getNextAndPrevDate } from '../../core/url'
+import { rusType } from '../../core/helpers'
 
 import styles from './styles.module.css'
 
@@ -53,10 +54,15 @@ function MainPage({ parsedURL, releases, meta }) {
     { axis: 'x' },
   )
 
+  function getH1() {
+    if (type === 'films') return 'кино'
+    if (type === 'games') return 'игр'
+    if (type === 'series') return 'сериалов'
+  }
+
   return (
     <div {...bind()} className={styles.Wrapper}>
       <Head>
-        <meta name="keywords" content />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://released.at" />
         <meta property="twitter:url" content="https://released.at" />
@@ -99,20 +105,7 @@ function MainPage({ parsedURL, releases, meta }) {
             />
           </div>
         </div>
-        {/* <div className={styles.Survay}>
-          <Button
-            isPrimary
-            onClick={() => {
-              window.open('https://forms.gle/WVkrED3NpJx7naht9', '_blank')
-            }}
-          >
-            Пройти опрос
-          </Button>
-          <p>
-            Просим вас потратить 1 минуту, это очень поможет поможет нам
-            улучшить проект
-          </p>
-        </div> */}
+        <h1 className={styles.Title}>Новинки {getH1()}</h1>
         <Calendar
           type={type}
           month={month.jsNumber}
