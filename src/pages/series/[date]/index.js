@@ -7,7 +7,7 @@ import { monthString } from '../../../core/helpers'
 const SeriesPage = props => <ReleasesScreenComponent {...props} />
 
 const meta = {
-  title: `released.at Смотреть новые сериалы ${new Date().getFullYear()}. Новые сезоны сериалов, а также премьеры сериалов, собранные в одном месте в удобном формате на released`,
+  title: `Смотреть новые сериалы ${new Date().getFullYear()}. Новые сезоны сериалов, а также премьеры сериалов, собранные в одном месте в удобном формате на released.at`,
   description: `Не пропустите премьеры сериалов. Смотрите сериалы, которое выйдет уже сегодня. Взгляние на календарь и выберите сериал на любой вкус`,
 }
 

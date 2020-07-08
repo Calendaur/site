@@ -7,7 +7,7 @@ import { monthString } from '../../../core/helpers'
 const GamesPage = props => <ReleasesScreenComponent {...props} />
 
 const meta = {
-  title: `released.at Hовые игры ${new Date().getFullYear()}. Новинки игр, собранные в одном месте в удобном формате на released`,
+  title: `Hовые игры ${new Date().getFullYear()}. Новинки игр, собранные в одном месте в удобном формате на released.at`,
   description: `Не пропустите игры на пк и консоли. Взгляните на календарь и выберите лучшие игры. Игра на switch также есть в календаре`,
 }
 

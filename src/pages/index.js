@@ -6,7 +6,7 @@ import { api } from '../core/api'
 const MainPage = props => <ReleasesScreenComponent {...props} />
 
 export const meta = {
-  title: `released.at Смотреть новые фильмы ${new Date().getFullYear()}. Новинки кино, собранные в одном месте в удобном формате на released`,
+  title: `Смотреть новые фильмы ${new Date().getFullYear()}. Новинки кино, собранные в одном месте в удобном формате на released.at`,
   description: `Не пропустите новинки фильмов. Смотрите кино, которое выйдет уже сегодня. Взгляните на календарь и выберите, что посмотреть вечером`,
 }
 
