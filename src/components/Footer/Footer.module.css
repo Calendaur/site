@@ -3,6 +3,16 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--vertical-5) var(--page-padding);
+
+  img {
+    height: 32px;
+    margin-right: var(--horizontal-6);
+  }
+}
+
+.About {
+  display: flex;
+  align-items: center;
 }
 
 .Projects {

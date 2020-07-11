@@ -10,12 +10,12 @@ const types = [
     title: 'Кино',
   },
   {
-    type: 'games',
-    title: 'Игры',
-  },
-  {
     type: 'series',
     title: 'Сериалы',
+  },
+  {
+    type: 'games',
+    title: 'Игры',
   },
 ]
 

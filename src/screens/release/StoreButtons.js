@@ -47,6 +47,13 @@ const getStoreLinkContent = store => {
           Nintendo Store
         </>
       )
+    case 'itch':
+      return (
+        <>
+          <img src="/icons/itch-store.svg" alt="Itch Store" />
+          itch.io
+        </>
+      )
   }
 }
 

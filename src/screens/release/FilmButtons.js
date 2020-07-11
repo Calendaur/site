@@ -14,7 +14,7 @@ function FilmButtons({ kinopoisk, imdb, type }) {
           href={kinopoisk}
           className={cx(styles.Kinopoisk)}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="nofollow"
         >
           <img src="/icons/kinopoisk.svg" alt="КиноПоиск" />
         </Button>
@@ -25,7 +25,7 @@ function FilmButtons({ kinopoisk, imdb, type }) {
           href={imdb}
           className={cx(styles.Imdb)}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="nofollow"
         >
           <img src="/icons/imdb.svg" alt="IMDB" />
         </Button>

@@ -60,19 +60,19 @@ function ReleaseCard({ release, transitionProps, type }) {
 
   return (
     <Link href="/release/[id]" as={`/release/${release.release_id}`}>
-      <animated.a
+      <a
+        href={`/release/${release.release_id}`}
         className={styles.Release}
         style={{
           backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%), url(${release.cover})`,
           ...transitionProps,
         }}
-        onCompositionEnd={console.log}
       >
         <div className={styles.Info}>
           <p>{release.title}</p>
           <Info release={release} type={type} />
         </div>
-      </animated.a>
+      </a>
     </Link>
   )
 }
