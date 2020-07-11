@@ -60,7 +60,7 @@ function ReleaseCard({ release, transitionProps, type }) {
 
   return (
     <Link href="/release/[id]" as={`/release/${release.release_id}`}>
-      <a
+      <animated.a
         href={`/release/${release.release_id}`}
         className={styles.Release}
         style={{
@@ -72,7 +72,7 @@ function ReleaseCard({ release, transitionProps, type }) {
           <p>{release.title}</p>
           <Info release={release} type={type} />
         </div>
-      </a>
+      </animated.a>
     </Link>
   )
 }
