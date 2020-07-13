@@ -2,13 +2,9 @@ import React from 'react'
 import ReleasesScreenComponent from '../screens/main'
 import { months } from '../core/url'
 import { api } from '../core/api'
+import { pages } from '../core/meta'
 
 const MainPage = props => <ReleasesScreenComponent {...props} />
-
-export const meta = {
-  title: `Смотреть новые фильмы ${new Date().getFullYear()}. Новинки кино, собранные в одном месте в удобном формате на released.at`,
-  description: `Не пропустите новинки фильмов. Смотрите кино, которое выйдет уже сегодня. Взгляните на календарь и выберите, что посмотреть вечером`,
-}
 
 MainPage.getInitialProps = async context => {
   const currentMonth = new Date().getMonth() + 1
@@ -26,7 +22,7 @@ MainPage.getInitialProps = async context => {
       year: currentYear,
     },
     releases,
-    meta,
+    meta: pages.main,
   }
 }
 

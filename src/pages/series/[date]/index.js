@@ -3,13 +3,9 @@ import ReleasesScreenComponent from '../../../screens/main'
 import { parseUrl } from '../../../core/url'
 import { api } from '../../../core/api'
 import { monthString } from '../../../core/helpers'
+import { pages } from '../../../core/meta'
 
 const SeriesPage = props => <ReleasesScreenComponent {...props} />
-
-const meta = {
-  title: `Смотреть новые сериалы ${new Date().getFullYear()}. Новые сезоны сериалов, а также премьеры сериалов, собранные в одном месте в удобном формате на released.at`,
-  description: `Не пропустите премьеры сериалов. Смотрите сериалы, которое выйдет уже сегодня. Взгляние на календарь и выберите сериал на любой вкус`,
-}
 
 SeriesPage.getInitialProps = async context => {
   const parsedURL = parseUrl(context.asPath)
@@ -22,7 +18,7 @@ SeriesPage.getInitialProps = async context => {
   return {
     parsedURL,
     releases,
-    meta,
+    meta: pages.series(parsedURL.month.jsNumber, parsedURL.year),
   }
 }
 

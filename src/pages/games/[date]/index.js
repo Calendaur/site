@@ -3,13 +3,9 @@ import ReleasesScreenComponent from '../../../screens/main'
 import { parseUrl } from '../../../core/url'
 import { api } from '../../../core/api'
 import { monthString } from '../../../core/helpers'
+import { pages } from '../../../core/meta'
 
 const GamesPage = props => <ReleasesScreenComponent {...props} />
-
-const meta = {
-  title: `Hовые игры ${new Date().getFullYear()}. Новинки игр, собранные в одном месте в удобном формате на released.at`,
-  description: `Не пропустите игры на пк и консоли. Взгляните на календарь и выберите лучшие игры. Игра на switch также есть в календаре`,
-}
 
 GamesPage.getInitialProps = async context => {
   const parsedURL = parseUrl(context.asPath)
@@ -22,7 +18,7 @@ GamesPage.getInitialProps = async context => {
   return {
     parsedURL,
     releases,
-    meta,
+    meta: pages.games(parsedURL.month.jsNumber, parsedURL.year),
   }
 }
 

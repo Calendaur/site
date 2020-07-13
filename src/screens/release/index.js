@@ -3,11 +3,11 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
-import { Title, Button, Subtitle } from '../../components'
+import { Button } from '../../components'
 import Head from './Head'
 import ExtraInfo from './ExtraInfo'
 import StoreButtons from './StoreButtons'
-import StreamingServicesButtons from './StreamingServicesButtons'
+// import StreamingServicesButtons from './StreamingServicesButtons'
 import FilmButtons from './FilmButtons'
 import Sharing from './Sharing'
 import Trailer from './Trailer'
@@ -41,32 +41,29 @@ function Release({
       <Head title={title} description={description} url={url} cover={cover} />
       <div className={styles.Breadcrumbs}>
         <Link
-          href={`/${type}/${format(
+          href={`/${type}/[date]`}
+          as={`/${type}/${format(
             new Date(released),
             'MMMM-yyyy',
           )}`.toLowerCase()}
         >
           <a>
             {getRusReleaseType(type, true)}{' '}
-            {format(new Date(released), 'MMM yyyy', {
+            {format(new Date(released), 'LLLL yyyy', {
               locale: ru,
             })}
           </a>
         </Link>
         <span> / </span>
-        <Link href={`/release/${query.id}`}>
-          <a>{title}</a>
-        </Link>
+        <p>{title}</p>
       </div>
       <div className={styles.Cover}>
         <div className={styles.Gradient}></div>
         <img loading="lazy" src={cover} alt={title} />
       </div>
-      <Title className={styles.Title}>{title}</Title>
+      <h1 className={styles.Title}>{title}</h1>
       {original_title && (
-        <Subtitle className={styles.OriginalTitle} size={5}>
-          {original_title}
-        </Subtitle>
+        <h2 className={styles.OriginalTitle}>{original_title}</h2>
       )}
       <div className={styles.Description}>
         <div className={styles.Data}>

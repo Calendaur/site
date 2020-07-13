@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://released.at/sitemap.xml

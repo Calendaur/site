@@ -5,6 +5,26 @@ class Api {
     this.base = process.env.API_URL + '/api'
   }
 
+  async getAll(type) {
+    try {
+      const response = await fetch(`${this.base}/${type}`)
+      const json = await response.json()
+
+      if (response.ok) {
+        return json
+      } else {
+        return {
+          error: json,
+        }
+      }
+    } catch (e) {
+      console.error(e)
+      return {
+        error: e,
+      }
+    }
+  }
+
   async getReleases(type, date) {
     try {
       const response = await fetch(`${this.base}/${type}?date=${date}`)

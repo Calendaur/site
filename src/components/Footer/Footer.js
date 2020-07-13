@@ -13,7 +13,7 @@ function Footer({ className }) {
             <img src="/images/logo.png" alt="" />
           </a>
         </Link>{' '}
-        Released, {new Date().getFullYear()}
+        released.at, {new Date().getFullYear()}
       </div>
       <div>
         <a className="underline" href="mailto:support@released.at">

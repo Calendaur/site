@@ -330,4 +330,9 @@
   a:hover {
     color: var(--primary-text);
   }
+
+  p {
+    display: inline;
+    margin: 0;
+  }
 }
