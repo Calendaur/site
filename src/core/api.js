@@ -2,7 +2,7 @@ import fetch from 'isomorphic-unfetch'
 
 class Api {
   constructor() {
-    this.base = process.env.API_URL + '/api'
+    this.base = process.env.NEXT_PUBLIC_API_URL + '/api'
   }
 
   async getReleases(type, date) {

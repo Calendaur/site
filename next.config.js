@@ -1,9 +1,5 @@
-require('dotenv').config()
-
 const withOffline = require('next-offline')
 const withTranspileModules = require('next-transpile-modules')(['date-fns'])
-const { join } = require('path')
-const Dotenv = require('dotenv-webpack')
 
 const nextConfig = {
   workboxOpts: {
@@ -29,21 +25,6 @@ const nextConfig = {
         destination: '/_next/static/service-worker.js',
       },
     ]
-  },
-  webpack: config => {
-    config.plugins = config.plugins || []
-
-    const envVariableFileName = `.env.${process.env.NODE_ENV}`
-
-    config.plugins = [
-      ...config.plugins,
-      new Dotenv({
-        path: join(__dirname, envVariableFileName),
-        systemvars: true,
-      }),
-    ]
-
-    return config
   },
 }
 
