@@ -175,6 +175,7 @@ function Page({
           data-domain="released.at"
           src="https://plausible.io/js/plausible.js"
         ></script>
+        <script async defer src="/scripts/yandex-metrika.js"></script>
       </Head>
       <section
         aria-label="page"
