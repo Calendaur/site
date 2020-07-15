@@ -54,6 +54,27 @@ const getStoreLinkContent = store => {
           itch.io
         </>
       )
+    case 'apple-appstore':
+      return (
+        <>
+          <img src="/icons/app-store.svg" alt="Apple Store" />
+          Apple Store
+        </>
+      )
+    case 'google-play':
+      return (
+        <>
+          <img src="/icons/google-play.svg" alt="Google Play" />
+          Google Play
+        </>
+      )
+    case 'xbox360':
+      return (
+        <>
+          <img src="/icons/xbox-store.svg" alt="Xbox 360 Store" />
+          Xbox 360 Store
+        </>
+      )
   }
 }
 
@@ -67,7 +88,9 @@ const renderStores = stores =>
       target="_blank"
     >
       {getStoreLinkContent(store)}
-      {store.price && <span>&nbsp;[{store.price}]</span>}
+      {store.price && store.price !== '$0.00' && (
+        <span>&nbsp;[{store.price}]</span>
+      )}
     </Button>
   ))
 

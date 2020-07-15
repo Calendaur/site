@@ -36,6 +36,9 @@ function Header({ hasBack }) {
         <Link href="/whats-new">
           <a>Что нового?</a>
         </Link>
+        <Link href="/archive">
+          <a>Вышедшее</a>
+        </Link>
         <Button
           className={styles.Subscribe}
           isPrimary

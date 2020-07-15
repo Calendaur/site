@@ -210,7 +210,8 @@ a {
   -webkit-box-align: center;
 }
 
-a.underline {
+a.underline,
+button.underline {
   position: relative;
 
   &:hover::after {
@@ -247,4 +248,11 @@ input:focus,
 select:focus,
 textarea:focus {
   outline: none;
+}
+
+button {
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
