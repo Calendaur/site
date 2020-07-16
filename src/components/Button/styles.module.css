@@ -36,6 +36,12 @@
     box-shadow: 0 0 0 0.125em rgba(245, 245, 245, 0.25);
   }
 
+  &.isSmall {
+    height: 1.8em;
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
   &.isPrimary {
     color: var(--primary-text);
     background-color: #4287f5;
@@ -51,5 +57,9 @@
     &:focus:not(:active) {
       box-shadow: 0 0 0 0.125em rgba(66, 135, 245, 0.25);
     }
+  }
+
+  &.isFullWidth {
+    width: 100%;
   }
 }

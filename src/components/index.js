@@ -10,18 +10,20 @@ import Title from './Title'
 import Text from './Text'
 import Subtitle from './Subtitle'
 import Page from './Page'
+import Input from './Input'
 
 export {
   Header,
   PlatformList,
   MainPageContent,
-  TargetBlankA,
   Footer,
   Wrapper,
+  TargetBlankA,
   Emoji,
   Button,
   Title,
   Text,
   Subtitle,
   Page,
+  Input,
 }

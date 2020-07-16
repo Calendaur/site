@@ -5,7 +5,6 @@
   min-height: 100vh;
 
   > main {
-    padding: 0 var(--page-padding);
-    margin-bottom: var(--vertical-2);
+    padding: var(--page-vertical-padding) var(--page-padding);
   }
 }

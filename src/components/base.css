@@ -13,6 +13,7 @@
 
   /* Margins */
   --page-padding: 16px;
+  --page-vertical-padding: 16px;
 
   /* Other */
   --transition: 0.3s;
@@ -138,6 +139,10 @@ h1 {
   font-size: 3rem;
   font-weight: 700;
   line-height: 1.125;
+
+  @media (width <= 768px) {
+    font-size: 1.5rem;
+  }
 }
 
 h2 {

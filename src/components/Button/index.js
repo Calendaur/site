@@ -9,6 +9,9 @@ function Button({
   type,
   className = '',
   isPrimary = false,
+  isLight = false,
+  isFullWidth = false,
+  size = 'normal',
   ...rest
 }) {
   return (
@@ -18,6 +21,9 @@ function Button({
         styles.button,
         {
           [styles.isPrimary]: isPrimary,
+          [styles.isFullWidth]: isFullWidth,
+          [styles.isLight]: isLight,
+          [styles.isSmall]: size === 'small',
         },
         className,
       )}

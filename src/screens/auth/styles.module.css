@@ -1,0 +1,22 @@
+.Title {
+  margin-bottom: var(--vertical-2);
+}
+
+.Section {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.GoogleOAuth {
+  margin-bottom: var(--vertical-2);
+
+  img {
+    max-height: 24px;
+    margin-right: var(--horizontal-5);
+    filter: brightness(0);
+  }
+}
+
+.Input {
+  margin-bottom: var(--vertical-5);
+}
