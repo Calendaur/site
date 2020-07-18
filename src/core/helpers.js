@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-unfetch'
+
 export function rusType(type) {
   switch (type) {
     case 'series':
@@ -57,3 +59,33 @@ export const groupBy = key => array =>
     objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj)
     return objectsByKeyValue
   }, {})
+
+async function parse(response) {
+  if (response.status === 204 || response.statusText === 'No Content') {
+    return {
+      success: true,
+    }
+  }
+
+  const text = await response.text()
+  let data
+  try {
+    data = JSON.parse(text)
+  } catch (error) {
+    throw error
+  }
+  if (response.ok) {
+    return data
+  }
+  throw data
+}
+
+export function fetchJSON(input, init = {}) {
+  return fetch(input, {
+    ...init,
+    headers: {
+      ...(init.headers || {}),
+      'Content-Type': 'application/json',
+    },
+  }).then(parse)
+}

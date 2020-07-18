@@ -7,12 +7,6 @@
 }
 
 .FilterBar {
-  position: sticky;
-  top: 0;
-  z-index: 11;
-  margin-top: var(--vertical-5);
-  background-color: rgb(var(--bg-rgb));
-
   @media (width >= 768px) {
     position: relative;
     top: initial;

@@ -5,6 +5,28 @@ class Api {
     this.base = process.env.NEXT_PUBLIC_API_URL + '/api'
   }
 
+  async getMe() {
+    try {
+      const response = await fetch(`${this.base}/profile`, {
+        credentials: 'include',
+      })
+      const json = await response.json()
+
+      if (response.ok) {
+        return json
+      } else {
+        return {
+          error: json,
+        }
+      }
+    } catch (e) {
+      console.error(e)
+      return {
+        error: e,
+      }
+    }
+  }
+
   async confirmAuthCode(email, code) {
     try {
       const response = await fetch(`${this.base}/tokens`, {
@@ -33,7 +55,7 @@ class Api {
     }
   }
 
-  async auth(email) {
+  async sendAuthCode(email) {
     try {
       const response = await fetch(`${this.base}/users`, {
         method: 'POST',

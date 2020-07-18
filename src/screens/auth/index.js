@@ -1,30 +1,48 @@
 import React, { useState } from 'react'
+import { useRouter } from 'next/router'
 import { useFormik } from 'formik'
 import { Button, Input } from '../../components'
-import { api } from '../../core/api'
+import { auth } from '../../core/auth'
 
 import styles from './styles.module.css'
 
 function Auth() {
   const [code, setCode] = useState(false)
+  const { push } = useRouter()
 
-  const { handleSubmit, handleChange, handleBlur, values } = useFormik({
+  const {
+    handleSubmit,
+    handleChange,
+    handleBlur,
+    values,
+    errors,
+    touched,
+  } = useFormik({
     initialValues: {
       email: '',
       code: '',
     },
+    validate: values => {
+      let errors = {}
+
+      if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Некорректный email'
+      }
+
+      return errors
+    },
     onSubmit: async values => {
       if (!values.code) {
-        const { success } = await api.auth(values.email)
-
-        if (success) {
+        await auth.sendConfirmCode({ email: values.email }, () => {
           setCode(true)
-          return
-        }
+        })
       } else {
-        await api.confirmAuthCode(values.email, values.code)
+        await auth.confirm({ email: values.email, code: values.code }, () => {
+          push('/me')
+        })
       }
     },
+    validateOnBlur: false,
   })
 
   return (
@@ -32,14 +50,6 @@ function Auth() {
       <h1 className={styles.Title}>Войти</h1>
       <div>
         <form onSubmit={handleSubmit}>
-          <Button
-            isFullWidth
-            isPrimary
-            type="button"
-            className={styles.GoogleOAuth}
-          >
-            Войти через Google
-          </Button>
           {code ? (
             <>
               <Input
@@ -52,6 +62,7 @@ function Auth() {
                 onBlur={handleBlur}
                 placeholder="1234"
                 className={styles.Input}
+                maxLength={4}
               />
               <Button isFullWidth isPrimary type="submit">
                 Подтвердить
@@ -69,6 +80,7 @@ function Auth() {
                 onBlur={handleBlur}
                 placeholder="name@example.com"
                 className={styles.Input}
+                error={errors.email && touched.email && errors.email}
               />
               <Button isFullWidth isPrimary type="submit">
                 Войти через почту

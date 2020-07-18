@@ -3,11 +3,25 @@ import cx from 'classnames'
 
 import styles from './styles.module.css'
 
-function Input({ label, id, className = '', ...rest }) {
+function Input({
+  label,
+  id,
+  className = '',
+  labelClassName = '',
+  inputClassName = '',
+  errorClassName = '',
+  error,
+  ...rest
+}) {
   return (
     <div className={cx(styles.Wrapper, className)}>
-      <label htmlFor={id}>{label}</label>
-      <input id={id} {...rest} />
+      <label className={cx(styles.Label, labelClassName)} htmlFor={id}>
+        {label}
+      </label>
+      <input id={id} className={cx(styles.Input, inputClassName)} {...rest} />
+      {error && (
+        <span className={cx(styles.Error, errorClassName)}>{error}</span>
+      )}
     </div>
   )
 }
