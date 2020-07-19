@@ -11,9 +11,9 @@ MePage.getInitialProps = async () => {
     const series = await release('18115')
 
     return {
-      film,
-      game,
-      series,
+      film: { ...film, release_id: '18142' },
+      game: { ...game, release_id: '18175' },
+      series: { ...series, release_id: '18115' },
     }
   } catch (e) {
     console.error(e)
