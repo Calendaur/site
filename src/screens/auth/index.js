@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useFormik } from 'formik'
 import { Button, Input } from '../../components'
@@ -47,50 +48,55 @@ function Auth() {
   })
 
   return (
-    <section className={styles.Section}>
-      <h1 className={styles.Title}>Войти</h1>
-      <div>
-        <form onSubmit={handleSubmit}>
-          {code ? (
-            <>
-              <Input
-                id="code"
-                label="Код"
-                type="tel"
-                name="code"
-                value={values.code}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                placeholder="1234"
-                className={styles.Input}
-                maxLength={4}
-              />
-              <Button isFullWidth isPrimary type="submit">
-                Подтвердить
-              </Button>
-            </>
-          ) : (
-            <>
-              <Input
-                id="email"
-                label="Email"
-                type="email"
-                name="email"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                placeholder="name@example.com"
-                className={styles.Input}
-                error={errors.email && touched.email && errors.email}
-              />
-              <Button isFullWidth isPrimary type="submit">
-                Войти через почту
-              </Button>
-            </>
-          )}
-        </form>
-      </div>
-    </section>
+    <>
+      <Head>
+        <title>Авторизация</title>
+      </Head>
+      <section className={styles.Section}>
+        <h1 className={styles.Title}>Войти</h1>
+        <div>
+          <form onSubmit={handleSubmit}>
+            {code ? (
+              <>
+                <Input
+                  id="code"
+                  label="Код"
+                  type="tel"
+                  name="code"
+                  value={values.code}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder="1234"
+                  className={styles.Input}
+                  maxLength={4}
+                />
+                <Button isFullWidth isPrimary type="submit">
+                  Подтвердить
+                </Button>
+              </>
+            ) : (
+              <>
+                <Input
+                  id="email"
+                  label="Email"
+                  type="email"
+                  name="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder="name@example.com"
+                  className={styles.Input}
+                  error={errors.email && touched.email && errors.email}
+                />
+                <Button isFullWidth isPrimary type="submit">
+                  Войти через почту
+                </Button>
+              </>
+            )}
+          </form>
+        </div>
+      </section>
+    </>
   )
 }
 
