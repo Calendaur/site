@@ -55,7 +55,6 @@ function MainPage({ parsedURL, releases, meta }) {
   const currentMonth = new Date().getMonth()
   const fromArchive =
     !(currentMonth < month.jsNumber) && !(currentMonth === month.jsNumber)
-  console.log(fromArchive)
 
   return (
     <div {...bind()} className={styles.Wrapper}>
