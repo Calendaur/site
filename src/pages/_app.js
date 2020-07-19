@@ -4,35 +4,43 @@ import React from 'react'
 import App from 'next/app'
 import nookies from 'nookies'
 import { Page } from '../components'
-import { auth, UserContext } from '../core/auth'
+import { auth, UserContext, useUser } from '../core/auth'
 
-class CustomApp extends App {
-  static async getInitialProps(appContext) {
-    const cookies = nookies.get(appContext.ctx)
+function CustomApp({ Component, pageProps, user }) {
+  console.log('user', user)
+  const value = useUser(user)
 
-    await auth.getProfile({ token: cookies.jwt_token })
+  return (
+    <UserContext.Provider value={value}>
+      <Page>
+        <Component {...pageProps} />
+      </Page>
+    </UserContext.Provider>
+  )
+}
 
-    const appProps = await App.getInitialProps(appContext)
+CustomApp.getInitialProps = async appContext => {
+  const cookies = nookies.get(appContext.ctx)
 
-    return { ...appProps }
-  }
+  let user = null
 
-  render() {
-    const { Component, pageProps } = this.props
-
-    return (
-      <UserContext.Provider
-        value={{
-          user: auth.me,
-          logout: auth.logout,
-        }}
-      >
-        <Page>
-          <Component {...pageProps} />
-        </Page>
-      </UserContext.Provider>
+  if (cookies.jwt_token) {
+    await auth.getProfile(
+      { token: cookies.jwt_token },
+      authed => {
+        console.log('authed', authed)
+        user = authed
+      },
+      () => {
+        console.log('eeeeeeeeeeerrrrrrrrrrrrrror')
+        user = null
+      },
     )
   }
+
+  const appProps = await App.getInitialProps(appContext)
+
+  return { ...appProps, user }
 }
 
 export default CustomApp

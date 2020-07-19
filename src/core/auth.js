@@ -2,7 +2,17 @@ import React from 'react'
 import { fetchJSON } from './helpers'
 
 const defaultResolve = Function.prototype
-const defaultReject = e => console.error(e)
+const defaultReject = e => {
+  // console.error(e)
+}
+
+const base = process.env.NEXT_PUBLIC_API_URL + '/api'
+
+export const sendConfirmCode = ({ email }) =>
+  fetchJSON(`${base}/users`, {
+    method: 'POST',
+    body: JSON.stringify({ email }),
+  })
 
 class Auth {
   constructor() {
@@ -36,43 +46,50 @@ class Auth {
     reject = defaultReject,
   ) {
     try {
-      const { current_user } = await fetch(`${this.base}/tokens`, {
+      const { current_user } = await fetchJSON(`${this.base}/tokens`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify({ email, otp: code }),
       })
-      this.me = current_user
       resolve(current_user)
     } catch (e) {
       reject(e)
     }
   }
 
-  async logout() {
-    this.me = null
+  async logout(resolve = defaultResolve, reject = defaultReject) {
+    try {
+      await fetchJSON(`${this.base}/tokens`, {
+        method: 'DELETE',
+      })
+      resolve()
+    } catch (e) {
+      reject(e)
+    }
   }
 
-  async getProfile(
-    { token },
-    resolve = defaultResolve,
-    reject = defaultReject,
-  ) {
+  async getProfile(resolve = defaultResolve, reject = defaultReject) {
     try {
-      const user = await fetch(`${this.base}/profile`, {
-        credentials: 'include',
-        headers: {
-          Authorization: token,
-        },
-      })
-      this.me = user
-      resolve(user)
+      const { current_user } = await fetchJSON(`${this.base}/profile`)
+      resolve(current_user)
     } catch (e) {
       reject(e)
     }
   }
 }
 
-export const UserContext = React.createContext(null)
 export const auth = new Auth()
+
+export const UserContext = React.createContext()
+
+export const useUser = initial => {
+  const [user, setUser] = React.useState(initial)
+
+  const updateUser = React.useCallback(user => {
+    setUser(user)
+  }, [])
+
+  return {
+    user,
+    updateUser,
+  }
+}

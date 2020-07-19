@@ -87,5 +87,6 @@ export function fetchJSON(input, init = {}) {
       ...(init.headers || {}),
       'Content-Type': 'application/json',
     },
+    credentials: 'include',
   }).then(parse)
 }

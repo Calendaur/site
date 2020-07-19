@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useFormik } from 'formik'
 import { Button, Input } from '../../components'
-import { auth } from '../../core/auth'
+import { auth, UserContext } from '../../core/auth'
 
 import styles from './styles.module.css'
 
 function Auth() {
   const [code, setCode] = useState(false)
   const { push } = useRouter()
+  const { updateUser } = useContext(UserContext)
 
   const {
     handleSubmit,
@@ -37,7 +38,8 @@ function Auth() {
           setCode(true)
         })
       } else {
-        await auth.confirm({ email: values.email, code: values.code }, () => {
+        await auth.confirm({ email: values.email, code: values.code }, user => {
+          updateUser(user)
           push('/me')
         })
       }

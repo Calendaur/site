@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import MobileHeader from './MobileHeader'
 import Button from '../Button'
+import { auth, UserContext } from '../../core/auth'
 
 import styles from './Header.module.css'
 
 function Header({ hasBack }) {
   const { back, push } = useRouter()
+  const { user, updateUser } = useContext(UserContext)
+
+  console.log(user)
 
   return (
     <>
@@ -41,15 +45,29 @@ function Header({ hasBack }) {
           <Link href="/archive">
             <a>Вышедшее</a>
           </Link>
-          <Button
-            className={styles.Subscribe}
-            isPrimary
-            onClick={() => {
-              push('/auth')
-            }}
-          >
-            Войти
-          </Button>
+          {user ? (
+            <Button
+              className={styles.Subscribe}
+              isPrimary
+              onClick={() => {
+                auth.logout(() => {
+                  updateUser(null)
+                })
+              }}
+            >
+              Выйти
+            </Button>
+          ) : (
+            <Button
+              className={styles.Subscribe}
+              isPrimary
+              onClick={() => {
+                push('/auth')
+              }}
+            >
+              Войти
+            </Button>
+          )}
         </div>
       </header>
       <MobileHeader />
