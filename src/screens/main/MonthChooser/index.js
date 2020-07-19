@@ -4,18 +4,10 @@ import Link from 'next/link'
 
 import styles from './styles.module.css'
 
-function MonthChooser({
-  type,
-  prevLink,
-  prevYear,
-  year,
-  month,
-  nextLink,
-  nextYear,
-  prevMonth,
-  nextMonth,
-}) {
+function MonthChooser({ type, prevLink, month, nextLink, fromArchive }) {
   const currentMonth = new Date().getMonth()
+
+  if (fromArchive) return null
 
   return (
     <div className={styles.MonthChooser}>

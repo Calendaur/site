@@ -1,44 +1,32 @@
 import React from 'react'
 import Head from 'next/head'
-import { Header, MainPageContent, Button, Title } from '../../components'
+import { Button, Title } from '../../components'
 import Card from '../main/ReleaseCard'
 
 import styles from './styles.module.css'
 
-const release = {
-  cover:
-    'https://api.calendaur.com/uploads/release/cover/18017/%D0%A8%D0%B8%D1%80%D0%BB%D0%B8_-_%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.jpg',
-  description:
-    'Известная писательница романов ужасов находит вдохновение для следующей книги, когда в дом по соседству переезжает молодая пара.',
-  details_cover: null,
-  director: 'Жозефин Декер',
-  id: 58,
-  imdb_url: 'https://www.imdb.com/title/tt8430598/',
-  is_digital: true,
-  is_premier: true,
-  kinopoisk_url: 'https://www.kinopoisk.ru/film/1146759/',
-  release_id: 18017,
-  released: '2020-06-05',
-  site: '',
-  title: 'Ширли',
-}
-
-function Me() {
+function Me({ film, game, series }) {
   return (
     <>
       <Head>
-        <title>Calendaur | Профиль</title>
+        <title>Личный кабинет</title>
       </Head>
-      <section className={styles.User}>
-        <div>
-          <img src="https://picsum.photos/200" alt="" />
-        </div>
-        <Title size={1}>Nickname</Title>
+      <section>
+        <p>
+          Ниже вы&nbsp;можете увидеть пример того, как будет выглядеть личный
+          кабинет, когда мы&nbsp;закончим над ним работу. Если у&nbsp;вас есть
+          предложения по&nbsp;функционалу, то&nbsp;можете написать&nbsp;нам
+          на&nbsp;почту{' '}
+          <a
+            style={{ textDecoration: 'underline' }}
+            href="mailto:support@released.at"
+          >
+            support@released.at
+          </a>
+        </p>
       </section>
       <section className={styles.Settings}>
-        <Title as="h2" size={3}>
-          Настройте календарь под себя
-        </Title>
+        <h3>Настройте календарь под себя</h3>
         <div className={styles.SettingsItem}>
           <p>Выберите типы релизов:</p>
           <div className={styles.Buttons}>
@@ -63,13 +51,12 @@ function Me() {
             <Button>Okko</Button>
             <Button>Amediateka</Button>
             <Button>Ivi</Button>
+            <Button>Kinopoisk HD</Button>
           </div>
         </div>
       </section>
       <section className={styles.ExpectedReleases}>
-        <Title as="h2" size={3}>
-          Ожидаемые релизы
-        </Title>
+        <h3>Ожидаемые релизы</h3>
         <p className={styles.Note}>
           Чтобы добавить релиз в этот список, откройте его карточку и нажмите
           <span>Ожидаю</span>
@@ -79,10 +66,10 @@ function Me() {
             Кино
           </Title>
           <div className={styles.ReleasesGrid}>
-            <Card type={'films'} release={release} />
-            <Card type={'films'} release={release} />
-            <Card type={'films'} release={release} />
-            <Card type={'films'} release={release} />
+            <Card type={'films'} release={film} />
+            <Card type={'films'} release={film} />
+            <Card type={'films'} release={film} />
+            <Card type={'films'} release={film} />
           </div>
         </div>
         <div className={styles.ReleasesSection}>
@@ -90,10 +77,10 @@ function Me() {
             Игры
           </Title>
           <div className={styles.ReleasesGrid}>
-            <Card type={'films'} release={release} />
-            <Card type={'films'} release={release} />
-            <Card type={'films'} release={release} />
-            <Card type={'films'} release={release} />
+            <Card type={'games'} release={game} />
+            <Card type={'games'} release={game} />
+            <Card type={'games'} release={game} />
+            <Card type={'games'} release={game} />
           </div>
         </div>
         <div className={styles.ReleasesSection}>
@@ -101,10 +88,10 @@ function Me() {
             Сериалы
           </Title>
           <div className={styles.ReleasesGrid}>
-            <Card type={'films'} release={release} />
-            <Card type={'films'} release={release} />
-            <Card type={'films'} release={release} />
-            <Card type={'films'} release={release} />
+            <Card type={'series'} release={series} />
+            <Card type={'series'} release={series} />
+            <Card type={'series'} release={series} />
+            <Card type={'series'} release={series} />
           </div>
         </div>
       </section>
@@ -122,10 +109,10 @@ function Me() {
             Кино
           </Title>
           <div className={styles.ReleasesGrid}>
-            <Card type={'films'} release={release} />
-            <Card type={'films'} release={release} />
-            <Card type={'films'} release={release} />
-            <Card type={'films'} release={release} />
+            <Card type={'films'} release={film} />
+            <Card type={'films'} release={film} />
+            <Card type={'films'} release={film} />
+            <Card type={'films'} release={film} />
           </div>
         </div>
         <div className={styles.ReleasesSection}>
@@ -133,10 +120,10 @@ function Me() {
             Игры
           </Title>
           <div className={styles.ReleasesGrid}>
-            <Card type={'films'} release={release} />
-            <Card type={'films'} release={release} />
-            <Card type={'films'} release={release} />
-            <Card type={'films'} release={release} />
+            <Card type={'games'} release={game} />
+            <Card type={'games'} release={game} />
+            <Card type={'games'} release={game} />
+            <Card type={'games'} release={game} />
           </div>
         </div>
         <div className={styles.ReleasesSection}>
@@ -144,10 +131,10 @@ function Me() {
             Сериалы
           </Title>
           <div className={styles.ReleasesGrid}>
-            <Card type={'films'} release={release} />
-            <Card type={'films'} release={release} />
-            <Card type={'films'} release={release} />
-            <Card type={'films'} release={release} />
+            <Card type={'series'} release={series} />
+            <Card type={'series'} release={series} />
+            <Card type={'series'} release={series} />
+            <Card type={'series'} release={series} />
           </div>
         </div>
       </section>

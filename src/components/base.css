@@ -178,6 +178,7 @@ small {
 }
 
 p {
+  max-width: 768px;
   margin: 1rem 0;
   font-size: 1em;
   line-height: 1.625rem;

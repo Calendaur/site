@@ -3,15 +3,14 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import MobileHeader from './MobileHeader'
 import Button from '../Button'
-import { auth, UserContext } from '../../core/auth'
+import { UserContext } from '../../core/auth'
+import { logout } from '../../core/api'
 
 import styles from './Header.module.css'
 
 function Header({ hasBack }) {
   const { back, push } = useRouter()
   const { user, updateUser } = useContext(UserContext)
-
-  console.log(user)
 
   return (
     <>
@@ -50,12 +49,10 @@ function Header({ hasBack }) {
               className={styles.Subscribe}
               isPrimary
               onClick={() => {
-                auth.logout(() => {
-                  updateUser(null)
-                })
+                push('/me')
               }}
             >
-              Выйти
+              {user.email.split('@')[0]}
             </Button>
           ) : (
             <Button
@@ -70,7 +67,7 @@ function Header({ hasBack }) {
           )}
         </div>
       </header>
-      <MobileHeader />
+      <MobileHeader user={user} />
     </>
   )
 }

@@ -1,129 +1,42 @@
-import fetch from 'isomorphic-unfetch'
+import { fetchJSON } from './helpers'
 
-class Api {
-  constructor() {
-    this.base = process.env.NEXT_PUBLIC_API_URL + '/api'
-  }
+const API_URL = process.env.NEXT_PUBLIC_API_URL + '/api'
 
-  async getMe() {
-    try {
-      const response = await fetch(`${this.base}/profile`, {
-        credentials: 'include',
-      })
-      const json = await response.json()
-
-      if (response.ok) {
-        return json
-      } else {
-        return {
-          error: json,
-        }
-      }
-    } catch (e) {
-      console.error(e)
-      return {
-        error: e,
-      }
-    }
-  }
-
-  async confirmAuthCode(email, code) {
-    try {
-      const response = await fetch(`${this.base}/tokens`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, otp: code }),
-      })
-
-      if (response.status === 204 || response.statusText === 'No Content') {
-        return {
-          success: true,
-        }
-      } else {
-        return {
-          success: false,
-          error: true,
-        }
-      }
-    } catch (e) {
-      console.error(e)
-      return {
-        error: e,
-      }
-    }
-  }
-
-  async sendAuthCode(email) {
-    try {
-      const response = await fetch(`${this.base}/users`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      })
-
-      if (response.status === 204 || response.statusText === 'No Content') {
-        return {
-          success: true,
-        }
-      } else {
-        return {
-          success: false,
-          error: true,
-        }
-      }
-    } catch (e) {
-      console.error(e)
-      return {
-        error: e,
-      }
-    }
-  }
-
-  async getReleases(type, date) {
-    try {
-      const response = await fetch(`${this.base}/${type}?date=${date}`)
-      const json = await response.json()
-
-      if (response.ok) {
-        return json
-      } else {
-        return {
-          error: json,
-        }
-      }
-    } catch (e) {
-      console.error(e)
-      return {
-        error: e,
-      }
-    }
-  }
-
-  async getRelease(id) {
-    try {
-      const response = await fetch(`${this.base}/releases/${id}`)
-      const json = await response.json()
-
-      if (response.ok) {
-        return json
-      } else {
-        return {
-          error: json,
-        }
-      }
-    } catch (e) {
-      console.error(e)
-      return {
-        error: e,
-      }
-    }
-  }
+const endpoints = {
+  RELEASES: (type, date) => `${API_URL}/${type}?date=${date}`,
+  RELEASE: id => `${API_URL}/releases/${id}`,
+  NOW: `${API_URL}/releases/now`,
+  USERS: `${API_URL}/users`,
+  TOKENS: `${API_URL}/tokens`,
+  PROFILE: `${API_URL}/profile`,
 }
 
-const api = new Api()
+/* Releases */
+// Possibly type: movies, games, serials
+// Date format example: 01-2020
+export const releases = (type, date) =>
+  fetchJSON(endpoints.RELEASES(type, date))
+export const release = id => fetchJSON(endpoints.RELEASE(id))
+export const now = () => fetchJSON(endpoints.NOW)
 
-export { api }
+/* Auth */
+export const sendConfirmCode = email =>
+  fetchJSON(endpoints.USERS, {
+    method: 'post',
+    body: JSON.stringify({ email }),
+  })
+export const confirm = (email, code) =>
+  fetchJSON(endpoints.TOKENS, {
+    method: 'post',
+    body: JSON.stringify({ email, otp: code }),
+  })
+export const logout = () =>
+  fetchJSON(endpoints.TOKENS, {
+    method: 'delete',
+  })
+export const me = token =>
+  fetchJSON(endpoints.PROFILE, {
+    headers: {
+      Authorization: token,
+    },
+  })

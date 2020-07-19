@@ -4,10 +4,10 @@ import React from 'react'
 import App from 'next/app'
 import nookies from 'nookies'
 import { Page } from '../components'
-import { auth, UserContext, useUser } from '../core/auth'
+import { me } from '../core/api'
+import { UserContext, useUser } from '../core/auth'
 
-function CustomApp({ Component, pageProps, user }) {
-  console.log('user', user)
+function CustomApp({ Component, pageProps, user = null }) {
   const value = useUser(user)
 
   return (
@@ -20,27 +20,20 @@ function CustomApp({ Component, pageProps, user }) {
 }
 
 CustomApp.getInitialProps = async appContext => {
-  const cookies = nookies.get(appContext.ctx)
+  const appProps = await App.getInitialProps(appContext)
+  const { jwt_token: token } = nookies.get(appContext.ctx)
 
-  let user = null
-
-  if (cookies.jwt_token) {
-    await auth.getProfile(
-      { token: cookies.jwt_token },
-      authed => {
-        console.log('authed', authed)
-        user = authed
-      },
-      () => {
-        console.log('eeeeeeeeeeerrrrrrrrrrrrrror')
-        user = null
-      },
-    )
+  if (!token) {
+    return { ...appProps }
   }
 
-  const appProps = await App.getInitialProps(appContext)
-
-  return { ...appProps, user }
+  try {
+    const { current_user } = await me(token)
+    return { ...appProps, user: current_user }
+  } catch (e) {
+    console.error(e)
+    return { ...appProps }
+  }
 }
 
 export default CustomApp

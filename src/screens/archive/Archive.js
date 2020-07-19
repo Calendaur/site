@@ -8,7 +8,7 @@ import ReleaseTypeChooser from './ReleaseTypeChooser'
 import styles from './Archive.module.css'
 
 const startDate = new Date(2020, 0, 1)
-const endDate = addMonths(new Date(), 1)
+const endDate = addMonths(new Date(), -1)
 
 const dates = eachMonthOfInterval({ start: startDate, end: endDate })
 

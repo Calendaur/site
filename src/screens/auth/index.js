@@ -2,7 +2,8 @@ import React, { useState, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useFormik } from 'formik'
 import { Button, Input } from '../../components'
-import { auth, UserContext } from '../../core/auth'
+import { UserContext } from '../../core/auth'
+import { sendConfirmCode, confirm } from '../../core/api'
 
 import styles from './styles.module.css'
 
@@ -34,14 +35,12 @@ function Auth() {
     },
     onSubmit: async values => {
       if (!values.code) {
-        await auth.sendConfirmCode({ email: values.email }, () => {
-          setCode(true)
-        })
+        await sendConfirmCode(values.email)
+        setCode(true)
       } else {
-        await auth.confirm({ email: values.email, code: values.code }, user => {
-          updateUser(user)
-          push('/me')
-        })
+        const { current_user } = await confirm(values.email, values.code)
+        updateUser(current_user)
+        push('/me')
       }
     },
     validateOnBlur: false,

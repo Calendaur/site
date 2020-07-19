@@ -80,13 +80,14 @@ async function parse(response) {
   throw data
 }
 
-export function fetchJSON(input, init = {}) {
-  return fetch(input, {
+export async function fetchJSON(input, init = {}) {
+  const response = await fetch(input, {
     ...init,
     headers: {
       ...(init.headers || {}),
       'Content-Type': 'application/json',
     },
     credentials: 'include',
-  }).then(parse)
+  })
+  return parse(response)
 }

@@ -1,6 +1,6 @@
 import smoothscroll from 'smoothscroll-polyfill'
 import ReleasePage from '../../../screens/release'
-import { api } from '../../../core/api'
+import { release } from '../../../core/api'
 
 if (typeof window !== 'undefined') smoothscroll.polyfill()
 
@@ -16,12 +16,22 @@ function changeType(t) {
 }
 
 ReleasePage.getInitialProps = async context => {
-  if (!context.query.id) return { error: 404 }
-  const release = await api.getRelease(context.query.id)
+  if (!context.query.id) {
+    return { error: 404 }
+  }
 
-  return {
-    ...release,
-    type: changeType(release.type),
+  try {
+    const result = await release(context.query.id)
+
+    return {
+      ...result,
+      type: changeType(result.type),
+    }
+  } catch (e) {
+    console.error(e)
+    return {
+      error: 500,
+    }
   }
 }
 

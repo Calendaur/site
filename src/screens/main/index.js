@@ -6,7 +6,6 @@ import ReleaseTypeChooser from './ReleaseTypeChooser'
 import MonthChooser from './MonthChooser'
 import Calendar from './Calendar'
 import { getNextAndPrevDate } from '../../core/url'
-import { rusType } from '../../core/helpers'
 
 import styles from './styles.module.css'
 
@@ -31,14 +30,7 @@ function MainPage({ parsedURL, releases, meta }) {
   }
 
   const bind = useDrag(
-    ({
-      down,
-      movement: [mx],
-      delta,
-      direction: [xDir, yDir],
-      distance,
-      cancel,
-    }) => {
+    ({ down, direction: [xDir], distance, cancel }) => {
       if (window.innerWidth > 1120) return
 
       if (down && distance > window.innerWidth / 4) {
@@ -59,6 +51,11 @@ function MainPage({ parsedURL, releases, meta }) {
     if (type === 'games') return 'игр'
     if (type === 'series') return 'сериалов'
   }
+
+  const currentMonth = new Date().getMonth()
+  const fromArchive =
+    !(currentMonth < month.jsNumber) && !(currentMonth === month.jsNumber)
+  console.log(fromArchive)
 
   return (
     <div {...bind()} className={styles.Wrapper}>
@@ -91,6 +88,7 @@ function MainPage({ parsedURL, releases, meta }) {
           <ReleaseTypeChooser type={type} month={month} year={year} />
           <div>
             <MonthChooser
+              fromArchive={fromArchive}
               type={type}
               month={month}
               year={year}
@@ -105,7 +103,13 @@ function MainPage({ parsedURL, releases, meta }) {
             />
           </div>
         </div>
-        <h1 className={styles.Title}>Новинки {getH1()}</h1>
+        {fromArchive ? (
+          <h1>
+            {month.rus} {year}
+          </h1>
+        ) : (
+          <h1 className={styles.Title}>Новинки {getH1()}</h1>
+        )}
         <Calendar
           type={type}
           month={month.jsNumber}
