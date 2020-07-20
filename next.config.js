@@ -13,6 +13,9 @@ const nextConfig = {
           expiration: {
             maxEntries: 200,
           },
+          fetchOptions: {
+            credentials: 'include',
+          },
         },
       },
     ],

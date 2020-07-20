@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development node src/core/devServer.js",
+    "debug-prod": "cross-env NODE_ENV=production node src/core/devServer.js",
     "build": "next build",
     "start": "next start",
     "test": "jest",
@@ -13,7 +14,6 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "cookie": "^0.4.1",
     "date-fns": "^2.14.0",
     "formik": "^2.1.5",
     "get-youtube-id": "^1.0.1",
@@ -21,6 +21,7 @@
     "lodash.throttle": "^4.1.1",
     "next": "^9.4.4",
     "next-offline": "^5.0.2",
+    "nookies": "^2.3.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-spring": "^8.0.27",

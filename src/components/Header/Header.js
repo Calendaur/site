@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import MobileHeader from './MobileHeader'
 import Button from '../Button'
 import { UserContext } from '../../core/auth'
-import { logout } from '../../core/api'
 
 import styles from './Header.module.css'
 
