@@ -54,15 +54,20 @@ function Header({ hasBack }) {
               {user.email.split('@')[0]}
             </Button>
           ) : (
-            <Button
-              className={styles.Subscribe}
-              isPrimary
-              onClick={() => {
-                push('/auth')
-              }}
-            >
-              Войти
-            </Button>
+            <>
+              <Link href="/auth">
+                <a>Вход</a>
+              </Link>
+              <Button
+                className={styles.Subscribe}
+                isPrimary
+                onClick={() => {
+                  push('/auth')
+                }}
+              >
+                Регистрация
+              </Button>
+            </>
           )}
         </div>
       </header>
