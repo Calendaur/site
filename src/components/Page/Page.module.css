@@ -6,11 +6,5 @@
 
   > main {
     padding: var(--page-vertical-padding) var(--page-padding);
-
-    @media (width < 768px) {
-      --header-height: 44px;
-
-      padding-top: calc(var(--page-padding) + var(--header-height));
-    }
   }
 }

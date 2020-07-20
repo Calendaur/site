@@ -6,16 +6,18 @@ import nookies from 'nookies'
 import { Page } from '../components'
 import { me } from '../core/api'
 import { UserContext, useUser } from '../core/auth'
+import { UrlDataContext } from '../core/urlDataContext'
 
-function CustomApp({ Component, pageProps, user = null, cookies }) {
+function CustomApp({ Component, pageProps, user = null }) {
   const value = useUser(user)
 
   return (
     <UserContext.Provider value={value}>
-      <Page>
-        <div style={{ display: 'none' }}>{JSON.stringify(cookies)}</div>
-        <Component {...pageProps} />
-      </Page>
+      <UrlDataContext.Provider value={pageProps.parsedURL || null}>
+        <Page>
+          <Component {...pageProps} />
+        </Page>
+      </UrlDataContext.Provider>
     </UserContext.Provider>
   )
 }
@@ -23,7 +25,6 @@ function CustomApp({ Component, pageProps, user = null, cookies }) {
 CustomApp.getInitialProps = async appContext => {
   const appProps = await App.getInitialProps(appContext)
   const { jwt_token: token } = nookies.get(appContext.ctx)
-  appProps.cookies = nookies.get(appContext.ctx)
 
   if (!token) {
     return { ...appProps }

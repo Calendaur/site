@@ -1,5 +1,4 @@
 import React from 'react'
-import { isThisMonth, parseISO } from 'date-fns'
 import Link from 'next/link'
 
 import styles from './styles.module.css'
