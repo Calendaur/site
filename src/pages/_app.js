@@ -22,6 +22,7 @@ function CustomApp({ Component, pageProps, user = null }) {
 CustomApp.getInitialProps = async appContext => {
   const appProps = await App.getInitialProps(appContext)
   const { jwt_token: token } = nookies.get(appContext.ctx)
+  console.log(token)
 
   if (!token) {
     return { ...appProps }
