@@ -72,12 +72,12 @@ async function parse(response) {
   try {
     data = JSON.parse(text)
   } catch (error) {
-    throw error
+    throw { response, error: data } // eslint-disable-line
   }
   if (response.ok) {
     return data
   }
-  throw data
+  throw { response, error: data } // eslint-disable-line
 }
 
 export async function fetchJSON(input, init = {}) {

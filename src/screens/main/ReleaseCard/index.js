@@ -40,7 +40,6 @@ function Info({ release, type }) {
 }
 
 function ReleaseCard({ release, transitionProps, type }) {
-  console.log(release)
   if (!transitionProps) {
     return (
       <Link href="/release/[id]" as={`/release/${release.release_id}`}>

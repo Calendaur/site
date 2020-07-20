@@ -2,37 +2,61 @@ import '../components/base.css'
 
 import React from 'react'
 import App from 'next/app'
-import nookies from 'nookies'
+import cookie from 'cookie'
 import { Page } from '../components'
 import { me } from '../core/api'
-import { UserContext, useUser } from '../core/auth'
+import { UserContext } from '../core/auth'
 
-function CustomApp({ Component, pageProps, user = null }) {
-  const value = useUser(user)
+class CustomApp extends App {
+  static async getInitialProps(appContext) {
+    const request = appContext.ctx.req
+    let token = null
 
-  return (
-    <UserContext.Provider value={value}>
-      <Page>
-        <Component {...pageProps} />
-      </Page>
-    </UserContext.Provider>
-  )
-}
+    if (request) {
+      request.cookies = cookie.parse(request.headers.cookie || '')
+      token = request.cookies.jwt_token
+    }
 
-CustomApp.getInitialProps = async appContext => {
-  const appProps = await App.getInitialProps(appContext)
-  const { jwt_token: token } = nookies.get(appContext.ctx)
+    const appProps = await App.getInitialProps(appContext)
 
-  if (!token) {
-    return { ...appProps }
+    if (!token) {
+      return { ...appProps }
+    }
+
+    try {
+      const { current_user } = await me(token)
+      return { ...appProps, user: current_user }
+    } catch (e) {
+      console.error(e)
+      return { ...appProps }
+    }
   }
 
-  try {
-    const { current_user } = await me(token)
-    return { ...appProps, user: current_user }
-  } catch (e) {
-    console.error(e)
-    return { ...appProps }
+  state = {
+    user: this.props.user || null,
+  }
+
+  updateUser = updated => {
+    this.setState({
+      user: updated,
+    })
+  }
+
+  render() {
+    const { Component, pageProps } = this.props
+
+    return (
+      <UserContext.Provider
+        value={{
+          user: this.state.user,
+          updateUser: this.updateUser,
+        }}
+      >
+        <Page>
+          <Component {...pageProps} />
+        </Page>
+      </UserContext.Provider>
+    )
   }
 }
 
