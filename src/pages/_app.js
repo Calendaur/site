@@ -7,12 +7,13 @@ import { Page } from '../components'
 import { me } from '../core/api'
 import { UserContext, useUser } from '../core/auth'
 
-function CustomApp({ Component, pageProps, user = null }) {
+function CustomApp({ Component, pageProps, user = null, cookies }) {
   const value = useUser(user)
 
   return (
     <UserContext.Provider value={value}>
       <Page>
+        <div style={{ display: 'none' }}>{JSON.stringify(cookies)}</div>
         <Component {...pageProps} />
       </Page>
     </UserContext.Provider>
@@ -22,7 +23,7 @@ function CustomApp({ Component, pageProps, user = null }) {
 CustomApp.getInitialProps = async appContext => {
   const appProps = await App.getInitialProps(appContext)
   const { jwt_token: token } = nookies.get(appContext.ctx)
-  console.log(token)
+  appProps.cookies = nookies.get(appContext.ctx)
 
   if (!token) {
     return { ...appProps }
