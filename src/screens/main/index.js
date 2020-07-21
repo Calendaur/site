@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useDrag } from 'react-use-gesture'
 import ReleaseTypeChooser from './ReleaseTypeChooser'
-import MonthChooser from './MonthChooser'
+import CalendarHeader from './CalendarHeader'
 import Calendar from './Calendar'
 import { getNextAndPrevDate } from '../../core/url'
 
@@ -46,16 +46,6 @@ function MainPage({ parsedURL, releases, meta }) {
     { axis: 'x' },
   )
 
-  function getH1() {
-    if (type === 'films') return 'кино'
-    if (type === 'games') return 'игр'
-    if (type === 'series') return 'сериалов'
-  }
-
-  const currentMonth = new Date().getMonth()
-  const fromArchive =
-    !(currentMonth < month.jsNumber) && !(currentMonth === month.jsNumber)
-
   return (
     <div {...bind()} className={styles.Wrapper}>
       <Head>
@@ -85,30 +75,8 @@ function MainPage({ parsedURL, releases, meta }) {
       <Fragment key={`${type}-${month.eng}-${year}`}>
         <div className={styles.FilterBar}>
           <ReleaseTypeChooser type={type} month={month} year={year} />
-          <div>
-            <MonthChooser
-              fromArchive={fromArchive}
-              type={type}
-              month={month}
-              year={year}
-              prevYear={prevYear}
-              nextYear={nextYear}
-              prevMonth={prevMonth}
-              nextMonth={nextMonth}
-              prevLink={prevLink}
-              nextLink={nextLink}
-              toPrev={toPrev}
-              toNext={toNext}
-            />
-          </div>
         </div>
-        {fromArchive ? (
-          <h1>
-            {month.rus} {year}
-          </h1>
-        ) : (
-          <h1 className={styles.Title}>Новинки {getH1()}</h1>
-        )}
+        <CalendarHeader />
         <Calendar
           type={type}
           month={month.jsNumber}

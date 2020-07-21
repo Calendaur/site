@@ -48,7 +48,7 @@ function Calendar({ type, month, year, releases }) {
                           year === nDate.getFullYear(),
                       })}
                     >
-                      {day}
+                      <span>{day}</span>
                     </div>
                     <ReleaseListInDay type={type} releases={dayReleases} />
                   </div>

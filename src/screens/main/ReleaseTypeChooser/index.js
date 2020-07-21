@@ -26,7 +26,7 @@ function ReleaseTypeChooser({ type, month, year }) {
         <li key={t}>
           <Link href={`/${t}/[date]`} as={`/${t}/${month.eng}-${year}`}>
             <a
-              className={cx('underline', {
+              className={cx({
                 [styles.isActive]: type === t,
               })}
             >

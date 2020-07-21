@@ -24,7 +24,7 @@ function ReleaseTypeChooser({ selected, setSelect }) {
       {types.map(({ type: t, title }) => (
         <li key={t}>
           <button
-            className={cx('underline', {
+            className={cx({
               [styles.isActive]: t === selected,
             })}
             onClick={() => {

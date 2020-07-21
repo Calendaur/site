@@ -16,9 +16,7 @@ function Footer({ className }) {
         released.at, {new Date().getFullYear()}
       </div>
       <div>
-        <a className="underline" href="mailto:support@released.at">
-          Обратная связь
-        </a>
+        <a href="mailto:support@released.at">Обратная связь</a>
       </div>
     </footer>
   )

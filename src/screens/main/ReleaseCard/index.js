@@ -23,7 +23,7 @@ function Info({ release, type }) {
   switch (type) {
     case 'films':
     case 'digital':
-      return <p className={styles.Extra}>{release.director}</p>
+      return <p className={styles.Extra}>Реж. {release.director}</p>
     case 'games':
       return (
         <ul className={styles.PlatformList}>
@@ -46,7 +46,7 @@ function ReleaseCard({ release, transitionProps, type }) {
         <a
           className={styles.Release}
           style={{
-            backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%), url(${release.cover})`,
+            backgroundImage: `url(${release.cover})`,
           }}
         >
           <div className={styles.Info}>
@@ -64,7 +64,7 @@ function ReleaseCard({ release, transitionProps, type }) {
         href={`/release/${release.release_id}`}
         className={styles.Release}
         style={{
-          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%), url(${release.cover})`,
+          backgroundImage: `url(${release.cover})`,
           ...transitionProps,
         }}
       >

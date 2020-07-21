@@ -12,13 +12,13 @@ function MonthChooser({ type, prevLink, month, nextLink, fromArchive }) {
     <div className={styles.MonthChooser}>
       {currentMonth < month.jsNumber ? (
         <Link href={`/${type}/[date]`} as={prevLink}>
-          <a className="underline">← текущий месяц</a>
+          <a>← текущий месяц</a>
         </Link>
       ) : null}
       <div className={styles.Date}>{month.rus}</div>
       {currentMonth === month.jsNumber ? (
         <Link href={`/${type}/[date]`} as={nextLink}>
-          <a className="underline">следующий месяц →</a>
+          <a>следующий месяц →</a>
         </Link>
       ) : null}
     </div>

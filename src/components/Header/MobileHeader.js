@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import cx from 'classnames'
 import { UrlDataContext } from '../../core/urlDataContext'
-import { getNextAndPrevDate } from '../../core/url'
 
 import styles from './Header.module.css'
 
@@ -27,15 +26,17 @@ function Filter() {
 
   if (!urlData) return null
 
-  const currentMonth = new Date().getMonth()
-
-  const { prevMonth, prevYear, nextMonth, nextYear } = getNextAndPrevDate(
-    urlData.month.jsNumber,
-    urlData.year,
-  )
-
-  const prevLink = `/${urlData.type}/${prevMonth.eng}-${prevYear}`
-  const nextLink = `/${urlData.type}/${nextMonth.eng}-${nextYear}`
+  const {
+    type,
+    month,
+    year,
+    isCurrentMonth,
+    isNextMonth,
+    prevLink,
+    nextLink,
+    prevMonth,
+    nextMonth,
+  } = urlData
 
   return (
     <div className={styles.Filter}>
@@ -43,13 +44,10 @@ function Filter() {
         <ul className={styles.ReleaseTypeChooser}>
           {types.map(({ type: t, title }) => (
             <li key={t}>
-              <Link
-                href={`/${t}/[date]`}
-                as={`/${t}/${urlData.month.eng}-${urlData.year}`}
-              >
+              <Link href={`/${t}/[date]`} as={`/${t}/${month.eng}-${year}`}>
                 <a
-                  className={cx('underline', {
-                    [styles.isActive]: urlData.type === t,
+                  className={cx({
+                    [styles.isActive]: type === t,
                   })}
                 >
                   {title}
@@ -61,17 +59,17 @@ function Filter() {
       </div>
       <div>
         <div className={styles.MonthChooser}>
-          {currentMonth < urlData.month.jsNumber ? (
-            <Link href={`/${urlData.type}/[date]`} as={prevLink}>
-              <a className="underline">← текущий месяц</a>
+          {isNextMonth && (
+            <Link {...prevLink}>
+              <a>← {prevMonth.rus}</a>
             </Link>
-          ) : null}
+          )}
           <div className={styles.Date}>{urlData.month.rus}</div>
-          {currentMonth === urlData.month.jsNumber ? (
-            <Link href={`/${urlData.type}/[date]`} as={nextLink}>
-              <a className="underline">следующий месяц →</a>
+          {isCurrentMonth && (
+            <Link {...nextLink}>
+              <a>{nextMonth.rus} →</a>
             </Link>
-          ) : null}
+          )}
         </div>
       </div>
     </div>
@@ -138,7 +136,7 @@ function MobileHeader({ user }) {
               <a>Обновления сайта</a>
             </Link>
           </div>
-          {user ? (
+          {!user ? (
             <div className={styles.AuthLinks}>
               <Link href="/auth">
                 <a>Вход</a>

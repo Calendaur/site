@@ -36,16 +36,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    margin-right: var(--horizontal-4);
+    width: 45px;
+    height: 45px;
     background-color: var(--blue);
     border-radius: 4px;
     box-shadow: 0 2px 8px rgba(255, 255, 255, 0.15);
 
     img {
-      width: 18px;
-      height: 18px;
+      width: 24px;
+      height: 24px;
     }
   }
 

@@ -2,8 +2,8 @@
   /* Colors */
   --background-color-rgb-values: 11, 11, 11;
   --background-color: rgb(var(--background-color-rgb-values));
-  --white-color: #f9f9f9;
-  --black-color: #0f0f0f;
+  --white-color: #e0e0e0;
+  --black-color: #070404;
   --grey-color: #b5b5b5;
 
   /* Fonts */
@@ -29,7 +29,9 @@
   --primary: #281b24;
   --secondary: #a6b12e;
   --light-blue: #8bb5f9;
-  --blue: #4287f5;
+  --blue: #1977f3;
+  --blue-hover: #2c82f4;
+  --blue-active: #0f71f2;
   --pink: #dc6175;
   --kinopoisk: #f60;
   --imdb: #f5c518;

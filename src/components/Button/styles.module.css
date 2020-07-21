@@ -11,6 +11,7 @@
   padding-left: 1em;
   font-family: inherit;
   font-size: 1rem;
+  font-weight: 500;
   line-height: 1.5;
   color: rgba(0, 0, 0, 0.7);
   text-align: center;
@@ -44,14 +45,14 @@
 
   &.isPrimary {
     color: var(--primary-text);
-    background-color: #4287f5;
+    background-color: var(--blue);
 
     &:hover {
-      background-color: #367ff4;
+      background-color: var(--blue-hover);
     }
 
     &:active {
-      background-color: #307bf4;
+      background-color: var(--blue-active);
     }
 
     &:focus:not(:active) {
