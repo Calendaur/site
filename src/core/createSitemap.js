@@ -15,7 +15,7 @@ const dates = eachMonthOfInterval({ start: startDate, end: endDate })
 let allUrls = [...constantsPages]
 
 async function getAll(type) {
-  const base = 'https://api.calendaur.com/api'
+  const base = 'https://api.released.at/api'
 
   try {
     const response = await fetch(`${base}/${type}`)
