@@ -909,10 +909,6 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18137</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/225</loc>
   </url>
 
@@ -954,10 +950,6 @@
 
   <url>
     <loc>https://released.at/release/120</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/18144</loc>
   </url>
 
   <url>
@@ -1017,15 +1009,15 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18016</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/127</loc>
   </url>
 
   <url>
     <loc>https://released.at/release/123</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18016</loc>
   </url>
 
   <url>
@@ -1053,10 +1045,6 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18147</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/132</loc>
   </url>
 
@@ -1066,6 +1054,10 @@
 
   <url>
     <loc>https://released.at/release/18004</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18147</loc>
   </url>
 
   <url>
@@ -1122,6 +1114,14 @@
 
   <url>
     <loc>https://released.at/release/18179</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18144</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18137</loc>
   </url>
 
   <url>
