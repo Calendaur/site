@@ -1,7 +1,7 @@
 import React from 'react'
 import ReleasesScreenComponent from '../screens/main'
 import { months } from '../core/url'
-import { releases } from '../core/api'
+import { homePageReleases } from '../core/api'
 import { pages } from '../core/meta'
 
 const MainPage = props => <ReleasesScreenComponent {...props} />
@@ -11,7 +11,7 @@ MainPage.getInitialProps = async () => {
     const currentMonth = new Date().getMonth() + 1
     const currentYear = new Date().getFullYear()
 
-    const result = await releases('movies', `${currentMonth}-${currentYear}`)
+    const result = await homePageReleases()
 
     return {
       parsedURL: {

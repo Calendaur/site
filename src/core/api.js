@@ -17,7 +17,11 @@ const monthsForAPI = {
   december: 12,
 }
 
+const currentMonth = new Date().getMonth() + 1
+const currentYear = new Date().getFullYear()
+
 const endpoints = {
+  HOMEPAGE_RELEASED: `${API_URL}/movies?date=${currentMonth}-${currentYear}`,
   RELEASES: (type, date) => {
     const [month, year] = date.split('-')
     return `${API_URL}/${type}?date=${monthsForAPI[month]}-${year}`
@@ -32,6 +36,7 @@ const endpoints = {
 /* Releases */
 // Possibly type: movies, games, serials
 // Date format example: 01-2020
+export const homePageReleases = () => fetchJSON(endpoints.HOMEPAGE_RELEASED)
 export const releases = (type, date) =>
   fetchJSON(endpoints.RELEASES(type, date))
 export const release = id => fetchJSON(endpoints.RELEASE(id))
