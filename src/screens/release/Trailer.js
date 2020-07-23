@@ -10,9 +10,8 @@ function Trailer({ url }) {
         <iframe
           title="Trailer"
           frameBorder="0"
-          class="lazyload"
+          className="lazyload"
           allowFullScreen
-          allowTransparency
           width="100%"
           height="100%"
           data-src={`https://www.youtube.com/embed/${getYouTubeId(url)}`}
