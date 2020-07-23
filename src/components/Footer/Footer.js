@@ -9,8 +9,12 @@ function Footer({ className }) {
     <footer aria-label="header" className={cx(styles.Footer, className)}>
       <div className={styles.About}>
         <Link href="/">
-          <a className={styles.MobileLogo}>
-            <img src="/images/logo.png" alt="" />
+          <a className={styles.MobileLogo} aria-label="released.at">
+            <img
+              className="lazyload"
+              data-src="/images/logo.png"
+              alt="released.at"
+            />
           </a>
         </Link>{' '}
         released.at, {new Date().getFullYear()}

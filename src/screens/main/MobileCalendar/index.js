@@ -17,7 +17,7 @@ function MobileCalendar({ releases, type }) {
     <div className={styles.MobileCalendar}>
       {Object.keys(preparedReleases).map(date => (
         <div className={styles.Day} key={`${type}-${date}`}>
-          <h3>{format(parseISO(date), 'dd EEEEEE', { locale: ru })}</h3>
+          <p>{format(parseISO(date), 'dd EEEEEE', { locale: ru })}</p>
           <div className={styles.Releases}>
             {preparedReleases[date].map(release => (
               <ReleaseCard

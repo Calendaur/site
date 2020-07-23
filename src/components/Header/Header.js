@@ -9,7 +9,7 @@ import styles from './Header.module.css'
 
 function Header({ hasBack }) {
   const { back, push } = useRouter()
-  const { user, updateUser } = useContext(UserContext)
+  const { user } = useContext(UserContext)
 
   return (
     <>
@@ -26,7 +26,11 @@ function Header({ hasBack }) {
             </button>
           )}
           <Link href="/">
-            <a className={styles.DesktopLogo} data-text="released">
+            <a
+              className={styles.DesktopLogo}
+              aria-label="released.at"
+              data-text="released"
+            >
               released
             </a>
           </Link>

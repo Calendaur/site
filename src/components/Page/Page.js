@@ -181,6 +181,8 @@ function Page({
         ></script>
         <script async defer src="/scripts/google-analytics.js"></script>
         <script async defer src="/scripts/yandex-metrika.js"></script>
+        <link rel="preconnect" href="https://api.released.at" />
+        <link rel="dns-prefetch" href="https://api.released.at" />
       </Head>
       <section
         aria-label="page"

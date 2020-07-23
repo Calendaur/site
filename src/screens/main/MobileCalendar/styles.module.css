@@ -9,8 +9,9 @@
 .Day {
   margin-bottom: var(--vertical-1);
 
-  h3 {
+  p {
     margin-bottom: var(--vertical-6);
+    font-weight: bold;
   }
 }
 
