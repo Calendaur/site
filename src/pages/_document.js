@@ -7,7 +7,7 @@ class CustomDocument extends Document {
       <html lang="ru" prefix="og: https://ogp.me/ns#">
         <Head />
         <body>
-          {/* <noscript>
+          <noscript>
             <div>
               <img
                 src="https://mc.yandex.ru/watch/65614006"
@@ -15,7 +15,7 @@ class CustomDocument extends Document {
                 alt=""
               />
             </div>
-          </noscript> */}
+          </noscript>
           <Main />
           <NextScript />
         </body>

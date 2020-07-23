@@ -59,7 +59,7 @@ function Release({
       </div>
       <div className={styles.Cover}>
         <div className={styles.Gradient}></div>
-        <img loading="lazy" src={cover} alt={title} />
+        <img loading="lazy" className="lazyload" data-src={cover} alt={title} />
       </div>
       <h1 className={styles.Title}>{title}</h1>
       {original_title && (

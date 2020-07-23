@@ -4,7 +4,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 
 const devProxy = {
   '/api': {
-    target: 'https://api.calendaur.com/api/',
+    target: 'https://api.released.at/api/',
     pathRewrite: { '^/api': '/' },
     changeOrigin: true,
   },

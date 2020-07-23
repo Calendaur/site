@@ -1,4 +1,5 @@
 import '../components/base.css'
+import 'lazysizes'
 
 import React, { useMemo } from 'react'
 import App from 'next/app'

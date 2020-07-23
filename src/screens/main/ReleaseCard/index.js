@@ -1,6 +1,5 @@
 import React from 'react'
 import Link from 'next/link'
-import { animated } from 'react-spring'
 
 import styles from './styles.module.css'
 
@@ -39,40 +38,20 @@ function Info({ release, type }) {
   }
 }
 
-function ReleaseCard({ release, transitionProps, type }) {
-  if (!transitionProps) {
-    return (
-      <Link href="/release/[id]" as={`/release/${release.release_id}`}>
-        <a
-          className={styles.Release}
-          style={{
-            backgroundImage: `url(${release.cover})`,
-          }}
-        >
-          <div className={styles.Info}>
-            <p>{release.title}</p>
-            <Info release={release} type={type} />
-          </div>
-        </a>
-      </Link>
-    )
-  }
-
+function ReleaseCard({ release, type }) {
   return (
     <Link href="/release/[id]" as={`/release/${release.release_id}`}>
-      <animated.a
-        href={`/release/${release.release_id}`}
-        className={styles.Release}
-        style={{
-          backgroundImage: `url(${release.cover})`,
-          ...transitionProps,
-        }}
-      >
+      <a className={styles.Release}>
+        <img
+          data-src={release.cover}
+          alt={release.title}
+          className="lazyload"
+        />
         <div className={styles.Info}>
           <p>{release.title}</p>
           <Info release={release} type={type} />
         </div>
-      </animated.a>
+      </a>
     </Link>
   )
 }

@@ -1,53 +1,16 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
-import { useDrag } from 'react-use-gesture'
 import ReleaseTypeChooser from './ReleaseTypeChooser'
 import CalendarHeader from './CalendarHeader'
 import Calendar from './Calendar'
-import { getNextAndPrevDate } from '../../core/url'
 
 import styles from './styles.module.css'
 
 function MainPage({ parsedURL, releases, meta }) {
   const { year, month, type } = parsedURL
 
-  const { prevMonth, prevYear, nextMonth, nextYear } = getNextAndPrevDate(
-    month.jsNumber,
-    year,
-  )
-
-  const prevLink = `/${type}/${prevMonth.eng}-${prevYear}`
-  const nextLink = `/${type}/${nextMonth.eng}-${nextYear}`
-
-  const { push } = useRouter()
-
-  function toNext() {
-    push(`/${type}/[date]`, nextLink)
-  }
-  function toPrev() {
-    push(`/${type}/[date]`, prevLink)
-  }
-
-  const bind = useDrag(
-    ({ down, direction: [xDir], distance, cancel }) => {
-      if (window.innerWidth > 1120) return
-
-      if (down && distance > window.innerWidth / 4) {
-        if (xDir <= 0 && nextYear > 2030) return
-
-        if (xDir >= 0 && prevYear < 2020) return
-
-        const swipeRoute = xDir > 0 ? toPrev() : toNext()
-
-        cancel(swipeRoute)
-      }
-    },
-    { axis: 'x' },
-  )
-
   return (
-    <div {...bind()} className={styles.Wrapper}>
+    <div className={styles.Wrapper}>
       <Head>
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://released.at" />
@@ -72,18 +35,16 @@ function MainPage({ parsedURL, releases, meta }) {
         <link rel="image_src" href="https://released.at/images/banner.jpg" />
         <title>{meta.title}</title>
       </Head>
-      <Fragment key={`${type}-${month.eng}-${year}`}>
-        <div className={styles.FilterBar}>
-          <ReleaseTypeChooser type={type} month={month} year={year} />
-        </div>
-        <CalendarHeader />
-        <Calendar
-          type={type}
-          month={month.jsNumber}
-          year={year}
-          releases={releases}
-        />
-      </Fragment>
+      <div className={styles.FilterBar}>
+        <ReleaseTypeChooser type={type} month={month} year={year} />
+      </div>
+      <CalendarHeader />
+      <Calendar
+        type={type}
+        month={month.jsNumber}
+        year={year}
+        releases={releases}
+      />
     </div>
   )
 }
