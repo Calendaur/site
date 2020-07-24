@@ -1,6 +1,6 @@
 .Release {
   position: relative;
-  display: inherit;
+  display: flex;
   width: 100%;
   overflow: hidden;
   cursor: pointer;
