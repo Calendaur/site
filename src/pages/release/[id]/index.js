@@ -15,23 +15,18 @@ function changeType(t) {
   }
 }
 
-ReleasePage.getInitialProps = async context => {
-  if (!context.query.id) {
-    return { error: 404 }
-  }
-
+export async function getServerSideProps({ params }) {
   try {
-    const result = await release(context.query.id)
+    const result = await release(params.id)
 
     return {
-      ...result,
-      type: changeType(result.type),
+      props: {
+        ...result,
+        type: changeType(result.type),
+      },
     }
   } catch (e) {
     console.error(e)
-    return {
-      error: 500,
-    }
   }
 }
 
