@@ -1,25 +1,34 @@
 import React from 'react'
-import { PlatformList } from '../../components'
+import styled from '@emotion/styled'
+import { PlatformList } from 'components'
 
-import styles from './styles.module.css'
+const MetaInfo = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--vertical-6);
+`
+
+const Label = styled.i`
+  margin-right: var(--horizontal-4);
+  color: var(--primary-text);
+`
+
+const Platforms = styled(PlatformList)`
+  margin: 0;
+`
 
 function ExtraInfo({ type, director, platforms, season }) {
   return (
-    <div className={styles.Meta}>
-      {type === 'films' && <i className={styles.Label}>Режиссер: {director}</i>}
+    <MetaInfo>
+      {type === 'films' && <Label>Режиссер: {director}</Label>}
       {type === 'games' && (
         <>
-          <i className={styles.Label}>Платформы:</i>
-          <div className={styles.Value}>
-            <PlatformList
-              className={styles.PlatformList}
-              platforms={platforms}
-            />
-          </div>
+          <Label>Платформы:</Label>
+          <Platforms platforms={platforms} />
         </>
       )}
-      {type === 'series' && <i className={styles.Label}>Сезон: {season}</i>}
-    </div>
+      {type === 'series' && <Label>Сезон: {season}</Label>}
+    </MetaInfo>
   )
 }
 

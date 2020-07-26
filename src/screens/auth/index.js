@@ -1,12 +1,24 @@
 import React, { useState, useContext } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import styled from '@emotion/styled'
 import { useFormik } from 'formik'
-import { Button, Input } from '../../components'
-import { UserContext } from '../../core/auth'
-import { sendConfirmCode, confirm } from '../../core/api'
+import { Button, Input } from 'components'
+import { UserContext } from 'core/auth'
+import { sendConfirmCode, confirm } from 'core/api'
 
-import styles from './styles.module.css'
+const Section = styled.section`
+  max-width: 560px;
+  margin: 0 auto;
+`
+
+const Title = styled.h1`
+  margin-bottom: var(--vertical-2);
+`
+
+const Field = styled(Input)`
+  margin-bottom: var(--vertical-4);
+`
 
 function Auth() {
   const [code, setCode] = useState(false)
@@ -52,13 +64,13 @@ function Auth() {
       <Head>
         <title>Авторизация</title>
       </Head>
-      <section className={styles.Section}>
-        <h1 className={styles.Title}>Войти</h1>
+      <Section>
+        <Title>Войти</Title>
         <div>
           <form onSubmit={handleSubmit}>
             {code ? (
               <>
-                <Input
+                <Field
                   id="code"
                   label="Код"
                   type="tel"
@@ -67,16 +79,15 @@ function Auth() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   placeholder="1234"
-                  className={styles.Input}
                   maxLength={4}
                 />
-                <Button isFullWidth isPrimary type="submit">
+                <Button fullWidth primary type="submit">
                   Подтвердить
                 </Button>
               </>
             ) : (
               <>
-                <Input
+                <Field
                   id="email"
                   label="Email"
                   type="email"
@@ -85,17 +96,16 @@ function Auth() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   placeholder="name@example.com"
-                  className={styles.Input}
                   error={errors.email && touched.email && errors.email}
                 />
-                <Button isFullWidth isPrimary type="submit">
+                <Button fullWidth primary type="submit">
                   Войти через почту
                 </Button>
               </>
             )}
           </form>
         </div>
-      </section>
+      </Section>
     </>
   )
 }

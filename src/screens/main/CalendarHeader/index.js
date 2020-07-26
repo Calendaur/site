@@ -1,8 +1,22 @@
 import React, { useContext, useMemo } from 'react'
-import Link from 'next/link'
-import { UrlDataContext } from '../../../core/urlDataContext'
+import styled from '@emotion/styled'
+import { A } from 'components'
+import { UrlDataContext } from 'core/urlDataContext'
 
-import styles from './styles.module.css'
+const Title = styled.h1`
+  margin-bottom: var(--vertical-5);
+
+  & > a {
+    opacity: 0.4;
+    transition: var(--transition);
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+`
+
+const currentYear = new Date().getFullYear()
 
 function CalendarHeader() {
   const {
@@ -17,7 +31,6 @@ function CalendarHeader() {
     nextLink,
   } = useContext(UrlDataContext)
   const isNotActual = !isCurrentMonth && !isNextMonth
-  const currentYear = new Date().getFullYear()
 
   const actualTypeText = useMemo(() => {
     if (type === 'films') return 'кино'
@@ -32,24 +45,20 @@ function CalendarHeader() {
 
   if (isNotActual)
     return (
-      <h1 className={styles.Title}>
-        {nonActualTypeText} за {month.rus} {year}
-      </h1>
+      <Title>
+        {nonActualTypeText} {month.rus} {year}
+      </Title>
     )
 
   return (
-    <h1 className={styles.Title}>
+    <Title>
       Новинки {actualTypeText} за {month.rus} {year === currentYear ? '' : year}{' '}
       {isCurrentMonth ? (
-        <Link {...nextLink}>
-          <a>{nextMonth.rus}&nbsp;→</a>
-        </Link>
+        <A {...nextLink}>{nextMonth.rus}&nbsp;→</A>
       ) : (
-        <Link {...prevLink}>
-          <a>←&nbsp;{prevMonth.rus}</a>
-        </Link>
+        <A {...prevLink}>←&nbsp;{prevMonth.rus}</A>
       )}
-    </h1>
+    </Title>
   )
 }
 

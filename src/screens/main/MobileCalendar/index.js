@@ -1,35 +1,79 @@
-import React from 'react'
+import React, { useMemo } from 'react'
+import styled from '@emotion/styled'
 import { compareAsc, format, parseISO } from 'date-fns'
 import ru from 'date-fns/locale/ru'
+import { groupBy } from 'core/helpers'
 import ReleaseCard from '../ReleaseCard'
-import { groupBy } from '../../../core/helpers'
 
-import styles from './styles.module.css'
+const Calendar = styled.div`
+  display: block;
+
+  @media (min-width: 1200px) {
+    display: none;
+  }
+`
+
+const Day = styled.div`
+  margin-bottom: var(--vertical-1);
+
+  & > p {
+    margin-bottom: var(--vertical-6);
+    font-weight: bold;
+  }
+`
+
+const Releases = styled.div`
+  display: grid;
+  grid-auto-rows: minmax(200px, 1fr);
+  grid-gap: 8px;
+
+  @media (min-width: 768px) and (max-width: 1201px) {
+    grid-auto-rows: minmax(400px, 1fr);
+  }
+
+  > * {
+    border-radius: 0;
+
+    &:first-child {
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+
+    &:last-child {
+      border-bottom-right-radius: 20px;
+      border-bottom-left-radius: 20px;
+    }
+  }
+`
 
 function MobileCalendar({ releases, type }) {
-  const data = releases.sort((a, b) =>
-    compareAsc(new Date(a.released), new Date(b.released)),
+  const data = useMemo(
+    () =>
+      groupBy('released')(
+        releases.sort((a, b) =>
+          compareAsc(new Date(a.released), new Date(b.released)),
+        ),
+      ),
+    [releases],
   )
 
-  const preparedReleases = groupBy('released')(data)
-
   return (
-    <div className={styles.MobileCalendar}>
-      {Object.keys(preparedReleases).map(date => (
-        <div className={styles.Day} key={`${type}-${date}`}>
+    <Calendar>
+      {Object.keys(data).map(date => (
+        <Day key={`${type}-${date}`}>
           <p>{format(parseISO(date), 'dd EEEEEE', { locale: ru })}</p>
-          <div className={styles.Releases}>
-            {preparedReleases[date].map(release => (
+          <Releases>
+            {data[date].map(release => (
               <ReleaseCard
                 type={type}
                 key={`${date}-${release.id}`}
                 release={release}
               />
             ))}
-          </div>
-        </div>
+          </Releases>
+        </Day>
       ))}
-    </div>
+    </Calendar>
   )
 }
 

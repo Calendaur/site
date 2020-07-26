@@ -1,29 +1,21 @@
-import Wrapper from './Wrapper'
-import Header from './Header'
-import MainPageContent from './MainPageContent'
-import PlatformList from './PlatformList'
-import TargetBlankA from './TargetBlankA'
-import Footer from './Footer'
-import Emoji from './Emoji'
+import A from './A'
 import Button from './Button'
-import Title from './Title'
-import Text from './Text'
-import Subtitle from './Subtitle'
-import Page from './Page'
+import Emoji from './Emoji'
+import GlobalStyles from './GlobalStyles'
 import Input from './Input'
+import Logo from './Logo'
+import Page from './Page'
+import PlatformList from './PlatformList'
+import ReleaseTypeChooser from './ReleaseTypeChooser'
 
 export {
-  Header,
-  PlatformList,
-  MainPageContent,
-  Footer,
-  Wrapper,
-  TargetBlankA,
-  Emoji,
+  A,
   Button,
-  Title,
-  Text,
-  Subtitle,
-  Page,
+  Emoji,
+  GlobalStyles,
   Input,
+  Logo,
+  Page,
+  PlatformList,
+  ReleaseTypeChooser,
 }

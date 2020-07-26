@@ -1,37 +1,78 @@
 import React from 'react'
-import cx from 'classnames'
-import { Button } from '../../components'
+import styled from '@emotion/styled'
+import { Button } from 'components'
 
-import styles from './styles.module.css'
+const Buttons = styled.div`
+  margin-bottom: calc(var(--vertical-2) - var(--horizontal-6));
+
+  & > p {
+    margin-bottom: var(--vertical-6);
+    color: var(--secondary-text);
+  }
+`
+
+const Services = styled.div`
+  margin: calc(var(--horizontal-6) * -1);
+`
+
+const Btn = styled(Button)`
+  margin: var(--horizontal-6);
+
+  &.amediateka {
+    background-color: var(--amediateka);
+  }
+
+  &.ivi {
+    background-color: var(--ivi);
+  }
+
+  &.kinopoisk-hd {
+    background-color: var(--kinopoisk-hd);
+  }
+
+  &.netflix {
+    background-color: var(--netflix);
+  }
+
+  &.okko {
+    background-color: var(--okko);
+  }
+
+  & > img {
+    height: 24px;
+  }
+`
 
 function StreamingServicesButtons({ type }) {
   if (type === 'games') return null
 
   return (
-    <div className={styles.StreamingServicesButtons}>
+    <Buttons>
       <p>Где смотреть:</p>
-      <div className={styles.StreamingServices}>
-        <Button
-          className={cx(styles.StreamingServicesButton, styles.Amediateka)}
-        >
-          <img src="/icons/streaming-services/amediateka.svg" alt="" />
-        </Button>
-        <Button className={cx(styles.StreamingServicesButton, styles.Ivi)}>
-          <img src="/icons/streaming-services/ivi.svg" alt="" />
-        </Button>
-        <Button
-          className={cx(styles.StreamingServicesButton, styles.KinopoiskHD)}
-        >
-          <img src="/icons/streaming-services/kinopoisk-hd.svg" alt="" />
-        </Button>
-        <Button className={cx(styles.StreamingServicesButton, styles.Netflix)}>
-          <img src="/icons/streaming-services/netflix.svg" alt="" />
-        </Button>
-        <Button className={cx(styles.StreamingServicesButton, styles.Okko)}>
-          <img src="/icons/streaming-services/okko.svg" alt="" />
-        </Button>
-      </div>
-    </div>
+      <Services>
+        <Btn className="amediateka">
+          <img
+            src="/icons/streaming-services/amediateka.svg"
+            alt="Amediateka"
+          />
+        </Btn>
+        <Btn className="ivi">
+          <img src="/icons/streaming-services/ivi.svg" alt="Ivi" />
+        </Btn>
+        <Btn className="kinopoisk-hd">
+          <img
+            src="/icons/streaming-services/kinopoisk-hd.svg"
+            alt="Kinopoisk HD"
+          />
+        </Btn>
+        <Btn className="netflix">
+          <img src="/icons/streaming-services/netflix.svg" alt="Netflix" />
+        </Btn>
+        <Btn className="okko">
+          <img src="/icons/streaming-services/okko.svg" alt="Okko" />
+        </Btn>
+      </Services>
+    </Buttons>
   )
 }
 

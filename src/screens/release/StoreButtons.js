@@ -1,7 +1,6 @@
 import React from 'react'
-import { Button } from '../../components'
-
-import styles from './styles.module.css'
+import styled from '@emotion/styled'
+import { Button } from 'components'
 
 const getStoreLinkContent = store => {
   switch (store.type) {
@@ -78,20 +77,41 @@ const getStoreLinkContent = store => {
   }
 }
 
+const Buttons = styled.div`
+  margin-bottom: calc(var(--vertical-2) - var(--horizontal-6));
+
+  & > p {
+    margin-bottom: var(--vertical-6);
+    color: var(--secondary-text);
+  }
+`
+
+const Stores = styled.div`
+  margin: calc(var(--horizontal-6) * -1);
+`
+
+const Btn = styled(Button)`
+  height: inherit;
+  margin: var(--horizontal-6);
+
+  & > img {
+    height: 24px;
+    margin-right: var(--horizontal-5);
+  }
+`
+
 const renderStores = stores =>
   stores.map(store => (
-    <Button
+    <Btn
       key={store.type}
       as="a"
       href={store.link}
-      className={styles.StoreButton}
       target="_blank"
+      rel="nofollow"
     >
       {getStoreLinkContent(store)}
-      {store.price && store.price !== '$0.00' && (
-        <span>&nbsp;[{store.price}]</span>
-      )}
-    </Button>
+      {store.price && store.price !== '$0.00' && <b>&nbsp;[{store.price}]</b>}
+    </Btn>
   ))
 
 function prepareStores(stores, rawgStores) {
@@ -114,10 +134,10 @@ function StoreButtons({ stores, rawgStores, type }) {
   if (!preparedStores.length) return null
 
   return (
-    <div className={styles.StoreButtons}>
+    <Buttons>
       <p>Где купить:</p>
-      <div className={styles.Stores}>{renderStores(preparedStores)}</div>
-    </div>
+      <Stores>{renderStores(preparedStores)}</Stores>
+    </Buttons>
   )
 }
 

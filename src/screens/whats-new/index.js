@@ -1,62 +1,97 @@
 import React from 'react'
 import Head from 'next/head'
-import { Emoji } from '../../components'
+import styled from '@emotion/styled'
+import { Emoji } from 'components'
 
-import styles from './styles.module.css'
+const Log = styled.article`
+  margin-bottom: var(--vertical-2);
+
+  & > ul {
+    padding: 0;
+    font-size: 1rem;
+    line-height: 1.2;
+    list-style-type: none;
+
+    @media (min-width: 768px) {
+      font-size: 1.375rem;
+      line-height: 1.6;
+    }
+
+    & > li {
+      margin-bottom: 12px;
+
+      & > img {
+        position: relative;
+        top: 4px;
+        width: 16px;
+        margin: 0 4px;
+
+        @media (min-width: 768px) {
+          top: 5px;
+          width: 22px;
+          margin: 0 8px;
+        }
+      }
+    }
+  }
+`
+
+const Title = styled.h2`
+  margin-bottom: var(--vertical-4);
+`
 
 function WhatsNew() {
   return (
     <>
       <Head>
-        <title>Что нового?</title>
+        <title>Новые фичи released.at</title>
       </Head>
-      <article className={styles.Log}>
+      <Log>
         <header>
-          <h2 className={styles.Title}>Июнь 2020</h2>
-          <ul>
-            <li>
-              ✓ Переработали стили, чтобы проект смотрелся целостно и аккуратно{' '}
-              <Emoji label="polish">💅</Emoji>
-            </li>
-            <li>
-              ✓ Переработали отображение календаря{' '}
-              <Emoji label="polish">💅</Emoji>
-            </li>
-            <li>
-              ✓ Добавили магазины для игр <Emoji label="feature">🎉</Emoji>
-            </li>
-          </ul>
+          <Title>Июнь 2020</Title>
         </header>
-      </article>
-      <article className={styles.Log}>
+        <ul>
+          <li>
+            ✓ Переработали стили, чтобы проект смотрелся целостно и аккуратно{' '}
+            <Emoji label="polish">💅</Emoji>
+          </li>
+          <li>
+            ✓ Переработали отображение календаря{' '}
+            <Emoji label="polish">💅</Emoji>
+          </li>
+          <li>
+            ✓ Добавили магазины для игр <Emoji label="feature">🎉</Emoji>
+          </li>
+        </ul>
+      </Log>
+      <Log>
         <header>
-          <h2 className={styles.Title}>Май 2020</h2>
-          <ul>
-            <li>
-              ✓ Исправили баги с переходами между страницами{' '}
-              <Emoji label="fix">🔨</Emoji>
-            </li>
-            <li>
-              ✓ Слегка переработали дизайн хэдэра и&nbsp;футэра{' '}
-              <Emoji label="polish">💅</Emoji>
-            </li>
-            <li>
-              ✓ Добавили трейлеры к&nbsp;релизам{' '}
-              <Emoji label="feature">🎉</Emoji>
-            </li>
-            <li>
-              ✓ Переработали дизайн страницы релиза{' '}
-              <Emoji label="polish">💅</Emoji>
-            </li>
-            <li>
-              ✓ Добавили иконки, которые показывают где вышел фильм
-              (в&nbsp;цифре <img src="/icons/digital.svg" alt="" /> или
-              в&nbsp;кинотеатре <img src="/icons/cinema.svg" alt="" />){' '}
-              <Emoji label="feature">🎉</Emoji>
-            </li>
-          </ul>
+          <Title>Май 2020</Title>
         </header>
-      </article>
+        <ul>
+          <li>
+            ✓ Исправили баги с переходами между страницами{' '}
+            <Emoji label="fix">🔨</Emoji>
+          </li>
+          <li>
+            ✓ Слегка переработали дизайн хэдэра и&nbsp;футэра{' '}
+            <Emoji label="polish">💅</Emoji>
+          </li>
+          <li>
+            ✓ Добавили трейлеры к&nbsp;релизам <Emoji label="feature">🎉</Emoji>
+          </li>
+          <li>
+            ✓ Переработали дизайн страницы релиза{' '}
+            <Emoji label="polish">💅</Emoji>
+          </li>
+          <li>
+            ✓ Добавили иконки, которые показывают где вышел фильм (в&nbsp;цифре{' '}
+            <img src="/icons/digital.svg" alt="" /> или в&nbsp;кинотеатре{' '}
+            <img src="/icons/cinema.svg" alt="" />){' '}
+            <Emoji label="feature">🎉</Emoji>
+          </li>
+        </ul>
+      </Log>
     </>
   )
 }

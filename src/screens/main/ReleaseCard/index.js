@@ -1,7 +1,7 @@
 import React from 'react'
-import Link from 'next/link'
-
-import styles from './styles.module.css'
+import styled from '@emotion/styled'
+import { A } from 'components'
+import Info from './Info'
 
 export function getPlatformIcon(platform) {
   switch (platform) {
@@ -18,40 +18,59 @@ export function getPlatformIcon(platform) {
   }
 }
 
-function Info({ release, type }) {
-  switch (type) {
-    case 'films':
-      return <p className={styles.Extra}>Реж. {release.director}</p>
-    case 'games':
-      return (
-        <ul className={styles.PlatformList}>
-          {release.platforms.map(platform => (
-            <li key={platform}>{getPlatformIcon(platform)}</li>
-          ))}
-        </ul>
-      )
-    case 'series':
-      return <p className={styles.Extra}>{release.season} сезон</p>
-    default:
-      return null
+const Card = styled(A)`
+  position: relative;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 14px;
+  will-change: transform, opacity;
+  transition: transform 0.3s;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
-}
+
+  @media (min-width: 768px) {
+    &:hover {
+      transform: translate(0, -4px);
+    }
+
+    &:active {
+      transform: translate(0, 0);
+    }
+  }
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.9) 100%
+    );
+  }
+`
 
 function ReleaseCard({ release, type }) {
   return (
-    <Link href="/release/[id]" as={`/release/${release.release_id}`}>
-      <a className={styles.Release}>
-        <img
-          data-src={release.cover}
-          alt={release.title}
-          className="lazyload"
-        />
-        <div className={styles.Info}>
-          <p>{release.title}</p>
-          <Info release={release} type={type} />
-        </div>
-      </a>
-    </Link>
+    <Card href="/release/[id]" as={`/release/${release.release_id}`}>
+      <img
+        data-src={release.cover}
+        alt={release.title}
+        className="lazyload"
+        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      />
+      <Info release={release} type={type} />
+    </Card>
   )
 }
 

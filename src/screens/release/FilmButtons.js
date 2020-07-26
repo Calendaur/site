@@ -1,18 +1,38 @@
 import React from 'react'
-import cx from 'classnames'
-import { Button } from '../../components'
+import styled from '@emotion/styled'
+import { Button } from 'components'
 
-import styles from './styles.module.css'
+const Buttons = styled.div`
+  margin-bottom: var(--vertical-4);
+
+  & > p {
+    margin-bottom: var(--vertical-6);
+    color: var(--secondary-text);
+  }
+
+  & > .kinopoisk {
+    margin-right: var(--horizontal-4);
+    background-color: var(--kinopoisk);
+
+    & > img {
+      filter: invert(1);
+    }
+  }
+
+  & > .imdb {
+    background-color: var(--imdb);
+  }
+`
 
 function FilmButtons({ kinopoisk, imdb, type }) {
   return type === 'films' || type === 'series' ? (
-    <div className={styles.FilmButtons}>
+    <Buttons>
       {(kinopoisk || imdb) && <p>Подробнее:</p>}
       {kinopoisk && (
         <Button
           as="a"
           href={kinopoisk}
-          className={cx(styles.Kinopoisk)}
+          className="kinopoisk"
           target="_blank"
           rel="nofollow"
         >
@@ -23,14 +43,14 @@ function FilmButtons({ kinopoisk, imdb, type }) {
         <Button
           as="a"
           href={imdb}
-          className={cx(styles.Imdb)}
+          className="imdb"
           target="_blank"
           rel="nofollow"
         >
           <img src="/icons/imdb.svg" alt="IMDB" />
         </Button>
       )}
-    </div>
+    </Buttons>
   ) : null
 }
 

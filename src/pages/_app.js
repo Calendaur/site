@@ -1,15 +1,16 @@
-import '../components/base.css'
 import 'lazysizes'
 
 import React, { useMemo } from 'react'
 import App from 'next/app'
+import { CacheProvider } from '@emotion/react'
+import { cache } from '@emotion/css'
 import nookies from 'nookies'
 import { isEqual, addMonths } from 'date-fns'
-import { Page } from '../components'
-import { me } from '../core/api'
-import { UserContext, useUser } from '../core/auth'
-import { UrlDataContext } from '../core/urlDataContext'
-import { getNextAndPrevDate } from '../core/url'
+import { Page, GlobalStyles } from 'components'
+import { UrlDataContext } from 'core/urlDataContext'
+import { me } from 'core/api'
+import { UserContext, useUser } from 'core/auth'
+import { getNextAndPrevDate } from 'core/url'
 
 function CustomApp({ Component, pageProps, user = null }) {
   const value = useUser(user)
@@ -57,13 +58,16 @@ function CustomApp({ Component, pageProps, user = null }) {
   }, [parsedURL])
 
   return (
-    <UserContext.Provider value={value}>
-      <UrlDataContext.Provider value={urlData}>
-        <Page>
-          <Component {...pageProps} />
-        </Page>
-      </UrlDataContext.Provider>
-    </UserContext.Provider>
+    <CacheProvider value={cache}>
+      {GlobalStyles}
+      <UserContext.Provider value={value}>
+        <UrlDataContext.Provider value={urlData}>
+          <Page>
+            <Component {...pageProps} />
+          </Page>
+        </UrlDataContext.Provider>
+      </UserContext.Provider>
+    </CacheProvider>
   )
 }
 
