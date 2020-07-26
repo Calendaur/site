@@ -19,7 +19,7 @@ function CustomApp({ Component, pageProps, router }) {
     <CacheProvider value={cache}>
       {GlobalStyles}
       <StoreProvider
-        initialStore={{
+        init={{
           me: pageProps.user,
           releasesPageData: releasesPages.has(router.route)
             ? getReleasesPageData(router.asPath)

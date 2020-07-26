@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
 import { useFormik } from 'formik'
 import { Button, Input } from 'components'
-import { StoreContext } from 'core/store'
+import { useDispatch } from 'core/store'
 import { sendConfirmCode, confirm } from 'core/api'
 
 const Section = styled.section`
@@ -23,7 +23,7 @@ const Field = styled(Input)`
 function Auth() {
   const [code, setCode] = useState(false)
   const { push } = useRouter()
-  const { dispatch } = useContext(StoreContext)
+  const dispatch = useDispatch()
 
   const {
     handleSubmit,

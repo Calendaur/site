@@ -1,19 +1,17 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
 import cx from 'classnames'
 import * as routes from 'core/routes'
 import { center, spaceBetween } from 'core/styles/shared'
-import { StoreContext } from 'core/store'
+import { useStore } from 'core/store'
 import Logo from './Logo'
 import A from './A'
 import Button from './Button'
 import MobileNavReleaseFilterBar from './MobileNavReleaseFilterBar'
 
 function Header({ className }) {
-  const {
-    store: { me },
-  } = useContext(StoreContext)
+  const { me } = useStore()
   const [visibleMobileNav, setVisibleMobileNav] = useState(false)
   const { push, events } = useRouter()
 

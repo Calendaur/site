@@ -1,9 +1,18 @@
-import React, { createContext, useReducer, useEffect } from 'react'
+import React, {
+  useReducer,
+  useContext,
+  createContext,
+  useEffect,
+  useMemo,
+} from 'react'
 
-export const StoreContext = createContext()
+const StoreStateContext = createContext()
+const StoreDispatchContext = createContext()
 
 function reducer(state, { type, payload }) {
   switch (type) {
+    case '@reinit':
+      return payload
     case 'releasesPageData/set':
       return {
         ...state,
@@ -40,20 +49,17 @@ function reducer(state, { type, payload }) {
   }
 }
 
-export const StoreProvider = ({ children, initialStore }) => {
-  const [store, dispatch] = useReducer(reducer, initialStore)
-
-  // Because releasesPageData set in _app.js
-  useEffect(() => {
-    dispatch({
-      type: 'releasesPageData/set',
-      payload: initialStore.releasesPageData,
-    })
-  }, [initialStore.releasesPageData])
+export const StoreProvider = ({ children, init }) => {
+  const [store, dispatch] = useReducer(reducer, init)
 
   return (
-    <StoreContext.Provider value={{ store, dispatch }}>
-      {children}
-    </StoreContext.Provider>
+    <StoreDispatchContext.Provider value={dispatch}>
+      <StoreStateContext.Provider value={store}>
+        {children}
+      </StoreStateContext.Provider>
+    </StoreDispatchContext.Provider>
   )
 }
+
+export const useStore = () => useContext(StoreStateContext)
+export const useDispatch = () => useContext(StoreDispatchContext)

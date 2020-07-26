@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
 import cx from 'classnames'
-import { StoreContext } from 'core/store'
+import { useStore } from 'core/store'
 import A from './A'
 
 const types = [
@@ -70,9 +70,7 @@ const MonthFilter = styled.div`
 `
 
 function MobileNavReleaseFilterBar() {
-  const {
-    store: { releasesPageData },
-  } = useContext(StoreContext)
+  const { releasesPageData } = useStore()
 
   if (!releasesPageData) return null
 

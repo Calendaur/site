@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
 import { A } from 'components'
-import { StoreContext } from 'core/store'
+import { useStore } from 'core/store'
 
 const Title = styled.h1`
   margin-bottom: var(--vertical-5);
@@ -19,9 +19,7 @@ const Title = styled.h1`
 const currentYear = new Date().getFullYear()
 
 function CalendarHeader() {
-  const {
-    store: { releasesPageData },
-  } = useContext(StoreContext)
+  const { releasesPageData } = useStore()
 
   if (!releasesPageData) return null
 
