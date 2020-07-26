@@ -1,10 +1,4 @@
-import React, {
-  useReducer,
-  useContext,
-  createContext,
-  useEffect,
-  useMemo,
-} from 'react'
+import React, { useReducer, useContext, createContext, useEffect } from 'react'
 
 const StoreStateContext = createContext()
 const StoreDispatchContext = createContext()
@@ -51,6 +45,10 @@ function reducer(state, { type, payload }) {
 
 export const StoreProvider = ({ children, init }) => {
   const [store, dispatch] = useReducer(reducer, init)
+
+  useEffect(() => {
+    dispatch({ type: 'releasesPageData/set', payload: init.releasesPageData })
+  }, [init.releasesPageData])
 
   return (
     <StoreDispatchContext.Provider value={dispatch}>
