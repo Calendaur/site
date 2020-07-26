@@ -276,6 +276,7 @@ const GlobalStyles = (
       .lazyload,
       .lazyloading {
         opacity: 0;
+        min-height: 100px;
       }
 
       .loading,
@@ -283,7 +284,7 @@ const GlobalStyles = (
       .lazyloaded,
       .image {
         opacity: 1;
-        transition: 2s cubic-bezier(0.215, 0.61, 0.355, 1);
+        transition: 1s cubic-bezier(0.215, 0.61, 0.355, 1);
       }
     `}
   />

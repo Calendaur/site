@@ -28,11 +28,29 @@ const Card = styled(A)`
   will-change: transform, opacity;
   transition: transform 0.3s;
 
-  img {
+  & > .aspectRatio {
+    position: relative;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center;
+
+    &::after {
+      content: '';
+      display: block;
+      height: 0;
+      width: 100%;
+      padding-bottom: 42.86%;
+    }
+
+    & > img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
   }
 
   @media (min-width: 768px) {
@@ -63,13 +81,14 @@ const Card = styled(A)`
 function ReleaseCard({ release, type }) {
   return (
     <Card href="/release/[id]" as={`/release/${release.release_id}`}>
-      <img
-        data-sizes="auto"
-        data-src={release.cover}
-        alt={release.title}
-        className="lazyload"
-        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-      />
+      <div className="aspectRatio">
+        <img
+          data-src={release.cover}
+          alt={release.title}
+          className="lazyload"
+          src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+        />
+      </div>
       <Info release={release} type={type} />
     </Card>
   )
