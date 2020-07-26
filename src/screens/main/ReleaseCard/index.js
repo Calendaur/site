@@ -64,6 +64,7 @@ function ReleaseCard({ release, type }) {
   return (
     <Card href="/release/[id]" as={`/release/${release.release_id}`}>
       <img
+        data-sizes="auto"
         data-src={release.cover}
         alt={release.title}
         className="lazyload"

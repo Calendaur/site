@@ -13,6 +13,7 @@ function Footer({ className }) {
             <img
               className="lazyload"
               data-src="/images/logo.png"
+              src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
               alt="released.at"
             />
           </a>

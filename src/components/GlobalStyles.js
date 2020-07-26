@@ -272,6 +272,19 @@ const GlobalStyles = (
         background-color: transparent;
         border: none;
       }
+
+      .lazyload,
+      .lazyloading {
+        opacity: 0;
+      }
+
+      .loading,
+      .lazyload,
+      .lazyloaded,
+      .image {
+        opacity: 1;
+        transition: 2s cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
     `}
   />
 )
