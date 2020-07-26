@@ -1,4 +1,5 @@
 import Router from 'next/router'
+import { isEqual, addMonths } from 'date-fns'
 
 export const months = [
   { eng: 'january', rus: 'январь', jsNumber: 0, calendarNumber: 1 },
@@ -120,5 +121,53 @@ export function getNextAndPrevDate(currentMonthJSNumber, currentYear) {
     nextYear,
     prevMonth: months[prevMonthIndex],
     prevYear,
+  }
+}
+
+export function getReleasesPageData(url) {
+  const parsedUrl =
+    url === '/'
+      ? {
+          type: 'films',
+          month: months[new Date().getMonth()],
+          year: new Date().getFullYear(),
+        }
+      : parseUrl(url)
+
+  const { type, month, year } = parsedUrl
+
+  const { prevMonth, prevYear, nextMonth, nextYear } = getNextAndPrevDate(
+    month.jsNumber,
+    year,
+  )
+
+  const prevLink = {
+    href: `/${type}/[date]`,
+    as: `/${type}/${prevMonth.eng}-${prevYear}`,
+  }
+  const nextLink = {
+    href: `/${type}/[date]`,
+    as: `/${type}/${nextMonth.eng}-${nextYear}`,
+  }
+
+  const currentYear = new Date().getFullYear()
+  const currentMonth = new Date().getMonth()
+
+  return {
+    type,
+    month,
+    year,
+    prevLink,
+    nextLink,
+    nextMonth,
+    prevMonth,
+    isCurrentMonth: isEqual(
+      new Date(currentYear, currentMonth, 1),
+      new Date(year, month.jsNumber, 1),
+    ),
+    isNextMonth: isEqual(
+      addMonths(new Date(currentYear, currentMonth, 1), 1),
+      new Date(year, month.jsNumber, 1),
+    ),
   }
 }

@@ -1,9 +1,11 @@
-import React, { createContext, useReducer } from 'react'
+import React, { createContext, useReducer, useEffect } from 'react'
 
 export const StoreContext = createContext()
 
 function reducer(state, { type, payload }) {
   switch (type) {
+    case '@reinit':
+      return payload
     case 'me/set':
       return {
         ...state,
@@ -37,6 +39,10 @@ function reducer(state, { type, payload }) {
 
 export const StoreProvider = ({ children, initialStore }) => {
   const [store, dispatch] = useReducer(reducer, initialStore)
+
+  useEffect(() => {
+    dispatch({ type: '@reinit', payload: initialStore })
+  }, [initialStore])
 
   return (
     <StoreContext.Provider value={{ store, dispatch }}>
