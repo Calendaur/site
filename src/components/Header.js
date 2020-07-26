@@ -40,7 +40,7 @@ function Header({ className }) {
       <header aria-label="header" className={cx(className, 'desktop-header')}>
         <Logo />
         <nav>
-          <A href={routes.WHATS_NEW}>Что нового?</A>
+          <A href={routes.WHATS_NEW}>Новости проекта</A>
           <A href={routes.ARCHIVE}>Вышедшее</A>
           {me ? (
             <Button
@@ -89,7 +89,7 @@ function Header({ className }) {
             <div className="nav-links">
               <A href={routes.HOME}>На главную</A>
               <A href={routes.ARCHIVE}>Вышедшие релизы</A>
-              <A href={routes.WHATS_NEW}>Обновления сайта</A>
+              <A href={routes.WHATS_NEW}>Новости проекта</A>
             </div>
             <div className="auth-links">
               {me ? (
