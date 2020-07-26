@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
 import { useFormik } from 'formik'
 import { Button, Input } from 'components'
-import { UserContext } from 'core/auth'
+import { StoreContext } from 'core/store'
 import { sendConfirmCode, confirm } from 'core/api'
 
 const Section = styled.section`
@@ -23,7 +23,7 @@ const Field = styled(Input)`
 function Auth() {
   const [code, setCode] = useState(false)
   const { push } = useRouter()
-  const { updateUser } = useContext(UserContext)
+  const { dispatch } = useContext(StoreContext)
 
   const {
     handleSubmit,
@@ -52,7 +52,7 @@ function Auth() {
         setCode(true)
       } else {
         const { current_user } = await confirm(values.email, values.code)
-        updateUser(current_user)
+        dispatch({ type: 'me/set', payload: current_user })
         push('/me')
       }
     },

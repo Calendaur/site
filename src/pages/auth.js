@@ -1,3 +1,4 @@
-import AuthScreen from '../screens/auth'
+import AuthScreen from 'screens/auth'
+import withMe from 'core/withMe'
 
-export default AuthScreen
+export default withMe(AuthScreen)

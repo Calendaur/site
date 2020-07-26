@@ -1,6 +1,7 @@
 import smoothscroll from 'smoothscroll-polyfill'
-import ReleasePage from '../../../screens/release'
-import { release } from '../../../core/api'
+import ReleasePage from 'screens/release'
+import { release } from 'core/api'
+import withMe from 'core/withMe'
 
 if (typeof window !== 'undefined') smoothscroll.polyfill()
 
@@ -35,4 +36,4 @@ ReleasePage.getInitialProps = async context => {
   }
 }
 
-export default ReleasePage
+export default withMe(ReleasePage)

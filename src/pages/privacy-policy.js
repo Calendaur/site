@@ -1,3 +1,4 @@
-import PrivacyPolicyPage from '../screens/policy'
+import PrivacyPolicyPage from 'screens/policy'
+import withMe from 'core/withMe'
 
-export default PrivacyPolicyPage
+export default withMe(PrivacyPolicyPage)

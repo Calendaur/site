@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import styled from '@emotion/styled'
 import cx from 'classnames'
-import { UrlDataContext } from 'core/urlDataContext'
+import { StoreContext } from 'core/store'
 import A from './A'
 
 const types = [
@@ -70,9 +70,11 @@ const MonthFilter = styled.div`
 `
 
 function MobileNavReleaseFilterBar() {
-  const urlData = useContext(UrlDataContext)
+  const {
+    store: { releasesPageData },
+  } = useContext(StoreContext)
 
-  if (!urlData) return null
+  if (!releasesPageData) return null
 
   const {
     type,
@@ -84,7 +86,7 @@ function MobileNavReleaseFilterBar() {
     nextLink,
     prevMonth,
     nextMonth,
-  } = urlData
+  } = releasesPageData
 
   return (
     <FilterBar>
@@ -105,7 +107,7 @@ function MobileNavReleaseFilterBar() {
       </TypeFilter>
       <MonthFilter>
         {isNextMonth && <A {...prevLink}>← {prevMonth.rus}</A>}
-        <div>{urlData.month.rus}</div>
+        <div>{month.rus}</div>
         {isCurrentMonth && <A {...nextLink}>{nextMonth.rus} →</A>}
       </MonthFilter>
     </FilterBar>

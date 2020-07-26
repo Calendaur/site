@@ -1,3 +1,4 @@
-import ArchiveScreen from '../screens/archive'
+import ArchiveScreen from 'screens/archive'
+import withMe from 'core/withMe'
 
-export default ArchiveScreen
+export default withMe(ArchiveScreen)

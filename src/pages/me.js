@@ -1,6 +1,7 @@
 import React from 'react'
-import MeScreenComponent from '../screens/me'
-import { release } from '../core/api'
+import MeScreenComponent from 'screens/me'
+import { release } from 'core/api'
+import withMe from 'core/withMe'
 
 const MePage = props => <MeScreenComponent {...props} />
 
@@ -23,4 +24,4 @@ MePage.getInitialProps = async () => {
   }
 }
 
-export default MePage
+export default withMe(MePage)

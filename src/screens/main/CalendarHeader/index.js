@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react'
 import styled from '@emotion/styled'
 import { A } from 'components'
-import { UrlDataContext } from 'core/urlDataContext'
+import { StoreContext } from 'core/store'
 
 const Title = styled.h1`
   margin-bottom: var(--vertical-5);
@@ -19,6 +19,7 @@ const Title = styled.h1`
 const currentYear = new Date().getFullYear()
 
 function CalendarHeader() {
+  const { store } = useContext(StoreContext)
   const {
     month,
     year,
@@ -29,7 +30,7 @@ function CalendarHeader() {
     prevMonth,
     prevLink,
     nextLink,
-  } = useContext(UrlDataContext)
+  } = store.releasesPageData
   const isNotActual = !isCurrentMonth && !isNextMonth
 
   const actualTypeText = useMemo(() => {

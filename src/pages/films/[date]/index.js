@@ -1,8 +1,9 @@
 import React from 'react'
-import ReleasesScreenComponent from '../../../screens/main'
-import { parseUrl } from '../../../core/url'
-import { releases } from '../../../core/api'
-import { pages } from '../../../core/meta'
+import ReleasesScreenComponent from 'screens/main'
+import { parseUrl } from 'core/url'
+import { releases } from 'core/api'
+import { pages } from 'core/meta'
+import withMe from 'core/withMe'
 
 const FilmPage = props => <ReleasesScreenComponent {...props} />
 
@@ -35,4 +36,4 @@ FilmPage.getInitialProps = async context => {
   }
 }
 
-export default FilmPage
+export default withMe(FilmPage)

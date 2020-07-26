@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
 import cx from 'classnames'
 import * as routes from 'core/routes'
 import { center, spaceBetween } from 'core/styles/shared'
+import { StoreContext } from 'core/store'
 import Logo from './Logo'
 import A from './A'
 import Button from './Button'
 import MobileNavReleaseFilterBar from './MobileNavReleaseFilterBar'
 
 function Header({ className }) {
+  const {
+    store: { me },
+  } = useContext(StoreContext)
   const [visibleMobileNav, setVisibleMobileNav] = useState(false)
   const { push, events } = useRouter()
-  const user = null
 
   function closeMobileNav() {
     setVisibleMobileNav(false)
@@ -41,14 +44,14 @@ function Header({ className }) {
         <nav>
           <A href={routes.WHATS_NEW}>Что нового?</A>
           <A href={routes.ARCHIVE}>Вышедшее</A>
-          {user ? (
+          {me ? (
             <Button
               primary
               onClick={() => {
                 push(routes.ME)
               }}
             >
-              {user.email.split('@')[0]}
+              {me.email.split('@')[0]}
             </Button>
           ) : (
             <>
@@ -91,9 +94,9 @@ function Header({ className }) {
               <A href={routes.WHATS_NEW}>Обновления сайта</A>
             </div>
             <div className="auth-links">
-              {user ? (
+              {me ? (
                 <A href={routes.ME} className="gradient">
-                  {user.email.split('@')[0]}
+                  {me.email.split('@')[0]}
                 </A>
               ) : (
                 <>

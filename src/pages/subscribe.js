@@ -1,3 +1,4 @@
-import SubscribePage from '../screens/subscribe'
+import SubscribePage from 'screens/subscribe'
+import withMe from 'core/withMe'
 
-export default SubscribePage
+export default withMe(SubscribePage)

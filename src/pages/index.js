@@ -1,12 +1,13 @@
 import React from 'react'
-import ReleasesScreenComponent from '../screens/main'
-import { months } from '../core/url'
-import { homePageReleases } from '../core/api'
-import { pages } from '../core/meta'
+import ReleasesScreenComponent from 'screens/main'
+import { months } from 'core/url'
+import { homePageReleases } from 'core/api'
+import { pages } from 'core/meta'
+import withMe from 'core/withMe'
 
 const MainPage = props => <ReleasesScreenComponent {...props} />
 
-MainPage.getInitialProps = async () => {
+MainPage.getInitialProps = async ctx => {
   try {
     const currentMonth = new Date().getMonth() + 1
     const currentYear = new Date().getFullYear()
@@ -30,4 +31,4 @@ MainPage.getInitialProps = async () => {
   }
 }
 
-export default MainPage
+export default withMe(MainPage)

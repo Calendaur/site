@@ -1,25 +1,18 @@
 import 'lazysizes'
 
 import React, { useMemo } from 'react'
-import App from 'next/app'
 import { CacheProvider } from '@emotion/react'
 import { cache } from '@emotion/css'
-import nookies from 'nookies'
 import { isEqual, addMonths } from 'date-fns'
 import { Page, GlobalStyles } from 'components'
-import { UrlDataContext } from 'core/urlDataContext'
-import { me } from 'core/api'
-import { UserContext, useUser } from 'core/auth'
+import { StoreProvider } from 'core/store'
 import { getNextAndPrevDate } from 'core/url'
 
-function CustomApp({ Component, pageProps, user = null }) {
-  const value = useUser(user)
-  const { parsedURL } = pageProps
-
+function CustomApp({ Component, pageProps, ...rest }) {
   const urlData = useMemo(() => {
-    if (!parsedURL) return null
+    if (!pageProps.parsedURL) return null
 
-    const { type, month, year } = parsedURL
+    const { type, month, year } = pageProps.parsedURL
 
     const { prevMonth, prevYear, nextMonth, nextYear } = getNextAndPrevDate(
       month.jsNumber,
@@ -55,37 +48,23 @@ function CustomApp({ Component, pageProps, user = null }) {
         new Date(year, month.jsNumber, 1),
       ),
     }
-  }, [parsedURL])
+  }, [pageProps.parsedURL])
 
   return (
     <CacheProvider value={cache}>
       {GlobalStyles}
-      <UserContext.Provider value={value}>
-        <UrlDataContext.Provider value={urlData}>
-          <Page>
-            <Component {...pageProps} />
-          </Page>
-        </UrlDataContext.Provider>
-      </UserContext.Provider>
+      <StoreProvider
+        initialStore={{
+          me: pageProps.user,
+          releasesPageData: urlData,
+        }}
+      >
+        <Page>
+          <Component {...pageProps} />
+        </Page>
+      </StoreProvider>
     </CacheProvider>
   )
-}
-
-CustomApp.getInitialProps = async appContext => {
-  const appProps = await App.getInitialProps(appContext)
-  const { jwt_token: token } = nookies.get(appContext.ctx)
-
-  if (!token) {
-    return { ...appProps }
-  }
-
-  try {
-    const { current_user } = await me(token)
-    return { ...appProps, user: current_user }
-  } catch (e) {
-    console.error(e)
-    return { ...appProps }
-  }
 }
 
 export default CustomApp
