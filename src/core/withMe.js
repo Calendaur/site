@@ -1,6 +1,10 @@
 import React, { PureComponent } from 'react'
 import nookies from 'nookies'
 import { me } from 'core/api'
+import { redirect } from 'core/url'
+import { AUTH, ME } from 'core/routes'
+
+const protectedPages = new Set([ME])
 
 const withMe = Page => {
   return class PageWithUser extends PureComponent {
@@ -10,13 +14,19 @@ const withMe = Page => {
         : {}
 
       const { jwt_token: token } = nookies.get(ctx)
-      let user
+      let user = null
 
-      try {
-        const { current_user } = await me(token)
-        user = current_user
-      } catch (e) {
-        user = null
+      if (token) {
+        try {
+          const { current_user } = await me(token)
+          user = current_user
+        } catch (e) {
+          console.error(e)
+        }
+      }
+
+      if (!user && protectedPages.has(ctx.asPath)) {
+        redirect(ctx, AUTH)
       }
 
       return {

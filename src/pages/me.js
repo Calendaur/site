@@ -5,7 +5,7 @@ import withMe from 'core/withMe'
 
 const MePage = props => <MeScreenComponent {...props} />
 
-MePage.getInitialProps = async () => {
+MePage.getInitialProps = async ctx => {
   try {
     const film = await release('159')
     const game = await release('18175')
