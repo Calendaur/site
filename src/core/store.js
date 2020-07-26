@@ -4,8 +4,11 @@ export const StoreContext = createContext()
 
 function reducer(state, { type, payload }) {
   switch (type) {
-    case '@reinit':
-      return payload
+    case 'releasesPageData/set':
+      return {
+        ...state,
+        releasesPageData: payload,
+      }
     case 'me/set':
       return {
         ...state,
@@ -40,9 +43,13 @@ function reducer(state, { type, payload }) {
 export const StoreProvider = ({ children, initialStore }) => {
   const [store, dispatch] = useReducer(reducer, initialStore)
 
+  // Because releasesPageData set in _app.js
   useEffect(() => {
-    dispatch({ type: '@reinit', payload: initialStore })
-  }, [initialStore])
+    dispatch({
+      type: 'releasesPageData/set',
+      payload: initialStore.releasesPageData,
+    })
+  }, [initialStore.releasesPageData])
 
   return (
     <StoreContext.Provider value={{ store, dispatch }}>
