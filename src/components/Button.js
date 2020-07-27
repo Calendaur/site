@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
+import isPropValid from '@emotion/is-prop-valid'
 
 function Button({
   children,
@@ -17,7 +18,7 @@ function Button({
   )
 }
 
-const Styled = styled(Button)`
+const base = css`
   -webkit-appearance: none;
   position: relative;
   display: inline-flex;
@@ -55,31 +56,35 @@ const Styled = styled(Button)`
   &:focus:not(:active) {
     box-shadow: 0 0 0 0.125em rgba(245, 245, 245, 0.25);
   }
+`
 
-  ${props =>
-    props.primary &&
-    css`
-      color: var(--primary-text);
-      background-color: var(--blue);
+const primary = css`
+  color: var(--primary-text);
+  background-color: var(--blue);
 
-      &:hover {
-        background-color: var(--blue-hover);
-      }
+  &:hover {
+    background-color: var(--blue-hover);
+  }
 
-      &:active {
-        background-color: var(--blue-active);
-      }
+  &:active {
+    background-color: var(--blue-active);
+  }
 
-      &:focus:not(:active) {
-        box-shadow: 0 0 0 0.125em rgba(66, 135, 245, 0.25);
-      }
-    `}
+  &:focus:not(:active) {
+    box-shadow: 0 0 0 0.125em rgba(66, 135, 245, 0.25);
+  }
+`
 
-  ${props =>
-    props.fullWidth &&
-    css`
-      width: 100%;
-    `}
+const fullWidth = css`
+  width: 100%;
+`
+
+const Styled = styled(Button, {
+  shouldForwardProp: isPropValid,
+})`
+  ${base}
+  ${props => props.primary && primary}
+  ${props => props.fullWidth && fullWidth}
 `
 
 export default Styled
