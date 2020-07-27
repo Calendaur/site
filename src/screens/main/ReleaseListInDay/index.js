@@ -17,16 +17,20 @@ const Releases = styled.div`
     }
 
     & > * {
+      --br: 20px;
+
       border-radius: 0;
+      overflow: hidden;
+      mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
 
       &:first-child {
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
+        border-top-left-radius: var(--br);
+        border-top-right-radius: var(--br);
       }
 
       &:last-child {
-        border-bottom-right-radius: 20px;
-        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: var(--br);
+        border-bottom-left-radius: var(--br);
       }
     }
   }
