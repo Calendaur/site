@@ -20,7 +20,7 @@ const monthsForAPI = {
 const currentMonth = new Date().getMonth() + 1
 const currentYear = new Date().getFullYear()
 
-const endpoints = {
+export const endpoints = {
   HOMEPAGE_RELEASED: `${API_URL}/movies?date=${currentMonth}-${currentYear}`,
   RELEASES: (type, date) => {
     const [month, year] = date.split('-')
@@ -63,3 +63,27 @@ export const me = token =>
       Authorization: token,
     },
   })
+
+export async function fetcher(...args) {
+  try {
+    const response = await fetch(...args)
+
+    // if the server replies, there's always some data in json
+    // if there's a network error, it will throw at the previous line
+    const data = await response.json()
+
+    if (response.ok) {
+      return data
+    }
+
+    const error = new Error(response.statusText)
+    error.response = response
+    error.data = data
+    throw error
+  } catch (error) {
+    if (!error.data) {
+      error.data = { message: error.message }
+    }
+    throw error
+  }
+}
