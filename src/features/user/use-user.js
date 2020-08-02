@@ -11,9 +11,17 @@ export function useUser() {
     fetchWithToken,
   )
 
+  if (!token) {
+    return {
+      user: undefined,
+      isLoading: undefined,
+      isError: true,
+    }
+  }
+
   return {
     user: data && data.current_user,
     isLoading: !error && !data,
-    isError: !token || error,
+    isError: error,
   }
 }
