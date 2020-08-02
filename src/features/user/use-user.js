@@ -14,6 +14,6 @@ export function useUser() {
   return {
     user: data && data.current_user,
     isLoading: !error && !data,
-    isError: error,
+    isError: !token || error,
   }
 }
