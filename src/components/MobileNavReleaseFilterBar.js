@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import cx from 'classnames'
-import { useStore } from 'core/store'
+import { usePageData } from 'features/releases/page-data'
 import A from './A'
 
 const types = [
@@ -70,9 +70,9 @@ const MonthFilter = styled.div`
 `
 
 function MobileNavReleaseFilterBar() {
-  const { releasesPageData } = useStore()
+  const data = usePageData()
 
-  if (!releasesPageData) return null
+  if (!data) return null
 
   const {
     type,
@@ -84,7 +84,7 @@ function MobileNavReleaseFilterBar() {
     nextLink,
     prevMonth,
     nextMonth,
-  } = releasesPageData
+  } = data
 
   return (
     <FilterBar>

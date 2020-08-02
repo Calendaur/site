@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
-import { mutate } from 'swr'
 import { useFormik } from 'formik'
-import { Button, Input } from 'components'
-import { endpoints } from 'core/api'
+import Cookies from 'js-cookie'
+import { sendConfirmCode, confirm } from 'core/api'
 import { ME } from 'core/routes'
+import Button from './Button'
+import Input from './Input'
 
 const EMAIL_REGEXP = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
 
@@ -23,6 +24,18 @@ const INITIAL_VALUES = {
   email: '',
   code: '',
 }
+
+const Form = styled.form`
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+`
+
+const Field = styled(Input)`
+  margin-bottom: var(--vertical-4);
+`
+
+const Error = styled.p``
 
 function AuthForm({ buttonTitle }) {
   const [currentField, setCurrentField] = useState(FIELDS.EMAIL)
@@ -52,12 +65,14 @@ function AuthForm({ buttonTitle }) {
       if (currentField === FIELDS.CODE && values.code.length !== 4) {
         errors.code = VALIDATE_ERRORS.CODE
       }
+
+      return errors
     },
     onSubmit: async values => {
       switch (currentField) {
         case FIELDS.EMAIL: {
           try {
-            await mutate(values.email)
+            await sendConfirmCode(values.email)
             clearError()
             setCurrentField(FIELDS.CODE)
           } catch (e) {
@@ -69,16 +84,8 @@ function AuthForm({ buttonTitle }) {
         }
         case FIELDS.CODE: {
           try {
-            const { current_user: me } = await mutate(
-              endpoints.TOKENS,
-              {
-                email: values.email,
-                otp: values.code,
-              },
-              false,
-            )
-            mutate(endpoints.PROFILE, me)
-            clearError()
+            const { token } = await confirm(values.email, values.code)
+            Cookies.set('authorization', token, { expires: 365 })
             push(ME)
           } catch (e) {
             console.error(e)
@@ -92,7 +99,7 @@ function AuthForm({ buttonTitle }) {
   })
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       {currentField === FIELDS.EMAIL && (
         <Field
           id="email"
@@ -124,14 +131,8 @@ function AuthForm({ buttonTitle }) {
         {currentField === FIELDS.CODE && 'Подтвердить'}
       </Button>
       {error && <Error>{error}</Error>}
-    </form>
+    </Form>
   )
 }
-
-const Field = styled(Input)`
-  margin-bottom: var(--vertical-4);
-`
-
-const Error = styled.p``
 
 export default AuthForm

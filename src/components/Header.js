@@ -4,16 +4,13 @@ import styled from '@emotion/styled'
 import cx from 'classnames'
 import * as routes from 'core/routes'
 import { center, spaceBetween } from 'core/styles/shared'
-import { useStore } from 'core/store'
-import Logo from './Logo'
-import A from './A'
-import Button from './Button'
+import { Logo, A } from 'components'
 import MobileNavReleaseFilterBar from './MobileNavReleaseFilterBar'
+import { DesktopAuthButtons, MobileAuthButtons } from './AuthButtons'
 
 function Header({ className }) {
-  const { me } = useStore()
   const [visibleMobileNav, setVisibleMobileNav] = useState(false)
-  const { push, events } = useRouter()
+  const { events } = useRouter()
 
   function closeMobileNav() {
     setVisibleMobileNav(false)
@@ -42,28 +39,7 @@ function Header({ className }) {
         <nav>
           <A href={routes.WHATS_NEW}>Новости проекта</A>
           <A href={routes.ARCHIVE}>Вышедшее</A>
-          {me ? (
-            <Button
-              primary
-              onClick={() => {
-                push(routes.ME)
-              }}
-            >
-              {me.email.split('@')[0]}
-            </Button>
-          ) : (
-            <>
-              <A href={routes.AUTH}>Вход</A>
-              <Button
-                primary
-                onClick={() => {
-                  push(routes.AUTH)
-                }}
-              >
-                Регистрация
-              </Button>
-            </>
-          )}
+          <DesktopAuthButtons />
         </nav>
       </header>
       <header aria-label="header" className={cx(className, 'mobile-header')}>
@@ -92,18 +68,7 @@ function Header({ className }) {
               <A href={routes.WHATS_NEW}>Новости проекта</A>
             </div>
             <div className="auth-links">
-              {me ? (
-                <A href={routes.ME} className="gradient">
-                  {me.email.split('@')[0]}
-                </A>
-              ) : (
-                <>
-                  <A href={routes.AUTH}>Вход</A>
-                  <A href={routes.AUTH} className="gradient">
-                    Регистрация
-                  </A>
-                </>
-              )}
+              <MobileAuthButtons />
             </div>
             <MobileNavReleaseFilterBar />
           </nav>

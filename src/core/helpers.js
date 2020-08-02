@@ -91,3 +91,13 @@ export async function fetchJSON(input, init = {}) {
   })
   return parse(response)
 }
+
+export async function fetchWithToken(input, token) {
+  const response = await fetch(input, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token,
+    },
+  })
+  return parse(response)
+}

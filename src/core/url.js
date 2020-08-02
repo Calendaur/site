@@ -1,5 +1,5 @@
 import Router from 'next/router'
-import { isEqual, addMonths } from 'date-fns'
+import { isEqual, addMonths, eachMonthOfInterval, format } from 'date-fns'
 
 export const months = [
   { eng: 'january', rus: 'январь', jsNumber: 0, calendarNumber: 1 },
@@ -124,16 +124,7 @@ export function getNextAndPrevDate(currentMonthJSNumber, currentYear) {
   }
 }
 
-export function getReleasesPageData(url) {
-  const parsedUrl =
-    url === '/'
-      ? {
-          type: 'films',
-          month: months[new Date().getMonth()],
-          year: new Date().getFullYear(),
-        }
-      : parseUrl(url)
-
+export function getReleasesPageData(parsedUrl) {
   const { type, month, year } = parsedUrl
 
   const { prevMonth, prevYear, nextMonth, nextYear } = getNextAndPrevDate(
@@ -170,4 +161,14 @@ export function getReleasesPageData(url) {
       new Date(year, month.jsNumber, 1),
     ),
   }
+}
+
+export function generateReleasesPages() {
+  const startDate = new Date(2020, 0, 1)
+  const endDate = addMonths(new Date(), 2)
+  const dates = eachMonthOfInterval({ start: startDate, end: endDate })
+
+  return dates.map(date => ({
+    params: { date: format(date, 'LLLL-yyyy').toLowerCase() },
+  }))
 }

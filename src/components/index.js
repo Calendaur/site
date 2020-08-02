@@ -1,4 +1,5 @@
 import A from './A'
+import AuthForm from './AuthForm'
 import Button from './Button'
 import Emoji from './Emoji'
 import GlobalStyles from './GlobalStyles'
@@ -10,6 +11,7 @@ import ReleaseTypeChooser from './ReleaseTypeChooser'
 
 export {
   A,
+  AuthForm,
   Button,
   Emoji,
   GlobalStyles,

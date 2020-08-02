@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { A } from 'components'
-import { useStore } from 'core/store'
+import { usePageData } from 'features/releases/page-data'
 
 const Title = styled.h1`
   margin-bottom: var(--vertical-5);
@@ -19,9 +19,9 @@ const Title = styled.h1`
 const currentYear = new Date().getFullYear()
 
 function CalendarHeader() {
-  const { releasesPageData } = useStore()
+  const data = usePageData()
 
-  if (!releasesPageData) return null
+  if (!data) return null
 
   const {
     month,
@@ -33,7 +33,7 @@ function CalendarHeader() {
     prevMonth,
     prevLink,
     nextLink,
-  } = releasesPageData
+  } = data
   const isNotActual = !isCurrentMonth && !isNextMonth
 
   const actualTypeText = () => {
