@@ -1,8 +1,8 @@
 import React from 'react'
 import Head from 'next/head'
 import styled from '@emotion/styled'
-import { Button } from 'components'
-import Card from '../main/ReleaseCard'
+import Card from 'screens/main/ReleaseCard'
+import { useUser } from 'features/user/use-user'
 
 const Settings = styled.section`
   margin-bottom: var(--vertical-1);
@@ -68,122 +68,44 @@ const Grid = styled.div`
   }
 `
 
-function Me({ film, game, series }) {
+function Me({ user: ssrUser }) {
+  const { user } = useUser(ssrUser)
+
+  if (!user) return null
+
   return (
     <>
       <Head>
         <title>Личный кабинет</title>
       </Head>
-      <section>
-        <p>
-          Ниже вы&nbsp;можете увидеть пример того, как будет выглядеть личный
-          кабинет, когда мы&nbsp;закончим над ним работу. Если у&nbsp;вас есть
-          предложения по&nbsp;функционалу, то&nbsp;можете написать&nbsp;нам
-          на&nbsp;почту{' '}
-          <a
-            style={{ textDecoration: 'underline' }}
-            href="mailto:support@released.at"
-          >
-            support@released.at
-          </a>
-        </p>
-      </section>
-      <Settings>
-        <h2>Настройте календарь под себя</h2>
-        <SettingsItem>
-          <p>Выберите типы релизов:</p>
-          <Buttons>
-            <Button>Кино</Button>
-            <Button>Игры</Button>
-            <Button>Сериалы</Button>
-          </Buttons>
-        </SettingsItem>
-        <SettingsItem>
-          <p>Выберите игровые платформы:</p>
-          <Buttons>
-            <Button>PC</Button>
-            <Button>PlayStation 4</Button>
-            <Button>Xbox One</Button>
-            <Button>Nintendo Switch</Button>
-          </Buttons>
-        </SettingsItem>
-        <SettingsItem>
-          <p>Выберите стриминговые сервисы:</p>
-          <Buttons>
-            <Button>Netflix</Button>
-            <Button>Okko</Button>
-            <Button>Amediateka</Button>
-            <Button>Ivi</Button>
-            <Button>Kinopoisk HD</Button>
-          </Buttons>
-        </SettingsItem>
-      </Settings>
       <ExpectedReleases>
         <h3>Ожидаемые релизы</h3>
         <Note>
           Чтобы добавить релиз в этот список, откройте его карточку и нажмите
-          <span>Ожидаю</span>
+          <span>Жду</span>
         </Note>
         <ReleasesSection>
           <h3>Кино</h3>
           <Grid>
-            <Card type={'films'} release={film} />
-            <Card type={'films'} release={film} />
-            <Card type={'films'} release={film} />
-            <Card type={'films'} release={film} />
+            {user.extensions.movies.map(film => (
+              <Card type="films" release={film} />
+            ))}
           </Grid>
         </ReleasesSection>
         <ReleasesSection>
           <h3>Игры</h3>
           <Grid>
-            <Card type={'games'} release={game} />
-            <Card type={'games'} release={game} />
-            <Card type={'games'} release={game} />
-            <Card type={'games'} release={game} />
+            {user.extensions.games.map(game => (
+              <Card type="games" release={game} />
+            ))}
           </Grid>
         </ReleasesSection>
         <ReleasesSection>
           <h3>Сериалы</h3>
           <Grid>
-            <Card type={'series'} release={series} />
-            <Card type={'series'} release={series} />
-            <Card type={'series'} release={series} />
-            <Card type={'series'} release={series} />
-          </Grid>
-        </ReleasesSection>
-      </ExpectedReleases>
-      <ExpectedReleases>
-        <h2>Просмотрено / пройдено</h2>
-        <Note>
-          Чтобы добавить релиз в этот список, откройте его карточку и нажмите
-          <span>Просмотрено (для фильмов и сериалов)</span>
-          <span>Пройдено (для игр)</span>
-        </Note>
-        <ReleasesSection>
-          <h3>Кино</h3>
-          <Grid>
-            <Card type={'films'} release={film} />
-            <Card type={'films'} release={film} />
-            <Card type={'films'} release={film} />
-            <Card type={'films'} release={film} />
-          </Grid>
-        </ReleasesSection>
-        <ReleasesSection>
-          <h3>Игры</h3>
-          <Grid>
-            <Card type={'games'} release={game} />
-            <Card type={'games'} release={game} />
-            <Card type={'games'} release={game} />
-            <Card type={'games'} release={game} />
-          </Grid>
-        </ReleasesSection>
-        <ReleasesSection>
-          <h3>Сериалы</h3>
-          <Grid>
-            <Card type={'series'} release={series} />
-            <Card type={'series'} release={series} />
-            <Card type={'series'} release={series} />
-            <Card type={'series'} release={series} />
+            {user.extensions.serials.map(series => (
+              <Card type="series" release={series} />
+            ))}
           </Grid>
         </ReleasesSection>
       </ExpectedReleases>

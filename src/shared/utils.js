@@ -1,3 +1,5 @@
+import Router from 'next/router'
+
 async function parse(response) {
   if (response.status === 204 || response.statusText === 'No Content') {
     return
@@ -25,4 +27,13 @@ export async function fetchWithToken(input, token) {
     },
   })
   return parse(response)
+}
+
+export function redirect(ctx, to) {
+  if (ctx.res) {
+    ctx.res.writeHead(303, { Location: to })
+    ctx.res.end()
+  } else {
+    Router.replace(to)
+  }
 }

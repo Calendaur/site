@@ -1,25 +1,28 @@
 import React from 'react'
+import { parseCookies } from 'nookies'
 import MeScreenComponent from 'screens/me'
-import { release } from 'core/api'
+import { fetchWithToken, redirect } from 'shared/utils'
+import { endpoints, routes } from 'shared/constants'
 
 const MePage = props => <MeScreenComponent {...props} />
 
 MePage.getInitialProps = async ctx => {
   try {
-    const film = await release('159')
-    const game = await release('18175')
-    const series = await release('18115')
+    const { authorization: token } = parseCookies(ctx)
+    if (!token) {
+      redirect(ctx, routes.SIGN_UP)
+      return {}
+    }
+
+    const user = await fetchWithToken(endpoints.PROFILE, token)
 
     return {
-      film: { ...film, release_id: '159' },
-      game: { ...game, release_id: '18175' },
-      series: { ...series, release_id: '18115' },
+      user,
     }
   } catch (e) {
     console.error(e)
-    return {
-      error: 500,
-    }
+    redirect(ctx, routes.SIGN_UP)
+    return {}
   }
 }
 

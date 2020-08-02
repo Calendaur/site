@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie'
 import { fetchJSON } from './helpers'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL + '/api'
@@ -31,6 +32,7 @@ export const endpoints = {
   USERS: `${API_URL}/users`,
   TOKENS: `${API_URL}/tokens`,
   PROFILE: `${API_URL}/profile`,
+  EXPECT: id => `${API_URL}/releases/${id}/expect`,
 }
 
 /* Releases */
@@ -41,6 +43,13 @@ export const releases = (type, date) =>
   fetchJSON(endpoints.RELEASES(type, date))
 export const release = id => fetchJSON(endpoints.RELEASE(id))
 export const now = () => fetchJSON(endpoints.NOW)
+export const expect = id =>
+  fetchJSON(endpoints.EXPECT(id), {
+    method: 'post',
+    headers: {
+      Authorization: Cookies.get('authorization'),
+    },
+  })
 
 /* Auth */
 export const sendConfirmCode = email =>
@@ -63,27 +72,3 @@ export const me = token =>
       Authorization: token,
     },
   })
-
-export async function fetcher(...args) {
-  try {
-    const response = await fetch(...args)
-
-    // if the server replies, there's always some data in json
-    // if there's a network error, it will throw at the previous line
-    const data = await response.json()
-
-    if (response.ok) {
-      return data
-    }
-
-    const error = new Error(response.statusText)
-    error.response = response
-    error.data = data
-    throw error
-  } catch (error) {
-    if (!error.data) {
-      error.data = { message: error.message }
-    }
-    throw error
-  }
-}

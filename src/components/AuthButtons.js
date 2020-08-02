@@ -36,7 +36,7 @@ export function DesktopAuthButtons() {
         push(routes.ME)
       }}
     >
-      {user.email.split('@')[0]}
+      {user.current_user.email.split('@')[0]}
     </Button>
   )
 }
@@ -59,7 +59,7 @@ export function MobileAuthButtons() {
 
   return (
     <A href={routes.ME} className="gradient">
-      {user.email.split('@')[0]}
+      {user.current_user.email.split('@')[0]}
     </A>
   )
 }

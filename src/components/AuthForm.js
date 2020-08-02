@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
-import { mutate } from 'swr'
 import { useFormik } from 'formik'
 import Cookies from 'js-cookie'
 import { sendConfirmCode, confirm } from 'core/api'
 import { ME } from 'core/routes'
-import { endpoints } from 'shared/constants'
-import { fetchWithToken } from 'shared/utils'
 import Button from './Button'
 import Input from './Input'
 

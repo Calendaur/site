@@ -3,11 +3,12 @@ import Cookies from 'js-cookie'
 import { endpoints } from 'shared/constants'
 import { fetchWithToken } from 'shared/utils'
 
-export function useUser() {
+export function useUser(initial) {
   const token = Cookies.get('authorization')
-  const { data, error } = useSWR(
+  const { data, error, mutate } = useSWR(
     token ? [endpoints.PROFILE, token] : null,
     fetchWithToken,
+    initial ? { initialData: initial } : undefined,
   )
 
   if (!token) {
@@ -19,8 +20,9 @@ export function useUser() {
   }
 
   return {
-    user: data && data.current_user,
+    user: data,
     isLoading: !error && !data,
     isError: error,
+    mutateUser: mutate,
   }
 }
