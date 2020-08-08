@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
 import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
-import { Button } from 'components'
+import { Button, ExpectButton } from 'components'
 import { getRusReleaseType } from 'core/helpers'
 import Head from './Head'
 import ExtraInfo from './ExtraInfo'
@@ -97,12 +97,19 @@ const Gradient = styled.div`
 `
 
 const Title = styled.h1`
+  display: inline-flex;
+  align-items: center;
   margin-bottom: var(--vertical-6);
+
+  button {
+    margin-left: 20px;
+  }
 `
 
 const OriginalTitle = styled.h2`
   margin-bottom: var(--vertical-5);
   color: var(--secondary-text);
+  font-size: 1.5rem;
 `
 
 const Description = styled.div`
@@ -184,6 +191,7 @@ function Release({
   stores,
   original_title,
   rawg_io_fields,
+  id,
 }) {
   const { query } = useRouter()
   const url = `https://released.at/release/${query.id}`
@@ -219,7 +227,10 @@ function Release({
           alt={title}
         />
       </Cover>
-      <Title>{title}</Title>
+      <Title>
+        {title}{' '}
+        <ExpectButton release={{ released, release_id: query.id, id }} />
+      </Title>
       {original_title && <OriginalTitle>{original_title}</OriginalTitle>}
       <Description>
         <Data>

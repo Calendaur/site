@@ -1,12 +1,8 @@
 import React from 'react'
-import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
 import { format, compareAsc } from 'date-fns'
 import ru from 'date-fns/locale/ru'
-import { A, Button } from 'components'
-import { expect } from 'core/api'
-import { useUser } from 'features/user/use-user'
-import { routes } from 'shared/constants'
+import { A, ExpectButton } from 'components'
 import Info from './Info'
 
 export function getPlatformIcon(platform) {
@@ -92,14 +88,11 @@ const Card = styled(A)`
   }
 `
 
-const Expect = styled(Button)`
+const Expect = styled(ExpectButton)`
   position: absolute;
   top: 8px;
   right: 8px;
   z-index: 999;
-  height: 30px;
-  font-size: 14px;
-  border-radius: 24px;
   opacity: 1;
 
   @media (min-width: 1200px) {
@@ -125,97 +118,7 @@ const Released = styled.div`
 `
 
 function ReleaseCard({ release, type, showDate = false }) {
-  const { push } = useRouter()
-  const { user, mutateUser } = useUser()
-  const expectation =
-    user &&
-    new Set(
-      Object.values(user.extensions)
-        .flat()
-        .map(r => r.id),
-    )
-  const isExpected = user ? expectation.has(release.id) : false
   const isActual = compareAsc(new Date(), new Date(release.released)) <= 0
-
-  function renderExpectBtn() {
-    if (isActual) {
-      return isExpected ? (
-        <Expect
-          onClick={async e => {
-            e.preventDefault()
-            e.stopPropagation()
-
-            await expect(release.release_id)
-            mutateUser()
-          }}
-        >
-          Не жду&nbsp;
-          <span role="img" aria-label="thumbs-down">
-            👎
-          </span>
-        </Expect>
-      ) : (
-        <Expect
-          primary
-          onClick={async e => {
-            e.preventDefault()
-            e.stopPropagation()
-
-            if (!user) {
-              push(routes.SIGN_UP)
-              return
-            }
-
-            await expect(release.release_id)
-            mutateUser()
-          }}
-        >
-          Жду&nbsp;
-          <span role="img" aria-label="star">
-            🌟
-          </span>
-        </Expect>
-      )
-    }
-
-    return isExpected ? (
-      <Expect
-        onClick={async e => {
-          e.preventDefault()
-          e.stopPropagation()
-
-          await expect(release.release_id)
-          mutateUser()
-        }}
-      >
-        Удалить&nbsp;
-        <span role="img" aria-label="cross">
-          ❌
-        </span>
-      </Expect>
-    ) : (
-      <Expect
-        primary
-        onClick={async e => {
-          e.preventDefault()
-          e.stopPropagation()
-
-          if (!user) {
-            push(routes.SIGN_UP)
-            return
-          }
-
-          await expect(release.release_id)
-          mutateUser()
-        }}
-      >
-        В закладки&nbsp;
-        <span role="img" aria-label="bookmark">
-          🔖
-        </span>
-      </Expect>
-    )
-  }
 
   return (
     <Card
@@ -228,7 +131,7 @@ function ReleaseCard({ release, type, showDate = false }) {
           {format(new Date(release.released), 'd MMM', { locale: ru })}
         </Released>
       )}
-      {renderExpectBtn()}
+      <Expect release={release} />
       <div className="aspectRatio">
         <img
           data-src={release.cover}
