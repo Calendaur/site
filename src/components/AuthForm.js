@@ -38,6 +38,8 @@ const POSTERS = [
   '/images/dark.jpg',
 ]
 
+const POSTER_IMG = POSTERS[getRandomNum()]
+
 function AuthForm({ buttonTitle, type }) {
   const [currentField, setCurrentField] = useState(FIELDS.EMAIL)
   const [error, setError] = useState(null)
@@ -102,14 +104,14 @@ function AuthForm({ buttonTitle, type }) {
   return (
     <>
       <Cover>
-        <img src={POSTERS[getRandomNum()]} alt="" />
+        <img src={POSTER_IMG} alt="" />
       </Cover>
       <Center>
         <Form onSubmit={handleSubmit}>
           {type === 'registration' ? (
             <p>
               Мы&nbsp;не&nbsp;храним ваши пароли ни&nbsp;в&nbsp;каком виде
-              из&nbsp; соображений безопасности. Поэтому для регистрации просто
+              из&nbsp;соображений безопасности. Поэтому для регистрации просто
               введите ваш email, на&nbsp;который придет короткий одноразовый
               код. Введя его, вы&nbsp;попадёте в&nbsp;личный кабинет.
               <br />
