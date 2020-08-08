@@ -24,5 +24,12 @@
     "env": {
       "NEXT_PUBLIC_API_URL": "@api_url"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "http://**",
+      "destination": "https: //**",
+      "statusCode": 301
+    }
+  ]
 }
