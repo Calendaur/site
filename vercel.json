@@ -28,7 +28,7 @@
   "redirects": [
     {
       "source": "http://**",
-      "destination": "https: //**",
+      "destination": "https://**",
       "statusCode": 301
     }
   ]
