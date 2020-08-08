@@ -88,7 +88,7 @@ function Me({ user: ssrUser }) {
           <h3>Кино</h3>
           <Grid>
             {user.extensions.movies.map(film => (
-              <Card type="films" release={film} />
+              <Card showDate type="films" release={film} />
             ))}
           </Grid>
         </ReleasesSection>
@@ -96,7 +96,7 @@ function Me({ user: ssrUser }) {
           <h3>Игры</h3>
           <Grid>
             {user.extensions.games.map(game => (
-              <Card type="games" release={game} />
+              <Card showDate type="games" release={game} />
             ))}
           </Grid>
         </ReleasesSection>
@@ -104,7 +104,7 @@ function Me({ user: ssrUser }) {
           <h3>Сериалы</h3>
           <Grid>
             {user.extensions.serials.map(series => (
-              <Card type="series" release={series} />
+              <Card showDate type="series" release={series} />
             ))}
           </Grid>
         </ReleasesSection>

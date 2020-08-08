@@ -1,6 +1,8 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
+import { format } from 'date-fns'
+import ru from 'date-fns/locale/ru'
 import { A, Button } from 'components'
 import { expect } from 'core/api'
 import { useUser } from 'features/user/use-user'
@@ -61,7 +63,8 @@ const Card = styled(A)`
     &:hover {
       transform: translate(0, -4px);
 
-      & > button {
+      & > button,
+      .released-date {
         transform: translate(0, 4px);
         opacity: 1;
       }
@@ -102,7 +105,24 @@ const Expect = styled(Button)`
   }
 `
 
-function ReleaseCard({ release, type }) {
+const Released = styled.div`
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: inline-flex;
+  padding: 0 10px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 30px;
+  border-radius: 24px;
+  background-color: var(--white-color);
+  color: var(--black-color);
+  z-index: 1;
+  white-space: nowrap;
+  transition: var(--animation-time);
+`
+
+function ReleaseCard({ release, type, showDate = false }) {
   const { push } = useRouter()
   const { user, mutateUser } = useUser()
   const expectation =
@@ -116,6 +136,11 @@ function ReleaseCard({ release, type }) {
 
   return (
     <Card href="/release/[id]" as={`/release/${release.release_id}`}>
+      {showDate && (
+        <Released className="released-date">
+          {format(new Date(release.released), 'd MMM', { locale: ru })}
+        </Released>
+      )}
       {isExpected ? (
         <Expect
           onClick={async e => {

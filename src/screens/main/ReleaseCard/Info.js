@@ -13,9 +13,13 @@ const Wrapper = styled.div`
     margin: 0;
     margin-bottom: 4px;
     font-size: 0.9rem;
-    font-weight: 500;
+    font-weight: normal;
     line-height: 1.2;
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+
+    &:first-child {
+      font-weight: 600;
+    }
   }
 `
 

@@ -161,7 +161,7 @@ const Donate = styled.div`
     align-items: center;
     justify-content: center;
     padding: 0.46875rem 1rem;
-    font-weight: 500;
+    font-weight: 600;
     border-radius: 25px;
     background-color: var(--blue);
 

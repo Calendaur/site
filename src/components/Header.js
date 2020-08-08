@@ -184,7 +184,7 @@ const StyledHeader = styled(Header)`
       & > .auth-links {
         & > a {
           flex: 1;
-          font-weight: 500;
+          font-weight: 600;
           text-align: center;
 
           &.gradient {

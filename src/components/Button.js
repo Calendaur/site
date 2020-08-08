@@ -31,7 +31,7 @@ const base = css`
   padding-left: 1em;
   font-family: inherit;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.5;
   color: rgba(0, 0, 0, 0.7);
   text-align: center;

@@ -96,13 +96,6 @@ const DateLabel = styled.div`
     color: var(--white-color);
     background-color: var(--blue);
   }
-
-  & > span {
-    position: relative;
-    width: 30px;
-    height: 18px;
-    text-align: center;
-  }
 `
 
 function Calendar({ type, month, year, releases }) {
