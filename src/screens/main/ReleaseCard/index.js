@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
-import { format } from 'date-fns'
+import { format, compareAsc } from 'date-fns'
 import ru from 'date-fns/locale/ru'
 import { A, Button } from 'components'
 import { expect } from 'core/api'
@@ -38,6 +38,8 @@ const Card = styled(A)`
     position: relative;
     width: 100%;
     height: 100%;
+    opacity: ${props => (props.isActual ? '1' : '0.34')};
+    filter: ${props => (props.isActual ? 'unset' : 'grayscale(10%)')};
 
     &::after {
       content: '';
@@ -133,15 +135,11 @@ function ReleaseCard({ release, type, showDate = false }) {
         .map(r => r.id),
     )
   const isExpected = user ? expectation.has(release.id) : false
+  const isActual = compareAsc(new Date(), new Date(release.released)) <= 0
 
-  return (
-    <Card href="/release/[id]" as={`/release/${release.release_id}`}>
-      {showDate && (
-        <Released className="released-date">
-          {format(new Date(release.released), 'd MMM', { locale: ru })}
-        </Released>
-      )}
-      {isExpected ? (
+  function renderExpectBtn() {
+    if (isActual) {
+      return isExpected ? (
         <Expect
           onClick={async e => {
             e.preventDefault()
@@ -177,7 +175,60 @@ function ReleaseCard({ release, type, showDate = false }) {
             🌟
           </span>
         </Expect>
+      )
+    }
+
+    return isExpected ? (
+      <Expect
+        onClick={async e => {
+          e.preventDefault()
+          e.stopPropagation()
+
+          await expect(release.release_id)
+          mutateUser()
+        }}
+      >
+        Удалить&nbsp;
+        <span role="img" aria-label="cross">
+          ❌
+        </span>
+      </Expect>
+    ) : (
+      <Expect
+        primary
+        onClick={async e => {
+          e.preventDefault()
+          e.stopPropagation()
+
+          if (!user) {
+            push(routes.SIGN_UP)
+            return
+          }
+
+          await expect(release.release_id)
+          mutateUser()
+        }}
+      >
+        В закладки&nbsp;
+        <span role="img" aria-label="bookmark">
+          🔖
+        </span>
+      </Expect>
+    )
+  }
+
+  return (
+    <Card
+      href="/release/[id]"
+      as={`/release/${release.release_id}`}
+      isActual={isActual}
+    >
+      {showDate && (
+        <Released className="released-date">
+          {format(new Date(release.released), 'd MMM', { locale: ru })}
+        </Released>
       )}
+      {renderExpectBtn()}
       <div className="aspectRatio">
         <img
           data-src={release.cover}
