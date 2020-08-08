@@ -83,6 +83,7 @@ function ExpectButton({ className, release }) {
 const StyledExpectButton = styled(ExpectButton)`
   height: 30px;
   font-size: 14px;
+  line-height: 30px;
   border-radius: 24px;
 `
 

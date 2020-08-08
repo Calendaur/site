@@ -32,7 +32,7 @@ const base = css`
   font-family: inherit;
   font-size: 1rem;
   font-weight: 600;
-  line-height: 1.5;
+  line-height: 2.5em;
   color: rgba(0, 0, 0, 0.7);
   text-align: center;
   white-space: nowrap;
