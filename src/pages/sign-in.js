@@ -8,9 +8,7 @@ function SignInPage() {
       <Head>
         <title>Войти в аккаунт released.at</title>
       </Head>
-      <div>
-        <AuthForm buttonTitle="Войти" />
-      </div>
+      <AuthForm buttonTitle="Войти" type="login" />
     </>
   )
 }

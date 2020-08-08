@@ -8,9 +8,7 @@ function SignUpPage() {
       <Head>
         <title>Зарегистрироваться на released.at</title>
       </Head>
-      <div>
-        <AuthForm buttonTitle="Зарегистрироваться" />
-      </div>
+      <AuthForm buttonTitle="Зарегистрироваться" type="registration" />
     </>
   )
 }

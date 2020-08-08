@@ -80,6 +80,7 @@ function Header({ className }) {
 
 const StyledHeader = styled(Header)`
   &.desktop-header {
+    z-index: 1;
     display: none;
 
     @media (min-width: 768px) {
@@ -113,6 +114,7 @@ const StyledHeader = styled(Header)`
   &.mobile-header {
     --gradient: linear-gradient(90deg, var(--light-blue), var(--blue));
 
+    z-index: 1;
     display: block;
 
     & .logo {
