@@ -24,14 +24,5 @@
     "env": {
       "NEXT_PUBLIC_API_URL": "@api_url"
     }
-  },
-  "routes": [
-    {
-      "src": "/(.*)",
-      "status": 301,
-      "headers": {
-        "Location": "https://released.at/$1"
-      }
-    }
-  ]
+  }
 }
