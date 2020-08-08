@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { format, compareAsc } from 'date-fns'
+import { format } from 'date-fns'
 import ru from 'date-fns/locale/ru'
 import { A, ExpectButton } from 'components'
 import Info from './Info'
@@ -34,8 +34,6 @@ const Card = styled(A)`
     position: relative;
     width: 100%;
     height: 100%;
-    opacity: ${props => (props.isActual ? '1' : '0.34')};
-    filter: ${props => (props.isActual ? 'unset' : 'grayscale(10%)')};
 
     &::after {
       content: '';
@@ -118,14 +116,8 @@ const Released = styled.div`
 `
 
 function ReleaseCard({ release, type, showDate = false }) {
-  const isActual = compareAsc(new Date(), new Date(release.released)) <= 0
-
   return (
-    <Card
-      href="/release/[id]"
-      as={`/release/${release.release_id}`}
-      isActual={isActual}
-    >
+    <Card href="/release/[id]" as={`/release/${release.release_id}`}>
       {showDate && (
         <Released className="released-date">
           {format(new Date(release.released), 'd MMM', { locale: ru })}
