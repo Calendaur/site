@@ -220,6 +220,7 @@ function Release({
       <Cover>
         <Gradient />
         <img
+          crossOrigin="anonymous"
           loading="lazy"
           className="lazyload"
           src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
