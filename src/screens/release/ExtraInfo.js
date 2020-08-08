@@ -8,7 +8,7 @@ const MetaInfo = styled.div`
   margin-bottom: var(--vertical-6);
 `
 
-const Label = styled.i`
+const Label = styled.p`
   margin-right: var(--horizontal-4);
   color: var(--primary-text);
 `

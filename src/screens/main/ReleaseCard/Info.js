@@ -20,13 +20,17 @@ const Wrapper = styled.div`
     &:first-child {
       font-weight: 600;
     }
+
+    &:last-child {
+      font-style: italic;
+      font-size: 0.7rem;
+    }
   }
 `
 
 const Extra = styled.p`
   margin-bottom: 0;
   font-size: 0.75rem;
-  font-style: italic;
   font-weight: normal;
   text-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
 `

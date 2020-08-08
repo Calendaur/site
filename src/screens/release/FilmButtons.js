@@ -17,10 +17,34 @@ const Buttons = styled.div`
     & > img {
       filter: invert(1);
     }
+
+    &:hover {
+      background-color: #e65c00;
+    }
+
+    &:active {
+      background-color: #cc5200;
+    }
+
+    &:focus:not(:active) {
+      box-shadow: 0 0 0 0.125em rgba(255, 102, 0, 0.25);
+    }
   }
 
   & > .imdb {
     background-color: var(--imdb);
+
+    &:hover {
+      background-color: #e9b90a;
+    }
+
+    &:active {
+      background-color: #d1a609;
+    }
+
+    &:focus:not(:active) {
+      box-shadow: 0 0 0 0.125em rgba(245, 197, 24, 0.25);
+    }
   }
 `
 
