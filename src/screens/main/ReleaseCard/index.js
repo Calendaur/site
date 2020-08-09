@@ -129,8 +129,7 @@ function ReleaseCard({ release, type, showDate = false }) {
           data-src={release.cover}
           alt={release.title}
           className="lazyload"
-          crossOrigin="anonymous"
-          src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+          src={release.cover}
         />
       </div>
       <Info release={release} type={type} />
