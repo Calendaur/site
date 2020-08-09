@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import styled from '@emotion/styled'
-import { Emoji, A } from 'components'
+import { Emoji, A, Button } from 'components'
 import { routes } from 'shared/constants'
 
 function WhatsNew() {
@@ -12,15 +12,17 @@ function WhatsNew() {
       </Head>
       <Donate>
         <p>Поддержите проект материально и ускорьте его развитие</p>
-        <a
+        <Button
+          as="a"
           href="https://www.patreon.com/bePatron?u=40325871"
           data-patreon-widget-type="become-patron-button"
           target="_blank"
           rel="noopener noreferrer"
+          primary
         >
           <img src="/icons/patreon.svg" alt="Patreon" />
           Поддержать
-        </a>
+        </Button>
         <script
           async
           src="https://c6.patreon.com/becomePatronButton.bundle.js"
@@ -157,26 +159,6 @@ const Donate = styled.div`
   }
 
   a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.46875rem 1rem;
-    font-weight: 600;
-    border-radius: 25px;
-    background-color: var(--blue);
-
-    &:hover {
-      background-color: var(--blue-hover);
-    }
-
-    &:active {
-      background-color: var(--blue-active);
-    }
-
-    &:focus:not(:active) {
-      box-shadow: 0 0 0 0.125em rgba(66, 135, 245, 0.25);
-    }
-
     img {
       width: 16px;
       height: 16px;

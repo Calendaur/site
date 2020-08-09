@@ -39,7 +39,7 @@ function ExpectButton({ className, release }) {
 
   if (isActual) {
     return (
-      <Button className={className} primary={!isExpected} onClick={onClick}>
+      <Button className={className} primary onClick={onClick}>
         {isExpected ? (
           <>
             Не жду&nbsp;
@@ -60,21 +60,11 @@ function ExpectButton({ className, release }) {
   }
 
   return (
-    <Button className={className} primary={!isExpected} onClick={onClick}>
+    <Button className={className + ' non-actual'} primary onClick={onClick}>
       {isExpected ? (
-        <>
-          Удалить&nbsp;
-          <span role="img" aria-label="cross">
-            ❌
-          </span>
-        </>
+        <img src="/icons/bookmark-filled.svg" alt="" />
       ) : (
-        <>
-          В закладки&nbsp;
-          <span role="img" aria-label="bookmark">
-            🔖
-          </span>
-        </>
+        <img src="/icons/bookmark-outline.svg" alt="" />
       )}
     </Button>
   )
@@ -84,6 +74,16 @@ const StyledExpectButton = styled(ExpectButton)`
   height: 30px;
   font-size: 14px;
   border-radius: 24px;
+
+  &.non-actual {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+  }
+
+  img {
+    height: 16px;
+  }
 `
 
 export default StyledExpectButton

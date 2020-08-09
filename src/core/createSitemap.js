@@ -6,7 +6,7 @@ const { eachMonthOfInterval, addMonths, format } = require('date-fns')
 
 const types = ['films', 'games', 'series']
 const host = 'https://released.at'
-const constantsPages = [host, `${host}/subscribe`, `${host}/whats-new`]
+const constantsPages = [host]
 const startDate = new Date(2020, 0, 1)
 const endDate = addMonths(new Date(), 1)
 
