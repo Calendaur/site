@@ -106,7 +106,6 @@ const Released = styled.div`
   padding: 0 10px;
   font-size: 14px;
   font-weight: 600;
-  line-height: 30px;
   border-radius: 24px;
   background-color: var(--white-color);
   color: var(--black-color);
