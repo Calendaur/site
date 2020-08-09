@@ -1,21 +1,40 @@
 {
-  "name": "Calendaur",
-  "short_name": "Calendaur",
-  "display": "standalone",
+  "theme_color": "#000",
+  "background_color": "#000",
+  "display": "fullscreen",
+  "scope": "/",
+  "start_url": "/",
+  "name": "Released",
+  "app_name": "Released",
+  "short_name": "Released",
+  "orientation": "portrait",
+  "description": "\u041b\u0443\u0447\u0448\u0435\u0435 \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u0434\u043b\u044f \u043e\u0442\u0441\u043b\u0435\u0436\u0438\u0432\u0430\u043d\u0438\u044f \u0440\u0435\u043b\u0438\u0437\u043e\u0432",
   "icons": [
     {
-      "src": "pwa/manifest-icon-192.png",
+      "src": "/pwa/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "pwa/manifest-icon-512.png",
+      "src": "/pwa/icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/pwa/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/pwa/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "/pwa/maskable-icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
-  ],
-  "background_color": "#fff",
-  "description": "Будьте в курсе новых релизов",
-  "start_url": "/",
-  "theme_color": "#000"
+  ]
 }
