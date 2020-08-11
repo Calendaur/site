@@ -2,17 +2,18 @@ function receivePushNotification(event) {
   console.log('[Service Worker] Push Received.')
   console.log(event)
 
-  self.addEventListener('push', event => {
-    let title = (event.data && event.data.text()) || 'Yay a message'
-    let body = 'We have received a push message'
-    let tag = 'push-simple-demo-notification-tag'
-    let icon = '/assets/my-logo-120x120.png'
+  const { title, cover, description } = event.data.json()
 
-    event.waitUntil(
-      self.registration.showNotification(title, { body, icon, tag }),
-    )
-  })
-  event.waitUntil(self.registration.showNotification(title, {}))
+  const options = {
+    data: 'https://released.at/release/18162',
+    body: description,
+    icon: cover,
+    vibrate: [200, 100, 200],
+    tag: `${title} вышел!`,
+    image: cover,
+    badge: 'https://released.at/images/logo.png',
+  }
+  event.waitUntil(self.registration.showNotification(title, options))
 }
 
 function openPushNotification(event) {
