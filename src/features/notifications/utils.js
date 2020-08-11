@@ -81,8 +81,8 @@ export async function askUserPermission() {
 }
 
 export async function createNotificationsSubscription() {
-  navigator.serviceWorker.ready.then(function (sw) {
-    Notification.requestPermission(function (permission) {
+  navigator.serviceWorker.ready.then(sw => {
+    Notification.requestPermission(permission => {
       if (permission !== 'denied') {
         sw.pushManager
           .subscribe({ userVisibleOnly: true, applicationServerKey: vapid })
