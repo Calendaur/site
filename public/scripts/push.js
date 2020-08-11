@@ -1,6 +1,6 @@
 function receivePushNotification(event) {
   console.log('[Service Worker] Push Received.')
-  console.log(event)
+  console.log('event', event, event.data.json())
 
   const { title, cover, description } = event.data.json()
 
