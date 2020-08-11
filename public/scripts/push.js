@@ -2,24 +2,16 @@ function receivePushNotification(event) {
   console.log('[Service Worker] Push Received.')
   console.log(event)
 
-  // const { image, tag, url, title, text } = event.data.json()
+  self.addEventListener('push', event => {
+    let title = (event.data && event.data.text()) || 'Yay a message'
+    let body = 'We have received a push message'
+    let tag = 'push-simple-demo-notification-tag'
+    let icon = '/assets/my-logo-120x120.png'
 
-  // const options = {
-  //   data: url,
-  //   body: text,
-  //   icon: image,
-  //   vibrate: [200, 100, 200],
-  //   tag: tag,
-  //   image: image,
-  //   badge: 'https://spyna.it/icons/favicon.ico',
-  //   actions: [
-  //     {
-  //       action: 'Detail',
-  //       title: 'View',
-  //       icon: 'https://via.placeholder.com/128/ff0000',
-  //     },
-  //   ],
-  // }
+    event.waitUntil(
+      self.registration.showNotification(title, { body, icon, tag }),
+    )
+  })
   event.waitUntil(self.registration.showNotification(title, {}))
 }
 
