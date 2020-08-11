@@ -86,13 +86,13 @@ export async function createNotificationsSubscription() {
       if (permission !== 'denied') {
         sw.pushManager
           .subscribe({ userVisibleOnly: true, applicationServerKey: vapid })
-          .then(function (s) {
-            var data = {
-              endpoint: s.endpoint,
+          .then(subscription => {
+            const data = {
+              endpoint: subscription.endpoint,
               p256dh: btoa(
                 String.fromCharCode.apply(
                   null,
-                  new Uint8Array(s.getKey('p256dh')),
+                  new Uint8Array(subscription.getKey('p256dh')),
                 ),
               )
                 .replace(/\+/g, '-')
@@ -100,12 +100,13 @@ export async function createNotificationsSubscription() {
               auth: btoa(
                 String.fromCharCode.apply(
                   null,
-                  new Uint8Array(s.getKey('auth')),
+                  new Uint8Array(subscription.getKey('auth')),
                 ),
               )
                 .replace(/\+/g, '-')
                 .replace(/\//g, '_'),
             }
+
             console.log(data)
           })
       }
