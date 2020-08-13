@@ -1,4 +1,4 @@
-// import { setPushInfo } from 'core/api'
+import { setPushInfo } from 'core/api'
 
 export const vapid = new Uint8Array([
   4,
@@ -115,9 +115,9 @@ export async function createNotificationsSubscription() {
 
   console.log(pushData)
 
-  // try {
-  //   await setPushInfo(pushData)
-  // } catch (e) {
-  //   console.error(e)
-  // }
+  try {
+    await setPushInfo(pushData)
+  } catch (e) {
+    console.error(e)
+  }
 }
