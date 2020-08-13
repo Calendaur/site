@@ -1,3 +1,5 @@
+import { setPushInfo } from 'core/api'
+
 export const vapid = new Uint8Array([
   4,
   161,
@@ -81,35 +83,39 @@ export async function askUserPermission() {
 }
 
 export async function createNotificationsSubscription() {
-  navigator.serviceWorker.ready.then(sw => {
-    Notification.requestPermission(permission => {
-      if (permission !== 'denied') {
-        sw.pushManager
-          .subscribe({ userVisibleOnly: true, applicationServerKey: vapid })
-          .then(subscription => {
-            const data = {
-              endpoint: subscription.endpoint,
-              p256dh: btoa(
-                String.fromCharCode.apply(
-                  null,
-                  new Uint8Array(subscription.getKey('p256dh')),
-                ),
-              )
-                .replace(/\+/g, '-')
-                .replace(/\//g, '_'),
-              auth: btoa(
-                String.fromCharCode.apply(
-                  null,
-                  new Uint8Array(subscription.getKey('auth')),
-                ),
-              )
-                .replace(/\+/g, '-')
-                .replace(/\//g, '_'),
-            }
+  const sw = await navigator.serviceWorker.ready
+  const permission = await Notification.requestPermission()
 
-            console.log(data)
-          })
-      }
-    })
+  if (permission === 'denied') return
+
+  const subscription = await sw.pushManager.subscribe({
+    userVisibleOnly: true,
+    applicationServerKey: vapid,
   })
+
+  const pushData = {
+    endpoint: subscription.endpoint,
+    p256dh: btoa(
+      String.fromCharCode.apply(
+        null,
+        new Uint8Array(subscription.getKey('p256dh')),
+      ),
+    )
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_'),
+    auth: btoa(
+      String.fromCharCode.apply(
+        null,
+        new Uint8Array(subscription.getKey('auth')),
+      ),
+    )
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_'),
+  }
+
+  try {
+    await setPushInfo(pushData)
+  } catch (e) {
+    console.error(e)
+  }
 }
