@@ -82,7 +82,7 @@ export async function askUserPermission() {
   return permission
 }
 
-export async function createNotificationsSubscription() {
+export async function createNotificationsSubscription(token) {
   const sw = await navigator.serviceWorker.ready
   const permission = await Notification.requestPermission()
 
@@ -116,7 +116,7 @@ export async function createNotificationsSubscription() {
   console.log(pushData)
 
   try {
-    await setPushInfo(pushData)
+    await setPushInfo(token, pushData)
   } catch (e) {
     console.error(e)
   }

@@ -6,11 +6,11 @@ import {
 } from './utils'
 
 export function usePushNotifications() {
-  const { user } = useUser()
+  const { user, token } = useUser()
 
   useEffect(() => {
     if (!user || !isPushNotificationsSupported()) return
 
-    createNotificationsSubscription()
-  }, [user])
+    createNotificationsSubscription(token)
+  }, [token, user])
 }
