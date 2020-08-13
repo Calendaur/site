@@ -7,6 +7,7 @@ import {
 
 export function usePushNotifications() {
   const { user } = useUser()
+
   useEffect(() => {
     if (!user || !isPushNotificationsSupported()) return
 
