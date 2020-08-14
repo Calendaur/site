@@ -57,6 +57,8 @@ function openPushNotification(event) {
   try {
     event.notification.close()
 
+    clients.openWindow('https://released.at/me')
+
     if (typeof event.action === 'string') {
       clients.openWindow(event.action)
     }
