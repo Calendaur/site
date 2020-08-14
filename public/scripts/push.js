@@ -6,8 +6,6 @@ function receivePushNotification(event) {
 
     let options
 
-    console.log(releases)
-
     if (releases.length === 1) {
       const [release] = releases
 
@@ -50,6 +48,8 @@ function receivePushNotification(event) {
       }
     }
 
+    console.log(options)
+
     const { title, ...rest } = options
     event.waitUntil(self.registration.showNotification(title, rest))
   } catch (e) {
@@ -63,10 +63,7 @@ function openPushNotification(event) {
 
     event.notification.close()
 
-    if (typeof event.action === 'string') {
-      console.log(event.action)
-      clients.openWindow(event.action)
-    }
+    clients.openWindow(event.notification.data)
   } catch (e) {
     console.error('open error', e)
   }
