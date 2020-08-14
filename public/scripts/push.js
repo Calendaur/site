@@ -6,6 +6,8 @@ function receivePushNotification(event) {
 
     let options
 
+    console.log(releases)
+
     if (releases.length === 1) {
       const [release] = releases
 
@@ -62,6 +64,7 @@ function openPushNotification(event) {
     event.notification.close()
 
     if (typeof event.action === 'string') {
+      console.log(event.action)
       clients.openWindow(event.action)
     }
   } catch (e) {
