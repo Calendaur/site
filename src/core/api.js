@@ -72,3 +72,17 @@ export const me = token =>
       Authorization: token,
     },
   })
+
+/* User */
+export const setPushInfo = (token, { endpoint, p256dh, auth }) =>
+  fetchJSON(endpoints.PROFILE, {
+    headers: {
+      Authorization: token,
+    },
+    method: 'post',
+    body: JSON.stringify({
+      webpush_endpoint: endpoint,
+      webpush_p256dh: p256dh,
+      webpush_auth: auth,
+    }),
+  })

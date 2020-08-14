@@ -24,5 +24,6 @@ export function useUser(initial) {
     isLoading: !error && !data,
     isError: error,
     mutateUser: mutate,
+    token,
   }
 }
