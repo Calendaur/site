@@ -1,7 +1,5 @@
 function receivePushNotification(event) {
   try {
-    console.log('receive push', event, event.data.json())
-
     const releases = event.data.json()
 
     let options
@@ -48,8 +46,6 @@ function receivePushNotification(event) {
       }
     }
 
-    console.log(options)
-
     const { title, ...rest } = options
     event.waitUntil(self.registration.showNotification(title, rest))
   } catch (e) {
@@ -59,11 +55,11 @@ function receivePushNotification(event) {
 
 function openPushNotification(event) {
   try {
-    console.log('open push', event.notification.data)
-
     event.notification.close()
 
-    clients.openWindow(event.notification.data)
+    if (typeof event.action === 'string') {
+      clients.openWindow(event.action)
+    }
   } catch (e) {
     console.error('open error', e)
   }
