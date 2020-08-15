@@ -135,7 +135,7 @@ const StyledHeader = styled(Header)`
         ${center}
         width: var(--size);
         height: var(--size);
-        background: var(--gradient);
+        background-color: var(--blue);
         border-radius: 4px;
         box-shadow: 0 2px 8px rgba(255, 255, 255, 0.15);
 
@@ -163,10 +163,11 @@ const StyledHeader = styled(Header)`
         margin-top: var(--vertical-4);
 
         & > a {
-          display: block;
-          height: 33px;
+          display: flex;
+          align-items: center;
+          height: 40px;
           padding: 0 9px;
-          line-height: 33px;
+          line-height: 1;
           border-radius: 4px;
         }
       }
@@ -186,11 +187,6 @@ const StyledHeader = styled(Header)`
           flex: 1;
           font-weight: 600;
           text-align: center;
-
-          &.gradient {
-            color: var(--black);
-            background: var(--gradient);
-          }
 
           &:first-child {
             color: var(--blue);

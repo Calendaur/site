@@ -42,6 +42,7 @@ export function DesktopAuthButtons() {
 }
 
 export function MobileAuthButtons() {
+  const { push } = useRouter()
   const { user, isLoading, isError } = useUser()
 
   if (isLoading) return null
@@ -49,17 +50,35 @@ export function MobileAuthButtons() {
   if (isError || !user) {
     return (
       <>
-        <A href={routes.SIGN_IN}>Вход</A>
-        <A href={routes.SIGN_UP} className="gradient">
+        <Button
+          ghost
+          onClick={() => {
+            push(routes.SIGN_IN)
+          }}
+        >
+          Вход
+        </Button>
+        <Button
+          primary
+          onClick={() => {
+            push(routes.SIGN_UP)
+          }}
+        >
           Регистрация
-        </A>
+        </Button>
       </>
     )
   }
 
   return (
-    <A href={routes.ME} className="gradient">
+    <Button
+      primary
+      fullWidth
+      onClick={() => {
+        push(routes.ME)
+      }}
+    >
       {user.current_user.email.split('@')[0]}
-    </A>
+    </Button>
   )
 }

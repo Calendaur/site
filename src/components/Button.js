@@ -8,6 +8,7 @@ function Button({
   className,
   type = 'button',
   primary,
+  ghost,
   fullWidth,
   ...rest
 }) {
@@ -75,6 +76,11 @@ const primary = css`
   }
 `
 
+const ghost = css`
+  color: var(--primary-text);
+  background-color: transparent;
+`
+
 const fullWidth = css`
   width: 100%;
 `
@@ -84,6 +90,7 @@ const Styled = styled(Button, {
 })`
   ${base}
   ${props => props.primary && primary}
+  ${props => props.ghost && ghost}
   ${props => props.fullWidth && fullWidth}
 `
 

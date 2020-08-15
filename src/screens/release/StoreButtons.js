@@ -78,7 +78,7 @@ const getStoreLinkContent = store => {
 }
 
 const Buttons = styled.div`
-  margin-bottom: calc(var(--vertical-2) - var(--horizontal-6));
+  margin-bottom: calc(var(--vertical-5) - var(--horizontal-6));
 
   & > p {
     margin-bottom: var(--vertical-6);
@@ -97,6 +97,11 @@ const Btn = styled(Button)`
   & > img {
     height: 24px;
     margin-right: var(--horizontal-5);
+  }
+
+  & > b {
+    font-weight: 800;
+    color: #222;
   }
 `
 

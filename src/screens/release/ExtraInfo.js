@@ -9,8 +9,12 @@ const MetaInfo = styled.div`
 `
 
 const Label = styled.p`
-  margin-right: var(--horizontal-4);
+  margin: 0;
   color: var(--primary-text);
+
+  span {
+    color: var(--secondary-text);
+  }
 `
 
 const Platforms = styled(PlatformList)`
@@ -20,14 +24,24 @@ const Platforms = styled(PlatformList)`
 function ExtraInfo({ type, director, platforms, season }) {
   return (
     <MetaInfo>
-      {type === 'films' && <Label>Режиссер: {director}</Label>}
+      {type === 'films' && (
+        <Label>
+          <span>Режиссер:</span> {director}
+        </Label>
+      )}
       {type === 'games' && (
         <>
-          <Label>Платформы:</Label>
+          <Label>
+            <span>Платформы:</span>
+          </Label>
           <Platforms platforms={platforms} />
         </>
       )}
-      {type === 'series' && <Label>Сезон: {season}</Label>}
+      {type === 'series' && (
+        <Label>
+          <span>Сезон:</span> {season}
+        </Label>
+      )}
     </MetaInfo>
   )
 }

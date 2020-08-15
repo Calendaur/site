@@ -96,20 +96,17 @@ const Gradient = styled.div`
   }
 `
 
-const Title = styled.h1`
-  display: inline-flex;
-  align-items: center;
-  margin-bottom: var(--vertical-6);
-
-  button {
-    margin-left: 20px;
-  }
+const Titles = styled.div`
+  margin-bottom: var(--vertical-4);
 `
 
+const Title = styled.h1``
+
 const OriginalTitle = styled.h2`
-  margin-bottom: var(--vertical-5);
+  margin-top: var(--vertical-6);
+  font-size: 1.2rem;
+  line-height: 1.2;
   color: var(--secondary-text);
-  font-size: 1.5rem;
 `
 
 const Description = styled.div`
@@ -164,14 +161,33 @@ const Data = styled.div`
 
 const Text = styled.div`
   max-width: 768px;
-  margin-bottom: var(--vertical-2);
+  margin-bottom: var(--vertical-5);
 `
 
 const ScrollToTrailer = styled(Button)`
-  margin-bottom: var(--vertical-6);
+  margin-right: var(--horizontal-5);
 
   @media (min-width: 768px) {
     display: none !important;
+  }
+`
+
+const ReleaseDate = styled.div`
+  display: inline-block;
+  padding: 0 8px;
+  margin-bottom: var(--vertical-6);
+  font-size: 14px;
+  color: var(--black-color);
+  background-color: var(--white-color);
+  border-radius: 4px;
+`
+
+const Buttons = styled.div`
+  margin-bottom: var(--vertical-5);
+
+  .expect {
+    height: 40px;
+    border-radius: 4px;
   }
 `
 
@@ -221,47 +237,42 @@ function Release({
         <Gradient />
         <Image src={cover} alt={title} />
       </Cover>
-      <Title>
-        {title}{' '}
-        <ExpectButton release={{ released, release_id: query.id, id }} />
-      </Title>
-      {original_title && <OriginalTitle>{original_title}</OriginalTitle>}
+      <ReleaseDate>
+        {format(new Date(released), 'd MMMM yyyy', {
+          locale: ru,
+        })}
+      </ReleaseDate>
+      <Titles>
+        <Title>{title}</Title>
+        {original_title && <OriginalTitle>{original_title}</OriginalTitle>}
+      </Titles>
       <Description>
         <Data>
-          <header>
-            <div>
-              {format(new Date(released), 'd MMMM yyyy', {
-                locale: ru,
-              })}
-            </div>
-            <div>{getRusReleaseType(type)}</div>
-            {type === 'films' && is_digital === true ? (
-              <div>Цифровой релиз</div>
-            ) : null}
-            {type === 'films' && is_digital === false ? (
-              <div>Релиз в кинотеатре</div>
-            ) : null}
-          </header>
-          {trailer_url && (
-            <ScrollToTrailer
-              onClick={() => {
-                const trailerEl = document.querySelector('#trailer')
-                trailerEl.scrollIntoView({
-                  behavior: 'smooth',
-                })
-              }}
-            >
-              Смотреть трейлер
-            </ScrollToTrailer>
-          )}
+          <Buttons>
+            {trailer_url && (
+              <ScrollToTrailer
+                onClick={() => {
+                  const trailerEl = document.querySelector('#trailer')
+                  trailerEl.scrollIntoView({
+                    behavior: 'smooth',
+                  })
+                }}
+              >
+                К трейлеру
+              </ScrollToTrailer>
+            )}
+            <ExpectButton
+              className="expect"
+              release={{ released, release_id: query.id, id }}
+            />
+          </Buttons>
+          <Text>{description}</Text>
           <ExtraInfo
             type={type}
             director={director}
             platforms={platforms}
             season={season}
           />
-          <Text>{description}</Text>
-          <Sharing title={title} url={url} />
           <FilmButtons type={type} kinopoisk={kinopoisk_url} imdb={imdb_url} />
           {/* <StreamingServicesButtons type={type} /> */}
           <StoreButtons
@@ -269,6 +280,7 @@ function Release({
             rawgStores={rawg_io_fields?.stores}
             stores={stores}
           />
+          <Sharing title={title} url={url} />
         </Data>
         {trailer_url && <Trailer url={trailer_url} />}
       </Description>
