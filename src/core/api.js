@@ -1,7 +1,9 @@
 import Cookies from 'js-cookie'
 import { fetchJSON } from './helpers'
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL + '/api'
+const isDev = process.env.NODE_ENV === 'development'
+const BASE = isDev ? 'http://localhost:3000' : 'https://released.at'
+const API_URL = BASE + '/api'
 
 const monthsForAPI = {
   january: 1,
