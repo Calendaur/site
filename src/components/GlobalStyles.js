@@ -32,7 +32,6 @@ const GlobalStyles = (
         font-family: 'Montserrat';
         font-style: normal;
         font-weight: 200;
-        font-display: swap;
         src: local(''), url('/fonts/Montserrat/200.woff2') format('woff2');
       }
 
@@ -153,6 +152,8 @@ const GlobalStyles = (
         scroll-behavior: smooth;
         text-size-adjust: 100%;
         font-variant-numeric: tabular-nums;
+        direction: ltr;
+        font-feature-settings: 'kern';
       }
 
       #__next {
@@ -258,28 +259,6 @@ const GlobalStyles = (
         -webkit-box-align: center;
       }
 
-      a.underline,
-      button.underline {
-        position: relative;
-
-        &:hover::after {
-          width: 100%;
-        }
-
-        &::after {
-          position: absolute;
-          top: 100%;
-          left: 50%;
-          width: 0;
-          height: 2px;
-          content: '';
-          background: var(--primary-text);
-          transition: width 0.4s;
-          transition-timing-function: cubic-bezier(1, -0.65, 0, 2.31);
-          transform: translateX(-50%);
-        }
-      }
-
       button,
       input,
       select,
@@ -307,8 +286,8 @@ const GlobalStyles = (
 
       .lazyload,
       .lazyloading {
-        opacity: 0;
         min-height: 100px;
+        opacity: 0;
       }
 
       .loading,
@@ -317,6 +296,36 @@ const GlobalStyles = (
       .image {
         opacity: 1;
         transition: 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+
+      #nprogress .bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1031;
+        width: 100%;
+        height: 2px;
+        background: var(--blue);
+      }
+
+      #nprogress .peg {
+        position: absolute;
+        right: 0;
+        display: block;
+        width: 100px;
+        height: 100%;
+        box-shadow: 0 0 10px var(--blue), 0 0 5px var(--blue);
+        opacity: 1;
+        transform: rotate(3deg) translate(0, -4px);
+      }
+
+      .nprogress-custom-parent {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .nprogress-custom-parent #nprogress .bar {
+        position: absolute;
       }
     `}
   />

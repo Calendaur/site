@@ -174,8 +174,8 @@ const Cover = styled.div`
   z-index: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.05;
   pointer-events: none;
+  opacity: 0.05;
 
   & > img {
     width: 100%;
