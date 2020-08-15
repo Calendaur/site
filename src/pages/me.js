@@ -1,10 +1,15 @@
 import React from 'react'
 import { parseCookies } from 'nookies'
-import MeScreenComponent from 'screens/me'
+import Me from 'screens/me'
 import { fetchWithToken, redirect } from 'shared/utils'
 import { endpoints, routes } from 'shared/constants'
+import { usePushNotifications } from 'features/notifications/use-push-notifications'
 
-const MePage = props => <MeScreenComponent {...props} />
+function MePage(props) {
+  usePushNotifications()
+
+  return <Me {...props} />
+}
 
 MePage.getInitialProps = async ctx => {
   try {

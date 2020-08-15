@@ -32,7 +32,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "smoothscroll-polyfill": "^0.4.4",
-    "swr": "^0.2.3"
+    "swr": "^0.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
@@ -55,17 +55,15 @@
     "husky": "^4.2.5",
     "jest": "^25.1.0",
     "lint-staged": "^10.2.11",
-    "next-transpile-modules": "^3.3.0",
-    "postcss-hexrgba": "^2.0.0",
-    "postcss-media-minmax": "^4.0.0",
-    "postcss-media-variables": "^2.0.1",
-    "postcss-nested": "^4.2.1",
+    "next-transpile-modules": "^4.1.0",
     "prettier": "^2.0.5",
     "stylelint": "^13.0.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-recess-order": "^2.0.3",
     "stylelint-config-standard": "^19.0.0",
-    "stylelint-prettier": "^1.1.2"
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-prettier": "^1.1.2",
+    "stylelint-processor-styled-components": "^1.10.0"
   },
   "resolutions": {
     "webpack": "^5.0.0-beta.26"
@@ -112,13 +110,14 @@
     "endOfLine": "auto"
   },
   "stylelint": {
+    "processors": [
+      "stylelint-processor-styled-components"
+    ],
     "extends": [
       "stylelint-config-standard",
+      "stylelint-config-styled-components",
       "stylelint-config-recess-order",
       "stylelint-prettier/recommended"
-    ],
-    "ignoreFiles": [
-      "**/*.js"
     ],
     "rules": {
       "prettier/prettier": true,
