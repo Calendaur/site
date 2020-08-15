@@ -44,19 +44,6 @@ function Meta() {
       <meta name="msapplication-TileColor" content="#0b0b0b" />
       <meta name="msapplication-TileImage" content="/pwa/ms-icon-144x144.png" />
       <meta name="theme-color" content="#0b0b0b" />
-      <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossOrigin="true"
-      />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-        rel="stylesheet"
-      />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap&text=released"
-        rel="stylesheet"
-      />
       <script
         async
         defer

@@ -36,7 +36,7 @@ const TypeFilter = styled.ul`
     & > a {
       position: relative;
       font-size: 1.4rem;
-      font-weight: 700;
+      font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       opacity: 0.4;
