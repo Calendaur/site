@@ -32,6 +32,7 @@ const GlobalStyles = (
         font-family: 'Montserrat';
         font-style: normal;
         font-weight: 200;
+        font-display: swap;
         src: local(''), url('/fonts/Montserrat/200.woff2') format('woff2');
       }
 

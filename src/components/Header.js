@@ -53,9 +53,19 @@ function Header({ className }) {
             }}
           >
             {visibleMobileNav ? (
-              <img src="/icons/close.svg" alt="Close menu" />
+              <img
+                width="24"
+                height="24"
+                src="/icons/close.svg"
+                alt="Close menu"
+              />
             ) : (
-              <img src="/icons/menu.svg" alt="Open menu" />
+              <img
+                width="24"
+                height="24"
+                src="/icons/menu.svg"
+                alt="Open menu"
+              />
             )}
           </button>
         </div>

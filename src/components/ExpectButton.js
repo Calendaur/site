@@ -62,9 +62,9 @@ function ExpectButton({ className, release }) {
   return (
     <Button className={className + ' non-actual'} primary onClick={onClick}>
       {isExpected ? (
-        <img src="/icons/bookmark-filled.svg" alt="" />
+        <img width="16" height="16" src="/icons/bookmark-filled.svg" alt="" />
       ) : (
-        <img src="/icons/bookmark-outline.svg" alt="" />
+        <img width="16" height="16" src="/icons/bookmark-outline.svg" alt="" />
       )}
     </Button>
   )
@@ -76,6 +76,7 @@ const StyledExpectButton = styled(ExpectButton)`
   border-radius: 24px;
 
   img {
+    width: 16px;
     height: 16px;
   }
 `
