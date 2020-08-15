@@ -51,7 +51,7 @@ function ExpectButton({ className, release }) {
           <>
             Жду&nbsp;
             <span role="img" aria-label="star">
-              🌟
+              🔥
             </span>
           </>
         )}
@@ -74,12 +74,6 @@ const StyledExpectButton = styled(ExpectButton)`
   height: 30px;
   font-size: 14px;
   border-radius: 24px;
-
-  &.non-actual {
-    width: 30px;
-    height: 30px;
-    padding: 0;
-  }
 
   img {
     height: 16px;
