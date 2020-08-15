@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
 import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
-import { Button, ExpectButton } from 'components'
+import { Button, ExpectButton, Image } from 'components'
 import { getRusReleaseType } from 'core/helpers'
 import Head from './Head'
 import ExtraInfo from './ExtraInfo'
@@ -219,13 +219,7 @@ function Release({
       </Breadcrumbs>
       <Cover>
         <Gradient />
-        <img
-          loading="lazy"
-          className="lazyload"
-          src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-          data-src={cover}
-          alt={title}
-        />
+        <Image src={cover} alt={title} />
       </Cover>
       <Title>
         {title}{' '}

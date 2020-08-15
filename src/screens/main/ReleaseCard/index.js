@@ -2,7 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { format } from 'date-fns'
 import ru from 'date-fns/locale/ru'
-import { A, ExpectButton } from 'components'
+import { A, ExpectButton, Image } from 'components'
 import Info from './Info'
 
 export function getPlatformIcon(platform) {
@@ -124,12 +124,7 @@ function ReleaseCard({ release, type, showDate = false }) {
       )}
       <Expect release={release} />
       <div className="aspectRatio">
-        <img
-          data-src={release.cover}
-          alt={release.title}
-          className="lazyload"
-          src={release.cover}
-        />
+        <Image src={release.cover} alt={release.title} />
       </div>
       <Info release={release} type={type} />
     </Card>

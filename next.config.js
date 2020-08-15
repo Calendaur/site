@@ -24,6 +24,14 @@ const nextConfig = {
         source: '/service-worker.js',
         destination: '/_next/static/service-worker.js',
       },
+      {
+        source: '/api/:path*',
+        destination: 'https://api.released.at/api/:path*',
+      },
+      {
+        source: '/uploads/:path*',
+        destination: 'https://api.released.at/uploads/:path*',
+      },
     ]
   },
 }
