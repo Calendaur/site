@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
-    "autoprefixer": "^9.7.6",
+    "autoprefixer": "^9.8.6",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^25.1.0",
     "babel-plugin-import": "^1.13.0",
@@ -57,7 +57,9 @@
     "jest": "^25.1.0",
     "lint-staged": "^10.2.11",
     "next-transpile-modules": "^4.1.0",
+    "postcss-nested": "^4.2.3",
     "prettier": "^2.0.5",
+    "styled-jsx-plugin-postcss": "^2.0.1",
     "stylelint": "^13.0.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-recess-order": "^2.0.3",
@@ -111,12 +113,8 @@
     "endOfLine": "auto"
   },
   "stylelint": {
-    "processors": [
-      "stylelint-processor-styled-components"
-    ],
     "extends": [
       "stylelint-config-standard",
-      "stylelint-config-styled-components",
       "stylelint-config-recess-order",
       "stylelint-prettier/recommended"
     ],
@@ -129,6 +127,22 @@
       "property-no-vendor-prefix": null
     }
   },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {},
+      "postcss-nested": {}
+    }
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not dead",
+    "not ie 11",
+    "not ie_mob 11",
+    "not op_mini all",
+    "not op_mob > 0",
+    "not and_qq > 0",
+    "not android > 0"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "yarn create-sitemap && lint-staged"

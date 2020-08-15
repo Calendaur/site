@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
-import styled from '@emotion/styled'
 import { useFormik } from 'formik'
 import Cookies from 'js-cookie'
 import { sendConfirmCode, confirm } from 'core/api'
@@ -103,11 +102,11 @@ function AuthForm({ buttonTitle, type }) {
 
   return (
     <>
-      <Cover>
+      <div className="cover">
         <img src={POSTER_IMG} alt="" />
-      </Cover>
-      <Center>
-        <Form onSubmit={handleSubmit}>
+      </div>
+      <div className="center">
+        <form className="form" onSubmit={handleSubmit}>
           {type === 'registration' ? (
             <p>
               Мы&nbsp;не&nbsp;храним ваши пароли ни&nbsp;в&nbsp;каком виде
@@ -123,8 +122,9 @@ function AuthForm({ buttonTitle, type }) {
             </p>
           )}
           {currentField === FIELDS.EMAIL && (
-            <Field
+            <Input
               id="email"
+              className="input"
               label="Email"
               type="email"
               name="email"
@@ -136,8 +136,9 @@ function AuthForm({ buttonTitle, type }) {
             />
           )}
           {currentField === FIELDS.CODE && (
-            <Field
+            <Input
               id="code"
+              className="input"
               label="Код"
               type="tel"
               name="code"
@@ -152,58 +153,57 @@ function AuthForm({ buttonTitle, type }) {
             {currentField === FIELDS.EMAIL && buttonTitle}
             {currentField === FIELDS.CODE && 'Подтвердить'}
           </Button>
-          {error && <Error>{error}</Error>}
-        </Form>
-      </Center>
+          {error && <p>{error}</p>}
+        </form>
+      </div>
+      <style jsx>{`
+        .cover {
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+          opacity: 0.05;
+
+          & > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+            filter: blur(1px);
+
+            @media (min-width: 768px) {
+              filter: blur(5px);
+            }
+          }
+        }
+
+        .center {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+        }
+
+        .form {
+          width: 100%;
+          max-width: 560px;
+          margin: 0 auto;
+
+          :global(a) {
+            text-decoration: underline;
+          }
+
+          :global(.input) {
+            margin-bottom: var(--vertical-4);
+          }
+        }
+      `}</style>
     </>
   )
 }
-
-const Center = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-`
-
-const Cover = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  opacity: 0.05;
-
-  & > img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    pointer-events: none;
-    filter: blur(1px);
-
-    @media (min-width: 768px) {
-      filter: blur(5px);
-    }
-  }
-`
-
-const Form = styled.form`
-  width: 100%;
-  max-width: 560px;
-  margin: 0 auto;
-
-  a {
-    text-decoration: underline;
-  }
-`
-
-const Field = styled(Input)`
-  margin-bottom: var(--vertical-4);
-`
-
-const Error = styled.p``
 
 export default AuthForm
