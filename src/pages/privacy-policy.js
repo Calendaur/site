@@ -1,3 +1,8 @@
-import PrivacyPolicyPage from 'screens/policy'
+import React from 'react'
+import Policy from 'screens/policy'
 
-export default PrivacyPolicyPage
+function PolicyPage() {
+  return <Policy />
+}
+
+export default PolicyPage
