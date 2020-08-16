@@ -44,12 +44,6 @@ function Meta() {
       <meta name="msapplication-TileColor" content="#0b0b0b" />
       <meta name="msapplication-TileImage" content="/pwa/ms-icon-144x144.png" />
       <meta name="theme-color" content="#0b0b0b" />
-      <script
-        async
-        defer
-        data-domain="released.at"
-        src="https://plausible.io/js/plausible.js"
-      ></script>
       <link
         rel="preload"
         href="/fonts/Inter/400.woff2"
@@ -74,6 +68,12 @@ function Meta() {
         as="font"
         type="font/woff2"
       />
+      <script
+        async
+        defer
+        data-domain="released.at"
+        src="https://plausible.io/js/plausible.js"
+      ></script>
     </Head>
   )
 }

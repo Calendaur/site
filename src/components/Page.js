@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import Meta from './MobileNavReleaseFilterBar'
+import Meta from './Meta'
 import Header from './Header'
 import Footer from './Footer'
 
