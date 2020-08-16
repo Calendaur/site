@@ -1,0 +1,12 @@
+.Title {
+  margin-bottom: var(--vertical-5);
+
+  & > a {
+    opacity: 0.4;
+    transition: var(--transition);
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

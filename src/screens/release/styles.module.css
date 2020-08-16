@@ -25,7 +25,7 @@
   );
   opacity: 0.81;
 
-  @media (width >= 768px) {
+  @media (min-width: 768px) {
     height: 100%;
     background: unset;
     opacity: 0.19;
@@ -38,7 +38,7 @@
     height: 100%;
     object-fit: cover;
 
-    @media (width >= 768px) {
+    @media (min-width: 768px) {
       filter: blur(8px);
     }
   }
@@ -61,17 +61,30 @@
     rgba(var(--gradient-rgb), 0) 52%
   );
 
-  @media (width >= 768px) {
+  @media (min-width: 768px) {
     display: none;
   }
 }
 
-.Title {
-  margin-bottom: var(--vertical-6);
+.Titles {
+  margin-bottom: var(--vertical-4);
 }
 
 .OriginalTitle {
-  margin-bottom: var(--vertical-5);
+  margin-top: var(--vertical-6);
+  font-size: 1.2rem;
+  line-height: 1.2;
+  color: var(--secondary-text);
+}
+
+.ReleaseDate {
+  display: inline-block;
+  padding: 0 8px;
+  margin-bottom: var(--vertical-6);
+  font-size: 14px;
+  color: var(--black-color);
+  background-color: var(--white-color);
+  border-radius: 4px;
 }
 
 .Description {
@@ -143,15 +156,15 @@
 
     .Text {
       max-width: 768px;
-      margin-bottom: var(--vertical-2);
+      margin-bottom: var(--vertical-5);
     }
   }
 }
 
-.WatchTrailer {
-  margin-bottom: var(--vertical-6);
+.ScrollToTrailer {
+  margin-right: var(--horizontal-5);
 
-  @media (width >= 768px) {
+  @media (min-width: 768px) {
     display: none !important;
   }
 }
@@ -168,7 +181,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 
-  @media (width >= 768px) {
+  @media (min-width: 768px) {
     margin-top: 0;
   }
 
@@ -176,8 +189,164 @@
     color: var(--primary-text);
   }
 
-  p {
+  & > p {
     display: inline;
     margin: 0;
+  }
+}
+
+.Buttons {
+  margin-bottom: var(--vertical-5);
+
+  .Expect {
+    height: 40px;
+    border-radius: 4px;
+  }
+}
+
+.Sharing {
+  margin-bottom: var(--vertical-4);
+
+  & > p {
+    margin-bottom: var(--vertical-6);
+    color: var(--secondary-text);
+  }
+
+  & > div {
+    display: flex;
+    align-items: center;
+
+    & > a {
+      --size: 24px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--size);
+      height: var(--size);
+      margin-right: var(--horizontal-4);
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      & > img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+
+.FilmButtons {
+  margin-bottom: var(--vertical-4);
+
+  & > p {
+    margin-bottom: var(--vertical-6);
+    color: var(--secondary-text);
+  }
+
+  & > .kinopoisk {
+    margin-right: var(--horizontal-4);
+    background-color: var(--kinopoisk);
+
+    & > img {
+      filter: invert(1);
+    }
+
+    &:hover {
+      background-color: #e65c00;
+    }
+
+    &:active {
+      background-color: #cc5200;
+    }
+
+    &:focus:not(:active) {
+      box-shadow: 0 0 0 0.125em rgba(255, 102, 0, 0.25);
+    }
+  }
+
+  & > .imdb {
+    background-color: var(--imdb);
+
+    &:hover {
+      background-color: #e9b90a;
+    }
+
+    &:active {
+      background-color: #d1a609;
+    }
+
+    &:focus:not(:active) {
+      box-shadow: 0 0 0 0.125em rgba(245, 197, 24, 0.25);
+    }
+  }
+}
+
+.StoreButtons {
+  margin-bottom: calc(var(--vertical-5) - var(--horizontal-6));
+
+  & > p {
+    margin-bottom: var(--vertical-6);
+    color: var(--secondary-text);
+  }
+
+  .Stores {
+    margin: calc(var(--horizontal-6) * -1);
+  }
+
+  .Btn {
+    height: inherit;
+    margin: var(--horizontal-6);
+
+    & > img {
+      height: 24px;
+      margin-right: var(--horizontal-5);
+    }
+
+    & > b {
+      font-weight: 800;
+      color: #222;
+    }
+  }
+}
+
+.ExtraInfo {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--vertical-6);
+
+  .Label {
+    margin: 0;
+    color: var(--primary-text);
+
+    span {
+      color: var(--secondary-text);
+    }
+  }
+
+  .Platforms {
+    margin: 0;
+  }
+}
+
+.Trailer {
+  flex: 1;
+
+  & > .aspectRatio {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+
+    & > iframe {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: 12px;
+    }
   }
 }

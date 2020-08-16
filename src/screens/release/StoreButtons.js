@@ -1,6 +1,7 @@
 import React from 'react'
-import styled from '@emotion/styled'
 import { Button } from 'components'
+
+import styles from './styles.module.css'
 
 const getStoreLinkContent = store => {
   switch (store.type) {
@@ -77,46 +78,18 @@ const getStoreLinkContent = store => {
   }
 }
 
-const Buttons = styled.div`
-  margin-bottom: calc(var(--vertical-5) - var(--horizontal-6));
-
-  & > p {
-    margin-bottom: var(--vertical-6);
-    color: var(--secondary-text);
-  }
-`
-
-const Stores = styled.div`
-  margin: calc(var(--horizontal-6) * -1);
-`
-
-const Btn = styled(Button)`
-  height: inherit;
-  margin: var(--horizontal-6);
-
-  & > img {
-    height: 24px;
-    margin-right: var(--horizontal-5);
-  }
-
-  & > b {
-    font-weight: 800;
-    color: #222;
-  }
-`
-
 const renderStores = stores =>
   stores.map(store => (
-    <Btn
+    <Button
+      className={styles.Btn}
       key={store.type}
-      as="a"
-      href={store.link}
-      target="_blank"
-      rel="nofollow"
+      onClick={() => {
+        window.open(store.link, '_blank')
+      }}
     >
       {getStoreLinkContent(store)}
       {store.price && store.price !== '$0.00' && <b>&nbsp;[{store.price}]</b>}
-    </Btn>
+    </Button>
   ))
 
 function prepareStores(stores, rawgStores) {
@@ -139,10 +112,10 @@ function StoreButtons({ stores, rawgStores, type }) {
   if (!preparedStores.length) return null
 
   return (
-    <Buttons>
+    <div className={styles.StoreButtons}>
       <p>Где купить:</p>
-      <Stores>{renderStores(preparedStores)}</Stores>
-    </Buttons>
+      <div className={styles.Stores}>{renderStores(preparedStores)}</div>
+    </div>
   )
 }
 

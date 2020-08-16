@@ -1,22 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
-import styled from '@emotion/styled'
 
-const TextWrapper = styled.div`
-  h1 {
-    margin-bottom: var(--vertical-1);
-  }
-
-  h1,
-  p {
-    max-width: 768px;
-    margin: 0 auto;
-  }
-
-  a {
-    text-decoration: underline;
-  }
-`
+import styles from './styles.module.css'
 
 function PrivacyPolicyPage() {
   return (
@@ -28,7 +13,7 @@ function PrivacyPolicyPage() {
           content="График релизов игр, график релизов кино"
         />
       </Head>
-      <TextWrapper>
+      <div className={styles.TextWrapper}>
         <h1>Политика в&nbsp;отношении обработки персональных данных</h1>
         <p>
           <br />
@@ -249,7 +234,7 @@ function PrivacyPolicyPage() {
           </a>
           .
         </p>
-      </TextWrapper>
+      </div>
     </>
   )
 }

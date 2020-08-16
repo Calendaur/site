@@ -1,12 +1,11 @@
 import 'lazysizes'
+import 'components/GlobalStyles/styles.css'
 
 import React from 'react'
 import Router from 'next/router'
-import { CacheProvider } from '@emotion/react'
-import { cache } from '@emotion/css'
 import { SWRConfig } from 'swr'
 import { start, done, configure } from 'nprogress'
-import { Page, GlobalStyles } from 'components'
+import { Page } from 'components'
 import { fetchJSON } from 'core/helpers'
 
 configure({ showSpinner: false })
@@ -25,18 +24,15 @@ Router.onRouteChangeError = () => {
 
 function CustomApp({ Component, pageProps }) {
   return (
-    <CacheProvider value={cache}>
-      {GlobalStyles}
-      <SWRConfig
-        value={{
-          fetcher: fetchJSON,
-        }}
-      >
-        <Page>
-          <Component {...pageProps} />
-        </Page>
-      </SWRConfig>
-    </CacheProvider>
+    <SWRConfig
+      value={{
+        fetcher: fetchJSON,
+      }}
+    >
+      <Page>
+        <Component {...pageProps} />
+      </Page>
+    </SWRConfig>
   )
 }
 

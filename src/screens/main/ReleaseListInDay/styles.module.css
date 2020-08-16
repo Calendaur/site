@@ -1,0 +1,32 @@
+.Releases {
+  display: flex;
+  height: 100%;
+
+  &.hasSomeReleases {
+    display: grid;
+    grid-auto-rows: minmax(140px, 1fr);
+    grid-gap: 8px;
+
+    @media (min-width: 2200px) {
+      grid-auto-rows: minmax(220px, 1fr);
+    }
+
+    & > * {
+      --br: 20px;
+
+      overflow: hidden;
+      border-radius: 0;
+      mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+
+      &:first-child {
+        border-top-left-radius: var(--br);
+        border-top-right-radius: var(--br);
+      }
+
+      &:last-child {
+        border-bottom-right-radius: var(--br);
+        border-bottom-left-radius: var(--br);
+      }
+    }
+  }
+}

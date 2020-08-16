@@ -1,0 +1,10 @@
+.Section {
+  display: grid;
+  grid-template-columns: 100%;
+  width: 100vw;
+  min-height: 100vh;
+
+  & > main {
+    padding: var(--page-vertical-padding) var(--page-padding);
+  }
+}

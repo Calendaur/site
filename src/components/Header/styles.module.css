@@ -1,0 +1,163 @@
+/* Header */
+.Desktop {
+  z-index: 1;
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    padding: 0 var(--page-padding);
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      & > * {
+        margin-left: 24px;
+        font-size: 0.875rem;
+
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 1024px) {
+    height: 60px;
+  }
+
+  @media (min-width: 1440px) {
+    height: 80px;
+  }
+}
+
+.Mobile {
+  --gradient: linear-gradient(90deg, var(--light-blue), var(--blue));
+
+  z-index: 1;
+  display: block;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+
+  .LogoWrapper {
+    margin-top: 16px;
+    margin-left: 16px;
+  }
+
+  .FloatButton {
+    position: fixed;
+    bottom: 30px;
+    left: 16px;
+    z-index: 3;
+
+    button {
+      --size: 45px;
+      --icon-size: 24px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--size);
+      height: var(--size);
+      background-color: var(--blue);
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.15);
+
+      img {
+        width: var(--icon-size);
+        height: var(--icon-size);
+      }
+    }
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    width: 100vw;
+    padding: var(--page-padding);
+    background: var(--black);
+    overscroll-behavior: none;
+
+    .NavLinks,
+    .AuthLinks {
+      display: flex;
+      margin-top: var(--vertical-4);
+    }
+
+    .NavLinks {
+      flex-direction: column;
+
+      a {
+        display: flex;
+        align-items: center;
+        height: 40px;
+        padding: 0 9px;
+        margin-bottom: var(--vertical-6);
+        font-size: 14px;
+        line-height: 1;
+        background-color: rgba(255, 255, 255, 0.07);
+        border-radius: 4px;
+      }
+    }
+  }
+}
+
+/* MobileNavReleaseFilterBar */
+.FilterBar {
+  position: absolute;
+  bottom: 80px;
+}
+
+.TypeFilter {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  & > li {
+    margin-right: var(--horizontal-4);
+
+    & > a {
+      position: relative;
+      font-size: 1.4rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.4;
+
+      &.active {
+        opacity: 1;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.MonthFilter {
+  display: flex;
+
+  & > * {
+    padding: 12px 16px 12px 0;
+    margin-right: var(--horizontal-6);
+  }
+
+  & > a {
+    opacity: 0.4;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

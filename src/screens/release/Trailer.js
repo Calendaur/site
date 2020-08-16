@@ -1,30 +1,17 @@
-import React from 'react'
-import styled from '@emotion/styled'
+import React, { useMemo } from 'react'
 import getYouTubeId from 'get-youtube-id'
 
-const Wrapper = styled.div`
-  flex: 1;
-
-  & > .aspectRatio {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%;
-
-    & > iframe {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      border-radius: 12px;
-    }
-  }
-`
+import styles from './styles.module.css'
 
 function Trailer({ url }) {
+  const src = useMemo(
+    () => `https://www.youtube.com/embed/${getYouTubeId(url)}`,
+    [url],
+  )
+
   return (
-    <Wrapper id="trailer">
-      <div className="aspectRatio">
+    <div id="trailer" className={styles.Trailer}>
+      <div className={styles.aspectRatio}>
         <iframe
           title="Trailer"
           frameBorder="0"
@@ -32,10 +19,10 @@ function Trailer({ url }) {
           allowFullScreen
           width="100%"
           height="100%"
-          data-src={`https://www.youtube.com/embed/${getYouTubeId(url)}`}
+          data-src={src}
         />
       </div>
-    </Wrapper>
+    </div>
   )
 }
 

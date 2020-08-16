@@ -61,3 +61,18 @@ export const routes = {
   SIGN_IN: '/sign-in',
   SIGN_UP: '/sign-up',
 }
+
+export const releaseTypes = [
+  {
+    type: 'films',
+    title: 'Кино',
+  },
+  {
+    type: 'series',
+    title: 'Сериалы',
+  },
+  {
+    type: 'games',
+    title: 'Игры',
+  },
+]
