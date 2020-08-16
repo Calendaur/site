@@ -50,6 +50,30 @@ function Meta() {
         data-domain="released.at"
         src="https://plausible.io/js/plausible.js"
       ></script>
+      <link
+        rel="preload"
+        href="/fonts/Inter/400.woff2"
+        as="font"
+        type="font/woff2"
+      />
+      <link
+        rel="preload"
+        href="/fonts/Inter/600.woff2"
+        as="font"
+        type="font/woff2"
+      />
+      <link
+        rel="preload"
+        href="/fonts/Inter/800.woff2"
+        as="font"
+        type="font/woff2"
+      />
+      <link
+        rel="preload"
+        href="/fonts/Montserrat/200.woff2"
+        as="font"
+        type="font/woff2"
+      />
     </Head>
   )
 }
