@@ -2,8 +2,9 @@ import { GetStaticPaths, GetStaticPropsContext } from 'next'
 import compareAsc from 'date-fns/compareAsc'
 import { releases, homePageReleases } from 'shared/api'
 import { months } from 'shared/constants'
+import { groupBy } from 'shared/utils'
 import { FRONTEND_RELEASE_TYPES, ParsedURL } from 'types/releases'
-import { generateReleasesPages, typeAdapter } from './helpers'
+import { generateReleasesPages, typeAdapter, getWeeks } from './helpers'
 import { meta } from './seo'
 
 export const getPaths: GetStaticPaths = async () => ({
@@ -19,12 +20,19 @@ export const getProps = async (
     parsedURL: ParsedURL
     releases: any
     meta: any
+    grouped: any
+    weeks: any
   }
 }> => {
   const result = await releases(typeAdapter(type), params.date)
   const [m, y] = params.date.split('-')
   const month = months.find(({ eng }) => eng === m)
   const year = +y
+
+  const sorted = result.sort((a, b) =>
+    compareAsc(new Date(a.released), new Date(b.released)),
+  )
+  const grouped = groupBy('released')(sorted)
 
   return {
     props: {
@@ -33,10 +41,10 @@ export const getProps = async (
         month,
         year,
       },
-      releases: result.sort((a, b) =>
-        compareAsc(new Date(a.released), new Date(b.released)),
-      ),
+      releases: sorted,
       meta: meta[type](month.jsNumber, year),
+      grouped,
+      weeks: JSON.stringify(getWeeks(year, month.jsNumber).flat()),
     },
   }
 }
@@ -47,6 +55,11 @@ export async function getPropsForIndexPage() {
 
   const result = await homePageReleases()
 
+  const sorted = result.sort((a, b) =>
+    compareAsc(new Date(a.released), new Date(b.released)),
+  )
+  const grouped = groupBy('released')(sorted)
+
   return {
     props: {
       parsedURL: {
@@ -54,10 +67,12 @@ export async function getPropsForIndexPage() {
         month: months[currentMonth - 1],
         year: currentYear,
       },
-      releases: result.sort((a, b) =>
-        compareAsc(new Date(a.released), new Date(b.released)),
-      ),
+      releases: sorted,
       meta: meta.main,
+      grouped,
+      weeks: JSON.stringify(
+        getWeeks(currentYear, months[currentMonth - 1].jsNumber).flat(),
+      ),
     },
   }
 }

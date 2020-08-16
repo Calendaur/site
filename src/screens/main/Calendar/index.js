@@ -1,8 +1,7 @@
-import React, { useMemo, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import cx from 'classnames'
 import styled from '@emotion/styled'
 import debounce from 'lodash.debounce'
-import { getWeeks } from 'features/releases/helpers'
 import NoReleases from './NoReleases'
 import ReleaseListInDay from '../ReleaseListInDay'
 import MobileCalendar from '../MobileCalendar'
@@ -95,9 +94,8 @@ const StyledCalendar = styled.div`
   }
 `
 
-function Calendar({ type, month, year, releases }) {
+function Calendar({ type, month, year, releases, grouped, weeks }) {
   const [size, setSize] = useState(window.innerWidth)
-  const weeks = useMemo(() => getWeeks(year, month), [year, month])
 
   useEffect(() => {
     const handleResize = debounce(() => {
@@ -122,7 +120,7 @@ function Calendar({ type, month, year, releases }) {
           ))}
         </div>
         <div className="grid">
-          {weeks.flat().map((day, index) => {
+          {JSON.parse(weeks).map((day, index) => {
             const dayReleases = releases.filter(
               r => new Date(r.released).getDate() === day,
             )
@@ -158,7 +156,7 @@ function Calendar({ type, month, year, releases }) {
     )
   }
 
-  return <MobileCalendar type={type} releases={releases} />
+  return <MobileCalendar type={type} releases={grouped} />
 }
 
 export default Calendar

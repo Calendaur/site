@@ -1,9 +1,8 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
 import format from 'date-fns/format'
 import parseISO from 'date-fns/parseISO'
 import ru from 'date-fns/locale/ru'
-import { groupBy } from 'shared/utils'
 import ReleaseCard from '../ReleaseCard'
 
 const StyledCalendar = styled.div`
@@ -44,15 +43,13 @@ const StyledCalendar = styled.div`
 `
 
 function MobileCalendar({ releases, type }) {
-  const data = useMemo(() => groupBy('released')(releases), [releases])
-
   return (
     <StyledCalendar>
-      {Object.keys(data).map(date => (
+      {Object.keys(releases).map(date => (
         <div className="day" key={`${type}-${date}`}>
           <p>{format(parseISO(date), 'dd EEEEEE', { locale: ru })}</p>
           <div className="releases">
-            {data[date].map(release => (
+            {releases[date].map(release => (
               <ReleaseCard
                 type={type}
                 key={`${date}-${release.id}`}

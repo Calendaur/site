@@ -1,17 +1,18 @@
 import React from 'react'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
+import dynamic from 'next/dynamic'
 import styled from '@emotion/styled'
 import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
-import { Button, ExpectButton, Image } from 'components'
+import { Button, ExpectButton, Image, A } from 'components'
 import Head from './Head'
 import ExtraInfo from './ExtraInfo'
 import StoreButtons from './StoreButtons'
 // import StreamingServicesButtons from './StreamingServicesButtons'
 import FilmButtons from './FilmButtons'
 import Sharing from './Sharing'
-import Trailer from './Trailer'
+
+const Trailer = dynamic(() => import('./Trailer'), { ssr: false })
 
 const Breadcrumbs = styled.div`
   margin-top: 190px;
@@ -224,75 +225,79 @@ function Release({
   return (
     <>
       <Head title={title} description={description} url={url} cover={cover} />
-      <Breadcrumbs>
-        <Link
-          href={`/${type}/[date]`}
-          as={`/${type}/${format(
-            new Date(released),
-            'MMMM-yyyy',
-          )}`.toLowerCase()}
-        >
-          <a>
+      <div>
+        <Breadcrumbs>
+          <A
+            href={`/${type}/[date]`}
+            as={`/${type}/${format(
+              new Date(released),
+              'MMMM-yyyy',
+            )}`.toLowerCase()}
+          >
             {getRusReleaseType(type, true)}{' '}
             {format(new Date(released), 'LLLL yyyy', {
               locale: ru,
             })}
-          </a>
-        </Link>
-        <span> / </span>
-        <p>{title}</p>
-      </Breadcrumbs>
-      <Cover>
-        <Gradient />
-        <Image src={cover} alt={title} />
-      </Cover>
-      <ReleaseDate>
-        {format(new Date(released), 'd MMMM yyyy', {
-          locale: ru,
-        })}
-      </ReleaseDate>
-      <Titles>
-        <Title>{title}</Title>
-        {original_title && <OriginalTitle>{original_title}</OriginalTitle>}
-      </Titles>
-      <Description>
-        <Data>
-          <Buttons>
-            {trailer_url && (
-              <ScrollToTrailer
-                onClick={() => {
-                  const trailerEl = document.querySelector('#trailer')
-                  trailerEl.scrollIntoView({
-                    behavior: 'smooth',
-                  })
-                }}
-              >
-                К трейлеру
-              </ScrollToTrailer>
-            )}
-            <ExpectButton
-              className="expect"
-              release={{ released, release_id: query.id, id }}
+          </A>
+          <span> / </span>
+          <p>{title}</p>
+        </Breadcrumbs>
+        <Cover>
+          <Gradient />
+          <Image src={cover} alt={title} />
+        </Cover>
+        <ReleaseDate>
+          {format(new Date(released), 'd MMMM yyyy', {
+            locale: ru,
+          })}
+        </ReleaseDate>
+        <Titles>
+          <Title>{title}</Title>
+          {original_title && <OriginalTitle>{original_title}</OriginalTitle>}
+        </Titles>
+        <Description>
+          <Data>
+            <Buttons>
+              {trailer_url && (
+                <ScrollToTrailer
+                  onClick={() => {
+                    const trailerEl = document.querySelector('#trailer')
+                    trailerEl.scrollIntoView({
+                      behavior: 'smooth',
+                    })
+                  }}
+                >
+                  К трейлеру
+                </ScrollToTrailer>
+              )}
+              <ExpectButton
+                className="expect"
+                release={{ released, release_id: query.id, id }}
+              />
+            </Buttons>
+            <Text>{description}</Text>
+            <ExtraInfo
+              type={type}
+              director={director}
+              platforms={platforms}
+              season={season}
             />
-          </Buttons>
-          <Text>{description}</Text>
-          <ExtraInfo
-            type={type}
-            director={director}
-            platforms={platforms}
-            season={season}
-          />
-          <FilmButtons type={type} kinopoisk={kinopoisk_url} imdb={imdb_url} />
-          {/* <StreamingServicesButtons type={type} /> */}
-          <StoreButtons
-            type={type}
-            rawgStores={rawg_io_fields?.stores}
-            stores={stores}
-          />
-          <Sharing title={title} url={url} />
-        </Data>
-        {trailer_url && <Trailer url={trailer_url} />}
-      </Description>
+            <FilmButtons
+              type={type}
+              kinopoisk={kinopoisk_url}
+              imdb={imdb_url}
+            />
+            {/* <StreamingServicesButtons type={type} /> */}
+            <StoreButtons
+              type={type}
+              rawgStores={rawg_io_fields?.stores}
+              stores={stores}
+            />
+            <Sharing title={title} url={url} />
+          </Data>
+          {trailer_url && <Trailer url={trailer_url} />}
+        </Description>
+      </div>
     </>
   )
 }

@@ -26,7 +26,7 @@ const FilterBar = styled.div`
   }
 `
 
-function MainPage({ parsedURL, releases, meta }) {
+function MainPage({ parsedURL, releases, grouped, meta, weeks }) {
   const { year, month, type } = parsedURL
 
   return (
@@ -37,10 +37,12 @@ function MainPage({ parsedURL, releases, meta }) {
       </FilterBar>
       <CalendarHeader />
       <Calendar
+        weeks={weeks}
         type={type}
         month={month.jsNumber}
         year={year}
         releases={releases}
+        grouped={grouped}
       />
     </div>
   )
