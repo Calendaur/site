@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 import { endpoints } from 'shared/constants'
 import { fetchWithToken } from 'shared/utils'
 
-export function useUser(initial?: any) {
+export function useUser(initial) {
   const token = Cookies.get('authorization')
   const { data, error, mutate } = useSWR(
     token ? [endpoints.PROFILE, token] : null,
