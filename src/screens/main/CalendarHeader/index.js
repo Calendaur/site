@@ -1,8 +1,20 @@
 import React from 'react'
+import styled from '@emotion/styled'
 import { A } from 'components'
 import { usePageData } from 'features/releases/page-data'
 
-import styles from './styles.module.css'
+const Title = styled.h1`
+  margin-bottom: var(--vertical-5);
+
+  & > a {
+    opacity: 0.4;
+    transition: var(--transition);
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+`
 
 const currentYear = new Date().getFullYear()
 
@@ -38,13 +50,13 @@ function CalendarHeader() {
 
   if (isNotActual)
     return (
-      <h1 className={styles.Title}>
+      <Title>
         {nonActualTypeText()} {month.rus} {year}
-      </h1>
+      </Title>
     )
 
   return (
-    <h1 className={styles.Title}>
+    <Title>
       Новинки {actualTypeText()} за {month.rus}{' '}
       {year === currentYear ? '' : year}{' '}
       {isCurrentMonth ? (
@@ -52,7 +64,7 @@ function CalendarHeader() {
       ) : (
         <A {...prevLink}>←&nbsp;{prevMonth.rus}</A>
       )}
-    </h1>
+    </Title>
   )
 }
 

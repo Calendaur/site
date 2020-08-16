@@ -3,6 +3,7 @@ import AuthForm from './AuthForm'
 import Button from './Button'
 import Emoji from './Emoji'
 import ExpectButton from './ExpectButton'
+import GlobalStyles from './GlobalStyles'
 import Image from './Image'
 import Input from './Input'
 import Logo from './Logo'
@@ -16,6 +17,7 @@ export {
   Button,
   Emoji,
   ExpectButton,
+  GlobalStyles,
   Image,
   Input,
   Logo,

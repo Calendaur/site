@@ -1,10 +1,43 @@
 import React from 'react'
+import styled from '@emotion/styled'
+import { center } from 'core/styles/shared'
 
-import styles from './styles.module.css'
+const Wrapper = styled.div`
+  margin-bottom: var(--vertical-4);
+
+  & > p {
+    margin-bottom: var(--vertical-6);
+    color: var(--secondary-text);
+  }
+
+  & > div {
+    display: flex;
+    align-items: center;
+
+    & > a {
+      --size: 24px;
+
+      ${center}
+      width: var(--size);
+      height: var(--size);
+      margin-right: var(--horizontal-4);
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      & > img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+`
 
 function Sharing({ title, url }) {
   return (
-    <div className={styles.Sharing}>
+    <Wrapper>
       <p>Поделиться релизом:</p>
       <div>
         <a
@@ -40,7 +73,7 @@ function Sharing({ title, url }) {
           <img src="/icons/telegram.svg" alt="Поделиться через Telegram" />
         </a>
       </div>
-    </div>
+    </Wrapper>
   )
 }
 

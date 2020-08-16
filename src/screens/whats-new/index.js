@@ -1,10 +1,8 @@
-/* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react'
 import Head from 'next/head'
+import styled from '@emotion/styled'
 import { Emoji, A, Button } from 'components'
 import { routes } from 'shared/constants'
-
-import styles from './styles.module.css'
 
 function WhatsNew() {
   return (
@@ -12,7 +10,7 @@ function WhatsNew() {
       <Head>
         <title>Новые фичи released.at</title>
       </Head>
-      <div className={styles.Donate}>
+      <Donate>
         <p>Поддержите проект материально и ускорьте его развитие</p>
         <Button
           as="a"
@@ -29,10 +27,10 @@ function WhatsNew() {
           async
           src="https://c6.patreon.com/becomePatronButton.bundle.js"
         ></script>
-      </div>
-      <article className={styles.Log}>
+      </Donate>
+      <Log>
         <header>
-          <h2 className={styles.Title}>Июль 2020</h2>
+          <Title>Июль 2020</Title>
         </header>
         <ul>
           <li>
@@ -60,10 +58,10 @@ function WhatsNew() {
             <Emoji label="feature">🎉</Emoji>
           </li>
         </ul>
-      </article>
-      <article className={styles.Log}>
+      </Log>
+      <Log>
         <header>
-          <h2 className={styles.Title}>Июнь 2020</h2>
+          <Title>Июнь 2020</Title>
         </header>
         <ul>
           <li>
@@ -78,10 +76,10 @@ function WhatsNew() {
             ✓ Добавили магазины для игр <Emoji label="feature">🎉</Emoji>
           </li>
         </ul>
-      </article>
-      <article className={styles.Log}>
+      </Log>
+      <Log>
         <header>
-          <h2 className={styles.Title}>Май 2020</h2>
+          <Title>Май 2020</Title>
         </header>
         <ul>
           <li>
@@ -106,9 +104,67 @@ function WhatsNew() {
             <Emoji label="feature">🎉</Emoji>
           </li>
         </ul>
-      </article>
+      </Log>
     </>
   )
 }
+
+const Log = styled.article`
+  margin-bottom: var(--vertical-2);
+
+  a {
+    text-decoration: underline;
+  }
+
+  & > ul {
+    padding: 0;
+    font-size: 1rem;
+    line-height: 1.2;
+    list-style-type: none;
+
+    @media (min-width: 768px) {
+      font-size: 1.375rem;
+      line-height: 1.6;
+    }
+
+    & > li {
+      margin-bottom: 12px;
+
+      & > img {
+        position: relative;
+        top: 4px;
+        width: 16px;
+        margin: 0 4px;
+
+        @media (min-width: 768px) {
+          top: 5px;
+          width: 22px;
+          margin: 0 8px;
+        }
+      }
+    }
+  }
+`
+
+const Title = styled.h2`
+  margin-bottom: var(--vertical-4);
+`
+
+const Donate = styled.div`
+  margin-bottom: var(--vertical-2);
+
+  p {
+    margin: 0;
+    margin-bottom: var(--vertical-6);
+  }
+
+  a {
+    img {
+      width: 16px;
+      height: 16px;
+      margin-right: var(--horizontal-6);
+    }
+  }
+`
 
 export default WhatsNew

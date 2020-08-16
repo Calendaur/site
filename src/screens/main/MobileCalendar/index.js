@@ -1,10 +1,50 @@
 import React, { useMemo } from 'react'
+import styled from '@emotion/styled'
 import { compareAsc, format, parseISO } from 'date-fns'
 import ru from 'date-fns/locale/ru'
-import { groupBy } from 'shared/utils'
+import { groupBy } from 'core/helpers'
 import ReleaseCard from '../ReleaseCard'
 
-import styles from './styles.module.css'
+const Calendar = styled.div`
+  display: block;
+
+  @media (min-width: 1200px) {
+    display: none;
+  }
+`
+
+const Day = styled.div`
+  margin-bottom: var(--vertical-1);
+
+  & > p {
+    margin-bottom: var(--vertical-6);
+    font-weight: bold;
+  }
+`
+
+const Releases = styled.div`
+  display: grid;
+  grid-auto-rows: minmax(200px, 1fr);
+  grid-gap: 8px;
+
+  @media (min-width: 768px) and (max-width: 1201px) {
+    grid-auto-rows: minmax(400px, 1fr);
+  }
+
+  > * {
+    border-radius: 0;
+
+    &:first-child {
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+
+    &:last-child {
+      border-bottom-right-radius: 20px;
+      border-bottom-left-radius: 20px;
+    }
+  }
+`
 
 function MobileCalendar({ releases, type }) {
   const data = useMemo(
@@ -18,11 +58,11 @@ function MobileCalendar({ releases, type }) {
   )
 
   return (
-    <div className={styles.Calendar}>
+    <Calendar>
       {Object.keys(data).map(date => (
-        <div className={styles.Day} key={`${type}-${date}`}>
+        <Day key={`${type}-${date}`}>
           <p>{format(parseISO(date), 'dd EEEEEE', { locale: ru })}</p>
-          <div className={styles.Releases}>
+          <Releases>
             {data[date].map(release => (
               <ReleaseCard
                 type={type}
@@ -30,10 +70,10 @@ function MobileCalendar({ releases, type }) {
                 release={release}
               />
             ))}
-          </div>
-        </div>
+          </Releases>
+        </Day>
       ))}
-    </div>
+    </Calendar>
   )
 }
 

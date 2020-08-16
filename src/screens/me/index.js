@@ -1,10 +1,51 @@
 import React from 'react'
 import Head from 'next/head'
+import styled from '@emotion/styled'
 import { compareAsc } from 'date-fns'
 import Card from 'screens/main/ReleaseCard'
 import { useUser } from 'features/user/use-user'
 
-import styles from './styles.module.css'
+const ExpectedReleases = styled.section`
+  margin-bottom: var(--vertical-1);
+
+  & > h1 {
+    line-height: 1;
+  }
+
+  & > h3 {
+    margin-bottom: var(--vertical-6);
+  }
+`
+
+const Note = styled.p`
+  margin: 0;
+  margin-bottom: var(--vertical-5);
+  font-size: 14px;
+  color: var(--secondary-text);
+
+  & > span {
+    padding: 1px 4px;
+    margin-left: var(--horizontal-6);
+    color: var(--black);
+    white-space: nowrap;
+    background-color: #dbdbdb;
+    border-radius: 4px;
+  }
+`
+
+const ReleasesSection = styled.div`
+  margin-bottom: var(--vertical-4);
+`
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
+  grid-gap: 16px;
+
+  & > a {
+    height: 200px;
+  }
+`
 
 function actual(arr) {
   return arr.filter(i => compareAsc(new Date(), new Date(i.released)) <= 0)
@@ -35,88 +76,88 @@ function Me({ user: ssrUser }) {
       <Head>
         <title>Личный кабинет</title>
       </Head>
-      <section className={styles.ExpectedReleases}>
+      <ExpectedReleases>
         <h1>Ожидаемые релизы</h1>
-        <p className={styles.Note}>
+        <Note>
           Чтобы добавить релиз в этот список, откройте его карточку и нажмите
           <span>Жду</span>.
-        </p>
-        <div className={styles.ReleasesSection}>
+        </Note>
+        <ReleasesSection>
           <h3>Кино</h3>
           {actualFilms.length ? (
-            <div className={styles.Grid}>
+            <Grid>
               {actualFilms.map(film => (
                 <Card showDate type="films" release={film} />
               ))}
-            </div>
+            </Grid>
           ) : (
             <p>Нет ожидаемых фильмов</p>
           )}
-        </div>
-        <div className={styles.ReleasesSection}>
+        </ReleasesSection>
+        <ReleasesSection>
           <h3>Сериалы</h3>
           {actualSeries.length ? (
-            <div className={styles.Grid}>
+            <Grid>
               {actualSeries.map(series => (
                 <Card showDate type="series" release={series} />
               ))}
-            </div>
+            </Grid>
           ) : (
             <p>Нет ожидаемых сериалов</p>
           )}
-        </div>
-        <div className={styles.ReleasesSection}>
+        </ReleasesSection>
+        <ReleasesSection>
           <h3>Игры</h3>
           {actualGames.length ? (
-            <div className={styles.Grid}>
+            <Grid>
               {actualGames.map(game => (
                 <Card showDate type="games" release={game} />
               ))}
-            </div>
+            </Grid>
           ) : (
             <p>Нет ожидаемых игр</p>
           )}
-        </div>
-      </section>
+        </ReleasesSection>
+      </ExpectedReleases>
       {hasNonActual ? (
-        <section>
+        <ExpectedReleases>
           <h1>Уже вышли</h1>
-          <p>
+          <Note>
             Сюда автоматически попадают ваши ожидаемые релизы после выхода.
             Также вы&nbsp;можете нажать кнопку <span>В&nbsp;закладки</span> для
             добавления релиза&nbsp;в этот список.
-          </p>
+          </Note>
           {nonActualFilms.length ? (
-            <div className={styles.ReleasesSection}>
+            <ReleasesSection>
               <h3>Кино</h3>
-              <div className={styles.Grid}>
+              <Grid>
                 {nonActualFilms.map(film => (
                   <Card showDate type="films" release={film} />
                 ))}
-              </div>
-            </div>
+              </Grid>
+            </ReleasesSection>
           ) : null}
           {nonActualSeries.length ? (
-            <div className={styles.ReleasesSection}>
+            <ReleasesSection>
               <h3>Сериалы</h3>
-              <div className={styles.Grid}>
+              <Grid>
                 {nonActualSeries.map(series => (
                   <Card showDate type="series" release={series} />
                 ))}
-              </div>
-            </div>
+              </Grid>
+            </ReleasesSection>
           ) : null}
           {nonActualGames.length ? (
-            <div className={styles.ReleasesSection}>
+            <ReleasesSection>
               <h3>Игры</h3>
-              <div className={styles.Grid}>
+              <Grid>
                 {nonActualGames.map(game => (
                   <Card showDate type="games" release={game} />
                 ))}
-              </div>
-            </div>
+              </Grid>
+            </ReleasesSection>
           ) : null}
-        </section>
+        </ExpectedReleases>
       ) : null}
     </>
   )

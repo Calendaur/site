@@ -1,9 +1,2 @@
 User-agent: *
 Sitemap: https://released.at/sitemap.xml
-
-Disallow: /whats-new/
-Disallow: /me/
-Disallow: /sign-in/
-Disallow: /sign-up/
-Disallow: /subscribe/
-Disallow: /privacy-policy/
