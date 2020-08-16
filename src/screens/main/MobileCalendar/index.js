@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import styled from '@emotion/styled'
 import { compareAsc, format, parseISO } from 'date-fns'
 import ru from 'date-fns/locale/ru'
-import { groupBy } from 'core/helpers'
+import { groupBy } from 'shared/utils'
 import ReleaseCard from '../ReleaseCard'
 
 const Calendar = styled.div`

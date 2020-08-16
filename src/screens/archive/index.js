@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import { addMonths, eachMonthOfInterval, format } from 'date-fns'
 import ru from 'date-fns/locale/ru'
 import { A } from 'components'
-import { center } from 'core/styles/shared'
+import { center } from 'shared/css-utils'
 import ReleaseTypeChooser from './ReleaseTypeChooser'
 
 const startDate = new Date(2020, 0, 1)

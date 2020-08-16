@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { HOME } from 'core/routes'
-import { glitchAnimations } from 'core/styles/shared'
+import { routes } from 'shared/constants'
+import { glitchAnimations } from 'shared/css-utils'
 import A from './A'
 
 function Logo({ className }) {
   return (
     <A
-      href={HOME}
+      href={routes.HOME}
       aria-label="released.at"
       data-text="released"
       className={className}

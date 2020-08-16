@@ -1,4 +1,4 @@
-import { setPushInfo } from 'core/api'
+import { setPushInfo } from 'shared/api'
 
 export const vapid = new Uint8Array([
   4,
@@ -82,7 +82,7 @@ export async function askUserPermission() {
   return permission
 }
 
-export async function createNotificationsSubscription(token) {
+export async function createNotificationsSubscription() {
   const sw = await navigator.serviceWorker.ready
   const permission = await Notification.requestPermission()
 
@@ -113,10 +113,8 @@ export async function createNotificationsSubscription(token) {
       .replace(/\//g, '_'),
   }
 
-  console.log(pushData)
-
   try {
-    await setPushInfo(token, pushData)
+    await setPushInfo(pushData)
   } catch (e) {
     console.error(e)
   }

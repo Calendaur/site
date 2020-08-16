@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import cx from 'classnames'
 import styled from '@emotion/styled'
-import { getWeeks } from 'core/calendar'
+import { getWeeks } from 'features/releases/helpers'
 import NoReleases from './NoReleases'
 import ReleaseListInDay from '../ReleaseListInDay'
 import MobileCalendar from '../MobileCalendar'

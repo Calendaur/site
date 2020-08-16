@@ -1,4 +1,10 @@
-import { addMonths, eachMonthOfInterval, format, isEqual } from 'date-fns'
+import addMonths from 'date-fns/addMonths'
+import eachMonthOfInterval from 'date-fns/eachMonthOfInterval'
+import format from 'date-fns/format'
+import isEqual from 'date-fns/isEqual'
+import startOfMonth from 'date-fns/startOfMonth'
+import getDaysInMonth from 'date-fns/getDaysInMonth'
+import locale from 'date-fns/locale/ru'
 import { months } from 'shared/constants'
 
 export function generateReleasesPages() {
@@ -76,4 +82,48 @@ export function typeAdapter(type, toServer, isSingle) {
     case 'games':
       return 'games'
   }
+}
+
+function chunkify(array, chunkSize) {
+  const chunks = Array.from(
+    { length: Math.ceil(array.length / chunkSize) },
+    (_, i) => {
+      const start = chunkSize * i
+
+      const chunk = array.slice(start, start + chunkSize)
+
+      if (chunk.length < chunkSize)
+        return [...chunk, ...Array.from({ length: chunkSize - chunk.length })]
+
+      return array.slice(start, start + chunkSize)
+    },
+  )
+
+  return chunks
+}
+
+function range(min = 0, max) {
+  let arr = []
+
+  for (let i = min; i <= max; i++) {
+    arr.push(i)
+  }
+
+  return arr
+}
+
+export function getWeeks(year, jsMonthNumber) {
+  const daysOfWeek = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс']
+
+  const date = new Date(Date.UTC(year, jsMonthNumber, 1))
+  const daysArray = range(1, getDaysInMonth(date))
+  const firstDay = format(startOfMonth(date), 'EEEEEE', { locale })
+  const firstDayIndex = daysOfWeek.findIndex(i => i === firstDay)
+
+  return chunkify(
+    firstDayIndex === 0
+      ? daysArray
+      : [...Array.from({ length: firstDayIndex }), ...daysArray],
+    7,
+  )
 }

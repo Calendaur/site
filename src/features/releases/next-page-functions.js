@@ -1,4 +1,4 @@
-import { releases, homePageReleases } from 'core/api'
+import { releases, homePageReleases } from 'shared/api'
 import { months } from 'shared/constants'
 import { generateReleasesPages, typeAdapter } from './helpers'
 import { meta } from './seo'

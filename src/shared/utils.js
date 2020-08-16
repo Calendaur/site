@@ -1,4 +1,6 @@
+import fetch from 'isomorphic-unfetch'
 import Router from 'next/router'
+import Cookies from 'js-cookie'
 
 async function parse(response) {
   if (response.status === 204 || response.statusText === 'No Content') {
@@ -19,11 +21,24 @@ async function parse(response) {
   throw { response, error: data } // eslint-disable-line
 }
 
-export async function fetchWithToken(input, token) {
+export async function fetchJSON(input, init = {}) {
   const response = await fetch(input, {
+    ...init,
     headers: {
+      ...(init.headers || {}),
       'Content-Type': 'application/json',
-      Authorization: token,
+    },
+  })
+  return parse(response)
+}
+
+export async function fetchWithToken(input, init = {}, token) {
+  const response = await fetch(input, {
+    ...init,
+    headers: {
+      ...(init.headers || {}),
+      'Content-Type': 'application/json',
+      Authorization: token || Cookies.get('authorization'),
     },
   })
   return parse(response)
@@ -37,3 +52,10 @@ export function redirect(ctx, to) {
     Router.replace(to)
   }
 }
+
+export const groupBy = key => array =>
+  array.reduce((objectsByKeyValue, obj) => {
+    const value = obj[key]
+    objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj)
+    return objectsByKeyValue
+  }, {})

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { center } from 'core/styles/shared'
+import { center } from 'shared/css-utils'
 
 const Wrapper = styled.div`
   margin-bottom: var(--vertical-4);

@@ -5,7 +5,6 @@ import styled from '@emotion/styled'
 import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
 import { Button, ExpectButton, Image } from 'components'
-import { getRusReleaseType } from 'core/helpers'
 import Head from './Head'
 import ExtraInfo from './ExtraInfo'
 import StoreButtons from './StoreButtons'
@@ -191,6 +190,17 @@ const Buttons = styled.div`
   }
 `
 
+function getRusReleaseType(type, some = false) {
+  switch (type) {
+    case 'series':
+      return `Сериал${some ? 'ы' : ''}`
+    case 'films':
+      return 'Кино'
+    case 'games':
+      return `Игр${some ? 'ы' : 'а'}`
+  }
+}
+
 function Release({
   type,
   title,
@@ -203,7 +213,6 @@ function Release({
   kinopoisk_url,
   imdb_url,
   trailer_url,
-  is_digital,
   stores,
   original_title,
   rawg_io_fields,

@@ -7,7 +7,7 @@ import { cache } from '@emotion/css'
 import { SWRConfig } from 'swr'
 import { start, done, configure } from 'nprogress'
 import { Page, GlobalStyles } from 'components'
-import { fetchJSON } from 'core/helpers'
+import { fetchJSON } from 'shared/utils'
 
 configure({ showSpinner: false })
 

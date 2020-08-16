@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import Head from 'next/head'
 import styled from '@emotion/styled'
 import { A, Button } from 'components'
-import { PRIVACY_POLICY } from 'core/routes'
+import { routes } from 'shared/constants'
 
 const Title = styled.h1`
   margin-bottom: var(--vertical-1);
@@ -66,6 +66,7 @@ const Privacy = styled.p`
 `
 
 function SubscribePage() {
+  const { PRIVACY_POLICY } = routes
   const inputRef = useRef()
   const [email, setEmail] = useState('')
 
