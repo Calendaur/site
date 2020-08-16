@@ -1,9 +1,14 @@
 import React from 'react'
+import dynamic from 'next/dynamic'
 import styled from '@emotion/styled'
 import { format } from 'date-fns'
 import ru from 'date-fns/locale/ru'
-import { A, ExpectButton, Image } from 'components'
+import { A, Image } from 'components'
 import Info from './Info'
+
+const ExpectButton = dynamic(() => import('components/ExpectButton'), {
+  ssr: false,
+})
 
 export function getPlatformIcon(platform) {
   switch (platform) {
@@ -55,6 +60,34 @@ const Card = styled(A)`
     }
   }
 
+  .released-date {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 1;
+    display: inline-flex;
+    padding: 0 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--black-color);
+    white-space: nowrap;
+    background-color: var(--white-color);
+    border-radius: 24px;
+    transition: var(--animation-time);
+  }
+
+  .expect-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 999;
+    opacity: 1;
+
+    @media (min-width: 1200px) {
+      opacity: 0;
+    }
+  }
+
   @media (min-width: 768px) {
     &:hover {
       transform: translate(0, -4px);
@@ -86,43 +119,15 @@ const Card = styled(A)`
   }
 `
 
-const Expect = styled(ExpectButton)`
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  z-index: 999;
-  opacity: 1;
-
-  @media (min-width: 1200px) {
-    opacity: 0;
-  }
-`
-
-const Released = styled.div`
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  z-index: 1;
-  display: inline-flex;
-  padding: 0 10px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--black-color);
-  white-space: nowrap;
-  background-color: var(--white-color);
-  border-radius: 24px;
-  transition: var(--animation-time);
-`
-
 function ReleaseCard({ release, type, showDate = false }) {
   return (
     <Card href="/release/[id]" as={`/release/${release.release_id}`}>
       {showDate && (
-        <Released className="released-date">
+        <div className="released-date">
           {format(new Date(release.released), 'd MMM', { locale: ru })}
-        </Released>
+        </div>
       )}
-      <Expect release={release} />
+      <ExpectButton className="expect-button" release={release} />
       <div className="aspectRatio">
         <Image src={release.cover} alt={release.title} />
       </div>

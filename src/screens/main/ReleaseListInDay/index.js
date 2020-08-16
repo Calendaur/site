@@ -19,8 +19,8 @@ const Releases = styled.div`
     & > * {
       --br: 20px;
 
-      border-radius: 0;
       overflow: hidden;
+      border-radius: 0;
       mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
 
       &:first-child {

@@ -5,43 +5,43 @@ import ru from 'date-fns/locale/ru'
 import { groupBy } from 'shared/utils'
 import ReleaseCard from '../ReleaseCard'
 
-const Calendar = styled.div`
+const StyledCalendar = styled.div`
   display: block;
 
   @media (min-width: 1200px) {
     display: none;
   }
-`
 
-const Day = styled.div`
-  margin-bottom: var(--vertical-1);
+  .day {
+    margin-bottom: var(--vertical-1);
 
-  & > p {
-    margin-bottom: var(--vertical-6);
-    font-weight: bold;
-  }
-`
-
-const Releases = styled.div`
-  display: grid;
-  grid-auto-rows: minmax(200px, 1fr);
-  grid-gap: 8px;
-
-  @media (min-width: 768px) and (max-width: 1201px) {
-    grid-auto-rows: minmax(400px, 1fr);
+    & > p {
+      margin-bottom: var(--vertical-6);
+      font-weight: bold;
+    }
   }
 
-  > * {
-    border-radius: 0;
+  .releases {
+    display: grid;
+    grid-auto-rows: minmax(200px, 1fr);
+    grid-gap: 8px;
 
-    &:first-child {
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
+    @media (min-width: 768px) and (max-width: 1201px) {
+      grid-auto-rows: minmax(400px, 1fr);
     }
 
-    &:last-child {
-      border-bottom-right-radius: 20px;
-      border-bottom-left-radius: 20px;
+    > * {
+      border-radius: 0;
+
+      &:first-of-type {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+      }
+
+      &:last-of-type {
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+      }
     }
   }
 `
@@ -58,11 +58,11 @@ function MobileCalendar({ releases, type }) {
   )
 
   return (
-    <Calendar>
+    <StyledCalendar>
       {Object.keys(data).map(date => (
-        <Day key={`${type}-${date}`}>
+        <div className="day" key={`${type}-${date}`}>
           <p>{format(parseISO(date), 'dd EEEEEE', { locale: ru })}</p>
-          <Releases>
+          <div className="releases">
             {data[date].map(release => (
               <ReleaseCard
                 type={type}
@@ -70,10 +70,10 @@ function MobileCalendar({ releases, type }) {
                 release={release}
               />
             ))}
-          </Releases>
-        </Day>
+          </div>
+        </div>
       ))}
-    </Calendar>
+    </StyledCalendar>
   )
 }
 

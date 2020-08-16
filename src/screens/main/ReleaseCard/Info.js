@@ -25,28 +25,30 @@ const Wrapper = styled.div`
       font-size: 0.75rem;
     }
   }
-`
 
-const Extra = styled.p`
-  margin-bottom: 0;
-  font-size: 0.75rem;
-  font-weight: normal;
-  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
-`
+  .extra {
+    margin-bottom: 0;
+    font-size: 0.75rem;
+    font-weight: normal;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+  }
 
-const Platforms = styled(PlatformList)`
-  padding: 0 8px;
+  .platforms {
+    padding: 0 8px;
+  }
 `
 
 function Info({ type, release }) {
   function renderChildren() {
     switch (type) {
       case 'films':
-        return <Extra>Реж. {release.director}</Extra>
+        return <p className="extra">Реж. {release.director}</p>
       case 'games':
-        return <Platforms platforms={release.platforms} />
+        return (
+          <PlatformList className="platforms" platforms={release.platforms} />
+        )
       case 'series':
-        return <Extra>{release.season} сезон</Extra>
+        return <p className="extra">{release.season} сезон</p>
       default:
         return null
     }

@@ -72,7 +72,7 @@ const MonthFilter = styled.div`
 function MobileNavReleaseFilterBar() {
   const data = usePageData()
 
-  if (!data) return null
+  if (!data) return <></>
 
   const {
     type,

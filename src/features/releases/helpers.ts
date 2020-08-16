@@ -6,8 +6,9 @@ import startOfMonth from 'date-fns/startOfMonth'
 import getDaysInMonth from 'date-fns/getDaysInMonth'
 import locale from 'date-fns/locale/ru'
 import { months } from 'shared/constants'
+import { FRONTEND_RELEASE_TYPES, BACKEND_RELEASE_TYPES } from 'types/releases'
 
-export function generateReleasesPages() {
+export function generateReleasesPages(): { params: { date: string } }[] {
   const startDate = new Date(2020, 0, 1)
   const endDate = addMonths(new Date(), 2)
   const dates = eachMonthOfInterval({ start: startDate, end: endDate })
@@ -73,14 +74,16 @@ export function getPageData(parsedUrl) {
   }
 }
 
-export function typeAdapter(type, toServer, isSingle) {
+export function typeAdapter(
+  type: FRONTEND_RELEASE_TYPES,
+): BACKEND_RELEASE_TYPES {
   switch (type) {
-    case 'films':
-      return 'movies'
-    case 'series':
-      return 'serials'
-    case 'games':
-      return 'games'
+    case FRONTEND_RELEASE_TYPES.Films:
+      return BACKEND_RELEASE_TYPES.Films
+    case FRONTEND_RELEASE_TYPES.Series:
+      return BACKEND_RELEASE_TYPES.Series
+    case FRONTEND_RELEASE_TYPES.Games:
+      return BACKEND_RELEASE_TYPES.Games
   }
 }
 
