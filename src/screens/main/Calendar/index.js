@@ -1,6 +1,7 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useEffect, useState } from 'react'
 import cx from 'classnames'
 import styled from '@emotion/styled'
+import debounce from 'lodash.debounce'
 import { getWeeks } from 'features/releases/helpers'
 import NoReleases from './NoReleases'
 import ReleaseListInDay from '../ReleaseListInDay'
@@ -13,12 +14,8 @@ const currentYear = new Date().getFullYear()
 
 const StyledCalendar = styled.div`
   position: relative;
-  display: none;
+  display: block;
   user-select: none;
-
-  @media (min-width: 1200px) {
-    display: block;
-  }
 
   .day-of-week {
     display: grid;
@@ -99,59 +96,69 @@ const StyledCalendar = styled.div`
 `
 
 function Calendar({ type, month, year, releases }) {
+  const [size, setSize] = useState(window.innerWidth)
   const weeks = useMemo(() => getWeeks(year, month), [year, month])
 
-  return (
-    <>
-      {releases.length === 0 ? (
-        <NoReleases />
-      ) : (
-        <>
-          <StyledCalendar>
-            <div className="day-of-week">
-              {daysOfWeek.map(weekDay => (
-                <div key={weekDay}>{weekDay}</div>
-              ))}
-            </div>
-            <div className="grid">
-              {weeks.flat().map((day, index) => {
-                const dayReleases = releases.filter(
-                  r => new Date(r.released).getDate() === day,
-                )
-                const hasRelease = dayReleases.length > 0
-                const isToday =
-                  day === currentDay &&
-                  month === currentMonth &&
-                  year === currentYear
+  useEffect(() => {
+    const handleResize = debounce(() => {
+      setSize(window.innerWidth)
+    }, 300)
 
-                return (
-                  <div
-                    key={index}
-                    className={cx('day', {
-                      isNotWithinRange: day === undefined,
-                      someReleases: dayReleases.length > 1,
-                      hasRelease,
-                    })}
-                  >
-                    <div
-                      className={cx('date-label', {
-                        hasRelease,
-                        isToday,
-                      })}
-                    >
-                      <span>{day}</span>
-                    </div>
-                    <ReleaseListInDay type={type} releases={dayReleases} />
-                  </div>
-                )
-              })}
-            </div>
-          </StyledCalendar>
-          <MobileCalendar type={type} releases={releases} />
-        </>
-      )}
-    </>
-  )
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+  if (releases.length === 0) return <NoReleases />
+
+  if (size >= 1200) {
+    return (
+      <StyledCalendar>
+        <div className="day-of-week">
+          {daysOfWeek.map(weekDay => (
+            <div key={weekDay}>{weekDay}</div>
+          ))}
+        </div>
+        <div className="grid">
+          {weeks.flat().map((day, index) => {
+            const dayReleases = releases.filter(
+              r => new Date(r.released).getDate() === day,
+            )
+            const hasRelease = dayReleases.length > 0
+            const isToday =
+              day === currentDay &&
+              month === currentMonth &&
+              year === currentYear
+
+            return (
+              <div
+                key={index}
+                className={cx('day', {
+                  isNotWithinRange: day === undefined,
+                  someReleases: dayReleases.length > 1,
+                  hasRelease,
+                })}
+              >
+                <div
+                  className={cx('date-label', {
+                    hasRelease,
+                    isToday,
+                  })}
+                >
+                  <span>{day}</span>
+                </div>
+                <ReleaseListInDay type={type} releases={dayReleases} />
+              </div>
+            )
+          })}
+        </div>
+      </StyledCalendar>
+    )
+  }
+
+  return <MobileCalendar type={type} releases={releases} />
 }
 
 export default Calendar

@@ -1,9 +1,11 @@
 import React from 'react'
+import dynamic from 'next/dynamic'
 import styled from '@emotion/styled'
 import { ReleaseTypeChooser } from 'components'
 import CalendarHeader from './CalendarHeader'
-import Calendar from './Calendar'
 import Meta from './Meta'
+
+const Calendar = dynamic(() => import('./Calendar'), { ssr: false })
 
 const FilterBar = styled.div`
   margin-bottom: var(--vertical-5);

@@ -105,7 +105,7 @@ function chunkify(array, chunkSize) {
   return chunks
 }
 
-function range(min = 0, max) {
+function range(min = 0, max: number) {
   let arr = []
 
   for (let i = min; i <= max; i++) {
@@ -115,7 +115,7 @@ function range(min = 0, max) {
   return arr
 }
 
-export function getWeeks(year, jsMonthNumber) {
+export function getWeeks(year: number, jsMonthNumber: number) {
   const daysOfWeek = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс']
 
   const date = new Date(Date.UTC(year, jsMonthNumber, 1))

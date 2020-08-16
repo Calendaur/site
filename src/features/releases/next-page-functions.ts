@@ -1,9 +1,5 @@
-import {
-  GetStaticPaths,
-  GetStaticProps,
-  GetStaticPropsContext,
-  GetStaticPropsResult,
-} from 'next'
+import { GetStaticPaths, GetStaticPropsContext } from 'next'
+import compareAsc from 'date-fns/compareAsc'
 import { releases, homePageReleases } from 'shared/api'
 import { months } from 'shared/constants'
 import { FRONTEND_RELEASE_TYPES, ParsedURL } from 'types/releases'
@@ -37,7 +33,9 @@ export const getProps = async (
         month,
         year,
       },
-      releases: result,
+      releases: result.sort((a, b) =>
+        compareAsc(new Date(a.released), new Date(b.released)),
+      ),
       meta: meta[type](month.jsNumber, year),
     },
   }
@@ -56,7 +54,9 @@ export async function getPropsForIndexPage() {
         month: months[currentMonth - 1],
         year: currentYear,
       },
-      releases: result,
+      releases: result.sort((a, b) =>
+        compareAsc(new Date(a.released), new Date(b.released)),
+      ),
       meta: meta.main,
     },
   }

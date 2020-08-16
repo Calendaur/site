@@ -142,11 +142,9 @@ function Header({ className }) {
   const [visibleMobileNav, setVisibleMobileNav] = useState(false)
   const { events } = useRouter()
 
-  function closeMobileNav() {
-    setVisibleMobileNav(false)
-  }
-
   useEffect(() => {
+    if (window.innerWidth >= 768) return
+
     if (visibleMobileNav) {
       document.body.style.overflow = 'hidden'
     } else {
@@ -155,6 +153,12 @@ function Header({ className }) {
   }, [visibleMobileNav])
 
   useEffect(() => {
+    if (window.innerWidth >= 768) return
+
+    function closeMobileNav() {
+      setVisibleMobileNav(false)
+    }
+
     events.on('routeChangeComplete', closeMobileNav)
 
     return () => {

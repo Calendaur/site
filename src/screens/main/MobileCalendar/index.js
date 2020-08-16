@@ -1,16 +1,13 @@
 import React, { useMemo } from 'react'
 import styled from '@emotion/styled'
-import { compareAsc, format, parseISO } from 'date-fns'
+import format from 'date-fns/format'
+import parseISO from 'date-fns/parseISO'
 import ru from 'date-fns/locale/ru'
 import { groupBy } from 'shared/utils'
 import ReleaseCard from '../ReleaseCard'
 
 const StyledCalendar = styled.div`
   display: block;
-
-  @media (min-width: 1200px) {
-    display: none;
-  }
 
   .day {
     margin-bottom: var(--vertical-1);
@@ -47,15 +44,7 @@ const StyledCalendar = styled.div`
 `
 
 function MobileCalendar({ releases, type }) {
-  const data = useMemo(
-    () =>
-      groupBy('released')(
-        releases.sort((a, b) =>
-          compareAsc(new Date(a.released), new Date(b.released)),
-        ),
-      ),
-    [releases],
-  )
+  const data = useMemo(() => groupBy('released')(releases), [releases])
 
   return (
     <StyledCalendar>
