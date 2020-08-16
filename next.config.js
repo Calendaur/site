@@ -1,7 +1,4 @@
 const withOffline = require('next-offline')
-const withTM = require('next-transpile-modules')(['date-fns'], {
-  unstable_webpack5: true,
-})
 
 const nextConfig = {
   workboxOpts: {
@@ -39,4 +36,4 @@ const nextConfig = {
   },
 }
 
-module.exports = withOffline(withTM(nextConfig))
+module.exports = withOffline(nextConfig)
