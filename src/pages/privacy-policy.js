@@ -1,8 +1,8 @@
 import React from 'react'
-import Policy from '../screens/policy'
+// import Policy from '../screens/policy'
 
 function PolicyPage() {
-  return <Policy />
+  return <div></div>
 }
 
 export default PolicyPage
