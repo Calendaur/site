@@ -1,7 +1,7 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import styled from '@emotion/styled'
-import { format } from 'date-fns'
+import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
 import { A, Image } from 'components'
 import Info from './Info'
@@ -9,21 +9,6 @@ import Info from './Info'
 const ExpectButton = dynamic(() => import('components/ExpectButton'), {
   ssr: false,
 })
-
-export function getPlatformIcon(platform) {
-  switch (platform) {
-    case 'pc':
-      return <img src="/icons/windows.svg" alt="" />
-    case 'ps_4':
-      return <img src="/icons/playstation.svg" alt="" />
-    case 'xbox_one':
-      return <img src="/icons/xbox.svg" alt="" />
-    case 'nintendo_switch':
-      return <img src="/icons/nintendo-switch.svg" alt="" />
-    default:
-      break
-  }
-}
 
 const Card = styled(A)`
   position: relative;

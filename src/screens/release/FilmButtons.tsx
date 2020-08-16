@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { Button } from 'components'
+import { FRONTEND_RELEASE_TYPES } from 'types/releases'
 
 const Buttons = styled.div`
   margin-bottom: var(--vertical-4);
@@ -48,28 +49,32 @@ const Buttons = styled.div`
   }
 `
 
-function FilmButtons({ kinopoisk, imdb, type }) {
+type Props = {
+  kinopoisk?: string
+  imdb?: string
+  type: FRONTEND_RELEASE_TYPES
+}
+
+function FilmButtons({ kinopoisk, imdb, type }: Props) {
   return type === 'films' || type === 'series' ? (
     <Buttons>
       {(kinopoisk || imdb) && <p>Подробнее:</p>}
       {kinopoisk && (
         <Button
-          as="a"
-          href={kinopoisk}
+          onClick={() => {
+            window.open(kinopoisk, '_blank')
+          }}
           className="kinopoisk"
-          target="_blank"
-          rel="nofollow"
         >
           <img src="/icons/kinopoisk.svg" alt="КиноПоиск" />
         </Button>
       )}
       {imdb && (
         <Button
-          as="a"
-          href={imdb}
+          onClick={() => {
+            window.open(imdb, '_blank')
+          }}
           className="imdb"
-          target="_blank"
-          rel="nofollow"
         >
           <img src="/icons/imdb.svg" alt="IMDB" />
         </Button>

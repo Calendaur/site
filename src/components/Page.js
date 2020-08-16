@@ -1,9 +1,9 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import styled from '@emotion/styled'
+import Meta from './MobileNavReleaseFilterBar'
 import Header from './Header'
 
-const Meta = dynamic(() => import('./Meta'))
 const Footer = dynamic(() => import('./Footer'))
 
 const Section = styled.section`

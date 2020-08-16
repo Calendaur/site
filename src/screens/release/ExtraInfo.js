@@ -6,41 +6,41 @@ const MetaInfo = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: var(--vertical-6);
-`
 
-const Label = styled.p`
-  margin: 0;
-  color: var(--primary-text);
-
-  span {
-    color: var(--secondary-text);
+  .platforms {
+    margin: 0;
   }
-`
 
-const Platforms = styled(PlatformList)`
-  margin: 0;
+  .label {
+    margin: 0;
+    color: var(--primary-text);
+
+    span {
+      color: var(--secondary-text);
+    }
+  }
 `
 
 function ExtraInfo({ type, director, platforms, season }) {
   return (
     <MetaInfo>
       {type === 'films' && (
-        <Label>
+        <p className="label">
           <span>Режиссер:</span> {director}
-        </Label>
+        </p>
       )}
       {type === 'games' && (
         <>
-          <Label>
+          <p className="label">
             <span>Платформы:</span>
-          </Label>
-          <Platforms platforms={platforms} />
+          </p>
+          <PlatformList className="platforms" platforms={platforms} />
         </>
       )}
       {type === 'series' && (
-        <Label>
+        <p className="label">
           <span>Сезон:</span> {season}
-        </Label>
+        </p>
       )}
     </MetaInfo>
   )

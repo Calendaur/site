@@ -23,12 +23,12 @@ const Releases = styled.div`
       border-radius: 0;
       mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
 
-      &:first-child {
+      &:first-of-type {
         border-top-left-radius: var(--br);
         border-top-right-radius: var(--br);
       }
 
-      &:last-child {
+      &:last-of-type {
         border-bottom-right-radius: var(--br);
         border-bottom-left-radius: var(--br);
       }

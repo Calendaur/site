@@ -6,7 +6,14 @@ function icon(platform) {
     case 'pc':
       return <img src="/icons/windows.svg" alt="PC" />
     case 'ps_4':
-      return <img src="/icons/playstation.svg" alt="PlayStation 4" />
+      return (
+        <img
+          width="18"
+          height="18"
+          src="/icons/playstation.svg"
+          alt="PlayStation 4"
+        />
+      )
     case 'xbox_one':
       return <img src="/icons/xbox.svg" alt="Xbox One" />
     case 'nintendo_switch':
@@ -14,17 +21,7 @@ function icon(platform) {
   }
 }
 
-function PlatformList({ platforms, className }) {
-  return (
-    <ul className={className}>
-      {platforms.map(platform => (
-        <li key={platform}>{icon(platform)}</li>
-      ))}
-    </ul>
-  )
-}
-
-const StyledPlatformList = styled(PlatformList)`
+const StyledPlatformList = styled.ul`
   --gap: 8px;
 
   display: flex;
@@ -50,4 +47,14 @@ const StyledPlatformList = styled(PlatformList)`
   }
 `
 
-export default StyledPlatformList
+function PlatformList({ platforms, className }) {
+  return (
+    <StyledPlatformList className={className}>
+      {platforms.map(platform => (
+        <li key={platform}>{icon(platform)}</li>
+      ))}
+    </StyledPlatformList>
+  )
+}
+
+export default PlatformList

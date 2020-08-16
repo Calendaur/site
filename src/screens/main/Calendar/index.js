@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import cx from 'classnames'
 import styled from '@emotion/styled'
-import debounce from 'lodash.debounce'
+import { useWindowWidth } from 'shared/hooks'
 import NoReleases from './NoReleases'
 import ReleaseListInDay from '../ReleaseListInDay'
 import MobileCalendar from '../MobileCalendar'
@@ -95,23 +95,11 @@ const StyledCalendar = styled.div`
 `
 
 function Calendar({ type, month, year, releases, grouped, weeks }) {
-  const [size, setSize] = useState(window.innerWidth)
-
-  useEffect(() => {
-    const handleResize = debounce(() => {
-      setSize(window.innerWidth)
-    }, 300)
-
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
+  const width = useWindowWidth()
 
   if (releases.length === 0) return <NoReleases />
 
-  if (size >= 1200) {
+  if (width >= 1200) {
     return (
       <StyledCalendar>
         <div className="day-of-week">

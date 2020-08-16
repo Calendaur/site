@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo, memo } from 'react'
 import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
 import { compareAsc } from 'date-fns'
@@ -7,16 +7,30 @@ import { useUser } from 'features/user/use-user'
 import { routes } from 'shared/constants'
 import Button from './Button'
 
+const Btn = styled(Button)`
+  height: 30px;
+  font-size: 14px;
+  border-radius: 24px;
+
+  img {
+    width: 16px;
+    height: 16px;
+  }
+`
+
 function ExpectButton({ className, release }) {
   const { user, mutateUser } = useUser()
   const { push } = useRouter()
-  const expectation =
-    user &&
-    new Set(
-      Object.values(user.extensions)
-        .flat()
-        .map(r => r.id),
-    )
+  const expectation = useMemo(
+    () =>
+      user &&
+      new Set(
+        Object.values(user.extensions)
+          .flat()
+          .map((r: any) => r.id),
+      ),
+    [user],
+  )
   const isExpected = user ? expectation.has(release.id) : false
 
   const onClick = async e => {
@@ -39,7 +53,7 @@ function ExpectButton({ className, release }) {
 
   if (isActual) {
     return (
-      <Button className={className} primary onClick={onClick}>
+      <Btn className={className} primary onClick={onClick}>
         {isExpected ? (
           <>
             Не жду&nbsp;
@@ -55,30 +69,19 @@ function ExpectButton({ className, release }) {
             </span>
           </>
         )}
-      </Button>
+      </Btn>
     )
   }
 
   return (
-    <Button className={className + ' non-actual'} primary onClick={onClick}>
+    <Btn className={className} primary onClick={onClick}>
       {isExpected ? (
         <img width="16" height="16" src="/icons/bookmark-filled.svg" alt="" />
       ) : (
         <img width="16" height="16" src="/icons/bookmark-outline.svg" alt="" />
       )}
-    </Button>
+    </Btn>
   )
 }
 
-const StyledExpectButton = styled(ExpectButton)`
-  height: 30px;
-  font-size: 14px;
-  border-radius: 24px;
-
-  img {
-    width: 16px;
-    height: 16px;
-  }
-`
-
-export default StyledExpectButton
+export default memo(ExpectButton)

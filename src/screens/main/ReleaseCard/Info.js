@@ -17,11 +17,11 @@ const Wrapper = styled.div`
     line-height: 1.2;
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
 
-    &:first-child {
+    &:first-of-type {
       font-weight: 600;
     }
 
-    &:last-child {
+    &:last-of-type {
       font-size: 0.75rem;
     }
   }
@@ -39,25 +39,14 @@ const Wrapper = styled.div`
 `
 
 function Info({ type, release }) {
-  function renderChildren() {
-    switch (type) {
-      case 'films':
-        return <p className="extra">Реж. {release.director}</p>
-      case 'games':
-        return (
-          <PlatformList className="platforms" platforms={release.platforms} />
-        )
-      case 'series':
-        return <p className="extra">{release.season} сезон</p>
-      default:
-        return null
-    }
-  }
-
   return (
     <Wrapper>
       <p>{release.title}</p>
-      {renderChildren()}
+      {type === 'films' && <p className="extra">Реж. {release.director}</p>}
+      {type === 'games' && (
+        <PlatformList className="platforms" platforms={release.platforms} />
+      )}
+      {type === 'series' && <p className="extra">{release.season} сезон</p>}
     </Wrapper>
   )
 }

@@ -50,12 +50,6 @@ function Meta() {
         data-domain="released.at"
         src="https://plausible.io/js/plausible.js"
       ></script>
-      {/* <script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=UA-131415768-2"
-      ></script>
-      <script async defer src="/scripts/google-analytics.js"></script>
-      <script async defer src="/scripts/yandex-metrika.js"></script> */}
     </Head>
   )
 }
