@@ -37,7 +37,7 @@
     &:hover {
       transform: translate(0, -4px);
 
-      & > button,
+      .ExpectButton,
       .ReleasedDate {
         opacity: 1;
         transform: translate(0, 4px);
@@ -64,7 +64,7 @@
   }
 }
 
-.Expect {
+.ExpectButton {
   position: absolute;
   top: 8px;
   right: 8px;

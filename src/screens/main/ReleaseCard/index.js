@@ -34,7 +34,7 @@ function ReleaseCard({ release, type, showDate = false }) {
           {format(new Date(release.released), 'd MMM', { locale: ru })}
         </div>
       )}
-      <ExpectButton className={styles.Expect} release={release} />
+      <ExpectButton className={styles.ExpectButton} release={release} />
       <div className={styles.aspectRatio}>
         <Image src={release.cover} alt={release.title} />
       </div>

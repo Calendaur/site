@@ -43,7 +43,7 @@ function ExpectButton({ className, release }) {
     return (
       <Button
         primary
-        className={cx(className, styles.Expect)}
+        className={cx(styles.Expect, className)}
         onClick={onClick}
       >
         {isExpected ? (
