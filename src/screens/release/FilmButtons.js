@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { Button } from 'components'
-import { FRONTEND_RELEASE_TYPES } from 'types/releases'
 
 const Buttons = styled.div`
   margin-bottom: var(--vertical-4);
@@ -49,13 +48,7 @@ const Buttons = styled.div`
   }
 `
 
-type Props = {
-  kinopoisk?: string
-  imdb?: string
-  type: FRONTEND_RELEASE_TYPES
-}
-
-function FilmButtons({ kinopoisk, imdb, type }: Props) {
+function FilmButtons({ kinopoisk, imdb, type }) {
   return type === 'films' || type === 'series' ? (
     <Buttons>
       {(kinopoisk || imdb) && <p>Подробнее:</p>}

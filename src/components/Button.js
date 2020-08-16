@@ -1,15 +1,7 @@
-import React, { PropsWithChildren, HTMLAttributes } from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import isPropValid from '@emotion/is-prop-valid'
-
-type Props = {
-  type?: 'button' | 'submit' | 'reset'
-  className?: string
-  primary?: boolean
-  ghost?: boolean
-  fullWidth?: boolean
-}
 
 function Button({
   children,
@@ -19,7 +11,7 @@ function Button({
   ghost,
   fullWidth,
   ...rest
-}: PropsWithChildren<Props & HTMLAttributes<HTMLButtonElement>>) {
+}) {
   return (
     <button type={type} className={className} {...rest}>
       {children}
