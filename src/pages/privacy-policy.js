@@ -1,5 +1,5 @@
 import React from 'react'
-import Policy from 'screens/policy'
+import Policy from '../screens/policy'
 
 function PolicyPage() {
   return <Policy />
