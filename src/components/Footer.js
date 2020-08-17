@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import Link from 'next/link'
+import { routes } from 'shared/constants'
+import A from './A'
 
 const year = new Date().getFullYear()
 
@@ -11,16 +12,13 @@ const StyledFooter = styled.footer`
   padding: var(--vertical-5) var(--page-padding);
   padding-bottom: var(--vertical-1);
 
-  & > .copyright {
+  .copyright {
     display: flex;
     align-items: center;
+    height: 28px;
 
-    & > a {
-      display: flex;
-
-      & > img {
-        margin-right: var(--horizontal-5);
-      }
+    img {
+      margin-right: var(--horizontal-5);
     }
   }
 `
@@ -28,21 +26,17 @@ const StyledFooter = styled.footer`
 function Footer({ className }) {
   return (
     <StyledFooter className={className} aria-label="footer">
-      <div className="copyright">
-        <Link href="/">
-          <a aria-label="released.at">
-            <img
-              width="28"
-              height="28"
-              className="lazyload"
-              data-src="/images/logo.png"
-              src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-              alt="released.at"
-            />
-          </a>
-        </Link>{' '}
+      <A href={routes.HOME} className="copyright" aria-label="released.at">
+        <img
+          width="28"
+          height="28"
+          className="lazyload"
+          data-src="/images/logo.png"
+          src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+          alt="released.at"
+        />{' '}
         released.at, {year}
-      </div>
+      </A>
       <div>
         <a href="mailto:support@released.at">Обратная связь</a>
       </div>
