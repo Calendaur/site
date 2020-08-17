@@ -46,6 +46,7 @@ export const endpoints = {
   USERS: `${API_URL}/users`,
   TOKENS: `${API_URL}/tokens`,
   PROFILE: `${API_URL}/profile`,
+  EXPECT: id => `${API_URL}/releases/${id}/expect`,
 }
 
 export const routes = {
