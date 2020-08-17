@@ -39,5 +39,6 @@ export const setPushInfo = ({ endpoint, p256dh, auth }) =>
       webpush_endpoint: endpoint,
       webpush_p256dh: p256dh,
       webpush_auth: auth,
+      timezone: -(new Date().getTimezoneOffset() / 60),
     }),
   })
