@@ -5,7 +5,7 @@ import styled from '@emotion/styled'
 import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
 import { Button, ExpectButton, Image, A } from 'components'
-import Head from './Head'
+import Meta from './Meta'
 import ExtraInfo from './ExtraInfo'
 import StoreButtons from './StoreButtons'
 // import StreamingServicesButtons from './StreamingServicesButtons'
@@ -224,7 +224,14 @@ function Release({
 
   return (
     <>
-      <Head title={title} description={description} url={url} cover={cover} />
+      <Meta
+        title={title}
+        url={url}
+        cover={cover}
+        season={season}
+        platforms={platforms}
+        type={type}
+      />
       <div>
         <Breadcrumbs>
           <A

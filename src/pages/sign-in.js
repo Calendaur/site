@@ -6,7 +6,7 @@ function SignInPage() {
   return (
     <>
       <Head>
-        <title>Войти в аккаунт released.at</title>
+        <title>Войти в аккаунт Released</title>
       </Head>
       <AuthForm buttonTitle="Войти" type="login" />
     </>

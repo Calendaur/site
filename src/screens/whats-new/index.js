@@ -8,7 +8,7 @@ function WhatsNew() {
   return (
     <>
       <Head>
-        <title>Новые фичи released.at</title>
+        <title>Новости сайта Released</title>
       </Head>
       <Donate>
         <p>Поддержите проект материально и ускорьте его развитие</p>

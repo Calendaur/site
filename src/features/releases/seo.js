@@ -11,32 +11,47 @@ const getDate = (month, year) =>
   })
 
 const defaultDescription =
-  'Released.at — это удобный календарь для просмотра и отслеживания премьер среди игр, кино и сериалов.'
+  'Released — удобный календарь для просмотра и отслеживания новых игр, кино и сериалов. Узнайте дату выхода новых игр, кино и сериалов. Подпишитесь на уведомления, чтобы ничего не пропустить'
 
 export const meta = {
   main: {
-    title: `Новые игры, кино и сериалы за ${currentDate}`,
+    title: `Новые игры, кино и сериалы за ${currentDate}. Дата выхода фильмов игр и сериалов на Released`,
     description: defaultDescription,
   },
   films(month, year) {
     return {
-      title: `Новые фильмы ${getDate(month, year)}`,
-      description:
-        'Released.at — это удобный календарь для просмотра и отслеживания премьер среди игр, кино и сериалов.',
+      title: `Новые фильмы ${getDate(
+        month,
+        year,
+      )}. Дата выхода фильмов на Released`,
+      description: `Премьеры кино, собранные в одном месте в удобном формате на Released. Точные даты выхода новых фильмов за ${getDate(
+        month,
+        year,
+      )} в календаре релизов`,
     }
   },
   games(month, year) {
     return {
-      title: `Hовые игры за ${getDate(month, year)}`,
-      description:
-        'Новинки игр, собранные в одном месте в удобном формате на released.at',
+      title: `Hовые игры за ${getDate(
+        month,
+        year,
+      )}. Дата выхода игр на Released`,
+      description: `Премьеры игр, собранные в одном месте в удобном формате на Released. Точные даты выхода новых игр за ${getDate(
+        month,
+        year,
+      )} в календаре релизов`,
     }
   },
   series(month, year) {
     return {
-      title: `Новые сериалы за ${getDate(month, year)}`,
-      description:
-        'Новинки сериалов, собранные в одном месте в удобном формате на released.at',
+      title: `Новые сериалы за ${getDate(
+        month,
+        year,
+      )}. Дата выхода сериалов на Released`,
+      description: `Премьеры сериалов, собранные в одном месте в удобном формате на Released. Точные даты выхода новых сериалов за ${getDate(
+        month,
+        year,
+      )} в календаре релизов`,
     }
   },
 }

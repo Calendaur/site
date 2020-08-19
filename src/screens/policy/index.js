@@ -22,11 +22,7 @@ function PrivacyPolicyPage() {
   return (
     <>
       <Head>
-        <title>Политика конфиденциальности</title>
-        <meta
-          name="description"
-          content="График релизов игр, график релизов кино"
-        />
+        <title>Политика конфиденциальности сайта Released</title>
       </Head>
       <TextWrapper>
         <h1>Политика в&nbsp;отношении обработки персональных данных</h1>

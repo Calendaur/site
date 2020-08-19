@@ -6,7 +6,7 @@ function SignUpPage() {
   return (
     <>
       <Head>
-        <title>Зарегистрироваться на released.at</title>
+        <title>Зарегистрироваться на Released</title>
       </Head>
       <AuthForm buttonTitle="Зарегистрироваться" type="registration" />
     </>
