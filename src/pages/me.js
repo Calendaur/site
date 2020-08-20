@@ -1,8 +1,9 @@
 import React from 'react'
 import { parseCookies } from 'nookies'
 import Me from 'screens/me'
-import { fetchWithToken, redirect } from 'shared/utils'
-import { endpoints, routes } from 'shared/constants'
+import { me } from 'shared/api'
+import { redirect } from 'shared/utils'
+import { routes } from 'shared/constants'
 import { usePushNotifications } from 'features/notifications/use-push-notifications'
 
 function MePage(props) {
@@ -14,12 +15,13 @@ function MePage(props) {
 MePage.getInitialProps = async ctx => {
   try {
     const { authorization: token } = parseCookies(ctx)
+
     if (!token) {
       redirect(ctx, routes.SIGN_UP)
       return {}
     }
 
-    const user = await fetchWithToken(endpoints.PROFILE, token)
+    const user = await me(token)
 
     return {
       user,

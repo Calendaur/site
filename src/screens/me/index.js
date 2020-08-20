@@ -87,7 +87,12 @@ function Me({ user: ssrUser }) {
           {actualFilms.length ? (
             <Grid>
               {actualFilms.map(film => (
-                <Card showDate type="films" release={film} />
+                <Card
+                  key={`actual-${film.release_id}`}
+                  showDate
+                  type="films"
+                  release={film}
+                />
               ))}
             </Grid>
           ) : (
@@ -99,7 +104,12 @@ function Me({ user: ssrUser }) {
           {actualSeries.length ? (
             <Grid>
               {actualSeries.map(series => (
-                <Card showDate type="series" release={series} />
+                <Card
+                  key={`actual-${series.release_id}`}
+                  showDate
+                  type="series"
+                  release={series}
+                />
               ))}
             </Grid>
           ) : (
@@ -111,7 +121,12 @@ function Me({ user: ssrUser }) {
           {actualGames.length ? (
             <Grid>
               {actualGames.map(game => (
-                <Card showDate type="games" release={game} />
+                <Card
+                  key={`actual-${game.release_id}`}
+                  showDate
+                  type="games"
+                  release={game}
+                />
               ))}
             </Grid>
           ) : (
@@ -132,7 +147,12 @@ function Me({ user: ssrUser }) {
               <h3>Кино</h3>
               <Grid>
                 {nonActualFilms.map(film => (
-                  <Card showDate type="films" release={film} />
+                  <Card
+                    key={`nonactual-${film.release_id}`}
+                    showDate
+                    type="films"
+                    release={film}
+                  />
                 ))}
               </Grid>
             </ReleasesSection>
@@ -142,7 +162,12 @@ function Me({ user: ssrUser }) {
               <h3>Сериалы</h3>
               <Grid>
                 {nonActualSeries.map(series => (
-                  <Card showDate type="series" release={series} />
+                  <Card
+                    key={`nonactual-${series.release_id}`}
+                    showDate
+                    type="series"
+                    release={series}
+                  />
                 ))}
               </Grid>
             </ReleasesSection>
@@ -152,7 +177,12 @@ function Me({ user: ssrUser }) {
               <h3>Игры</h3>
               <Grid>
                 {nonActualGames.map(game => (
-                  <Card showDate type="games" release={game} />
+                  <Card
+                    key={`nonactual-${game.release_id}`}
+                    showDate
+                    type="games"
+                    release={game}
+                  />
                 ))}
               </Grid>
             </ReleasesSection>
