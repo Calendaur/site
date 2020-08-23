@@ -28,10 +28,6 @@ const nextConfig = {
         source: '/api/:path*',
         destination: 'https://api.released.at/api/:path*',
       },
-      {
-        source: '/uploads/:path*',
-        destination: 'https://api.released.at/uploads/:path*',
-      },
     ]
   },
 }
