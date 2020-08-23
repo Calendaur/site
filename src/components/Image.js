@@ -1,4 +1,5 @@
 import React from 'react'
+import { IMG_PLACEHOLDER } from 'shared/constants'
 
 function Image({ lazy = true, src, alt = '' }) {
   if (lazy) {
@@ -6,7 +7,7 @@ function Image({ lazy = true, src, alt = '' }) {
       <img
         loading="lazy"
         className="lazyload"
-        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+        src={IMG_PLACEHOLDER}
         data-src={src}
         alt={alt}
       />
