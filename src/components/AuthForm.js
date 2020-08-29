@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
 import { useFormik } from 'formik'
+import addMinutes from 'date-fns/addMinutes'
+import addHours from 'date-fns/addHours'
 import Cookies from 'js-cookie'
 import { sendConfirmCode, confirm } from 'shared/api'
-import { routes } from 'shared/constants'
-import Button from './Button'
+import { routes, cookies } from 'shared/constants'
 import Input from './Input'
 import A from './A'
+
+const Button = dynamic(() => import('./Button'), { ssr: false }) // Because incorrect cantAuth state...
 
 const EMAIL_REGEXP = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
 
@@ -38,12 +42,71 @@ const POSTERS = [
   '/images/dark.jpg',
 ]
 
+const MAX_ATTEMPS = 10
+
 const POSTER_IMG = POSTERS[getRandomNum()]
+
+function AuthText({ type, codeWasSended, email }) {
+  if (codeWasSended) {
+    return (
+      <p>
+        На&nbsp;почту <A href="">{email}</A> был выслан <nobr>4-х</nobr> значный
+        код необходимый для авторизации. Если код не&nbsp;пришёл в&nbsp;течение
+        минуты, проверьте введенный email адрес, возможно в&nbsp;нём была
+        допущена ошибка. Если email введен правильно, а&nbsp;код так
+        и&nbsp;не&nbsp;пришел, то&nbsp;напишите нам на&nbsp;почту{' '}
+        <A href="mailto:support@released.at">support@released.at</A>
+      </p>
+    )
+  }
+
+  if (type === 'registration') {
+    return (
+      <p>
+        Мы&nbsp;не&nbsp;храним ваши пароли ни&nbsp;в&nbsp;каком виде
+        из&nbsp;соображений безопасности. Поэтому для регистрации просто введите
+        ваш email, на&nbsp;который придет короткий одноразовый код. Введя его,
+        вы&nbsp;попадёте в&nbsp;личный кабинет.
+        <br />
+        Уже есть аккаунт? <A href={routes.SIGN_IN}>Войдите</A>
+      </p>
+    )
+  }
+
+  return (
+    <p>
+      Нет аккаунта? <A href={routes.SIGN_UP}>Создайте</A>
+    </p>
+  )
+}
 
 function AuthForm({ buttonTitle, type }) {
   const [currentField, setCurrentField] = useState(FIELDS.EMAIL)
+  const [authAttemtps] = useState(+Cookies.get(cookies.AUTH_ATTEMPTS) || 0)
+  const [codeWasSend, setCodeWasSend] = useState(
+    JSON.parse(Cookies.get(cookies.CODE_HAS_BEEN_SENT) || false),
+  )
   const [error, setError] = useState(null)
   const { push } = useRouter()
+
+  useEffect(() => {
+    let interval
+
+    if (codeWasSend) {
+      interval = setInterval(() => {
+        const cookie = Cookies.get(cookies.CODE_HAS_BEEN_SENT)
+
+        if (cookie) return
+
+        setCodeWasSend(false)
+        Cookies.remove(cookies.CODE_HAS_BEEN_SENT) // For consistent
+      }, 1000)
+    }
+
+    return () => {
+      clearInterval(interval)
+    }
+  }, [codeWasSend])
 
   function clearError() {
     if (error) setError(null)
@@ -76,6 +139,12 @@ function AuthForm({ buttonTitle, type }) {
         case FIELDS.EMAIL: {
           try {
             await sendConfirmCode(values.email)
+            Cookies.set(cookies.AUTH_ATTEMPTS, authAttemtps + 1, {
+              expires: addHours(new Date(), 1),
+            })
+            Cookies.set(cookies.CODE_HAS_BEEN_SENT, 'true', {
+              expires: addMinutes(new Date(), 1),
+            })
             clearError()
             setCurrentField(FIELDS.CODE)
           } catch (e) {
@@ -88,11 +157,15 @@ function AuthForm({ buttonTitle, type }) {
         case FIELDS.CODE: {
           try {
             const { token } = await confirm(values.email, values.code)
-            Cookies.set('authorization', token, { expires: 365 })
+            Cookies.remove(cookies.AUTH_ATTEMPTS)
+            Cookies.remove(cookies.CODE_HAS_BEEN_SENT)
+            Cookies.set(cookies.AUTHORIZATION, token, { expires: 365 })
             push(routes.ME)
           } catch (e) {
             console.error(e)
-            setError(e.message)
+            setError(
+              e.response.status === 403 ? 'Неверный код' : e.error.message,
+            )
           } finally {
             break
           }
@@ -101,6 +174,10 @@ function AuthForm({ buttonTitle, type }) {
     },
   })
 
+  const cantAuth =
+    (codeWasSend || authAttemtps >= MAX_ATTEMPS) &&
+    currentField === FIELDS.EMAIL
+
   return (
     <>
       <Cover>
@@ -108,20 +185,11 @@ function AuthForm({ buttonTitle, type }) {
       </Cover>
       <Center>
         <Form onSubmit={handleSubmit}>
-          {type === 'registration' ? (
-            <p>
-              Мы&nbsp;не&nbsp;храним ваши пароли ни&nbsp;в&nbsp;каком виде
-              из&nbsp;соображений безопасности. Поэтому для регистрации просто
-              введите ваш email, на&nbsp;который придет короткий одноразовый
-              код. Введя его, вы&nbsp;попадёте в&nbsp;личный кабинет.
-              <br />
-              Уже есть аккаунт? <A href={routes.SIGN_IN}>Войдите</A>
-            </p>
-          ) : (
-            <p>
-              Нет аккаунта? <A href={routes.SIGN_UP}>Создайте</A>
-            </p>
-          )}
+          <AuthText
+            type={type}
+            codeWasSended={currentField === FIELDS.CODE}
+            email={values.email}
+          />
           {currentField === FIELDS.EMAIL && (
             <Field
               id="email"
@@ -148,11 +216,24 @@ function AuthForm({ buttonTitle, type }) {
               maxLength={4}
             />
           )}
-          <Button fullWidth primary type="submit">
+          <Button disabled={cantAuth} fullWidth primary type="submit">
             {currentField === FIELDS.EMAIL && buttonTitle}
             {currentField === FIELDS.CODE && 'Подтвердить'}
           </Button>
           {error && <Error>{error}</Error>}
+          {codeWasSend && authAttemtps < MAX_ATTEMPS && (
+            <Note>
+              Код уже был выслан. Повторную отправку можно сделать через минуту
+            </Note>
+          )}
+          {authAttemtps >= MAX_ATTEMPS && (
+            <Note>
+              Мы&nbsp;заметили, что вы&nbsp;имеете проблемы с&nbsp;авторизацией.
+              Повторите попытку через час или напишите нам на&nbsp;почту{' '}
+              <A href="mailto:support@released.at">support@released.at</A> для
+              решения проблемы
+            </Note>
+          )}
         </Form>
       </Center>
     </>
@@ -191,6 +272,7 @@ const Cover = styled.div`
 `
 
 const Form = styled.form`
+  position: relative;
   width: 100%;
   max-width: 560px;
   margin: 0 auto;
@@ -204,6 +286,23 @@ const Field = styled(Input)`
   margin-bottom: var(--vertical-4);
 `
 
-const Error = styled.p``
+const Error = styled.p`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin: 12px 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #f56b3d;
+`
+
+const Note = styled.p`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin: 12px 0;
+  font-size: 16px;
+  line-height: 1.5;
+`
 
 export default AuthForm

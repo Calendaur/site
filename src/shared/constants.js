@@ -67,3 +67,9 @@ export const routes = {
 
 export const IMG_PLACEHOLDER =
   'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
+
+export const cookies = {
+  AUTHORIZATION: 'authorization',
+  CODE_HAS_BEEN_SENT: 'code_has_been_sent',
+  AUTH_ATTEMPTS: 'auth_attempts',
+}

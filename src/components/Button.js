@@ -10,10 +10,11 @@ function Button({
   primary,
   ghost,
   fullWidth,
+  disabled,
   ...rest
 }) {
   return (
-    <button type={type} className={className} {...rest}>
+    <button disabled={disabled} type={type} className={className} {...rest}>
       {children}
     </button>
   )
@@ -56,6 +57,12 @@ const base = css`
 
   &:focus:not(:active) {
     box-shadow: 0 0 0 0.125em rgba(245, 245, 245, 0.25);
+  }
+
+  &:disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 `
 

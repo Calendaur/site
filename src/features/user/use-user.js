@@ -1,10 +1,10 @@
 import useSWR from 'swr'
 import Cookies from 'js-cookie'
-import { endpoints } from 'shared/constants'
+import { endpoints, cookies } from 'shared/constants'
 import { fetchWithToken } from 'shared/utils'
 
 export function useUser(initial) {
-  const token = Cookies.get('authorization')
+  const token = Cookies.get(cookies.AUTHORIZATION)
   const { data, error, mutate } = useSWR(
     token ? [endpoints.PROFILE, token] : null,
     fetchWithToken,
@@ -12,7 +12,7 @@ export function useUser(initial) {
   )
 
   if (token && error) {
-    Cookies.remove('authorization')
+    Cookies.remove(cookies.AUTHORIZATION)
   }
 
   if (!token) {
