@@ -11,6 +11,10 @@ export function useUser(initial) {
     initial ? { initialData: initial } : undefined,
   )
 
+  if (token && error) {
+    Cookies.remove('authorization')
+  }
+
   if (!token) {
     return {
       user: undefined,
