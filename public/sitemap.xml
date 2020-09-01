@@ -113,6 +113,18 @@
   </url>
 
   <url>
+    <loc>https://released.at/films/october-2020</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/games/october-2020</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/series/october-2020</loc>
+  </url>
+
+  <url>
     <loc>https://released.at/release/166</loc>
   </url>
 
@@ -717,15 +729,7 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18219</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/130</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/18104</loc>
   </url>
 
   <url>
@@ -733,11 +737,23 @@
   </url>
 
   <url>
+    <loc>https://released.at/release/18219</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18128</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/151</loc>
+  </url>
+
+  <url>
     <loc>https://released.at/release/112</loc>
   </url>
 
   <url>
-    <loc>https://released.at/release/138</loc>
+    <loc>https://released.at/release/18104</loc>
   </url>
 
   <url>
@@ -753,11 +769,11 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18135</loc>
+    <loc>https://released.at/release/124</loc>
   </url>
 
   <url>
-    <loc>https://released.at/release/151</loc>
+    <loc>https://released.at/release/140</loc>
   </url>
 
   <url>
@@ -765,19 +781,7 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18128</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/18141</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/124</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/153</loc>
   </url>
 
   <url>
@@ -785,11 +789,23 @@
   </url>
 
   <url>
+    <loc>https://released.at/release/18135</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/138</loc>
+  </url>
+
+  <url>
     <loc>https://released.at/release/18222</loc>
   </url>
 
   <url>
-    <loc>https://released.at/release/113</loc>
+    <loc>https://released.at/release/153</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18195</loc>
   </url>
 
   <url>
@@ -797,11 +813,15 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18194</loc>
+    <loc>https://released.at/release/18223</loc>
   </url>
 
   <url>
-    <loc>https://released.at/release/18195</loc>
+    <loc>https://released.at/release/18098</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18194</loc>
   </url>
 
   <url>
@@ -813,19 +833,7 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18223</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/18005</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/18203</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/18197</loc>
   </url>
 
   <url>
@@ -841,11 +849,7 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/111</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/18201</loc>
+    <loc>https://released.at/release/18203</loc>
   </url>
 
   <url>
@@ -857,19 +861,15 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/140</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/18095</loc>
   </url>
 
   <url>
-    <loc>https://released.at/release/18098</loc>
+    <loc>https://released.at/release/113</loc>
   </url>
 
   <url>
-    <loc>https://released.at/release/145</loc>
+    <loc>https://released.at/release/18044</loc>
   </url>
 
   <url>
@@ -877,7 +877,31 @@
   </url>
 
   <url>
+    <loc>https://released.at/release/18197</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/111</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18201</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/145</loc>
+  </url>
+
+  <url>
     <loc>https://released.at/release/18001</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18099</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18204</loc>
   </url>
 
   <url>
@@ -893,11 +917,7 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18099</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/18204</loc>
+    <loc>https://released.at/release/18002</loc>
   </url>
 
   <url>
@@ -906,18 +926,6 @@
 
   <url>
     <loc>https://released.at/release/222</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/18044</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/18002</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/146</loc>
   </url>
 
   <url>
@@ -930,6 +938,10 @@
 
   <url>
     <loc>https://released.at/release/18102</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/146</loc>
   </url>
 
   <url>
@@ -957,10 +969,6 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18208</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/18010</loc>
   </url>
 
@@ -973,15 +981,19 @@
   </url>
 
   <url>
+    <loc>https://released.at/release/18208</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18211</loc>
+  </url>
+
+  <url>
     <loc>https://released.at/release/18209</loc>
   </url>
 
   <url>
     <loc>https://released.at/release/18213</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/18211</loc>
   </url>
 
   <url>
@@ -1001,6 +1013,10 @@
   </url>
 
   <url>
+    <loc>https://released.at/release/135</loc>
+  </url>
+
+  <url>
     <loc>https://released.at/release/18101</loc>
   </url>
 
@@ -1010,10 +1026,6 @@
 
   <url>
     <loc>https://released.at/release/232</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/135</loc>
   </url>
 
   <url>
@@ -1041,15 +1053,11 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/131</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/107</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/116</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/131</loc>
   </url>
 
   <url>
@@ -1061,7 +1069,7 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/156</loc>
+    <loc>https://released.at/release/107</loc>
   </url>
 
   <url>
@@ -1085,11 +1093,7 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/120</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/126</loc>
+    <loc>https://released.at/release/156</loc>
   </url>
 
   <url>
@@ -1097,19 +1101,11 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/109</loc>
+    <loc>https://released.at/release/120</loc>
   </url>
 
   <url>
-    <loc>https://released.at/release/141</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/114</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/121</loc>
+    <loc>https://released.at/release/126</loc>
   </url>
 
   <url>
@@ -1129,11 +1125,27 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/123</loc>
+    <loc>https://released.at/release/109</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/141</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/114</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/121</loc>
   </url>
 
   <url>
     <loc>https://released.at/release/18011</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/117</loc>
   </url>
 
   <url>
@@ -1153,7 +1165,7 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/117</loc>
+    <loc>https://released.at/release/123</loc>
   </url>
 
   <url>
