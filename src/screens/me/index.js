@@ -1,9 +1,13 @@
 import React from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
 import { compareAsc } from 'date-fns'
 import Card from 'screens/main/ReleaseCard'
 import { useUser } from 'features/user/use-user'
+import { logout } from 'shared/api'
+import { routes } from 'shared/constants'
+import { Button } from 'components'
 
 const ExpectedReleases = styled.section`
   margin-bottom: var(--vertical-1);
@@ -56,6 +60,7 @@ function nonActual(arr) {
 }
 
 function Me({ user: ssrUser }) {
+  const { push } = useRouter()
   const { user } = useUser(ssrUser)
 
   if (!user) return null
@@ -189,6 +194,14 @@ function Me({ user: ssrUser }) {
           ) : null}
         </ExpectedReleases>
       ) : null}
+      <Button
+        onClick={async () => {
+          await logout()
+          push(routes.HOME)
+        }}
+      >
+        Выйти
+      </Button>
     </>
   )
 }

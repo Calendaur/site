@@ -1,5 +1,6 @@
+import Cookies from 'js-cookie'
 import { fetchJSON, fetchWithToken } from './utils'
-import { endpoints } from './constants'
+import { endpoints, cookies } from './constants'
 
 /* Releases */
 // Possibly type: movies, games, serials
@@ -25,10 +26,13 @@ export const confirm = (email, code) =>
     method: 'post',
     body: JSON.stringify({ email, otp: code }),
   })
-export const logout = () =>
-  fetchJSON(endpoints.TOKENS, {
+export const logout = () => {
+  Cookies.remove(cookies.AUTHORIZATION)
+
+  return fetchJSON(endpoints.TOKENS, {
     method: 'delete',
   })
+}
 
 /* User */
 export const me = token => fetchWithToken(endpoints.PROFILE, {}, token)
