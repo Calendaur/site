@@ -60,13 +60,13 @@ function Me({ user: ssrUser }) {
 
   if (!user) return null
 
-  const actualFilms = actual(user.extensions.movies)
-  const actualGames = actual(user.extensions.games)
-  const actualSeries = actual(user.extensions.serials)
+  const actualFilms = actual(user.expected.movies)
+  const actualGames = actual(user.expected.games)
+  const actualSeries = actual(user.expected.serials)
 
-  const nonActualFilms = nonActual(user.extensions.movies)
-  const nonActualGames = nonActual(user.extensions.games)
-  const nonActualSeries = nonActual(user.extensions.serials)
+  const nonActualFilms = nonActual(user.expected.movies)
+  const nonActualGames = nonActual(user.expected.games)
+  const nonActualSeries = nonActual(user.expected.serials)
 
   const hasNonActual =
     [...nonActualFilms, ...nonActualGames, ...nonActualSeries].length > 0

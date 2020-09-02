@@ -21,7 +21,7 @@ function ExpectButton({ className, release }) {
     () =>
       user &&
       new Set(
-        Object.values(user.extensions)
+        Object.values(user.expected)
           .flat()
           .map(r => r.id),
       ),
