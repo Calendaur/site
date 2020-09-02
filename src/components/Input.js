@@ -46,8 +46,8 @@ const StyledInput = styled(Input)`
     padding: 4px 0;
     font-size: 12px;
     line-height: 14px;
-    letter-spacing: 0.08em;
     text-transform: uppercase;
+    letter-spacing: 0.08em;
   }
 
   & > .error {
