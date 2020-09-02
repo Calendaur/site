@@ -1,4 +1,4 @@
-import React, { useMemo, memo } from 'react'
+import React, { useMemo, memo, useState } from 'react'
 import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
 import { compareAsc } from 'date-fns'
@@ -11,14 +11,10 @@ const Btn = styled(Button)`
   height: 30px;
   font-size: 14px;
   border-radius: 24px;
-
-  img {
-    width: 16px;
-    height: 16px;
-  }
 `
 
 function ExpectButton({ className, release }) {
+  const [loading, setLoading] = useState(false)
   const { user, mutateUser } = useUser()
   const { push } = useRouter()
   const expectation = useMemo(
@@ -34,39 +30,49 @@ function ExpectButton({ className, release }) {
   const isExpected = user ? expectation.has(release.id) : false
 
   const onClick = async e => {
-    e.preventDefault()
-    e.stopPropagation()
+    try {
+      setLoading(true)
 
-    if (isExpected) {
-      await expect(release.release_id)
-      mutateUser()
-    } else {
-      if (!user) {
-        push(routes.SIGN_UP)
-        return
+      e.preventDefault()
+      e.stopPropagation()
+
+      if (isExpected) {
+        await expect(release.release_id)
+        await mutateUser()
+        setLoading(false)
+      } else {
+        if (!user) {
+          push(routes.SIGN_UP)
+          return
+        }
+        await expect(release.release_id)
+        await mutateUser()
+        setLoading(false)
       }
-      await expect(release.release_id)
-      mutateUser()
+    } catch (e) {
+      console.error(e)
+      setLoading(false)
     }
   }
   const isActual = compareAsc(new Date(), new Date(release.released)) <= 0
 
+  const style = loading || isExpected ? { opacity: 1 } : {}
+
   if (isActual) {
     return (
-      <Btn className={className} primary onClick={onClick}>
+      <Btn
+        className={className}
+        primary
+        onClick={onClick}
+        loading={loading}
+        style={style}
+      >
         {isExpected ? (
-          <>
-            Не жду&nbsp;
-            <span role="img" aria-label="dissapointed">
-              😞
-            </span>
-          </>
+          <img width="18" height="18" src="/icons/fire-filled.svg" alt="" />
         ) : (
           <>
             Жду&nbsp;
-            <span role="img" aria-label="star">
-              🔥
-            </span>
+            <img width="18" height="18" src="/icons/fire-outline.svg" alt="" />
           </>
         )}
       </Btn>
@@ -74,7 +80,13 @@ function ExpectButton({ className, release }) {
   }
 
   return (
-    <Btn className={className} primary onClick={onClick}>
+    <Btn
+      className={className}
+      primary
+      onClick={onClick}
+      loading={loading}
+      style={style}
+    >
       {isExpected ? (
         <img width="16" height="16" src="/icons/bookmark-filled.svg" alt="" />
       ) : (

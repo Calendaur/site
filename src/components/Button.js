@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import isPropValid from '@emotion/is-prop-valid'
+import Spinner from './Spinner'
 
 function Button({
   children,
@@ -11,11 +12,12 @@ function Button({
   ghost,
   fullWidth,
   disabled,
+  loading,
   ...rest
 }) {
   return (
     <button disabled={disabled} type={type} className={className} {...rest}>
-      {children}
+      {loading ? <Spinner /> : children}
     </button>
   )
 }

@@ -10,6 +10,7 @@ import Logo from './Logo'
 import Page from './Page'
 import PlatformList from './PlatformList'
 import ReleaseTypeChooser from './ReleaseTypeChooser'
+import Spinner from './Spinner'
 
 export {
   A,
@@ -24,4 +25,5 @@ export {
   Page,
   PlatformList,
   ReleaseTypeChooser,
+  Spinner,
 }
