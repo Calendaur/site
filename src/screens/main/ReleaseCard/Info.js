@@ -12,10 +12,10 @@ const Wrapper = styled.div`
     padding: 0 8px;
     margin: 0;
     margin-bottom: 4px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: normal;
     line-height: 1.2;
-    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 
     &:first-of-type {
       font-weight: 600;

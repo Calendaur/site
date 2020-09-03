@@ -53,7 +53,7 @@ const Styled = styled(Spinner)`
       width: 4px;
       height: 4px;
       margin: 0 1px;
-      background-color: rgb(68, 68, 68);
+      background-color: rgb(200, 200, 200);
       border-radius: 50%;
       animation: 1.4s ease 0s infinite normal both running ${blink};
 
