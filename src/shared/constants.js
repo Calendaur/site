@@ -36,7 +36,7 @@ const currentMonth = new Date().getMonth() + 1
 const currentYear = new Date().getFullYear()
 
 export const endpoints = {
-  HOMEPAGE_RELEASED: `${API_URL}/movies?date=${currentMonth}-${currentYear}`,
+  HOMEPAGE_RELEASED: `${API_URL}/films?date=${currentMonth}-${currentYear}`,
   RELEASES: (type, date) => {
     const [month, year] = date.split('-')
     return `${API_URL}/${type}?date=${monthsForAPI[month]}-${year}`
@@ -47,6 +47,8 @@ export const endpoints = {
   TOKENS: `${API_URL}/tokens`,
   PROFILE: `${API_URL}/profile`,
   EXPECT: id => `${API_URL}/releases/${id}/expect`,
+  POSTS: `${API_URL}/blog_posts`,
+  POST: id => `${API_URL}/blog_posts/${id}`,
 }
 
 export const routes = {

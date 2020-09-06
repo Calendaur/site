@@ -4,7 +4,7 @@ import { releases, homePageReleases } from 'shared/api'
 import { months } from 'shared/constants'
 import { groupBy } from 'shared/utils'
 import { FRONTEND_RELEASE_TYPES, ParsedURL } from 'types/releases'
-import { generateReleasesPages, typeAdapter, getWeeks } from './helpers'
+import { generateReleasesPages, getWeeks } from './helpers'
 import { meta } from './seo'
 
 export const getPaths: GetStaticPaths = async () => ({
@@ -24,7 +24,7 @@ export const getProps = async (
     weeks: any
   }
 }> => {
-  const result = await releases(typeAdapter(type), params.date)
+  const result = await releases(type, params.date)
   const [m, y] = params.date.split('-')
   const month = months.find(({ eng }) => eng === m)
   const year = +y

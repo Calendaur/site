@@ -74,19 +74,6 @@ export function getPageData(parsedUrl) {
   }
 }
 
-export function typeAdapter(
-  type: FRONTEND_RELEASE_TYPES,
-): BACKEND_RELEASE_TYPES {
-  switch (type) {
-    case FRONTEND_RELEASE_TYPES.Films:
-      return BACKEND_RELEASE_TYPES.Films
-    case FRONTEND_RELEASE_TYPES.Series:
-      return BACKEND_RELEASE_TYPES.Series
-    case FRONTEND_RELEASE_TYPES.Games:
-      return BACKEND_RELEASE_TYPES.Games
-  }
-}
-
 function chunkify(array, chunkSize) {
   const chunks = Array.from(
     { length: Math.ceil(array.length / chunkSize) },

@@ -46,3 +46,7 @@ export const setPushInfo = ({ endpoint, p256dh, auth }) =>
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     }),
   })
+
+/* Blog */
+export const posts = () => fetchJSON(endpoints.POSTS)
+export const post = id => fetchJSON(endpoints.POST(id))
