@@ -19,7 +19,7 @@ const StyledCalendar = styled.div`
   .day-of-week {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    grid-gap: 24px;
+    grid-gap: 8px;
     justify-items: center;
     margin-bottom: var(--vertical-5);
     font-size: 16px;
@@ -29,16 +29,29 @@ const StyledCalendar = styled.div`
     text-transform: lowercase;
     letter-spacing: 1px;
     user-select: none;
+
+    @media (min-width: 1440px) {
+      grid-gap: 16px;
+    }
+
+    @media (min-width: 2200px) {
+      grid-gap: 32px;
+    }
   }
 
   .grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-auto-rows: minmax(140px, auto);
-    grid-gap: 24px;
+    grid-gap: 8px;
+
+    @media (min-width: 1440px) {
+      grid-gap: 16px;
+    }
 
     @media (min-width: 2200px) {
       grid-auto-rows: minmax(220px, auto);
+      grid-gap: 32px;
     }
   }
 
