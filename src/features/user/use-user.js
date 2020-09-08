@@ -11,7 +11,7 @@ export function useUser(initial) {
     initial ? { initialData: initial } : undefined,
   )
 
-  if (token && error) {
+  if (token && error && !data) {
     Cookies.remove(cookies.AUTHORIZATION)
   }
 
