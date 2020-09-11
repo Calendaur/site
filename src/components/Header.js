@@ -38,6 +38,20 @@ const StyledHeader = styled.header`
     @media (min-width: 1440px) {
       height: 80px;
     }
+
+    .has-notification {
+      position: relative;
+
+      &::after {
+        position: absolute;
+        right: -8px;
+        width: 12px;
+        height: 12px;
+        content: '';
+        background-color: #ff4b5c;
+        border-radius: 50%;
+      }
+    }
   }
 
   .mobile {
@@ -118,7 +132,7 @@ const StyledHeader = styled.header`
 
 function Header() {
   const [visibleMobileNav, setVisibleMobileNav] = useState(false)
-  const { events, push } = useRouter()
+  const { events, push, asPath } = useRouter()
 
   useEffect(() => {
     if (window.innerWidth >= 768) return
@@ -148,7 +162,7 @@ function Header() {
     <StyledHeader aria-label="header">
       <div className="desktop">
         <Logo />
-        <Nav push={push} />
+        <Nav push={push} currentPage={asPath} />
       </div>
       <div className="mobile">
         <Logo className="logo" />

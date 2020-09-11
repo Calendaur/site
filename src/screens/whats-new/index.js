@@ -30,6 +30,40 @@ function WhatsNew() {
       </Donate>
       <Log>
         <header>
+          <Title>Август 2020</Title>
+        </header>
+        <ul>
+          <li>
+            ✓ Добавили пуш-уведомления в&nbsp;браузере&nbsp;и{' '}
+            <A
+              href="https://support.google.com/chrome/answer/9658361?co=GENIE.Platform%3DAndroid&hl=ru"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+            >
+              PWA
+            </A>{' '}
+            (только на Android), чтобы вы&nbsp;не&nbsp;пропустили ожидаемые
+            релизы. Если вы&nbsp;их&nbsp;включили, но&nbsp;они не&nbsp;приходят,
+            либо не&nbsp;знаете как включить, напишите нам на&nbsp;почту{' '}
+            <A href="mailto:support@released.at">support@released.at</A>{' '}
+            <Emoji label="feature">🎉</Emoji>
+          </li>
+          <li>
+            ✓ Наконец-то избавились от&nbsp;растягивающихся картинок
+            в&nbsp;календаре
+            <Emoji label="polish">💅</Emoji>
+          </li>
+          <li>
+            ✓ Теперь все (или почти все) игры имеют ссылки на&nbsp;магазины
+            и&nbsp;цены <Emoji label="fix">🔨</Emoji>
+          </li>
+          <li>
+            ✓ Начали разработку телеграм-бота <Emoji label="feature">🎉</Emoji>
+          </li>
+        </ul>
+      </Log>
+      <Log>
+        <header>
           <Title>Июль 2020</Title>
         </header>
         <ul>

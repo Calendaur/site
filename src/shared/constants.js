@@ -74,4 +74,5 @@ export const cookies = {
   AUTHORIZATION: 'authorization',
   CODE_HAS_BEEN_SENT: 'code_has_been_sent',
   AUTH_ATTEMPTS: 'auth_attempts',
+  NEED_CHECK_WHATS_NEW: 'need_check_whats_new',
 }
