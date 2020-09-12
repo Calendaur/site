@@ -1,22 +1,18 @@
 import React from 'react'
-import { PostList } from 'screens/blog'
+import PostList from 'screens/blog/PostList'
 import * as api from 'shared/api'
 
 function BlogPage({ posts }) {
   return <PostList posts={posts} />
 }
 
-BlogPage.getInitialProps = async () => {
-  try {
-    const { posts } = await api.posts()
+export async function getServerSideProps(context) {
+  const { posts } = await api.posts()
 
-    return {
+  return {
+    props: {
       posts,
-    }
-  } catch (e) {
-    console.error(e)
-
-    return { error: 500 }
+    },
   }
 }
 

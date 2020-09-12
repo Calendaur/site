@@ -9,11 +9,9 @@ const Styled = styled.div`
     width: 100%;
     max-width: 768px;
     margin: 0 auto;
-    margin-top: var(--vertical-4);
-    margin-bottom: var(--vertical-4);
+    margin-bottom: var(--vertical-6);
 
     @media (min-width: 768px) {
-      margin-top: 0;
       margin-bottom: var(--vertical-1);
     }
   }
