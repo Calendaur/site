@@ -6,23 +6,21 @@ function PostPage({ post }) {
   return <Post post={post} />
 }
 
-export async function getServerSideProps(ctx) {
+PostPage.getInitialProps = async ctx => {
+  if (!ctx.query.id) {
+    return { error: 404 }
+  }
+
   try {
     const { post } = await api.post(ctx.query.id)
 
     return {
-      props: {
-        post,
-        error: false,
-      },
+      post,
     }
   } catch (e) {
     console.error(e)
-    return {
-      props: {
-        error: true,
-      },
-    }
+
+    return { error: 500 }
   }
 }
 

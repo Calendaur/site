@@ -6,23 +6,17 @@ function BlogPage({ posts }) {
   return <PostList posts={posts} />
 }
 
-export async function getServerSideProps() {
+BlogPage.getInitialProps = async () => {
   try {
     const { posts } = await api.posts()
 
     return {
-      props: {
-        posts,
-        error: false,
-      },
+      posts,
     }
   } catch (e) {
     console.error(e)
-    return {
-      props: {
-        error: true,
-      },
-    }
+
+    return { error: 500 }
   }
 }
 
