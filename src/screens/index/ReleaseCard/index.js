@@ -1,6 +1,7 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import styled from '@emotion/styled'
+import slugify from '@sindresorhus/slugify'
 import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
 import { A, Image } from 'components'
@@ -105,8 +106,10 @@ const Card = styled(A)`
 `
 
 function ReleaseCard({ release, type, showDate = false }) {
+  const slug = slugify(release.title)
+
   return (
-    <Card href="/release/[id]" as={`/release/${release.release_id}`}>
+    <Card href="/release/[id]" as={`/release/${release.release_id}-${slug}`}>
       {showDate && (
         <div className="released-date">
           {format(new Date(release.released), 'd MMM', { locale: ru })}

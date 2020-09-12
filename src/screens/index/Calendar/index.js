@@ -1,7 +1,7 @@
 import React from 'react'
 import cx from 'classnames'
 import styled from '@emotion/styled'
-import { useWindowWidth } from 'shared/hooks'
+import { useMediaQuery } from 'shared/hooks'
 import NoReleases from './NoReleases'
 import ReleaseListInDay from '../ReleaseListInDay'
 import MobileCalendar from '../MobileCalendar'
@@ -110,11 +110,11 @@ const StyledCalendar = styled.div`
 `
 
 function Calendar({ type, month, year, releases, grouped, weeks }) {
-  const width = useWindowWidth()
+  const desktop = useMediaQuery('(min-width: 1200px)')
 
   if (releases.length === 0) return <NoReleases />
 
-  if (width >= 1200) {
+  if (desktop) {
     return (
       <StyledCalendar>
         <div className="day-of-week">

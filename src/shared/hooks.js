@@ -20,3 +20,21 @@ export function useWindowWidth() {
 
   return width
 }
+
+export function useMediaQuery(media) {
+  const [match, setMatch] = useState(window.matchMedia(media))
+
+  useEffect(() => {
+    function handler(e) {
+      setMatch(e.matches)
+    }
+
+    window.matchMedia(media).addListener(handler)
+
+    return () => {
+      window.matchMedia(media).removeListener(handler)
+    }
+  }, [media])
+
+  return match
+}

@@ -1,8 +1,6 @@
 import React from 'react'
 import Cookies from 'js-cookie'
-import format from 'date-fns/format'
-import compareAsc from 'date-fns/compareAsc'
-import { useWindowWidth } from 'shared/hooks'
+import { useMediaQuery } from 'shared/hooks'
 import { routes, cookies } from 'shared/constants'
 import A from './A'
 import Logo from './Logo'
@@ -24,11 +22,12 @@ function Nav({ push, isVisible, currentPage }) {
     Cookies.set(ncwn, getMonth())
   }
 
-  const width = useWindowWidth()
+  const desktop = useMediaQuery('(min-width: 768px)')
 
-  if (width >= 768) {
+  if (desktop) {
     return (
       <nav>
+        <A href={routes.BLOG}>Блог</A>
         <A
           href={routes.WHATS_NEW}
           className={Cookies.get(ncwn) === 'true' ? 'has-notification' : ''}
@@ -49,6 +48,7 @@ function Nav({ push, isVisible, currentPage }) {
       <Logo />
       <div className="nav-links">
         <A href={routes.HOME}>На главную</A>
+        <A href={routes.BLOG}>Блог</A>
         <A href={routes.ARCHIVE}>Вышедшие релизы</A>
         <A
           href={routes.WHATS_NEW}

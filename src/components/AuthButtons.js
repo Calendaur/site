@@ -1,18 +1,18 @@
 import React from 'react'
 import { useUser } from 'features/user/use-user'
 import { routes } from 'shared/constants'
-import { useWindowWidth } from 'shared/hooks'
+import { useMediaQuery } from 'shared/hooks'
 import Button from './Button'
 import A from './A'
 
 function AuthButtons({ push }) {
   const { user, isLoading } = useUser()
-  const width = useWindowWidth()
+  const desktop = useMediaQuery('(min-width: 768px)')
   const isLoggedIn = !!user
 
   if (isLoading) return null
 
-  if (width >= 768) {
+  if (desktop) {
     return isLoggedIn ? (
       <Button
         primary

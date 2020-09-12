@@ -2,8 +2,8 @@ import React from 'react'
 import { PostList } from 'screens/blog'
 import * as api from 'shared/api'
 
-function BlogPage(props) {
-  return <PostList {...props} />
+function BlogPage({ posts }) {
+  return <PostList posts={posts} />
 }
 
 export async function getServerSideProps() {

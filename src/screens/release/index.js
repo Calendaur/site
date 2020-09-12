@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import styled from '@emotion/styled'
 import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
+import slugify from '@sindresorhus/slugify'
 import { Button, ExpectButton, Image, A } from 'components'
 import Meta from './Meta'
 import ExtraInfo from './ExtraInfo'
@@ -220,7 +221,8 @@ function Release({
   id,
 }) {
   const { query } = useRouter()
-  const url = `https://released.at/release/${query.id}`
+  const slug = slugify(title)
+  const url = `https://released.at/release/${query.id}-${slug}`
 
   return (
     <>

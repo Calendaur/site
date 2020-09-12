@@ -65,6 +65,8 @@ export const routes = {
   TERMS_OF_USE: '/terms-of-use',
   SIGN_IN: '/sign-in',
   SIGN_UP: '/sign-up',
+  BLOG: '/blog',
+  BLOG_POST: id => `/blog/${id}`,
 }
 
 export const IMG_PLACEHOLDER =
