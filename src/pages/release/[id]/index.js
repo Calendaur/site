@@ -1,6 +1,9 @@
 import smoothscroll from 'smoothscroll-polyfill'
+import slugify from '@sindresorhus/slugify'
 import ReleasePage from 'screens/release'
 import { release } from 'shared/api'
+import { redirect } from 'shared/utils'
+import { routes } from 'shared/constants'
 
 if (typeof window !== 'undefined') smoothscroll.polyfill()
 
@@ -15,23 +18,22 @@ function changeType(t) {
   }
 }
 
-ReleasePage.getInitialProps = async context => {
-  if (!context.query.id) {
-    return { error: 404 }
+export async function getServerSideProps(context) {
+  const idWithSlug = context.query.id
+  const result = await release(idWithSlug)
+
+  if (idWithSlug.split('-').length === 1) {
+    redirect(
+      context,
+      routes.RELEASE + `/${idWithSlug}-${slugify(result.title)}`,
+    )
   }
 
-  try {
-    const result = await release(context.query.id)
-
-    return {
+  return {
+    props: {
       ...result,
       type: changeType(result.type),
-    }
-  } catch (e) {
-    console.error(e)
-    return {
-      error: 500,
-    }
+    },
   }
 }
 
