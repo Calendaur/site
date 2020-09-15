@@ -41,6 +41,9 @@ export const endpoints = {
     const [month, year] = date.split('-')
     return `${API_URL}/${type}?date=${monthsForAPI[month]}-${year}`
   },
+  GAMES: `${API_URL}/games`,
+  FILMS: `${API_URL}/films`,
+  SERIES: `${API_URL}/series`,
   RELEASE: id => `${API_URL}/releases/${id}`,
   NOW: `${API_URL}/releases/now`,
   USERS: `${API_URL}/users`,

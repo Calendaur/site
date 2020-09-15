@@ -14,6 +14,13 @@ export const expect = id =>
   fetchWithToken(endpoints.EXPECT(id), {
     method: 'post',
   })
+export const allReleases = async () => {
+  const games = await fetchJSON(endpoints.GAMES)
+  const films = await fetchJSON(endpoints.FILMS)
+  const series = await fetchJSON(endpoints.SERIES)
+
+  return Promise.all([games, films, series])
+}
 
 /* Auth */
 export const sendConfirmCode = email =>

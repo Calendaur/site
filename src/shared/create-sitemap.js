@@ -1,40 +1,19 @@
-const fs = require('fs')
-const path = require('path')
-const fetch = require('isomorphic-unfetch')
-const prettier = require('prettier')
-const { eachMonthOfInterval, addMonths, format } = require('date-fns')
+import fs from 'fs'
+import prettier from 'prettier'
+import path from 'path'
+import { format, eachMonthOfInterval, addMonths } from 'date-fns'
+import slugify from '@sindresorhus/slugify'
+import * as api from './api'
 
-const types = ['films', 'games', 'series']
 const host = 'https://released.at'
+const types = ['films', 'games', 'series']
 const constantsPages = [host, `${host}/blog`]
-const startDate = new Date(2020, 0, 1)
-const endDate = addMonths(new Date(), 1)
-
-const dates = eachMonthOfInterval({ start: startDate, end: endDate })
+const dates = eachMonthOfInterval({
+  start: new Date(2020, 0, 1),
+  end: addMonths(new Date(), 1),
+})
 
 let allUrls = [...constantsPages]
-
-async function getAll(type) {
-  const base = 'https://api.released.at/api'
-
-  try {
-    const response = await fetch(`${base}/${type}`)
-    const json = await response.json()
-
-    if (response.ok) {
-      return json
-    } else {
-      return {
-        error: json,
-      }
-    }
-  } catch (e) {
-    console.error(e)
-    return {
-      error: e,
-    }
-  }
-}
 
 dates.forEach(date => {
   const urlDate = format(date, 'LLLL-yyyy')
@@ -58,14 +37,18 @@ const createSitemap = urls => `<?xml version="1.0" encoding="UTF-8"?>
     `
 
 async function getResult() {
-  const films = await getAll('movies')
-  const series = await getAll('serials')
-  const games = await getAll('games')
+  const [games, films, series] = await api.allReleases()
+  const { posts } = await api.posts()
 
   allUrls.push(
     ...[...films, ...series, ...games].map(
-      ({ release_id }) => `${host}/release/${release_id}`,
+      ({ release_id, title }) =>
+        `${host}/release/${release_id}-${slugify(title)}`,
     ),
+  )
+
+  allUrls.push(
+    ...posts.map(({ id, title }) => `${host}/blog/${id}-${slugify(title)}`),
   )
 
   const sitemap = createSitemap(allUrls)
