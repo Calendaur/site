@@ -18,10 +18,6 @@ export const getProps = async (
 ): Promise<{
   props: any
 }> => {
-  if (!params.date) return {
-    props: {}
-  }
-
   const result = await releases(type, params.date)
   const [m, y] = params.date.split('-')
   const month = months.find(({ eng }) => eng === m)
