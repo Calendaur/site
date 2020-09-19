@@ -1,9 +1,13 @@
 import React from 'react'
 import Head from 'next/head'
 
-function Meta({ meta }) {
+function Meta({ meta, type, month, year }) {
   return (
     <Head>
+      <link
+        rel="amphtml"
+        href={`https://released.at/${type}/${month.eng}-${year}/amp`}
+      />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://released.at" />
       <meta property="twitter:url" content="https://released.at" />

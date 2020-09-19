@@ -24,7 +24,6 @@ export const getProps = async (
     weeks: any
   }
 }> => {
-  console.error(JSON.stringify(params))
   const result = await releases(type, params.date)
   const [m, y] = params.date.split('-')
   const month = months.find(({ eng }) => eng === m)
