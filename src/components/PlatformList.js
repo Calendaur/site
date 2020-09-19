@@ -1,12 +1,19 @@
 import React from 'react'
+import { useAmp } from 'next/amp'
 import styled from '@emotion/styled'
 
-function icon(platform) {
+function icon(platform, isAmp) {
   switch (platform) {
     case 'pc':
-      return <img src="/icons/windows.svg" alt="PC" />
+      return isAmp ? (
+        <amp-img width="18" height="18" src="/icons/windows.svg" />
+      ) : (
+        <img width="18" height="18" src="/icons/windows.svg" alt="PC" />
+      )
     case 'ps_4':
-      return (
+      return isAmp ? (
+        <amp-img width="18" height="18" src="/icons/playstation.svg" />
+      ) : (
         <img
           width="18"
           height="18"
@@ -15,9 +22,22 @@ function icon(platform) {
         />
       )
     case 'xbox_one':
-      return <img src="/icons/xbox.svg" alt="Xbox One" />
+      return isAmp ? (
+        <amp-img width="18" height="18" src="/icons/xbox.svg" />
+      ) : (
+        <img width="18" height="18" src="/icons/xbox.svg" alt="Xbox One" />
+      )
     case 'nintendo_switch':
-      return <img src="/icons/nintendo-switch.svg" alt="Nintendo Switch" />
+      return isAmp ? (
+        <amp-img width="18" height="18" src="/icons/nintendo-switch.svg" />
+      ) : (
+        <img
+          width="18"
+          height="18"
+          src="/icons/nintendo-switch.svg"
+          alt="Nintendo Switch"
+        />
+      )
   }
 }
 
@@ -39,19 +59,16 @@ const StyledPlatformList = styled.ul`
     height: var(--size);
     min-height: var(--size);
     margin: calc(var(--gap) / 2);
-
-    img {
-      width: 100%;
-      height: 100%;
-    }
   }
 `
 
 function PlatformList({ platforms, className }) {
+  const isAmp = useAmp()
+
   return (
     <StyledPlatformList className={className}>
       {platforms.map(platform => (
-        <li key={platform}>{icon(platform)}</li>
+        <li key={platform}>{icon(platform, isAmp)}</li>
       ))}
     </StyledPlatformList>
   )
