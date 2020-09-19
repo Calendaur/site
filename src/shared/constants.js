@@ -38,7 +38,7 @@ const currentYear = new Date().getFullYear()
 export const endpoints = {
   HOMEPAGE_RELEASED: `${API_URL}/films?date=${currentMonth}-${currentYear}`,
   RELEASES: (type, date) => {
-    const [month, year] = date ? date.split('-') : ''
+    const [month, year] = date.split('-')
     return `${API_URL}/${type}?date=${monthsForAPI[month]}-${year}`
   },
   GAMES: `${API_URL}/games`,
