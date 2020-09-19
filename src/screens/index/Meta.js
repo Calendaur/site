@@ -1,13 +1,21 @@
 import React from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
-function Meta({ meta, type, month, year }) {
+function Meta({ meta }) {
+  const { asPath } = useRouter()
+
   return (
     <Head>
       <link
         rel="amphtml"
-        href={`https://released.at/${type}/${month.eng}-${year}/amp`}
+        href={
+          asPath === '/'
+            ? 'https://released.at/amp'
+            : `https://released.at${asPath}/amp`
+        }
       />
+      <link rel="canonical" href={`https://released.at${asPath}`} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://released.at" />
       <meta property="twitter:url" content="https://released.at" />

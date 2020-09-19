@@ -31,7 +31,7 @@ function MainPage({ parsedURL, releases, grouped, meta, weeks }) {
 
   return (
     <div>
-      <Meta meta={meta} type={type} month={month} year={year} />
+      <Meta meta={meta} />
       <FilterBar>
         <ReleaseTypeChooser type={type} month={month} year={year} />
       </FilterBar>
