@@ -3,6 +3,8 @@ import Releases from 'screens/index'
 import { getPaths, getProps } from 'features/releases/next-page-functions'
 import { PageDataProvider } from 'features/releases/page-data'
 
+export const config = { amp: 'hybrid' }
+
 function SeriesPage(props) {
   return (
     <PageDataProvider parsedUrl={props.parsedURL}>

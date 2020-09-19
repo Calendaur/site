@@ -13,17 +13,15 @@ export const getPaths: GetStaticPaths = async () => ({
 })
 
 export const getProps = async (
-  { params }: GetStaticPropsContext<{ date: string }>,
+  { params }: any,
   type: FRONTEND_RELEASE_TYPES,
 ): Promise<{
-  props: {
-    parsedURL: ParsedURL
-    releases: any
-    meta: any
-    grouped: any
-    weeks: any
-  }
+  props: any
 }> => {
+  if (!params.date) return {
+    props: {}
+  }
+
   const result = await releases(type, params.date)
   const [m, y] = params.date.split('-')
   const month = months.find(({ eng }) => eng === m)
