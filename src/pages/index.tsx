@@ -4,9 +4,9 @@ import { getPropsForIndexPage } from 'features/releases/next-page-functions'
 import { PageDataProvider } from 'features/releases/page-data'
 import { usePushNotifications } from 'features/notifications/use-push-notifications'
 
-// export const config = {
-//   amp: 'hybrid',
-// }
+export const config = {
+  amp: 'hybrid',
+}
 
 function IndexPage(props) {
   usePushNotifications()
