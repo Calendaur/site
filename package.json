@@ -142,5 +142,8 @@
   },
   "lint-staged": {
     "*.js": "eslint --ext js --fix"
+  },
+  "engines": {
+    "node": "14.8"
   }
 }
