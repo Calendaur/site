@@ -1,4 +1,5 @@
 import React from 'react'
+import { useAmp } from 'next/amp'
 import styled from '@emotion/styled'
 import { routes } from 'shared/constants'
 import A from './A'
@@ -17,24 +18,31 @@ const StyledFooter = styled.footer`
     align-items: center;
     height: 28px;
 
-    img {
+    & > img,
+    & > amp-img {
       margin-right: var(--horizontal-5);
     }
   }
 `
 
 function Footer({ className }) {
+  const isAmp = useAmp()
+
   return (
     <StyledFooter className={className} aria-label="footer">
       <A href={routes.HOME} className="copyright" aria-label="released.at">
-        <img
-          width="28"
-          height="28"
-          className="lazyload"
-          data-src="/images/logo.png"
-          src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-          alt="released.at"
-        />{' '}
+        {isAmp ? (
+          <amp-img src="/images/logo.png" width="28" height="28" />
+        ) : (
+          <img
+            width="28"
+            height="28"
+            className="lazyload"
+            data-src="/images/logo.png"
+            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+            alt="released.at"
+          />
+        )}{' '}
         released.at, {year}
       </A>
       <div>

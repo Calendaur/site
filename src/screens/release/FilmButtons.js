@@ -59,7 +59,12 @@ function FilmButtons({ kinopoisk, imdb, type }) {
           }}
           className="kinopoisk"
         >
-          <img src="/icons/kinopoisk.svg" alt="КиноПоиск" />
+          <img
+            width="120"
+            height="15"
+            src="/icons/kinopoisk.svg"
+            alt="КиноПоиск"
+          />
         </Button>
       )}
       {imdb && (
@@ -69,7 +74,7 @@ function FilmButtons({ kinopoisk, imdb, type }) {
           }}
           className="imdb"
         >
-          <img src="/icons/imdb.svg" alt="IMDB" />
+          <img width="64" height="32" src="/icons/imdb.svg" alt="IMDB" />
         </Button>
       )}
     </Buttons>

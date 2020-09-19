@@ -22,7 +22,9 @@ export function useWindowWidth() {
 }
 
 export function useMediaQuery(media) {
-  const [match, setMatch] = useState(window.matchMedia(media).matches)
+  const [match, setMatch] = useState(
+    typeof window === 'undefined' ? null : window.matchMedia(media).matches,
+  )
 
   useEffect(() => {
     function handler(e) {

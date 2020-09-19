@@ -1,6 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
+import { useAmp } from 'next/amp'
 import styled from '@emotion/styled'
 import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
@@ -169,7 +170,7 @@ const ScrollToTrailer = styled(Button)`
   margin-right: var(--horizontal-5);
 
   @media (min-width: 768px) {
-    display: none !important;
+    display: none;
   }
 `
 
@@ -220,6 +221,7 @@ function Release({
   rawg_io_fields,
   id,
 }) {
+  const isAmp = useAmp()
   const { query } = useRouter()
   const slug = slugify(title)
   const url = `https://released.at/release/${query.id}-${slug}`
@@ -266,24 +268,26 @@ function Release({
         </Titles>
         <Description>
           <Data>
-            <Buttons>
-              {trailer_url && (
-                <ScrollToTrailer
-                  onClick={() => {
-                    const trailerEl = document.querySelector('#trailer')
-                    trailerEl.scrollIntoView({
-                      behavior: 'smooth',
-                    })
-                  }}
-                >
-                  К трейлеру
-                </ScrollToTrailer>
-              )}
-              <ExpectButton
-                className="expect"
-                release={{ released, release_id: query.id, id }}
-              />
-            </Buttons>
+            {isAmp ? null : (
+              <Buttons>
+                {trailer_url && (
+                  <ScrollToTrailer
+                    onClick={() => {
+                      const trailerEl = document.querySelector('#trailer')
+                      trailerEl.scrollIntoView({
+                        behavior: 'smooth',
+                      })
+                    }}
+                  >
+                    К трейлеру
+                  </ScrollToTrailer>
+                )}
+                <ExpectButton
+                  className="expect"
+                  release={{ released, release_id: query.id, id }}
+                />
+              </Buttons>
+            )}
             <Text>{description}</Text>
             <ExtraInfo
               type={type}
@@ -291,20 +295,23 @@ function Release({
               platforms={platforms}
               season={season}
             />
-            <FilmButtons
-              type={type}
-              kinopoisk={kinopoisk_url}
-              imdb={imdb_url}
-            />
-            {/* <StreamingServicesButtons type={type} /> */}
-            <StoreButtons
-              type={type}
-              rawgStores={rawg_io_fields?.stores}
-              stores={stores}
-            />
+            {isAmp ? null : (
+              <>
+                <FilmButtons
+                  type={type}
+                  kinopoisk={kinopoisk_url}
+                  imdb={imdb_url}
+                />
+                <StoreButtons
+                  type={type}
+                  rawgStores={rawg_io_fields && rawg_io_fields.stores}
+                  stores={stores}
+                />
+              </>
+            )}
             <Sharing title={title} url={url} />
           </Data>
-          {trailer_url && <Trailer url={trailer_url} />}
+          {trailer_url && !isAmp && <Trailer url={trailer_url} />}
         </Description>
       </div>
     </>

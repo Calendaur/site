@@ -1,16 +1,20 @@
 import React from 'react'
 import Head from 'next/head'
+import { useAmp } from 'next/amp'
 
 function Meta() {
+  const isAmp = useAmp()
+
   return (
     <Head>
       <meta charSet="utf-8" />
       <meta httpEquiv="x-ua-compatible" content="ie-edge" />
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
-      />
-      <meta httpEquiv="content-type" content="text/html;charset=utf-8" />
+      {isAmp ? null : (
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+      )}
       <meta name="keywords" content="" />
       <meta name="description" content="Будьте в курсе новых релизов" />
       <meta property="og:type" content="website" />

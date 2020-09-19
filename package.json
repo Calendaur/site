@@ -26,7 +26,7 @@
     "js-cookie": "^2.2.1",
     "lazysizes": "^5.2.2",
     "lodash.debounce": "^4.0.8",
-    "next": "^9.5.3",
+    "next": "^9.5.4-canary.20",
     "next-offline": "^5.0.2",
     "nookies": "^2.4.0",
     "nprogress": "^0.2.0",
@@ -131,7 +131,8 @@
       "value-list-comma-newline-after": null,
       "no-descending-specificity": null,
       "media-feature-name-no-unknown": null,
-      "property-no-vendor-prefix": null
+      "property-no-vendor-prefix": null,
+      "selector-type-no-unknown": null
     }
   },
   "husky": {

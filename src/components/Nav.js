@@ -9,17 +9,19 @@ import MobileNavReleaseFilterBar from './MobileNavReleaseFilterBar'
 
 const ncwn = cookies.NEED_CHECK_WHATS_NEW
 
-function getMonth() {
-  return new Date().getMonth().toString()
-}
-
 function Nav({ push, isVisible, currentPage }) {
-  if (Cookies.get(ncwn) === undefined || Cookies.get(ncwn) !== getMonth()) {
-    Cookies.set(ncwn, 'true')
+  const currentMonth = new Date().getMonth().toString()
+
+  if (Cookies.get(ncwn) === undefined || Cookies.get(ncwn) !== currentMonth) {
+    Cookies.set(ncwn, 'true', {
+      expires: 60,
+    })
   }
 
   if (currentPage === routes.WHATS_NEW) {
-    Cookies.set(ncwn, getMonth())
+    Cookies.set(ncwn, currentMonth, {
+      expires: 60,
+    })
   }
 
   const desktop = useMediaQuery('(min-width: 768px)')

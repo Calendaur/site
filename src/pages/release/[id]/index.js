@@ -18,6 +18,10 @@ function changeType(t) {
   }
 }
 
+export const config = {
+  amp: 'hybrid',
+}
+
 export async function getServerSideProps(context) {
   const idWithSlug = context.query.id
   const result = await release(idWithSlug)

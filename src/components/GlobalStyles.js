@@ -120,6 +120,7 @@ const GlobalStyles = (
         box-sizing: border-box;
         font-size: 16px;
         font-variant-numeric: tabular-nums;
+        background-color: unset;
 
         @media (min-width: 2200px) {
           font-size: 20px;

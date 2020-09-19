@@ -1,7 +1,14 @@
 import React from 'react'
+import { useAmp } from 'next/amp'
 import { IMG_PLACEHOLDER } from 'shared/constants'
 
 function Image({ lazy = true, src, alt = '' }) {
+  const isAmp = useAmp()
+
+  if (isAmp) {
+    return <amp-img src={src} alt={alt} layout="fill" />
+  }
+
   if (lazy) {
     return (
       <img

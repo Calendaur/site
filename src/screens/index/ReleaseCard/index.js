@@ -1,5 +1,6 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
+import { useAmp } from 'next/amp'
 import styled from '@emotion/styled'
 import slugify from '@sindresorhus/slugify'
 import format from 'date-fns/format'
@@ -26,23 +27,31 @@ const Card = styled(A)`
     width: 100%;
     height: 100%;
 
+    &.isAmp {
+      amp-img img {
+        object-fit: cover;
+      }
+    }
+
+    &:not(.isAmp) {
+      & > img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+
     &::after {
       display: block;
       width: 100%;
       height: 0;
       padding-bottom: 42.86%;
       content: '';
-    }
-
-    & > img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
     }
   }
 
@@ -106,6 +115,7 @@ const Card = styled(A)`
 `
 
 function ReleaseCard({ release, type, showDate = false }) {
+  const isAmp = useAmp()
   const slug = slugify(release.title)
 
   return (
@@ -116,7 +126,7 @@ function ReleaseCard({ release, type, showDate = false }) {
         </div>
       )}
       <ExpectButton className="expect-button" release={release} />
-      <div className="aspectRatio">
+      <div className={isAmp ? 'aspectRatio isAmp' : 'aspectRatio'}>
         <Image src={release.cover} alt={release.title} />
       </div>
       <Info release={release} type={type} />

@@ -8,6 +8,10 @@ import ReleaseCard from '../ReleaseCard'
 const StyledCalendar = styled.div`
   display: block;
 
+  @media (min-width: 1200px) {
+    display: none;
+  }
+
   .day {
     margin-bottom: var(--vertical-1);
 

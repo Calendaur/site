@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import cx from 'classnames'
 import styled from '@emotion/styled'
 import { useMediaQuery } from 'shared/hooks'
@@ -13,8 +13,12 @@ const currentYear = new Date().getFullYear()
 
 const StyledCalendar = styled.div`
   position: relative;
-  display: block;
+  display: none;
   user-select: none;
+
+  @media (min-width: 1200px) {
+    display: block;
+  }
 
   .day-of-week {
     display: grid;
@@ -110,9 +114,63 @@ const StyledCalendar = styled.div`
 `
 
 function Calendar({ type, month, year, releases, grouped, weeks }) {
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
   const desktop = useMediaQuery('(min-width: 1200px)')
 
   if (releases.length === 0) return <NoReleases />
+
+  if (!isMounted) {
+    return (
+      <>
+        <StyledCalendar>
+          <div className="day-of-week">
+            {daysOfWeek.map(weekDay => (
+              <div key={weekDay}>{weekDay}</div>
+            ))}
+          </div>
+          <div className="grid">
+            {JSON.parse(weeks).map((day, index) => {
+              const dayReleases = releases.filter(
+                r => new Date(r.released).getDate() === day,
+              )
+              const hasRelease = dayReleases.length > 0
+              const isToday =
+                day === currentDay &&
+                month === currentMonth &&
+                year === currentYear
+
+              return (
+                <div
+                  key={index}
+                  className={cx('day', {
+                    isNotWithinRange: day === undefined,
+                    someReleases: dayReleases.length > 1,
+                    hasRelease,
+                  })}
+                >
+                  <div
+                    className={cx('date-label', {
+                      hasRelease,
+                      isToday,
+                    })}
+                  >
+                    <span>{day}</span>
+                  </div>
+                  <ReleaseListInDay type={type} releases={dayReleases} />
+                </div>
+              )
+            })}
+          </div>
+        </StyledCalendar>
+        <MobileCalendar type={type} releases={grouped} />
+      </>
+    )
+  }
 
   if (desktop) {
     return (

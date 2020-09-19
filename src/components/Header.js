@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
+import { useAmp } from 'next/amp'
 import styled from '@emotion/styled'
 import { center, spaceBetween } from 'shared/css-utils'
 
@@ -131,6 +132,7 @@ const StyledHeader = styled.header`
 `
 
 function Header() {
+  const isAmp = useAmp()
   const [visibleMobileNav, setVisibleMobileNav] = useState(false)
   const { events, push, asPath } = useRouter()
 
@@ -166,30 +168,34 @@ function Header() {
       </div>
       <div className="mobile">
         <Logo className="logo" />
-        <div className="float">
-          <button
-            onClick={() => {
-              setVisibleMobileNav(!visibleMobileNav)
-            }}
-          >
-            {visibleMobileNav ? (
-              <img
-                width="24"
-                height="24"
-                src="/icons/close.svg"
-                alt="Close menu"
-              />
-            ) : (
-              <img
-                width="24"
-                height="24"
-                src="/icons/menu.svg"
-                alt="Open menu"
-              />
-            )}
-          </button>
-        </div>
-        <Nav push={push} isVisible={visibleMobileNav} />
+        {isAmp ? null : (
+          <>
+            <div className="float">
+              <button
+                onClick={() => {
+                  setVisibleMobileNav(!visibleMobileNav)
+                }}
+              >
+                {visibleMobileNav ? (
+                  <img
+                    width="24"
+                    height="24"
+                    src="/icons/close.svg"
+                    alt="Close menu"
+                  />
+                ) : (
+                  <img
+                    width="24"
+                    height="24"
+                    src="/icons/menu.svg"
+                    alt="Open menu"
+                  />
+                )}
+              </button>
+            </div>
+            <Nav push={push} isVisible={visibleMobileNav} />
+          </>
+        )}
       </div>
     </StyledHeader>
   )

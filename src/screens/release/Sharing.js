@@ -1,4 +1,5 @@
 import React from 'react'
+import { useAmp } from 'next/amp'
 import styled from '@emotion/styled'
 import { center } from 'shared/css-utils'
 
@@ -36,6 +37,8 @@ const Wrapper = styled.div`
 `
 
 function Sharing({ title, url }) {
+  const isAmp = useAmp()
+
   return (
     <Wrapper>
       <p>Поделиться релизом:</p>
@@ -46,7 +49,16 @@ function Sharing({ title, url }) {
           rel="noopener noreferrer nofollow"
           aria-label="Поделиться через Facebook"
         >
-          <img src="/icons/facebook.svg" alt="Поделиться через Facebook" />
+          {isAmp ? (
+            <amp-img width="24" height="24" src="/icons/facebook.svg" />
+          ) : (
+            <img
+              width="24"
+              height="24"
+              src="/icons/facebook.svg"
+              alt="Поделиться через Facebook"
+            />
+          )}
         </a>
         <a
           href={`https://vk.com/share.php?url=${url}&title=${title}&utm_source=share2`}
@@ -54,7 +66,16 @@ function Sharing({ title, url }) {
           rel="noopener noreferrer nofollow"
           aria-label="Поделиться через VK"
         >
-          <img src="/icons/vk.svg" alt="Поделиться через VK" />
+          {isAmp ? (
+            <amp-img width="24" height="24" src="/icons/vk.svg" />
+          ) : (
+            <img
+              width="24"
+              height="24"
+              src="/icons/vk.svg"
+              alt="Поделиться через VK"
+            />
+          )}
         </a>
         <a
           href={`https://twitter.com/intent/tweet/?text=${title}&url=${url}`}
@@ -62,7 +83,16 @@ function Sharing({ title, url }) {
           rel="noopener noreferrer nofollow"
           aria-label="Поделиться через Twitter"
         >
-          <img src="/icons/twitter.svg" alt="Поделиться через Twitter" />
+          {isAmp ? (
+            <amp-img width="24" height="24" src="/icons/twitter.svg" />
+          ) : (
+            <img
+              width="24"
+              height="24"
+              src="/icons/twitter.svg"
+              alt="Поделиться через Twitter"
+            />
+          )}
         </a>
         <a
           href={`tg://msg_url?url=${url}&text=${title}`}
@@ -70,7 +100,16 @@ function Sharing({ title, url }) {
           rel="noopener noreferrer nofollow"
           aria-label="Поделиться через Telegram"
         >
-          <img src="/icons/telegram.svg" alt="Поделиться через Telegram" />
+          {isAmp ? (
+            <amp-img width="24" height="24" src="/icons/telegram.svg" />
+          ) : (
+            <img
+              width="24"
+              height="24"
+              src="/icons/telegram.svg"
+              alt="Поделиться через Telegram"
+            />
+          )}
         </a>
       </div>
     </Wrapper>
