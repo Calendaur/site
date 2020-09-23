@@ -7,7 +7,7 @@ import * as api from './api'
 
 const host = 'https://released.at'
 const types = ['films', 'games', 'series']
-const constantsPages = [host, `${host}/blog`]
+const constantsPages = [host, `${host}/blog`, `${host}/today`]
 const dates = eachMonthOfInterval({
   start: new Date(2020, 0, 1),
   end: addMonths(new Date(), 1),
