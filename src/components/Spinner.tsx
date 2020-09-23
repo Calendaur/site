@@ -2,7 +2,11 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { keyframes } from '@emotion/react'
 
-function Spinner({ className }) {
+interface Props {
+  className?: string
+}
+
+function Spinner({ className }: Props) {
   return (
     <div className={className}>
       <span>

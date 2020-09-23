@@ -1,17 +1,39 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { A } from 'components'
+import format from 'date-fns/format'
+import ru from 'date-fns/locale/ru'
+import { A, Filters } from 'components'
 import { usePageData } from 'features/releases/page-data'
 
-const Title = styled.h1`
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin-bottom: var(--vertical-5);
 
-  & > a {
-    opacity: 0.4;
-    transition: var(--transition);
+  > div {
+    margin-top: var(--vertical-6);
+  }
 
-    &:hover {
-      opacity: 1;
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    align-items: center;
+
+    > div {
+      margin-top: 0;
+    }
+  }
+
+  h1 {
+    margin-bottom: 0;
+
+    & > a {
+      opacity: 0.4;
+      transition: var(--transition);
+
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 `
@@ -48,23 +70,39 @@ function CalendarHeader() {
     if (type === 'series') return 'Сериалы'
   }
 
-  if (isNotActual)
+  if (isNotActual) {
     return (
-      <Title>
-        {nonActualTypeText()} {month.rus} {year}
-      </Title>
+      <Wrapper>
+        <h1>
+          {nonActualTypeText()} {month.rus} {year}{' '}
+          <A
+            href={`/${type}/[date]`}
+            as={`/${type}/${format(new Date(), 'LLLL').toLowerCase()}-${format(
+              new Date(),
+              'yyyy',
+            )}`}
+          >
+            к текущему месяцу&nbsp;→
+          </A>
+        </h1>
+        <Filters />
+      </Wrapper>
     )
+  }
 
   return (
-    <Title>
-      Новинки {actualTypeText()} за {month.rus}{' '}
-      {year === currentYear ? '' : year}{' '}
-      {isCurrentMonth ? (
-        <A {...nextLink}>{nextMonth.rus}&nbsp;→</A>
-      ) : (
-        <A {...prevLink}>←&nbsp;{prevMonth.rus}</A>
-      )}
-    </Title>
+    <Wrapper>
+      <h1>
+        Новинки {actualTypeText()} за {month.rus}{' '}
+        {year === currentYear ? '' : year}{' '}
+        {isCurrentMonth ? (
+          <A {...nextLink}>{nextMonth.rus}&nbsp;→</A>
+        ) : (
+          <A {...prevLink}>←&nbsp;{prevMonth.rus}</A>
+        )}
+      </h1>
+      <Filters />
+    </Wrapper>
   )
 }
 

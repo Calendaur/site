@@ -29,7 +29,7 @@ function Nav({ push, isVisible, currentPage }) {
   if (desktop) {
     return (
       <nav>
-        <A href={routes.BLOG}>Блог</A>
+        <A href={routes.BLOG}>Блог 📓</A>
         <A
           href={routes.WHATS_NEW}
           className={Cookies.get(ncwn) === 'true' ? 'has-notification' : ''}
@@ -50,7 +50,7 @@ function Nav({ push, isVisible, currentPage }) {
       <Logo />
       <div className="nav-links">
         <A href={routes.HOME}>На главную</A>
-        <A href={routes.BLOG}>Блог</A>
+        <A href={routes.BLOG}>Блог 📓</A>
         <A href={routes.ARCHIVE}>Вышедшие релизы</A>
         <A
           href={routes.WHATS_NEW}

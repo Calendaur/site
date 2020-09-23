@@ -17,12 +17,12 @@ const Wrapper = styled.div`
     line-height: 1.2;
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 
-    &:first-of-type {
+    &:first-child {
       font-weight: 600;
     }
 
-    &:last-of-type {
-      font-size: 0.75rem;
+    &:last-child {
+      font-size: 0.82rem;
     }
   }
 
@@ -38,12 +38,14 @@ const Wrapper = styled.div`
   }
 `
 
-function Info({ type, release }) {
+function Info({ type, release, showType }) {
   return (
     <Wrapper>
       <p>{release.title}</p>
-      {type === 'films' && <p className="extra">Реж. {release.director}</p>}
-      {type === 'games' && (
+      {type.includes('film') && (
+        <p className="extra">Реж. {release.director}</p>
+      )}
+      {type.includes('game') && (
         <PlatformList className="platforms" platforms={release.platforms} />
       )}
       {type === 'series' && <p className="extra">{release.season} сезон</p>}

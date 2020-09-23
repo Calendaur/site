@@ -1,5 +1,6 @@
 import React, { useMemo, memo, useState } from 'react'
 import { useRouter } from 'next/router'
+import { useAmp } from 'next/amp'
 import styled from '@emotion/styled'
 import { compareAsc } from 'date-fns'
 import { expect } from 'shared/api'
@@ -14,6 +15,7 @@ const Btn = styled(Button)`
 `
 
 function ExpectButton({ className, release }) {
+  const isAmp = useAmp()
   const [loading, setLoading] = useState(false)
   const { user, mutateUser } = useUser()
   const { push } = useRouter()
@@ -57,6 +59,8 @@ function ExpectButton({ className, release }) {
   const isActual = compareAsc(new Date(), new Date(release.released)) <= 0
 
   const style = loading || isExpected ? { opacity: 1 } : {}
+
+  if (isAmp) return null
 
   if (isActual) {
     return (

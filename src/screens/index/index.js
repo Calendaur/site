@@ -5,7 +5,7 @@ import { ReleaseTypeChooser } from 'components'
 import CalendarHeader from './CalendarHeader'
 import Meta from './Meta'
 
-const Calendar = dynamic(() => import('./Calendar'), { ssr: true })
+const Calendar = dynamic(() => import('./Calendar'))
 
 const FilterBar = styled.div`
   margin-bottom: var(--vertical-5);

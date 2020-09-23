@@ -11,6 +11,7 @@ import Page from './Page'
 import PlatformList from './PlatformList'
 import ReleaseTypeChooser from './ReleaseTypeChooser'
 import Spinner from './Spinner'
+import Filters from './Filters'
 
 export {
   A,
@@ -26,4 +27,5 @@ export {
   PlatformList,
   ReleaseTypeChooser,
   Spinner,
+  Filters,
 }

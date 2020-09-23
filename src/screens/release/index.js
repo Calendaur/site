@@ -14,7 +14,7 @@ import StoreButtons from './StoreButtons'
 import FilmButtons from './FilmButtons'
 import Sharing from './Sharing'
 
-const Trailer = dynamic(() => import('./Trailer'), { ssr: false })
+const Trailer = dynamic(() => import('./Trailer'))
 
 const Breadcrumbs = styled.div`
   margin-top: 190px;

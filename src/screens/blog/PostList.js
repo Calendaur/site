@@ -62,11 +62,45 @@ const Grid = styled.div`
 `
 
 function PostList({ posts }) {
+  const title =
+    'Блог released.at. Новости игр, кино и сериалов. Обзоры и рецензии'
+  const description =
+    'В нашем блоге вы узнаете, что посмотреть или во что поиграть в текущем месяце, а также новости, обзоры и рецензии'
+
   return (
     <>
       <Head>
-        <title>Блог Released</title>
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://released.at/blog" />
+        <meta property="twitter:url" content="https://released.at/blog" />
+        <meta name="title" content={title} />
+        <meta name="description" content={description} />
+        <meta property="og:site_name" content={title} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta
+          property="og:image"
+          content="https://released.at/images/banner.jpg"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:text:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta
+          name="twitter:image:src"
+          content="https://released.at/images/banner.jpg"
+        />
+        <link rel="image_src" href="https://released.at/images/banner.jpg" />
+        <title>{title}</title>
       </Head>
+      <h1>Блог</h1>
+      <p>
+        Новости из&nbsp;мира игр, кино и&nbsp;сериалов. А&nbsp;также подборки,
+        обзоры и&nbsp;рецензии{' '}
+        <span role="img" aria-label="writing-hand">
+          ✍️
+        </span>
+      </p>
       <Grid>
         {posts.map(post => (
           <PostCard key={post.id} {...post} />

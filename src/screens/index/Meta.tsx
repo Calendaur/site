@@ -1,7 +1,14 @@
 import React from 'react'
 import Head from 'next/head'
 
-function Meta({ meta }) {
+interface Props {
+  meta: {
+    description: string
+    title: string
+  }
+}
+
+function Meta({ meta }: Props) {
   return (
     <Head>
       <meta property="og:type" content="website" />

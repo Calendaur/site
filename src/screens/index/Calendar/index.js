@@ -192,24 +192,27 @@ function Calendar({ type, month, year, releases, grouped, weeks }) {
               year === currentYear
 
             return (
-              <div
-                key={index}
-                className={cx('day', {
-                  isNotWithinRange: day === undefined,
-                  someReleases: dayReleases.length > 1,
-                  hasRelease,
-                })}
-              >
+              <>
+                {isToday ? <div style={{ position: 'absolute' }}></div> : null}
                 <div
-                  className={cx('date-label', {
+                  key={index}
+                  className={cx('day', {
+                    isNotWithinRange: day === undefined,
+                    someReleases: dayReleases.length > 1,
                     hasRelease,
-                    isToday,
                   })}
                 >
-                  <span>{day}</span>
+                  <div
+                    className={cx('date-label', {
+                      hasRelease,
+                      isToday,
+                    })}
+                  >
+                    <span>{day}</span>
+                  </div>
+                  <ReleaseListInDay type={type} releases={dayReleases} />
                 </div>
-                <ReleaseListInDay type={type} releases={dayReleases} />
-              </div>
+              </>
             )
           })}
         </div>

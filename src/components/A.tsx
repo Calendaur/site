@@ -1,7 +1,21 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import Link from 'next/link'
 
-function A({ next = true, children, href, as, className, ...rest }) {
+export interface Props {
+  next?: boolean
+  href: string
+  as?: string
+  className?: string
+}
+
+function A({
+  next = true,
+  children,
+  href,
+  as,
+  className,
+  ...rest
+}: PropsWithChildren<Props>) {
   if (next) {
     return (
       <Link href={href} as={as}>

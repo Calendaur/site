@@ -8,9 +8,7 @@ import ru from 'date-fns/locale/ru'
 import { A, Image } from 'components'
 import Info from './Info'
 
-const ExpectButton = dynamic(() => import('components/ExpectButton'), {
-  ssr: false,
-})
+const ExpectButton = dynamic(() => import('components/ExpectButton'))
 
 const Card = styled(A)`
   position: relative;
@@ -112,14 +110,73 @@ const Card = styled(A)`
       rgba(0, 0, 0, 0.9) 100%
     );
   }
+
+  .type {
+    position: absolute;
+    top: 8px;
+    z-index: 9;
+    display: inline-block;
+    padding: 0 8px;
+    padding-bottom: 2px;
+    margin: 0 8px;
+    margin-bottom: 4px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
 `
 
-function ReleaseCard({ release, type, showDate = false }) {
+function typeLabel(type, showType) {
+  if (!showType) return {}
+
+  if (type.includes('film')) {
+    return {
+      text: 'кино',
+      backgroundColor: '#d2e603',
+      color: '#000',
+    }
+  }
+
+  if (type.includes('game')) {
+    return {
+      text: 'игра',
+      backgroundColor: '#9d65c9',
+      color: '#fff',
+    }
+  }
+
+  if (type.includes('series')) {
+    return {
+      text: 'сериал',
+      backgroundColor: '#ea5455',
+      color: '#fff',
+    }
+  }
+}
+
+function ReleaseCard({
+  release,
+  type,
+  showDate = false,
+  showType = false,
+  className = '',
+}) {
   const isAmp = useAmp()
   const slug = slugify(release.title)
+  const { text, backgroundColor, color } = typeLabel(type, showType)
 
   return (
-    <Card href="/release/[id]" as={`/release/${release.release_id}-${slug}`}>
+    <Card
+      className={className}
+      href="/release/[id]"
+      as={`/release/${release.release_id}-${slug}`}
+    >
+      {showType && (
+        <div className="type" style={{ backgroundColor, color }}>
+          {text}
+        </div>
+      )}
       {showDate && (
         <div className="released-date">
           {format(new Date(release.released), 'd MMM', { locale: ru })}
@@ -129,7 +186,7 @@ function ReleaseCard({ release, type, showDate = false }) {
       <div className={isAmp ? 'aspectRatio isAmp' : 'aspectRatio'}>
         <Image src={release.cover} alt={release.title} />
       </div>
-      <Info release={release} type={type} />
+      <Info release={release} type={type} showType={showType} />
     </Card>
   )
 }

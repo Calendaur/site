@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { HTMLAttributes, PropsWithChildren } from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import isPropValid from '@emotion/is-prop-valid'
 import Spinner from './Spinner'
+
+interface Props {
+  className?: string
+  type?: 'button' | 'submit' | 'reset'
+  primary?: boolean
+  ghost?: boolean
+  fullWidth?: boolean
+  disabled?: boolean
+  loading?: boolean
+
+  // as={A}
+  href?: string
+}
 
 function Button({
   children,
@@ -14,7 +27,7 @@ function Button({
   disabled,
   loading,
   ...rest
-}) {
+}: PropsWithChildren<Props & HTMLAttributes<HTMLButtonElement>>) {
   return (
     <button disabled={disabled} type={type} className={className} {...rest}>
       {loading ? <Spinner /> : children}

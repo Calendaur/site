@@ -45,7 +45,7 @@ export const endpoints = {
   FILMS: `${API_URL}/films`,
   SERIES: `${API_URL}/series`,
   RELEASE: id => `${API_URL}/releases/${id}`,
-  NOW: `${API_URL}/releases/now`,
+  TODAY: `${API_URL}/releases/today`,
   USERS: `${API_URL}/users`,
   TOKENS: `${API_URL}/tokens`,
   PROFILE: `${API_URL}/profile`,
@@ -70,6 +70,7 @@ export const routes = {
   SIGN_UP: '/sign-up',
   BLOG: '/blog',
   BLOG_POST: id => `/blog/${id}`,
+  TODAY: '/today',
 }
 
 export const IMG_PLACEHOLDER =
