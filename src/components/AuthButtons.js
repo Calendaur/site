@@ -1,13 +1,11 @@
 import React from 'react'
 import { useUser } from 'features/user/use-user'
 import { routes } from 'shared/constants'
-import { useMediaQuery } from 'shared/hooks'
 import Button from './Button'
 import A from './A'
 
-function AuthButtons({ push }) {
+function AuthButtons({ push, desktop }) {
   const { user, isLoading } = useUser()
-  const desktop = useMediaQuery('(min-width: 768px)')
   const isLoggedIn = !!user
 
   if (isLoading) return null

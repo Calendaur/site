@@ -37,7 +37,7 @@ function Nav({ push, isVisible, currentPage, desktop }) {
           Новости проекта
         </A>
         <A href={routes.ARCHIVE}>Вышедшее</A>
-        <AuthButtons push={push} />
+        <AuthButtons push={push} desktop={desktop} />
       </nav>
     )
   }
@@ -59,7 +59,7 @@ function Nav({ push, isVisible, currentPage, desktop }) {
         </A>
       </div>
       <div className="auth-links">
-        <AuthButtons push={push} />
+        <AuthButtons push={push} desktop={desktop} />
       </div>
       <MobileNavReleaseFilterBar />
     </nav>

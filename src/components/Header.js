@@ -135,9 +135,14 @@ const StyledHeader = styled.header`
 function Header() {
   const isAmp = useAmp()
   const [visibleMobileNav, setVisibleMobileNav] = useState(false)
+  const [isMount, setIsMount] = useState(false)
   const { events, push, asPath } = useRouter()
 
   const desktop = useMediaQuery('(min-width: 768px)')
+
+  useEffect(() => {
+    setIsMount(true)
+  }, [])
 
   useEffect(() => {
     if (desktop) return
@@ -169,7 +174,43 @@ function Header() {
     )
   }
 
-  if (desktop === null) return null // Without SSR
+  if (!isMount) {
+    return (
+      <StyledHeader aria-label="header">
+        <div className="desktop">
+          <Logo />
+          <Nav push={push} currentPage={asPath} desktop={desktop} />
+        </div>
+        <div className="mobile">
+          <Logo className="logo" />
+          <div className="float">
+            <button
+              onClick={() => {
+                setVisibleMobileNav(!visibleMobileNav)
+              }}
+            >
+              {visibleMobileNav ? (
+                <img
+                  width="24"
+                  height="24"
+                  src="/icons/close.svg"
+                  alt="Close menu"
+                />
+              ) : (
+                <img
+                  width="24"
+                  height="24"
+                  src="/icons/menu.svg"
+                  alt="Open menu"
+                />
+              )}
+            </button>
+          </div>
+          <Nav push={push} isVisible={visibleMobileNav} desktop={desktop} />
+        </div>
+      </StyledHeader>
+    )
+  }
 
   return (
     <StyledHeader aria-label="header">
