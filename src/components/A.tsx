@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react'
+import React, { HTMLAttributes, PropsWithChildren } from 'react'
 import Link from 'next/link'
 
 export interface Props {
@@ -15,7 +15,7 @@ function A({
   as,
   className,
   ...rest
-}: PropsWithChildren<Props>) {
+}: PropsWithChildren<Props & HTMLAttributes<HTMLAnchorElement>>) {
   if (next) {
     return (
       <Link href={href} as={as}>

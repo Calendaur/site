@@ -83,10 +83,10 @@ export async function askUserPermission() {
 }
 
 export async function createNotificationsSubscription() {
-  const sw = await navigator.serviceWorker.ready
   const permission = await Notification.requestPermission()
-
   if (permission === 'denied') return
+
+  const sw = await navigator.serviceWorker.ready
 
   const subscription = await sw.pushManager.subscribe({
     userVisibleOnly: true,

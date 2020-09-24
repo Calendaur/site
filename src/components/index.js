@@ -12,6 +12,7 @@ import PlatformList from './PlatformList'
 import ReleaseTypeChooser from './ReleaseTypeChooser'
 import Spinner from './Spinner'
 import Filters from './Filters'
+import Notifications from './Notifications'
 
 export {
   A,
@@ -28,4 +29,5 @@ export {
   ReleaseTypeChooser,
   Spinner,
   Filters,
+  Notifications,
 }

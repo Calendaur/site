@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import { useAmp } from 'next/amp'
 import styled from '@emotion/styled'
 import { center, spaceBetween } from 'shared/css-utils'
+import { useMediaQuery } from 'shared/hooks'
 
 const Nav = dynamic(() => import('./Nav'), { ssr: false })
 const Logo = dynamic(() => import('./Logo'))
@@ -136,18 +137,16 @@ function Header() {
   const [visibleMobileNav, setVisibleMobileNav] = useState(false)
   const { events, push, asPath } = useRouter()
 
-  useEffect(() => {
-    if (window.innerWidth >= 768) return
-
-    if (visibleMobileNav) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'inherit'
-    }
-  }, [visibleMobileNav])
+  const desktop = useMediaQuery('(min-width: 768px)')
 
   useEffect(() => {
-    if (window.innerWidth >= 768) return
+    if (desktop) return
+
+    document.body.style.overflow = visibleMobileNav ? 'hidden' : 'inherit'
+  }, [visibleMobileNav]) // eslint-disable-line
+
+  useEffect(() => {
+    if (desktop) return
 
     function closeMobileNav() {
       setVisibleMobileNav(false)
@@ -160,43 +159,54 @@ function Header() {
     }
   }, []) // eslint-disable-line
 
+  if (isAmp) {
+    return (
+      <StyledHeader aria-label="header">
+        <div className="mobile">
+          <Logo className="logo" />
+        </div>
+      </StyledHeader>
+    )
+  }
+
+  if (desktop === null) return null // Without SSR
+
   return (
     <StyledHeader aria-label="header">
-      <div className="desktop">
-        <Logo />
-        <Nav push={push} currentPage={asPath} />
-      </div>
-      <div className="mobile">
-        <Logo className="logo" />
-        {isAmp ? null : (
-          <>
-            <div className="float">
-              <button
-                onClick={() => {
-                  setVisibleMobileNav(!visibleMobileNav)
-                }}
-              >
-                {visibleMobileNav ? (
-                  <img
-                    width="24"
-                    height="24"
-                    src="/icons/close.svg"
-                    alt="Close menu"
-                  />
-                ) : (
-                  <img
-                    width="24"
-                    height="24"
-                    src="/icons/menu.svg"
-                    alt="Open menu"
-                  />
-                )}
-              </button>
-            </div>
-            <Nav push={push} isVisible={visibleMobileNav} />
-          </>
-        )}
-      </div>
+      {desktop ? (
+        <div className="desktop">
+          <Logo />
+          <Nav push={push} currentPage={asPath} desktop={desktop} />
+        </div>
+      ) : (
+        <div className="mobile">
+          <Logo className="logo" />
+          <div className="float">
+            <button
+              onClick={() => {
+                setVisibleMobileNav(!visibleMobileNav)
+              }}
+            >
+              {visibleMobileNav ? (
+                <img
+                  width="24"
+                  height="24"
+                  src="/icons/close.svg"
+                  alt="Close menu"
+                />
+              ) : (
+                <img
+                  width="24"
+                  height="24"
+                  src="/icons/menu.svg"
+                  alt="Open menu"
+                />
+              )}
+            </button>
+          </div>
+          <Nav push={push} isVisible={visibleMobileNav} desktop={desktop} />
+        </div>
+      )}
     </StyledHeader>
   )
 }

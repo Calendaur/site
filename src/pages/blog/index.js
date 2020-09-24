@@ -6,7 +6,7 @@ function BlogPage({ posts }) {
   return <PostList posts={posts} />
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps() {
   const { posts } = await api.posts()
 
   return {

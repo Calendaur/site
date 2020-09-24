@@ -5,10 +5,11 @@ import styled from '@emotion/styled'
 import slugify from '@sindresorhus/slugify'
 import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
-import { A, Image } from 'components'
+import { A } from 'components'
 import Info from './Info'
 
 const ExpectButton = dynamic(() => import('components/ExpectButton'))
+const Image = dynamic(() => import('components/Image'))
 
 const Card = styled(A)`
   position: relative;
@@ -19,6 +20,36 @@ const Card = styled(A)`
   border-radius: 14px;
   will-change: transform, opacity;
   transition: transform 0.3s;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.9) 100%
+    );
+  }
+
+  @media (min-width: 768px) {
+    &:hover {
+      transform: translate(0, -4px);
+
+      & > button,
+      .released-date {
+        opacity: 1;
+        transform: translate(0, 4px);
+      }
+    }
+
+    &:active {
+      transform: translate(0, 0);
+    }
+  }
 
   & > .aspectRatio {
     position: relative;
@@ -81,36 +112,6 @@ const Card = styled(A)`
     }
   }
 
-  @media (min-width: 768px) {
-    &:hover {
-      transform: translate(0, -4px);
-
-      & > button,
-      .released-date {
-        opacity: 1;
-        transform: translate(0, 4px);
-      }
-    }
-
-    &:active {
-      transform: translate(0, 0);
-    }
-  }
-
-  &::after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    content: '';
-    background-image: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.9) 100%
-    );
-  }
-
   .type {
     position: absolute;
     top: 8px;
@@ -127,9 +128,7 @@ const Card = styled(A)`
   }
 `
 
-function typeLabel(type, showType) {
-  if (!showType) return {}
-
+function typeLabel(type) {
   if (type.includes('film')) {
     return {
       text: 'кино',
@@ -164,7 +163,16 @@ function ReleaseCard({
 }) {
   const isAmp = useAmp()
   const slug = slugify(release.title)
-  const { text, backgroundColor, color } = typeLabel(type, showType)
+
+  function renderType() {
+    const { text, backgroundColor, color } = typeLabel(type)
+
+    return (
+      <div className="type" style={{ backgroundColor, color }}>
+        {text}
+      </div>
+    )
+  }
 
   return (
     <Card
@@ -172,11 +180,7 @@ function ReleaseCard({
       href="/release/[id]"
       as={`/release/${release.release_id}-${slug}`}
     >
-      {showType && (
-        <div className="type" style={{ backgroundColor, color }}>
-          {text}
-        </div>
-      )}
+      {showType && renderType()}
       {showDate && (
         <div className="released-date">
           {format(new Date(release.released), 'd MMM', { locale: ru })}

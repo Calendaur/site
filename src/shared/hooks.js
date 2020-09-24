@@ -36,7 +36,7 @@ export function useMediaQuery(media) {
     return () => {
       window.matchMedia(media).removeListener(handler)
     }
-  }, [media])
+  }, []) // eslint-disable-line
 
   return match
 }

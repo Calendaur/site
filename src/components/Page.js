@@ -1,11 +1,14 @@
 import React from 'react'
+import dynamic from 'next/dynamic'
 import styled from '@emotion/styled'
 import Meta from './Meta'
-import Header from './Header'
-import Footer from './Footer'
+
+const Header = dynamic(() => import('./Header'))
+const Footer = dynamic(() => import('./Footer'))
 
 const Section = styled.section`
   display: grid;
+  grid-template-rows: auto 1fr auto;
   grid-template-columns: 100%;
   width: 100vw;
   min-height: 100vh;
@@ -15,29 +18,16 @@ const Section = styled.section`
   }
 `
 
-function Page({
-  children,
-  hasHeader = true,
-  hasFooter = true,
-  headerProps = {},
-  footerProps = {},
-}) {
+function Page({ children }) {
   return (
     <>
       <Meta />
-      <Section
-        aria-label="page"
-        style={{
-          gridTemplateRows: `${hasHeader ? 'auto' : ''} 1fr ${
-            hasFooter ? 'auto' : ''
-          }`,
-        }}
-      >
-        {hasHeader && <Header {...headerProps} />}
+      <Section aria-label="page">
+        <Header />
         <main role="main" aria-label="content">
           {children}
         </main>
-        {hasFooter && <Footer {...footerProps} />}
+        <Footer />
       </Section>
     </>
   )

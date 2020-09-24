@@ -6,6 +6,9 @@ import CalendarHeader from './CalendarHeader'
 import Meta from './Meta'
 
 const Calendar = dynamic(() => import('./Calendar'))
+const Notifications = dynamic(() => import('../../components/Notifications'), {
+  ssr: false,
+})
 
 const FilterBar = styled.div`
   margin-bottom: var(--vertical-5);
@@ -31,6 +34,7 @@ function MainPage({ parsedURL, releases, grouped, meta, weeks }) {
 
   return (
     <div>
+      <Notifications />
       <Meta meta={meta} />
       <FilterBar>
         <ReleaseTypeChooser type={type} month={month} year={year} />

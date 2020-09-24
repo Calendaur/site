@@ -20,7 +20,7 @@ function CustomApp({ Component, pageProps, router: { events } }: AppProps) {
       events.off('routeChangeComplete', done)
       events.off('routeChangeError', done)
     }
-  }, [])
+  }, []) // eslint-disable-line
 
   return (
     <CacheProvider value={cache}>

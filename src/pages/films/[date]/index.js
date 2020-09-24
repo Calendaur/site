@@ -1,6 +1,6 @@
 import React from 'react'
 import Releases from 'screens/index'
-import { getProps } from 'features/releases/next-page-functions'
+import { getProps, getPaths } from 'features/releases/next-page-functions'
 import { PageDataProvider } from 'features/releases/page-data'
 
 export const config = { amp: 'hybrid' }
@@ -13,7 +13,11 @@ function FilmPage(props) {
   )
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticPaths() {
+  return getPaths()
+}
+
+export async function getStaticProps(context) {
   return getProps(context, 'films')
 }
 

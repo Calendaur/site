@@ -1,6 +1,5 @@
 import React from 'react'
 import Cookies from 'js-cookie'
-import { useMediaQuery } from 'shared/hooks'
 import { routes, cookies } from 'shared/constants'
 import A from './A'
 import Logo from './Logo'
@@ -9,7 +8,7 @@ import MobileNavReleaseFilterBar from './MobileNavReleaseFilterBar'
 
 const ncwn = cookies.NEED_CHECK_WHATS_NEW
 
-function Nav({ push, isVisible, currentPage }) {
+function Nav({ push, isVisible, currentPage, desktop }) {
   const currentMonth = new Date().getMonth().toString()
 
   if (Cookies.get(ncwn) === undefined || Cookies.get(ncwn) !== currentMonth) {
@@ -23,8 +22,6 @@ function Nav({ push, isVisible, currentPage }) {
       expires: 60,
     })
   }
-
-  const desktop = useMediaQuery('(min-width: 768px)')
 
   if (desktop) {
     return (
