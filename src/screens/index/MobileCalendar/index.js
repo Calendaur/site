@@ -1,11 +1,9 @@
 import React from 'react'
-import dynamic from 'next/dynamic'
 import styled from '@emotion/styled'
 import format from 'date-fns/format'
 import parseISO from 'date-fns/parseISO'
 import ru from 'date-fns/locale/ru'
-
-const ReleaseCard = dynamic(() => import('../ReleaseCard'))
+import ReleaseCard from '../ReleaseCard'
 
 const StyledCalendar = styled.div`
   display: block;

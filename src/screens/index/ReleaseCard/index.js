@@ -5,11 +5,10 @@ import styled from '@emotion/styled'
 import slugify from '@sindresorhus/slugify'
 import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
-import { A } from 'components'
+import { A, Image } from 'components'
 import Info from './Info'
 
 const ExpectButton = dynamic(() => import('components/ExpectButton'))
-const Image = dynamic(() => import('components/Image'))
 
 const Card = styled(A)`
   position: relative;
