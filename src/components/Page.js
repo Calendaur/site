@@ -1,10 +1,8 @@
 import React from 'react'
-import dynamic from 'next/dynamic'
 import styled from '@emotion/styled'
 import Meta from './Meta'
-
-const Header = dynamic(() => import('./Header'))
-const Footer = dynamic(() => import('./Footer'))
+import Header from './Header'
+import Footer from './Footer'
 
 const Section = styled.section`
   display: grid;

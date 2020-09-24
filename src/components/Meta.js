@@ -82,6 +82,8 @@ function Meta() {
         data-domain="released.at"
         src="https://plausible.io/js/plausible.js"
       ></script>
+      <link rel="preconnect" href="https://api.released.at" />
+      <link rel="dns-prefetch" href="https://api.released.at" />
     </Head>
   )
 }
