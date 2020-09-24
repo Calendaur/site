@@ -6,7 +6,6 @@ import ExpectButton from './ExpectButton'
 import GlobalStyles from './GlobalStyles'
 import Image from './Image'
 import Input from './Input'
-import Logo from './Logo'
 import Page from './Page'
 import PlatformList from './PlatformList'
 import ReleaseTypeChooser from './ReleaseTypeChooser'
@@ -23,7 +22,6 @@ export {
   GlobalStyles,
   Image,
   Input,
-  Logo,
   Page,
   PlatformList,
   ReleaseTypeChooser,
