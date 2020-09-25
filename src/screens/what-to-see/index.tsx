@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from '@emotion/styled'
 import { useSprings, animated, to as interpolate } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
@@ -135,6 +135,10 @@ function WhatToSeeScreen({ films }: Props) {
     ...to(index),
     from: from(),
   }))
+
+  useEffect(() => {
+    document.body.style.overflowX = 'hidden'
+  }, [])
 
   const bind = useDrag(
     ({ args: [index], down, movement: [mx], direction: [xDir], velocity }) => {
