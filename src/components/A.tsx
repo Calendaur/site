@@ -6,6 +6,7 @@ export interface Props {
   href: string
   as?: string
   className?: string
+  target?: string
 }
 
 function A({

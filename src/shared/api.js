@@ -14,6 +14,7 @@ export const expect = id =>
   fetchWithToken(endpoints.EXPECT(id), {
     method: 'post',
   })
+export const films = () => fetchJSON(endpoints.FILMS)
 export const allReleases = async () => {
   const games = await fetchJSON(endpoints.GAMES)
   const films = await fetchJSON(endpoints.FILMS)

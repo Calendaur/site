@@ -147,7 +147,7 @@ const GlobalStyles = (
         min-height: 100%;
         padding: 0;
         margin: 0;
-        overflow-x: hidden;
+        overflow-x: hidden !important;
         font-family: var(--sans);
         font-size: 1rem;
         line-height: 1.5;

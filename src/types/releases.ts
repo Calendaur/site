@@ -23,4 +23,18 @@ export type ParsedURL = {
   year: number
 }
 
-export type ReleaseFromList = {}
+export interface Film {
+  id: number
+  release_id: number
+  cover: string
+  description: string
+  director: string
+  imdb_url: string
+  kinopoisk_url: string
+  is_digital: boolean
+  is_expected: boolean
+  is_premier: boolean
+  released: string
+  site: string | null
+  title: string
+}

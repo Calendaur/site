@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import debounce from 'lodash.debounce'
 
 export function useWindowWidth() {
@@ -39,4 +40,12 @@ export function useMediaQuery(media) {
   }, []) // eslint-disable-line
 
   return match
+}
+
+const HOST = 'https://released.at'
+
+export function useFullURL() {
+  const { asPath } = useRouter()
+
+  return asPath === '/' ? HOST : `${HOST}${asPath}`
 }
