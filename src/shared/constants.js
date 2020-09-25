@@ -71,10 +71,13 @@ export const routes = {
   BLOG: '/blog',
   BLOG_POST: id => `/blog/${id}`,
   TODAY: '/today',
+  WHAT_TO_SEE: '/what-to-see',
 }
 
 export const IMG_PLACEHOLDER =
   'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
+
+export const META_IMG = 'https://released.at/images/banner.jpg'
 
 export const cookies = {
   AUTHORIZATION: 'authorization',

@@ -69,3 +69,7 @@ export function range(min = 0, max) {
 
   return arr
 }
+
+export function getPageUrl(asPath) {
+  return `https://released.at${asPath}`
+}

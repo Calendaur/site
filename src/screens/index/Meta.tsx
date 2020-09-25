@@ -20,9 +20,9 @@ function Meta({ meta }: Props) {
     <Head>
       {asPath !== '/' ? (
         isAmp ? (
-          <link rel="canonical" href={fullURL} />
+          <link rel="canonical" href={fullURL.replace('/amp', '')} />
         ) : (
-          <link rel="amphtml" href={`https://released.at${asPath}/amp`} />
+          <link rel="amphtml" href={`${fullURL}/amp`} />
         )
       ) : null}
       <meta property="og:type" content="website" />
