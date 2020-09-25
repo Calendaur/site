@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import format from 'date-fns/format'
-import ru from 'date-fns/locale/ru'
 import { A, Filters } from 'components'
 import { usePageData } from 'features/releases/page-data'
 
@@ -15,7 +14,7 @@ const Wrapper = styled.div`
     margin-top: var(--vertical-6);
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1381px) {
     flex-direction: row;
     align-items: center;
 
