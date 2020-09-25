@@ -30,6 +30,36 @@ function WhatsNew() {
       </Donate>
       <Log>
         <header>
+          <Title>Сентябрь 2020</Title>
+        </header>
+        <ul>
+          <li>
+            ✓ Сделали{' '}
+            <A href={routes.BLOG} target="_blank">
+              блог
+            </A>{' '}
+            с&nbsp;авторскими статьями&nbsp;
+            <Emoji label="feature">🎉</Emoji>
+          </li>
+          <li>
+            ✓ Сделали{' '}
+            <A href={routes.WHAT_TO_SEE} target="_blank">
+              &laquo;тиндер&raquo; с&nbsp;фильмами
+            </A>
+            &nbsp;
+            <Emoji label="feature">🎉</Emoji>
+          </li>
+          <li>
+            ✓ Добавили{' '}
+            <A href={routes.TODAY} target="_blank">
+              страницу
+            </A>{' '}
+            с сегодняшними релизами&nbsp;<Emoji label="feature">🎉</Emoji>
+          </li>
+        </ul>
+      </Log>
+      <Log>
+        <header>
           <Title>Август 2020</Title>
         </header>
         <ul>
@@ -162,6 +192,7 @@ const Log = styled.article`
     }
 
     & > li {
+      max-width: 1200px;
       margin-bottom: 12px;
 
       & > img {
