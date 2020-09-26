@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
@@ -14,7 +14,7 @@ const ncwn = cookies.NEED_CHECK_WHATS_NEW
 
 function Nav() {
   const [isShowNav, setIsShowNav] = useState(false)
-  const { push, asPath } = useRouter()
+  const { push, asPath, events } = useRouter()
   const { user, isLoading } = useUser()
   const desktop = useMediaQuery('(min-width: 768px)')
   const mobile = desktop === false
@@ -34,6 +34,18 @@ function Nav() {
       expires: 60,
     })
   }
+
+  useEffect(() => {
+    function hideNav() {
+      setIsShowNav(false)
+    }
+
+    events.on('routeChangeComplete', hideNav)
+
+    return () => {
+      events.off('routeChangeComplete', hideNav)
+    }
+  }, []) // eslint-disable-line
 
   return (
     <>

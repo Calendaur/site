@@ -911,10 +911,6 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18269-spellbreak</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/18226-projection-first-light</loc>
   </url>
 
@@ -922,6 +918,10 @@
     <loc
       >https://released.at/release/18013-sponge-bob-square-pants-rehydrated</loc
     >
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18269-spellbreak</loc>
   </url>
 
   <url>
@@ -933,25 +933,17 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18227-baldur-s-gate-iii</loc>
-  </url>
-
-  <url>
     <loc
       >https://released.at/release/18218-orange-cast-sci-fi-space-action-game</loc
     >
   </url>
 
   <url>
-    <loc>https://released.at/release/18275-ride-4</loc>
+    <loc>https://released.at/release/112-coffee-talk</loc>
   </url>
 
   <url>
-    <loc>https://released.at/release/142-half-life-alyx</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/18220-3-out-of-10</loc>
+    <loc>https://released.at/release/18227-baldur-s-gate-iii</loc>
   </url>
 
   <url>
@@ -967,11 +959,15 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18098-superliminal</loc>
+    <loc>https://released.at/release/18275-ride-4</loc>
   </url>
 
   <url>
-    <loc>https://released.at/release/18215-microsoft-flight-simulator</loc>
+    <loc>https://released.at/release/142-half-life-alyx</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18220-3-out-of-10</loc>
   </url>
 
   <url>
@@ -987,7 +983,11 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18271-fifa-21</loc>
+    <loc>https://released.at/release/18098-superliminal</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18215-microsoft-flight-simulator</loc>
   </url>
 
   <url>
@@ -1013,7 +1013,7 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/231-streets-of-rage-4</loc>
+    <loc>https://released.at/release/18271-fifa-21</loc>
   </url>
 
   <url>
@@ -1033,15 +1033,11 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/112-coffee-talk</loc>
+    <loc>https://released.at/release/231-streets-of-rage-4</loc>
   </url>
 
   <url>
     <loc>https://released.at/release/18094-death-stranding</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/18277-world-of-warcraft-shadowlands</loc>
   </url>
 
   <url>
@@ -1053,11 +1049,11 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18196-crusader-kings-iii</loc>
+    <loc>https://released.at/release/18277-world-of-warcraft-shadowlands</loc>
   </url>
 
   <url>
-    <loc>https://released.at/release/140-yes-your-grace</loc>
+    <loc>https://released.at/release/18196-crusader-kings-iii</loc>
   </url>
 
   <url>
@@ -1069,23 +1065,7 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18201-e-football-pes-2021</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/222-atomicrops</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/18135-relicta</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/18001-deep-rock-galactic</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/221-shantae-and-the-seven-sirens</loc>
   </url>
 
   <url>
@@ -1093,7 +1073,7 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18014-the-almost-gone</loc>
+    <loc>https://released.at/release/18001-deep-rock-galactic</loc>
   </url>
 
   <url>
@@ -1109,6 +1089,18 @@
   </url>
 
   <url>
+    <loc>https://released.at/release/140-yes-your-grace</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18201-e-football-pes-2021</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18014-the-almost-gone</loc>
+  </url>
+
+  <url>
     <loc>https://released.at/release/18204-hyper-scape</loc>
   </url>
 
@@ -1119,15 +1111,19 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18123-hellpoint</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/18202-factorio</loc>
   </url>
 
   <url>
     <loc>https://released.at/release/18044-evan-s-remains</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/222-atomicrops</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/221-shantae-and-the-seven-sirens</loc>
   </url>
 
   <url>
@@ -1145,15 +1141,11 @@
   </url>
 
   <url>
+    <loc>https://released.at/release/18123-hellpoint</loc>
+  </url>
+
+  <url>
     <loc>https://released.at/release/18219-risk-of-rain-2</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/18188-peaky-blinders-mastermind</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/133-animal-crossing-new-horizons</loc>
   </url>
 
   <url>
@@ -1181,7 +1173,11 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18157-madden-nfl-21</loc>
+    <loc>https://released.at/release/133-animal-crossing-new-horizons</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18188-peaky-blinders-mastermind</loc>
   </url>
 
   <url>
@@ -1199,12 +1195,6 @@
   </url>
 
   <url>
-    <loc
-      >https://released.at/release/18104-deadly-premonition-2-a-blessing-in-disguise</loc
-    >
-  </url>
-
-  <url>
     <loc>https://released.at/release/18211-gleamlight</loc>
   </url>
 
@@ -1213,11 +1203,11 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/149-predator-hunting-grounds</loc>
+    <loc>https://released.at/release/18157-madden-nfl-21</loc>
   </url>
 
   <url>
-    <loc>https://released.at/release/128-murder-by-numbers</loc>
+    <loc>https://released.at/release/149-predator-hunting-grounds</loc>
   </url>
 
   <url>
@@ -1235,7 +1225,27 @@
   </url>
 
   <url>
+    <loc
+      >https://released.at/release/18104-deadly-premonition-2-a-blessing-in-disguise</loc
+    >
+  </url>
+
+  <url>
     <loc>https://released.at/release/115-zombie-army-4-dead-war</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18191-descenders</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/128-murder-by-numbers</loc>
+  </url>
+
+  <url>
+    <loc
+      >https://released.at/release/18146-gear-club-unlimited-2-tracks-edition</loc
+    >
   </url>
 
   <url>
@@ -1248,12 +1258,6 @@
 
   <url>
     <loc>https://released.at/release/18103-rocket-arena</loc>
-  </url>
-
-  <url>
-    <loc
-      >https://released.at/release/18146-gear-club-unlimited-2-tracks-edition</loc
-    >
   </url>
 
   <url>
@@ -1273,15 +1277,7 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/116-conan-chop-chop</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/18136-fast-and-furious-crossroads</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/18191-descenders</loc>
   </url>
 
   <url>
@@ -1297,7 +1293,7 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18045-across-the-grooves</loc>
+    <loc>https://released.at/release/116-conan-chop-chop</loc>
   </url>
 
   <url>
@@ -1325,23 +1321,11 @@
   </url>
 
   <url>
+    <loc>https://released.at/release/18045-across-the-grooves</loc>
+  </url>
+
+  <url>
     <loc>https://released.at/release/18012-the-last-of-us-part-ii</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/137-persona-5-royal</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/114-lumote</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/144-black-mesa</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/110-warcraft-iii-reforged</loc>
   </url>
 
   <url>
@@ -1361,11 +1345,19 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18011-disintegration</loc>
+    <loc>https://released.at/release/137-persona-5-royal</loc>
   </url>
 
   <url>
-    <loc>https://released.at/release/18097-trackmania</loc>
+    <loc>https://released.at/release/114-lumote</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/144-black-mesa</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/110-warcraft-iii-reforged</loc>
   </url>
 
   <url>
@@ -1374,6 +1366,10 @@
 
   <url>
     <loc>https://released.at/release/117-dreams</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18011-disintegration</loc>
   </url>
 
   <url>
@@ -1389,11 +1385,7 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/147-cloudpunk</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/18039-valorant</loc>
+    <loc>https://released.at/release/18097-trackmania</loc>
   </url>
 
   <url>
@@ -1402,6 +1394,18 @@
 
   <url>
     <loc>https://released.at/release/18168-pga-tour-2-k21</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/147-cloudpunk</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18039-valorant</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/141-beautiful-desolation</loc>
   </url>
 
   <url>
@@ -1418,10 +1422,6 @@
 
   <url>
     <loc>https://released.at/release/132-panzer-corps-2</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/141-beautiful-desolation</loc>
   </url>
 
   <url>
@@ -1445,10 +1445,6 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18016-no-straight-roads</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/18170-immortal-realms-vampire-wars</loc>
   </url>
 
@@ -1462,6 +1458,10 @@
 
   <url>
     <loc>https://released.at/release/18101-warhammer-40-000-mechanicus</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18016-no-straight-roads</loc>
   </url>
 
   <url>
