@@ -14,7 +14,7 @@ const Wrapper = styled.div`
     margin-bottom: 4px;
     font-size: 1rem;
     font-weight: normal;
-    line-height: 1.2;
+    line-height: 1.4;
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 
     &:first-child {

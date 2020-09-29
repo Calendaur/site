@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   margin-bottom: var(--vertical-5);
 
   > div {
-    margin-top: var(--vertical-6);
+    margin-top: var(--vertical-5);
   }
 
   @media (min-width: 1381px) {

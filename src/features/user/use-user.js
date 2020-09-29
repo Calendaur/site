@@ -29,5 +29,6 @@ export function useUser(initial) {
     isError: error,
     mutateUser: mutate,
     token,
+    isLoggedIn: Boolean(data),
   }
 }

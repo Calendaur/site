@@ -19,8 +19,6 @@ function Nav() {
   const desktop = useMediaQuery('(min-width: 768px)')
   const mobile = desktop === false
 
-  const isLoggedIn = Boolean(user)
-
   const currentMonth = new Date().getMonth().toString()
 
   if (Cookies.get(ncwn) === undefined || Cookies.get(ncwn) !== currentMonth) {
@@ -36,6 +34,8 @@ function Nav() {
   }
 
   useEffect(() => {
+    if (desktop) return
+
     function hideNav() {
       setIsShowNav(false)
     }
@@ -46,6 +46,45 @@ function Nav() {
       events.off('routeChangeComplete', hideNav)
     }
   }, []) // eslint-disable-line
+
+  function renderAuthButtons() {
+    if (isLoading && !user) {
+      return <Button primary loading />
+    }
+
+    if (user) {
+      return (
+        <Button
+          primary
+          onClick={() => {
+            push(routes.ME)
+          }}
+        >
+          {user.current_user.email.split('@')[0]}
+        </Button>
+      )
+    }
+
+    return (
+      <>
+        <Button
+          onClick={() => {
+            push(routes.SIGN_IN)
+          }}
+        >
+          Вход
+        </Button>
+        <Button
+          primary
+          onClick={() => {
+            push(routes.SIGN_UP)
+          }}
+        >
+          Регистрация
+        </Button>
+      </>
+    )
+  }
 
   return (
     <>
@@ -66,35 +105,7 @@ function Nav() {
           Новости проекта
         </A>
         <A href={routes.ARCHIVE}>Вышедшее</A>
-        {isLoading ? <Button loading /> : null}
-        {!isLoading && isLoggedIn ? (
-          <Button
-            primary
-            onClick={() => {
-              push(routes.ME)
-            }}
-          >
-            {user.current_user.email.split('@')[0]}
-          </Button>
-        ) : (
-          <>
-            <Button
-              onClick={() => {
-                push(routes.SIGN_IN)
-              }}
-            >
-              Вход
-            </Button>
-            <Button
-              primary
-              onClick={() => {
-                push(routes.SIGN_UP)
-              }}
-            >
-              Регистрация
-            </Button>
-          </>
-        )}
+        {renderAuthButtons()}
       </nav>
       {mobile ? (
         <Float isShowNav={isShowNav} setIsShowNav={setIsShowNav} />
