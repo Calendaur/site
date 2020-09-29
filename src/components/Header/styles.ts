@@ -58,6 +58,12 @@ const StyledHeader = styled.header`
   }
 
   nav {
+    .home {
+      @media (min-width: 768px) {
+        display: none;
+      }
+    }
+
     @media (max-width: 767px) {
       position: fixed;
       top: 48px;

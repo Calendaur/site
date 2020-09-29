@@ -67,7 +67,7 @@ function Nav() {
         </A>
         <A href={routes.ARCHIVE}>Вышедшее</A>
         {isLoading ? <Button loading /> : null}
-        {isLoggedIn ? (
+        {!isLoading && isLoggedIn ? (
           <Button
             primary
             onClick={() => {

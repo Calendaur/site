@@ -44,38 +44,10 @@ function Meta() {
         content="black-translucent"
       />
       <link rel="manifest" href="/manifest.json" />
-      <link rel="icon" type="image/png" href="/images/logo.png" />
+      <link rel="icon" type="image/jpg" href="/icons/favicon.jpg" />
       <meta name="msapplication-TileColor" content="#0b0b0b" />
       <meta name="msapplication-TileImage" content="/pwa/ms-icon-144x144.png" />
       <meta name="theme-color" content="#0b0b0b" />
-      <link
-        rel="preload"
-        href="/fonts/Inter/400.woff2"
-        as="font"
-        type="font/woff2"
-        crossOrigin="anonymous"
-      />
-      <link
-        rel="preload"
-        href="/fonts/Inter/600.woff2"
-        as="font"
-        type="font/woff2"
-        crossOrigin="anonymous"
-      />
-      <link
-        rel="preload"
-        href="/fonts/Inter/800.woff2"
-        as="font"
-        type="font/woff2"
-        crossOrigin="anonymous"
-      />
-      <link
-        rel="preload"
-        href="/fonts/Montserrat/200.woff2"
-        as="font"
-        type="font/woff2"
-        crossOrigin="anonymous"
-      />
       <script
         async
         defer
