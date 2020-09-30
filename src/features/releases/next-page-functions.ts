@@ -47,6 +47,8 @@ export async function getPropsForIndexPage() {
   const currentMonth = new Date().getMonth() + 1
   const currentYear = new Date().getFullYear()
 
+  console.error(currentMonth)
+
   const result = await homePageReleases()
 
   const sorted = result.sort((a, b) =>
