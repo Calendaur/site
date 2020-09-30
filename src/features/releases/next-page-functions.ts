@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticPropsContext } from 'next'
+import { GetStaticPaths, GetStaticPropsContext, GetStaticProps } from 'next'
 import compareAsc from 'date-fns/compareAsc'
 import { releases, homePageReleases } from 'shared/api'
 import { months } from 'shared/constants'
@@ -43,11 +43,9 @@ export const getProps = async (
   }
 }
 
-export async function getPropsForIndexPage() {
+export const getPropsForIndexPage: GetStaticProps = async () => {
   const currentMonth = new Date().getMonth() + 1
   const currentYear = new Date().getFullYear()
-
-  console.error(currentMonth)
 
   const result = await homePageReleases()
 
@@ -70,5 +68,6 @@ export async function getPropsForIndexPage() {
         getWeeks(currentYear, months[currentMonth - 1].jsNumber).flat(),
       ),
     },
+    revalidate: 60,
   }
 }
