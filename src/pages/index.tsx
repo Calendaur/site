@@ -15,8 +15,8 @@ function IndexPage(props) {
   )
 }
 
-export async function getStaticProps() {
-  return getPropsForIndexPage()
+export async function getStaticProps(context) {
+  return getPropsForIndexPage(context)
 }
 
 export default IndexPage
