@@ -9,6 +9,10 @@ const MetaInfo = styled.div`
 
   .platforms {
     margin: 0;
+
+    li {
+      font-size: 12px;
+    }
   }
 
   .label {

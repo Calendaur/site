@@ -10,9 +10,13 @@ const Styled = styled.div`
     max-width: 768px;
     margin: 0 auto;
     margin-bottom: var(--vertical-6);
+    font-size: 34px;
+    line-height: 42px;
 
     @media (min-width: 768px) {
       margin-bottom: var(--vertical-1);
+      font-size: 48px;
+      line-height: 60px;
     }
   }
 
@@ -31,6 +35,17 @@ const Styled = styled.div`
 
     a {
       text-decoration: underline;
+    }
+
+    p {
+      margin-top: 28px;
+      font-size: 18px;
+      line-height: 28px;
+
+      @media (min-width: 768px) {
+        font-size: 21px;
+        line-height: 32px;
+      }
     }
   }
 `
