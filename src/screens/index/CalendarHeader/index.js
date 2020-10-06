@@ -16,7 +16,6 @@ const Wrapper = styled.div`
 
   @media (min-width: 1381px) {
     flex-direction: row;
-    align-items: center;
 
     > div {
       margin-top: 0;
@@ -24,6 +23,8 @@ const Wrapper = styled.div`
   }
 
   h1 {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 0;
 
     & > a {
@@ -73,7 +74,9 @@ function CalendarHeader() {
     return (
       <Wrapper>
         <h1>
-          {nonActualTypeText()} {month.rus} {year}{' '}
+          <span>
+            {nonActualTypeText()} {month.rus} {year}
+          </span>{' '}
           <A
             href={`/${type}/[date]`}
             as={`/${type}/${format(new Date(), 'LLLL').toLowerCase()}-${format(
@@ -92,8 +95,10 @@ function CalendarHeader() {
   return (
     <Wrapper>
       <h1>
-        Новинки {actualTypeText()} за {month.rus}{' '}
-        {year === currentYear ? '' : year}{' '}
+        <span>
+          Новинки {actualTypeText()} за {month.rus}{' '}
+          {year === currentYear ? '' : year}
+        </span>{' '}
         {isCurrentMonth ? (
           <A {...nextLink}>{nextMonth.rus}&nbsp;→</A>
         ) : (

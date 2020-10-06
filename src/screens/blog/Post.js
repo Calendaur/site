@@ -3,6 +3,7 @@ import Head from 'next/head'
 import slugify from '@sindresorhus/slugify'
 import styled from '@emotion/styled'
 import Md from 'react-markdown'
+import getYouTubeId from 'get-youtube-id'
 
 const Styled = styled.div`
   h1 {
@@ -47,6 +48,20 @@ const Styled = styled.div`
         line-height: 32px;
       }
     }
+
+    .aspectRatio {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+
+      & > iframe {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+    }
   }
 `
 
@@ -73,7 +88,32 @@ function Post({ post }) {
         <h1>{post.title}</h1>
         <div className="md-wrapper">
           <div className="text-wrapper">
-            <Md source={post.body} />
+            <Md
+              source={post.body}
+              renderers={{
+                link: ({ href, children, key }) => {
+                  if (href.includes('youtube')) {
+                    return (
+                      <div key={key} className="aspectRatio">
+                        <iframe
+                          title="Trailer"
+                          frameBorder="0"
+                          className="lazyload"
+                          allowFullScreen
+                          width="100%"
+                          height="100%"
+                          data-src={`https://www.youtube.com/embed/${getYouTubeId(
+                            href,
+                          )}`}
+                        />
+                      </div>
+                    )
+                  }
+
+                  return children
+                },
+              }}
+            />
           </div>
         </div>
       </Styled>

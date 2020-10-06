@@ -100,6 +100,20 @@ function PostList({ posts }) {
         <span role="img" aria-label="writing-hand">
           ✍️
         </span>
+        .<br />
+        Также у&nbsp;нас есть профиль в&nbsp;
+        <a
+          href="https://zen.yandex.ru/id/5f702b5d243429689bde2890"
+          target="_blank"
+          rel="noreferrer nofollow"
+          style={{
+            textDecoration: 'underline',
+          }}
+        >
+          Яндекс.Дзен
+        </a>
+        . Подпишитесь на&nbsp;нас там, это поможет проекту получить новую
+        аудиторию.
       </p>
       <Grid>
         {posts.map(post => (
