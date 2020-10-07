@@ -88,14 +88,18 @@ function Footer({ className }) {
           target="_blank"
           rel="noreferrer nofollow"
         >
-          <img
-            width="28"
-            height="28"
-            className="lazyload"
-            data-src="/icons/zen.svg"
-            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            alt="Яндекс Дзен"
-          />
+          {isAmp ? (
+            <amp-img src="/icons/zen.svg" width="28" height="28" />
+          ) : (
+            <img
+              width="28"
+              height="28"
+              className="lazyload"
+              data-src="/icons/zen.svg"
+              src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              alt="Яндекс Дзен"
+            />
+          )}
         </a>
       </div>
     </StyledFooter>
