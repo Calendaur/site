@@ -28,6 +28,7 @@ const StyledFooter = styled.footer`
     justify-content: flex-end;
 
     a {
+      display: flex;
       width: 28px;
       height: 28px;
     }
