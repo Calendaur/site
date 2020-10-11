@@ -4,6 +4,7 @@ import slugify from '@sindresorhus/slugify'
 import styled from '@emotion/styled'
 import Md from 'react-markdown'
 import getYouTubeId from 'get-youtube-id'
+import { A } from 'components'
 
 const Styled = styled.div`
   h1 {
@@ -15,7 +16,7 @@ const Styled = styled.div`
     line-height: 42px;
 
     @media (min-width: 768px) {
-      margin-bottom: var(--vertical-1);
+      margin-bottom: var(--vertical-2);
       font-size: 48px;
       line-height: 60px;
     }
@@ -38,10 +39,19 @@ const Styled = styled.div`
       text-decoration: underline;
     }
 
-    p {
+    .p {
       margin-top: 28px;
+      margin-bottom: 1rem;
       font-size: 18px;
       line-height: 28px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      .aspectRatio {
+        margin-top: 28px;
+      }
 
       @media (min-width: 768px) {
         font-size: 21px;
@@ -61,6 +71,10 @@ const Styled = styled.div`
         bottom: 0;
         left: 0;
       }
+    }
+
+    .img-wrapper {
+      display: flex;
     }
   }
 `
@@ -91,10 +105,13 @@ function Post({ post }) {
             <Md
               source={post.body}
               renderers={{
-                link: ({ href, children, key }) => {
-                  if (href.includes('youtube')) {
+                paragraph: ({ children }) => {
+                  return <div className="p">{children}</div>
+                },
+                link: ({ href, children }) => {
+                  if (href.includes('youtube.com')) {
                     return (
-                      <div key={key} className="aspectRatio">
+                      <div className="aspectRatio">
                         <iframe
                           title="Trailer"
                           frameBorder="0"
@@ -110,7 +127,26 @@ function Post({ post }) {
                     )
                   }
 
-                  return children
+                  if (href.includes('released.at/release')) {
+                    const { pathname } = new URL(href)
+
+                    return (
+                      <A href="/release/[id]" as={pathname} target="_blank">
+                        {children}
+                      </A>
+                    )
+                  }
+
+                  return (
+                    <A
+                      href={href}
+                      next={false}
+                      target="_blank"
+                      rel="nofollow noopener noreferrer"
+                    >
+                      {children}
+                    </A>
+                  )
                 },
               }}
             />
