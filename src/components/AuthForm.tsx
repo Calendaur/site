@@ -50,8 +50,8 @@ function AuthText({ type, codeWasSended, email }) {
   if (codeWasSended) {
     return (
       <p>
-        На&nbsp;почту <A href="">{email}</A> был выслан <nobr>4-х</nobr> значный
-        код необходимый для авторизации. Если код не&nbsp;пришёл в&nbsp;течение
+        На&nbsp;почту <A href="">{email}</A> был выслан 4-х значный код
+        необходимый для авторизации. Если код не&nbsp;пришёл в&nbsp;течение
         минуты, проверьте введенный email адрес, возможно в&nbsp;нём была
         допущена ошибка. Если email введен правильно, а&nbsp;код так
         и&nbsp;не&nbsp;пришел, то&nbsp;напишите нам на&nbsp;почту{' '}
@@ -82,15 +82,17 @@ function AuthText({ type, codeWasSended, email }) {
 
 function AuthForm({ buttonTitle, type }) {
   const [currentField, setCurrentField] = useState(FIELDS.EMAIL)
-  const [authAttemtps] = useState(+Cookies.get(cookies.AUTH_ATTEMPTS) || 0)
-  const [codeWasSend, setCodeWasSend] = useState(
-    JSON.parse(Cookies.get(cookies.CODE_HAS_BEEN_SENT) || false),
+  const [authAttemtps] = useState<number>(
+    +Cookies.get(cookies.AUTH_ATTEMPTS) || 0,
+  )
+  const [codeWasSend, setCodeWasSend] = useState<boolean>(
+    JSON.parse(Cookies.get(cookies.CODE_HAS_BEEN_SENT) || 'false'),
   )
   const [error, setError] = useState(null)
   const { push } = useRouter()
 
   useEffect(() => {
-    let interval
+    let interval: NodeJS.Timeout
 
     if (codeWasSend) {
       interval = setInterval(() => {
@@ -122,7 +124,10 @@ function AuthForm({ buttonTitle, type }) {
   } = useFormik({
     initialValues: INITIAL_VALUES,
     validate: values => {
-      let errors = {}
+      let errors: {
+        email?: string
+        code?: string
+      } = {}
 
       if (currentField === FIELDS.EMAIL && !EMAIL_REGEXP.test(values.email)) {
         errors.email = VALIDATE_ERRORS.EMAIL
@@ -139,7 +144,7 @@ function AuthForm({ buttonTitle, type }) {
         case FIELDS.EMAIL: {
           try {
             await sendConfirmCode(values.email)
-            Cookies.set(cookies.AUTH_ATTEMPTS, authAttemtps + 1, {
+            Cookies.set(cookies.AUTH_ATTEMPTS, `${authAttemtps + 1}`, {
               expires: addHours(new Date(), 1),
             })
             Cookies.set(cookies.CODE_HAS_BEEN_SENT, 'true', {

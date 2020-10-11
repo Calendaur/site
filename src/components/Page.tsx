@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import styled from '@emotion/styled'
 import Meta from './Meta'
 import Header from './Header'
@@ -16,7 +16,7 @@ const Section = styled.section`
   }
 `
 
-function Page({ children }) {
+function Page({ children }: PropsWithChildren<{}>) {
   return (
     <>
       <Meta />

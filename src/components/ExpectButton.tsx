@@ -1,10 +1,11 @@
-import React, { useMemo, memo, useState } from 'react'
+import React, { useMemo, memo, useState, SyntheticEvent } from 'react'
 import { useRouter } from 'next/router'
 import { useAmp } from 'next/amp'
 import styled from '@emotion/styled'
 import { compareAsc } from 'date-fns'
 import { expect } from 'shared/api'
 import { useUser } from 'features/user/use-user'
+import { Release } from 'features/releases/types'
 import { routes } from 'shared/constants'
 import Button from './Button'
 
@@ -13,6 +14,11 @@ const Btn = styled(Button)`
   font-size: 14px;
   border-radius: 24px;
 `
+
+interface Props {
+  className?: string
+  release: Release
+}
 
 function ExpectButton({ className, release }) {
   const isAmp = useAmp()
@@ -31,7 +37,7 @@ function ExpectButton({ className, release }) {
   )
   const isExpected = user ? expectation.has(release.id) : false
 
-  const onClick = async e => {
+  const onClick = async (e: SyntheticEvent<HTMLButtonElement>) => {
     try {
       setLoading(true)
 
@@ -100,4 +106,4 @@ function ExpectButton({ className, release }) {
   )
 }
 
-export default memo(ExpectButton)
+export default memo<Props>(ExpectButton)

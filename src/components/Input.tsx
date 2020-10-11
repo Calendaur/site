@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { InputHTMLAttributes } from 'react'
 import styled from '@emotion/styled'
 
-function Input({ label, id, className, error, ...rest }) {
+interface Props {
+  label?: string
+  id?: string
+  className?: string
+  error?: string
+}
+
+function Input({
+  label,
+  id,
+  className,
+  error,
+  ...rest
+}: Props & InputHTMLAttributes<HTMLInputElement>) {
   return (
     <div className={className}>
-      <label htmlFor={id}>{label}</label>
+      {label && <label htmlFor={id}>{label}</label>}
       <input id={id} {...rest} />
       {error && <span className="error">{error}</span>}
     </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import cx from 'classnames'
 import { A } from 'components'
+import { Month, ReleaseType } from 'types/common'
 
 const types = [
   {
@@ -18,7 +19,14 @@ const types = [
   },
 ]
 
-function ReleaseTypeChooser({ type, month, year, className }) {
+interface Props {
+  type: ReleaseType
+  month: Month
+  year: number
+  className?: string
+}
+
+function ReleaseTypeChooser({ type, month, year, className }: Props) {
   return (
     <ul className={className}>
       {types.map(({ type: t, title }) => (

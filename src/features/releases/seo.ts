@@ -5,7 +5,7 @@ const currentDate = format(new Date(), 'LLLL yyyy', {
   locale: ru,
 })
 
-const getDate = (month, year) =>
+const getDate = (month: number, year: number) =>
   format(new Date(+year, +month, 1), 'LLLL yyyy', {
     locale: ru,
   })
@@ -18,7 +18,7 @@ export const meta = {
     title: `Новые игры, кино и сериалы за ${currentDate}. Дата выхода фильмов игр и сериалов на Released`,
     description: defaultDescription,
   },
-  films(month, year) {
+  films(month: number, year: number) {
     return {
       title: `Новые фильмы ${getDate(
         month,
@@ -30,7 +30,7 @@ export const meta = {
       )} в календаре релизов`,
     }
   },
-  games(month, year) {
+  games(month: number, year: number) {
     return {
       title: `Hовые игры за ${getDate(
         month,
@@ -42,7 +42,7 @@ export const meta = {
       )} в календаре релизов`,
     }
   },
-  series(month, year) {
+  series(month: number, year: number) {
     return {
       title: `Новые сериалы за ${getDate(
         month,
