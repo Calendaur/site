@@ -7,6 +7,7 @@ import { useMediaQuery } from 'shared/hooks'
 import { useUser } from 'features/user/use-user'
 import A from '../A'
 import Button from '../Button'
+import styles from './styles.module.scss'
 
 const Float = dynamic(() => import('./Float'), { ssr: false })
 
@@ -48,7 +49,7 @@ function Nav() {
   }, []) // eslint-disable-line
 
   function renderAuthButtons() {
-    if (isLoading && !user) {
+    if (isLoading) {
       return <Button primary loading />
     }
 
@@ -88,8 +89,8 @@ function Nav() {
 
   return (
     <>
-      <nav className={isShowNav ? 'is-visible' : 'is-hidden'}>
-        <A href={routes.HOME} className="home">
+      <nav className={isShowNav ? styles['is-visible'] : styles['is-hidden']}>
+        <A href={routes.HOME} className={styles.home}>
           На главную
         </A>
         <A href={routes.BLOG}>

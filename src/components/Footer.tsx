@@ -12,7 +12,7 @@ const StyledFooter = styled.footer`
 
   .top-part,
   .bottom-part,
-  .bottom-part a,
+  .bottom-part button,
   .copyright {
     display: flex;
   }
@@ -53,13 +53,6 @@ const StyledFooter = styled.footer`
 
   .bottom-part {
     justify-content: flex-end;
-
-    a {
-      --size: 28px;
-
-      width: var(--size);
-      height: var(--size);
-    }
   }
 `
 
@@ -85,18 +78,22 @@ function Footer({ className }: Props) {
         </div>
       </div>
       <div className="bottom-part">
-        <a
-          href="https://zen.yandex.ru/id/5f702b5d243429689bde2890"
-          target="_blank"
-          rel="noreferrer nofollow"
+        <button
+          onClick={() => {
+            window.open(
+              'https://zen.yandex.ru/id/5f702b5d243429689bde2890',
+              '_blank',
+            )
+          }}
         >
           <Image
             width="28"
             height="28"
             src="/icons/zen.svg"
             alt="Яндекс Дзен"
+            lazy={false}
           />
-        </a>
+        </button>
       </div>
     </StyledFooter>
   )

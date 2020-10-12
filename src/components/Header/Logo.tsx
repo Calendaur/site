@@ -1,6 +1,7 @@
 import React from 'react'
 import { routes } from 'shared/constants'
 import A from '../A'
+import styles from './styles.module.scss'
 
 function Logo() {
   return (
@@ -8,7 +9,7 @@ function Logo() {
       href={routes.HOME}
       aria-label="released.at"
       data-text="released"
-      className="logo"
+      className={styles.logo}
     >
       released
     </A>

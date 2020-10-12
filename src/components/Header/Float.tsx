@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import styles from './styles.module.scss'
 
 interface Props {
   isShowNav: boolean
@@ -11,7 +12,7 @@ function Float({ isShowNav, setIsShowNav }: Props) {
   }, [isShowNav])
 
   return (
-    <div className="float">
+    <div className={styles.float}>
       <button
         onClick={() => {
           setIsShowNav(!isShowNav)

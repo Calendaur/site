@@ -17,6 +17,7 @@
     "@emotion/react": "^11.0.0-next.19",
     "@emotion/server": "^11.0.0-next.19",
     "@emotion/styled": "^11.0.0-next.19",
+    "@released-at/core": "^1.0.1",
     "@sindresorhus/slugify": "^1.1.0",
     "classnames": "^2.2.6",
     "date-fns": "^2.16.1",
@@ -36,6 +37,7 @@
     "react-markdown": "^4.3.1",
     "react-spring": "^9.0.0-rc.3",
     "react-use-gesture": "^7.0.16",
+    "sass": "^1.27.0",
     "smoothscroll-polyfill": "^0.4.4",
     "swr": "^0.3.5"
   },
