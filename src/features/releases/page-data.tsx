@@ -12,6 +12,8 @@ const PageDataContext = createContext<{
   type: ReleaseType
   month: Month
   year: number
+  currentMonth: Month
+  currentYear: number
   isCurrentMonth: boolean
   isNextMonth: boolean
   prevLink: Link

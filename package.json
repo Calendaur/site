@@ -37,7 +37,6 @@
     "react-markdown": "^4.3.1",
     "react-spring": "^9.0.0-rc.3",
     "react-use-gesture": "^7.0.16",
-    "sass": "^1.27.0",
     "smoothscroll-polyfill": "^0.4.4",
     "swr": "^0.3.5"
   },
@@ -69,6 +68,7 @@
     "husky": "^4.2.5",
     "jest": "^25.1.0",
     "lint-staged": "^10.2.11",
+    "postcss-nested": "4.2.3",
     "prettier": "^2.1.2",
     "stylelint": "^13.0.0",
     "stylelint-config-prettier": "^8.0.2",
@@ -143,6 +143,16 @@
       "selector-type-no-unknown": null
     }
   },
+  "browserslist": [
+    "last 2 versions",
+    "not dead",
+    "not ie 11",
+    "not ie_mob 11",
+    "not op_mini all",
+    "not op_mob > 0",
+    "not and_qq > 0",
+    "not android > 0"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "yarn create-sitemap && lint-staged"

@@ -5,6 +5,10 @@ import Button from '../Button'
 import A from '../A'
 
 const Wrapper = styled.div`
+  a {
+    font-size: 0.875rem;
+  }
+
   .today {
     margin-right: 24px;
     margin-bottom: 12px;
@@ -15,9 +19,9 @@ const Wrapper = styled.div`
   }
 `
 
-function FilterBar() {
+function FilterBar({ className }) {
   return (
-    <Wrapper>
+    <Wrapper className={className}>
       <Button as={A} primary href={routes.TODAY} className="today">
         Сегодня&nbsp;
         <span role="img" aria-label="calendar">

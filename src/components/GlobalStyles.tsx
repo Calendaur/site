@@ -8,32 +8,32 @@ const GlobalStyles = (
         font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
-        font-display: swap;
-        src: local(''), url('/fonts/Inter/400.woff2') format('woff2');
+        font-display: auto;
+        src: local('Inter'), url('/fonts/Inter/400.woff2') format('woff2');
       }
 
       @font-face {
         font-family: 'Inter';
         font-style: normal;
         font-weight: 600;
-        font-display: swap;
-        src: local(''), url('/fonts/Inter/600.woff2') format('woff2');
+        font-display: auto;
+        src: local('Inter'), url('/fonts/Inter/600.woff2') format('woff2');
       }
 
       @font-face {
         font-family: 'Inter';
         font-style: normal;
         font-weight: 800;
-        font-display: swap;
-        src: local(''), url('/fonts/Inter/800.woff2') format('woff2');
+        font-display: auto;
+        src: local('Inter'), url('/fonts/Inter/800.woff2') format('woff2');
       }
 
       @font-face {
         font-family: 'Montserrat';
         font-style: normal;
         font-weight: 200;
-        font-display: swap;
-        src: local(''), url('/fonts/Montserrat/200.woff2') format('woff2');
+        font-display: auto;
+        src: local('Inter'), url('/fonts/Montserrat/200.woff2') format('woff2');
       }
 
       :root {

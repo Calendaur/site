@@ -6,39 +6,40 @@ import { usePageData } from 'features/releases/page-data'
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: var(--vertical-5);
 
-  > div {
-    margin-top: var(--vertical-5);
-  }
+  .title {
+    display: inline-flex;
+    margin-bottom: var(--vertical-5);
 
-  @media (min-width: 1381px) {
-    flex-direction: row;
+    h1 {
+      margin-bottom: 0;
+      font-size: 1.4rem;
 
-    > div {
-      margin-top: 0;
+      @media (min-width: 768px) {
+        font-size: 2rem;
+      }
     }
-  }
 
-  h1 {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 0;
-
-    & > a {
+    a {
+      font-size: 1.4rem;
+      font-weight: 800;
+      line-height: 1.125;
       opacity: 0.4;
       transition: var(--transition);
 
       &:hover {
         opacity: 1;
       }
+
+      @media (min-width: 768px) {
+        font-size: 2rem;
+      }
     }
   }
 `
-
-const currentYear = new Date().getFullYear()
 
 function CalendarHeader() {
   const data = usePageData()
@@ -55,6 +56,8 @@ function CalendarHeader() {
     prevMonth,
     prevLink,
     nextLink,
+    currentMonth,
+    currentYear,
   } = data
   const isNotActual = !isCurrentMonth && !isNextMonth
 
@@ -73,10 +76,13 @@ function CalendarHeader() {
   if (isNotActual) {
     return (
       <Wrapper>
-        <h1>
-          <span>
-            {nonActualTypeText()} {month.rus} {year}
-          </span>{' '}
+        <div className="title">
+          <h1>
+            <span>
+              {nonActualTypeText()} {month.rus} {year}
+            </span>
+          </h1>
+          &ensp;
           <A
             href={`/${type}/[date]`}
             as={`/${type}/${format(new Date(), 'LLLL').toLowerCase()}-${format(
@@ -84,28 +90,31 @@ function CalendarHeader() {
               'yyyy',
             )}`}
           >
-            к текущему месяцу&nbsp;→
+            {currentMonth.rus} {currentYear}&nbsp;→
           </A>
-        </h1>
-        <Filters />
+        </div>
+        <Filters className="buttons" />
       </Wrapper>
     )
   }
 
   return (
     <Wrapper>
-      <h1>
-        <span>
-          Новинки {actualTypeText()} за {month.rus}{' '}
-          {year === currentYear ? '' : year}
-        </span>{' '}
+      <div className="title">
+        <h1>
+          <span>
+            Новинки {actualTypeText()} за {month.rus}{' '}
+            {year === currentYear ? '' : year}
+          </span>
+        </h1>
+        &ensp;
         {isCurrentMonth ? (
           <A {...nextLink}>{nextMonth.rus}&nbsp;→</A>
         ) : (
           <A {...prevLink}>←&nbsp;{prevMonth.rus}</A>
         )}
-      </h1>
-      <Filters />
+      </div>
+      <Filters className="buttons" />
     </Wrapper>
   )
 }

@@ -62,6 +62,8 @@ export function getPageData(parsedUrl) {
     nextLink,
     nextMonth,
     prevMonth,
+    currentMonth: months[currentMonth],
+    currentYear,
     isCurrentMonth: isEqual(
       new Date(currentYear, currentMonth, 1),
       new Date(year, month.jsNumber, 1),

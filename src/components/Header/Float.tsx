@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import styles from './styles.module.scss'
+import styles from './styles.module.css'
 
 interface Props {
   isShowNav: boolean

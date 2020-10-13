@@ -2,7 +2,7 @@ const withOffline = require('next-offline')
 
 const nextConfig = {
   workboxOpts: {
-    importScripts: ['./scripts/push.js?v=1'],
+    importScripts: ['./scripts/push.js'],
     swDest: 'static/service-worker.js',
     runtimeCaching: [
       {

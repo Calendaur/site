@@ -1,7 +1,7 @@
 import React from 'react'
 import { routes } from 'shared/constants'
 import A from '../A'
-import styles from './styles.module.scss'
+import styles from './styles.module.css'
 
 function Logo() {
   return (

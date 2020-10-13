@@ -7,7 +7,7 @@ import { useMediaQuery } from 'shared/hooks'
 import { useUser } from 'features/user/use-user'
 import A from '../A'
 import Button from '../Button'
-import styles from './styles.module.scss'
+import styles from './styles.module.css'
 
 const Float = dynamic(() => import('./Float'), { ssr: false })
 

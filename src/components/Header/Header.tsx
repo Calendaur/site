@@ -1,9 +1,9 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import Logo from './Logo'
-import styles from './styles.module.scss'
+import styles from './styles.module.css'
 
-const Nav = dynamic(() => import('./Nav'), { ssr: false })
+const Nav = dynamic(() => import('./Nav'), { ssr: true })
 
 function Header() {
   return (

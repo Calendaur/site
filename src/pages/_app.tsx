@@ -1,11 +1,12 @@
 import 'lazysizes'
+import '../components/styles.css'
 
 import React, { useEffect } from 'react'
 import { AppProps } from 'next/app'
 import { CacheProvider } from '@emotion/react'
 import { cache } from '@emotion/css'
 import { configure, start, done } from 'nprogress'
-import { Page, GlobalStyles } from 'components'
+import { Page } from 'components'
 
 configure({ showSpinner: false })
 
@@ -24,7 +25,6 @@ function CustomApp({ Component, pageProps, router: { events } }: AppProps) {
 
   return (
     <CacheProvider value={cache}>
-      {GlobalStyles}
       <Page>
         <Component {...pageProps} />
       </Page>
