@@ -52,7 +52,7 @@ export function useDateCarousel() {
   const { route, asPath, push } = useRouter()
 
   const routeData = useMemo(() => {
-    if (!pagesWithCalendar.has(route)) return null
+    if (!pagesWithCalendar.has(route) || !asPath) return null
 
     let [type, date] = asPath.split('/').slice(1)
 
