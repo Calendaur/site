@@ -54,12 +54,16 @@ export function useDateCarousel() {
   const routeData = useMemo(() => {
     if (!pagesWithCalendar.has(route) || !asPath) return null
 
+    console.log(asPath)
+
     let [type, date] = asPath.split('/').slice(1)
 
     if (type === '') {
       type = 'films'
       date = `${months[currentMonth].eng}-${currentYear}`
     }
+
+    console.log(type, date)
 
     const [engMonth, year] = date.split('-')
 
