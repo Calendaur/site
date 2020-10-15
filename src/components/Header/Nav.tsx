@@ -46,6 +46,33 @@ function Nav() {
     }
   }, []) // eslint-disable-line
 
+  if (mobile) {
+    return (
+      <>
+        {isShowNav ? (
+          <nav className={styles['is-visible']}>
+            {asPath !== routes.HOME ? (
+              <A href={routes.HOME} className={styles.home}>
+                На главную
+              </A>
+            ) : null}
+            <A href={routes.BLOG}>Блог</A>
+            <A
+              href={routes.WHATS_NEW}
+              className={Cookies.get(ncwn) === 'true' ? 'has-notification' : ''}
+            >
+              Новости проекта
+            </A>
+            <A href={routes.TODAY} className={styles.todayInNav}>
+              Сегодня
+            </A>
+          </nav>
+        ) : null}
+        <Float isShowNav={isShowNav} setIsShowNav={setIsShowNav} />
+      </>
+    )
+  }
+
   return (
     <>
       <nav className={isShowNav ? styles['is-visible'] : styles['is-hidden']}>

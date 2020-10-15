@@ -7,8 +7,16 @@ import Image from './Image'
 const year = new Date().getFullYear()
 
 const StyledFooter = styled.footer`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 120px;
   padding: var(--vertical-5) var(--page-padding);
-  padding-bottom: var(--vertical-1);
+
+  a {
+    font-size: 0.875rem;
+  }
 
   .top-part,
   .bottom-part,
@@ -19,19 +27,11 @@ const StyledFooter = styled.footer`
 
   .top-part {
     justify-content: space-between;
-
-    a {
-      font-size: 14px;
-
-      @media (min-width: 768px) {
-        font-size: 16px;
-      }
-    }
+    margin-bottom: var(--horizontal-5);
 
     .copyright {
       align-items: center;
-      height: 28px;
-      font-size: 14px;
+      font-size: 0.875rem;
 
       img {
         display: none;
@@ -73,9 +73,7 @@ function Footer({ className }: Props) {
           />{' '}
           <span>released.at, {year}</span>
         </A>
-        <div>
-          <a href="mailto:support@released.at">support@released.at</a>
-        </div>
+        <a href="mailto:support@released.at">support@released.at</a>
       </div>
       <div className="bottom-part">
         <button

@@ -2,7 +2,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-display: auto;
+  font-display: swap;
   src: local('Inter'), url('/fonts/Inter/400.woff2') format('woff2');
 }
 
@@ -10,7 +10,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
-  font-display: auto;
+  font-display: swap;
   src: local('Inter'), url('/fonts/Inter/600.woff2') format('woff2');
 }
 
@@ -18,7 +18,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 800;
-  font-display: auto;
+  font-display: swap;
   src: local('Inter'), url('/fonts/Inter/800.woff2') format('woff2');
 }
 
@@ -26,8 +26,8 @@
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 200;
-  font-display: auto;
-  src: local('Inter'), url('/fonts/Montserrat/200.woff2') format('woff2');
+  font-display: swap;
+  src: local('Montserrat'), url('/fonts/Montserrat/200.woff2') format('woff2');
 }
 
 :root {
@@ -153,6 +153,18 @@ body {
 
 #__next {
   overflow-x: hidden;
+}
+
+#page {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 100%;
+  width: 100vw;
+  min-height: 100vh;
+
+  & > main {
+    padding: var(--page-vertical-padding) var(--page-padding);
+  }
 }
 
 *,
