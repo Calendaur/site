@@ -9,6 +9,8 @@ interface Props {
   type?: 'button' | 'submit' | 'reset'
   primary?: boolean
   ghost?: boolean
+  outline?: boolean
+  white?: boolean
   fullWidth?: boolean
   disabled?: boolean
   loading?: boolean
@@ -23,6 +25,8 @@ function Button({
   type = 'button',
   primary,
   ghost,
+  outline,
+  white,
   fullWidth,
   disabled,
   loading,
@@ -103,8 +107,27 @@ const ghost = css`
   background-color: transparent;
 `
 
+const outline = css`
+  color: var(--primary-text);
+  background-color: transparent;
+  border: 1px solid var(--primary-text);
+
+  &:hover {
+    color: var(--black);
+  }
+`
+
 const fullWidth = css`
   width: 100%;
+`
+
+const white = css`
+  color: #000;
+  background-color: #fff;
+
+  &:hover {
+    color: var(--black);
+  }
 `
 
 const Styled = styled(Button, {
@@ -114,6 +137,8 @@ const Styled = styled(Button, {
   ${props => props.primary && primary}
   ${props => props.ghost && ghost}
   ${props => props.fullWidth && fullWidth}
+  ${props => props.outline && outline}
+  ${props => props.white && white}
 `
 
 export default Styled

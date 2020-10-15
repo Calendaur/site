@@ -46,56 +46,12 @@ function CalendarHeader() {
 
   if (!data) return null
 
-  const {
-    month,
-    year,
-    type,
-    isCurrentMonth,
-    isNextMonth,
-    nextMonth,
-    prevMonth,
-    prevLink,
-    nextLink,
-    currentMonth,
-    currentYear,
-  } = data
-  const isNotActual = !isCurrentMonth && !isNextMonth
+  const { month, year, type, currentYear } = data
 
   const actualTypeText = () => {
     if (type === 'films') return 'кино'
     if (type === 'games') return 'игр'
     if (type === 'series') return 'сериалов'
-  }
-
-  const nonActualTypeText = () => {
-    if (type === 'films') return 'Кино'
-    if (type === 'games') return 'Игры'
-    if (type === 'series') return 'Сериалы'
-  }
-
-  if (isNotActual) {
-    return (
-      <Wrapper>
-        <div className="title">
-          <h1>
-            <span>
-              {nonActualTypeText()} {month.rus} {year}
-            </span>
-          </h1>
-          &ensp;
-          <A
-            href={`/${type}/[date]`}
-            as={`/${type}/${format(new Date(), 'LLLL').toLowerCase()}-${format(
-              new Date(),
-              'yyyy',
-            )}`}
-          >
-            {currentMonth.rus} {currentYear}&nbsp;→
-          </A>
-        </div>
-        <Filters className="buttons" />
-      </Wrapper>
-    )
   }
 
   return (
@@ -107,14 +63,8 @@ function CalendarHeader() {
             {year === currentYear ? '' : year}
           </span>
         </h1>
-        &ensp;
-        {isCurrentMonth ? (
-          <A {...nextLink}>{nextMonth.rus}&nbsp;→</A>
-        ) : (
-          <A {...prevLink}>←&nbsp;{prevMonth.rus}</A>
-        )}
       </div>
-      <Filters className="buttons" />
+      {type === 'films' && <Filters className="buttons" />}
     </Wrapper>
   )
 }

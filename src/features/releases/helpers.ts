@@ -17,24 +17,24 @@ export function generateReleasesPages(): { params: { date: string } }[] {
   }))
 }
 
-export function getPageData(parsedUrl) {
-  function getNextAndPrevDate(currentMonthJSNumber, currentYear) {
-    const nextMonthIndex =
-      currentMonthJSNumber === 11 ? 0 : currentMonthJSNumber + 1
-    const nextYear = nextMonthIndex === 0 ? currentYear + 1 : currentYear
+export function getNextAndPrevDate(currentMonthJSNumber, currentYear) {
+  const nextMonthIndex =
+    currentMonthJSNumber === 11 ? 0 : currentMonthJSNumber + 1
+  const nextYear = nextMonthIndex === 0 ? currentYear + 1 : currentYear
 
-    const prevMonthIndex =
-      currentMonthJSNumber === 0 ? 11 : currentMonthJSNumber - 1
-    const prevYear = prevMonthIndex === 11 ? currentYear - 1 : currentYear
+  const prevMonthIndex =
+    currentMonthJSNumber === 0 ? 11 : currentMonthJSNumber - 1
+  const prevYear = prevMonthIndex === 11 ? currentYear - 1 : currentYear
 
-    return {
-      nextMonth: months[nextMonthIndex],
-      nextYear,
-      prevMonth: months[prevMonthIndex],
-      prevYear,
-    }
+  return {
+    nextMonth: months[nextMonthIndex],
+    nextYear,
+    prevMonth: months[prevMonthIndex],
+    prevYear,
   }
+}
 
+export function getPageData(parsedUrl) {
   const { type, month, year } = parsedUrl
 
   const { prevMonth, prevYear, nextMonth, nextYear } = getNextAndPrevDate(

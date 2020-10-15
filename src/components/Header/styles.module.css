@@ -1,11 +1,32 @@
 .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 var(--page-padding);
+
+  .logoAndNav {
+    display: flex;
+    align-items: center;
+  }
+
   @media (min-width: 768px) {
     z-index: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 92px;
+    height: 64px;
     padding: 0 var(--page-padding);
+  }
+
+  @media (min-width: 768px) and (max-width: 980px) {
+    margin-bottom: 64px;
+
+    .calendarNav {
+      position: absolute;
+      top: 64px;
+      left: -16px;
+    }
   }
 
   .logo {
@@ -14,7 +35,6 @@
 
     position: relative;
     display: flex;
-    margin: 16px 0 0 16px;
     font-family: var(--logo-font);
     font-size: 32px;
     font-weight: 200;
@@ -271,9 +291,15 @@
       }
     }
 
+    a {
+      font-size: 0.875rem;
+      font-weight: 600;
+      opacity: 0.75;
+    }
+
     @media (max-width: 767px) {
       position: fixed;
-      top: 48px;
+      top: 64px;
       bottom: 0;
       left: 0;
       z-index: 1;
@@ -320,7 +346,7 @@
       justify-content: center;
 
       & > * {
-        margin-left: 24px;
+        margin-left: 12px;
         font-size: 0.875rem;
 
         &:first-child {
@@ -329,30 +355,161 @@
       }
     }
   }
+}
 
-  .float {
-    position: fixed;
-    bottom: 30px;
-    left: 16px;
-    z-index: 3;
+.float {
+  position: fixed;
+  bottom: 30px;
+  left: 16px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
 
-    button {
-      --size: 45px;
-      --icon-size: 24px;
+  .dateCarouselFloat {
+    display: flex;
+    align-items: center;
+    margin-left: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
+    border-radius: 4px;
+    overflow: hidden;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: var(--size);
-      height: var(--size);
+    & > span {
+      width: 120px;
+      padding: 0 8px;
+      box-sizing: content-box;
+      font-size: 0.875rem;
+      line-height: 45px;
+      text-align: center;
       background-color: var(--blue);
-      border-radius: 4px;
-      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.15);
 
-      img {
-        width: var(--icon-size);
-        height: var(--icon-size);
+      .dateCarouselMonth {
+        font-weight: 600;
+        text-transform: capitalize;
+      }
+
+      .dateCarouselYear {
+        opacity: 0.75;
       }
     }
+
+    button {
+      box-shadow: none;
+      border-radius: 0;
+
+      &:disabled {
+        cursor: not-allowed;
+        pointer-events: none;
+
+        img,
+        amp-img {
+          opacity: 0.1;
+        }
+      }
+    }
+  }
+
+  button {
+    --size: 45px;
+    --icon-size: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--size);
+    height: var(--size);
+    background-color: var(--blue);
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
+
+    img {
+      width: var(--icon-size);
+      height: var(--icon-size);
+    }
+  }
+}
+
+.userAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-left: 12px;
+  background-image: linear-gradient(to right, #8e2de2, #4a00e0);
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 50%;
+}
+
+.signIn,
+.signUp {
+  font-size: 0.875rem !important;
+  margin-left: 12px;
+}
+
+.signUp {
+  @media (max-width: 767px) {
+    display: none !important;
+  }
+}
+
+.calendarNav {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    margin-left: 32px;
+
+    .today {
+      margin-right: 16px;
+      font-size: 0.875rem;
+    }
+
+    .changeMonthButtons {
+      display: flex;
+      align-items: center;
+      margin-right: 24px;
+
+      button {
+        display: flex;
+        align-items: center;
+        padding: 8px;
+        opacity: 0.5;
+        transition: 0.25s;
+
+        &:disabled {
+          opacity: 0.15;
+          cursor: not-allowed;
+          pointer-events: none;
+        }
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    .currentMonth {
+      margin: 0 8px;
+      font-size: 22px;
+      font-weight: 600;
+      text-transform: capitalize;
+      text-edge: cap alphabetic;
+      leading-trim: both;
+      width: 170px;
+      text-align: center;
+
+      span {
+        font-weight: normal;
+        opacity: 0.75;
+      }
+    }
+  }
+}
+
+.todayInNav {
+  @media (min-width: 768px) {
+    display: none;
   }
 }

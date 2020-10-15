@@ -4,9 +4,8 @@ import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
 import { routes, cookies } from 'shared/constants'
 import { useMediaQuery } from 'shared/hooks'
-import { useUser } from 'features/user/use-user'
 import A from '../A'
-import Button from '../Button'
+
 import styles from './styles.module.css'
 
 const Float = dynamic(() => import('./Float'), { ssr: false })
@@ -15,8 +14,7 @@ const ncwn = cookies.NEED_CHECK_WHATS_NEW
 
 function Nav() {
   const [isShowNav, setIsShowNav] = useState(false)
-  const { push, asPath, events } = useRouter()
-  const { user, isLoading } = useUser()
+  const { asPath, events } = useRouter()
   const desktop = useMediaQuery('(min-width: 768px)')
   const mobile = desktop === false
 
@@ -48,65 +46,24 @@ function Nav() {
     }
   }, []) // eslint-disable-line
 
-  function renderAuthButtons() {
-    if (isLoading) {
-      return <Button primary loading />
-    }
-
-    if (user) {
-      return (
-        <Button
-          primary
-          onClick={() => {
-            push(routes.ME)
-          }}
-        >
-          {user.current_user.email.split('@')[0]}
-        </Button>
-      )
-    }
-
-    return (
-      <>
-        <Button
-          onClick={() => {
-            push(routes.SIGN_IN)
-          }}
-        >
-          Вход
-        </Button>
-        <Button
-          primary
-          onClick={() => {
-            push(routes.SIGN_UP)
-          }}
-        >
-          Регистрация
-        </Button>
-      </>
-    )
-  }
-
   return (
     <>
       <nav className={isShowNav ? styles['is-visible'] : styles['is-hidden']}>
-        <A href={routes.HOME} className={styles.home}>
-          На главную
-        </A>
-        <A href={routes.BLOG}>
-          Блог{' '}
-          <span role="img" aria-label="blog">
-            📓
-          </span>
-        </A>
+        {asPath !== routes.HOME ? (
+          <A href={routes.HOME} className={styles.home}>
+            На главную
+          </A>
+        ) : null}
+        <A href={routes.BLOG}>Блог</A>
         <A
           href={routes.WHATS_NEW}
           className={Cookies.get(ncwn) === 'true' ? 'has-notification' : ''}
         >
           Новости проекта
         </A>
-        <A href={routes.ARCHIVE}>Вышедшее</A>
-        {renderAuthButtons()}
+        <A href={routes.TODAY} className={styles.todayInNav}>
+          Сегодня
+        </A>
       </nav>
       {mobile ? (
         <Float isShowNav={isShowNav} setIsShowNav={setIsShowNav} />

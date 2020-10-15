@@ -3,10 +3,16 @@ import styled from '@emotion/styled'
 import { routes } from 'shared/constants'
 import Button from '../Button'
 import A from '../A'
+import Image from '../Image'
 
 const Wrapper = styled.div`
   a {
     font-size: 0.875rem;
+
+    img,
+    amp-img {
+      margin-right: 4px;
+    }
   }
 
   .today {
@@ -22,17 +28,9 @@ const Wrapper = styled.div`
 function FilterBar({ className }) {
   return (
     <Wrapper className={className}>
-      <Button as={A} primary href={routes.TODAY} className="today">
-        Сегодня&nbsp;
-        <span role="img" aria-label="calendar">
-          📅
-        </span>
-      </Button>
-      <Button as={A} primary href={routes.WHAT_TO_SEE}>
-        Что посмотреть?&nbsp;
-        <span role="img" aria-label="calendar">
-          🤔
-        </span>
+      <Button as={A} white href={routes.WHAT_TO_SEE}>
+        <Image width="20" height="20" src="/icons/tinder.svg" />
+        Кинотиндер
       </Button>
     </Wrapper>
   )
