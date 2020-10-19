@@ -1,18 +1,32 @@
 import React from 'react'
-import Releases from 'screens/index'
-import { getPropsForIndexPage } from 'features/releases/next-page-functions'
-import { PageDataProvider } from 'features/releases/page-data'
+import styles from '../../styles/Index.module.css'
 
-function IndexPage(props) {
+function IndexPage() {
   return (
-    <PageDataProvider parsedUrl={props.parsedURL}>
-      <Releases {...props} />
-    </PageDataProvider>
+    <div>
+      <a className={styles.link} href="#">
+        1
+      </a>
+      <a className={styles.link} href="#">
+        1
+      </a>
+      <a className={styles.link} href="#">
+        1
+      </a>
+      <a className={styles.link} href="#">
+        1
+      </a>
+      <a className={styles.link} href="#">
+        1
+      </a>
+      <a className={styles.link} href="#">
+        1
+      </a>
+      <a className={styles.link} href="#">
+        1
+      </a>
+    </div>
   )
-}
-
-export async function getStaticProps(context) {
-  return getPropsForIndexPage(context)
 }
 
 export default IndexPage
