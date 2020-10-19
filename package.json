@@ -17,7 +17,6 @@
     "@emotion/react": "^11.0.0-rc.0",
     "@emotion/server": "^11.0.0-rc.0",
     "@emotion/styled": "^11.0.0-rc.0",
-    "@released-at/core": "^1.0.1",
     "@sindresorhus/slugify": "^1.1.0",
     "classnames": "^2.2.6",
     "date-fns": "^2.16.1",
