@@ -1,12 +1,11 @@
 import 'lazysizes'
-import '../components/styles.css'
 
 import React, { useEffect } from 'react'
 import { AppProps } from 'next/app'
-import { CacheProvider } from '@emotion/react'
-import { cache } from '@emotion/css'
 import { configure, start, done } from 'nprogress'
-import { Page } from 'components'
+import { globalStyles } from 'components2'
+
+globalStyles()
 
 configure({ showSpinner: false })
 
@@ -23,13 +22,7 @@ function CustomApp({ Component, pageProps, router: { events } }: AppProps) {
     }
   }, []) // eslint-disable-line
 
-  return (
-    <CacheProvider value={cache}>
-      <Page>
-        <Component {...pageProps} />
-      </Page>
-    </CacheProvider>
-  )
+  return <Component {...pageProps} />
 }
 
 export default CustomApp

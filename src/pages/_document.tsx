@@ -6,24 +6,38 @@ import Document, {
   NextScript,
   DocumentContext,
 } from 'next/document'
-import { extractCritical } from '@emotion/server'
+import { css } from 'stitches'
 
 class CustomDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
-    const initialProps = await Document.getInitialProps(ctx)
-    const styles = extractCritical(initialProps.html)
+    const originalRenderPage = ctx.renderPage
 
-    return {
-      ...initialProps,
-      styles: (
-        <>
-          {initialProps.styles}
-          <style
-            data-emotion-css={styles.ids.join(' ')}
-            dangerouslySetInnerHTML={{ __html: styles.css }}
-          />
-        </>
-      ),
+    try {
+      let extractedStyles
+      ctx.renderPage = () => {
+        const { styles, result } = css.getStyles(originalRenderPage)
+        extractedStyles = styles
+        return result
+      }
+
+      const initialProps = await Document.getInitialProps(ctx)
+
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+
+            {extractedStyles.map((content: string, index: number) => (
+              <style
+                key={index}
+                dangerouslySetInnerHTML={{ __html: content }}
+              />
+            ))}
+          </>
+        ),
+      }
+    } finally {
     }
   }
 
@@ -31,33 +45,19 @@ class CustomDocument extends Document {
     return (
       <Html lang="ru" prefix="og: https://ogp.me/ns#">
         <Head>
+          <link rel="dns-prefetch" href="//fonts.googleapis.com" />
           <link
-            rel="preload"
-            href="/fonts/Inter/400.woff2"
-            as="font"
-            type="font/woff2"
+            rel="preconnect"
+            href="https://fonts.gstatic.com/"
             crossOrigin="anonymous"
           />
           <link
-            rel="preload"
-            href="/fonts/Inter/600.woff2"
-            as="font"
-            type="font/woff2"
-            crossOrigin="anonymous"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap"
+            rel="stylesheet"
           />
           <link
-            rel="preload"
-            href="/fonts/Inter/800.woff2"
-            as="font"
-            type="font/woff2"
-            crossOrigin="anonymous"
-          />
-          <link
-            rel="preload"
-            href="/fonts/Montserrat/200.woff2"
-            as="font"
-            type="font/woff2"
-            crossOrigin="anonymous"
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&text=released&display=swap"
+            rel="stylesheet"
           />
         </Head>
         <body>
