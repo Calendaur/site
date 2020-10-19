@@ -73,3 +73,20 @@ export function range(min = 0, max) {
 export function getPageUrl(asPath) {
   return `https://released.at${asPath}`
 }
+
+export function getCookie(source, name) {
+  if (!source) return null
+
+  try {
+    const matches = source.match(
+      new RegExp(
+        '(?:^|; )' +
+          name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') +
+          '=([^;]*)',
+      ),
+    )
+    return matches ? decodeURIComponent(matches[1]) : null
+  } catch (e) {
+    return null
+  }
+}

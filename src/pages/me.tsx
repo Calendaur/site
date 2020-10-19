@@ -1,8 +1,8 @@
 import React from 'react'
-import { parseCookies } from 'nookies'
+import { GetServerSideProps } from 'next'
 import Me from 'screens/me'
 import { me } from 'shared/api'
-import { redirect } from 'shared/utils'
+import { redirect, getCookie } from 'shared/utils'
 import { routes } from 'shared/constants'
 import { usePushNotifications } from 'features/notifications/use-push-notifications'
 
@@ -12,24 +12,24 @@ function MePage(props) {
   return <Me {...props} />
 }
 
-MePage.getInitialProps = async ctx => {
+export const getServerSideProps: GetServerSideProps = async ctx => {
+  const token = getCookie(ctx.req.headers.cookie)
+
+  if (!token) {
+    redirect(ctx, routes.SIGN_UP)
+  }
+
   try {
-    const { authorization: token } = parseCookies(ctx)
-
-    if (!token) {
-      redirect(ctx, routes.SIGN_UP)
-      return {}
-    }
-
     const user = await me(token)
 
     return {
-      user,
+      props: {
+        user,
+      },
     }
   } catch (e) {
     console.error(e)
     redirect(ctx, routes.SIGN_UP)
-    return {}
   }
 }
 
