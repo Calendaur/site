@@ -1,0 +1,13 @@
+.lazyload,
+.lazyloading {
+  min-height: 100px;
+  opacity: 0;
+}
+
+.loading,
+.lazyload,
+.lazyloaded,
+.image {
+  opacity: 1;
+  transition: opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+}

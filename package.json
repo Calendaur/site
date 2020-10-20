@@ -9,7 +9,9 @@
     "build": "next build",
     "start": "next start",
     "test": "jest",
-    "create-sitemap": "cross-env babel-node src/shared/create-sitemap.js  && git add public/sitemap.xml"
+    "create-sitemap": "cross-env babel-node src/shared/create-sitemap.js  && git add public/sitemap.xml",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@emotion/cache": "^11.0.0-rc.0",
@@ -40,6 +42,10 @@
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/node": "^7.10.5",
+    "@storybook/addon-actions": "^6.0.26",
+    "@storybook/addon-links": "^6.0.26",
+    "@storybook/addons": "^6.0.26",
+    "@storybook/react": "^6.0.26",
     "@types/classnames": "^2.2.10",
     "@types/js-cookie": "^2.2.6",
     "@types/lodash.shuffle": "^4.2.6",
@@ -50,6 +56,7 @@
     "@typescript-eslint/parser": "4.0.0",
     "babel-eslint": "10.0.0",
     "babel-jest": "^25.1.0",
+    "babel-loader": "^8.1.0",
     "babel-plugin-import": "^1.13.0",
     "cross-env": "^7.0.2",
     "eslint": "^7.9.0",
