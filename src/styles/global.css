@@ -115,6 +115,7 @@
   --xs-fz: 0.875rem;
   --sm-fz: 1rem;
   --md-fz: 1.25rem;
+  --lg-fz: 1.5rem;
   --xl-fz: 2.25rem;
   --xxl-fz: 3rem;
 
@@ -127,6 +128,10 @@
   --lg-space: 32px;
   --xl-space: 52px;
   --xxl-space: 84px;
+
+  /* OTHER */
+  --avatar-gradient: linear-gradient(90deg, #8e2de2, #4a00e0);
+  --dark-drop-shadow: 0 2px 8px hsla(0, 0%, 0%, 0.65);
 
   font-size: var(--base-fz);
 }
@@ -307,4 +312,26 @@ button {
   cursor: pointer;
   background-color: transparent;
   border: none;
+}
+
+header,
+main,
+footer {
+  padding-right: var(--mobile-page-spaceX);
+  padding-left: var(--mobile-page-spaceX);
+
+  @media (min-width: 768px) {
+    padding-right: var(--lg-space);
+    padding-left: var(--lg-space);
+  }
+
+  @media (min-width: 1200px) {
+    padding-right: var(--xl-space);
+    padding-left: var(--xl-space);
+  }
+
+  @media (min-width: 1920px) {
+    padding-right: var(--xxl-space);
+    padding-left: var(--xxl-space);
+  }
 }

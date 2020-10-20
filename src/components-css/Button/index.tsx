@@ -30,7 +30,6 @@ function Button({
       HTMLButtonElement
     >
 >) {
-  console.log(styles)
   return (
     <button
       className={cx(
