@@ -3,8 +3,8 @@ import Head from 'next/head'
 import slugify from '@sindresorhus/slugify'
 import styled from '@emotion/styled'
 import Md from 'react-markdown'
-import getYouTubeId from 'get-youtube-id'
 import { A } from 'components'
+import { getYoutubeId } from 'shared/utils'
 
 const Styled = styled.div`
   h1 {
@@ -119,7 +119,7 @@ function Post({ post }) {
                           allowFullScreen
                           width="100%"
                           height="100%"
-                          data-src={`https://www.youtube.com/embed/${getYouTubeId(
+                          data-src={`https://www.youtube.com/embed/${getYoutubeId(
                             href,
                           )}`}
                         />

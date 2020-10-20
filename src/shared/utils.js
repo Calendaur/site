@@ -90,3 +90,28 @@ export function getCookie(source, name) {
     return null
   }
 }
+
+export function getYoutubeId(youtubeUrl) {
+  if (!/youtu\.?be/.test(youtubeUrl)) {
+    console.error(`Incorrect youtube url: ${youtubeUrl} `)
+    return null
+  }
+
+  const patterns = [
+    /youtu\.be\/([^#&?]{11})/,
+    /\?v=([^#&?]{11})/,
+    /&v=([^#&?]{11})/,
+    /embed\/([^#&?]{11})/,
+    /\/v\/([^#&?]{11})/,
+  ]
+
+  let id = ''
+
+  patterns.forEach(pattern => {
+    if (pattern.test(youtubeUrl)) {
+      id = pattern.exec(youtubeUrl)[1]
+    }
+  })
+
+  return id
+}

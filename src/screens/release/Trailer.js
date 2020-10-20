@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import getYouTubeId from 'get-youtube-id'
+import { getYoutubeId } from 'shared/utils'
 
 const Wrapper = styled.div`
   flex: 1;
@@ -32,7 +32,7 @@ function Trailer({ url }) {
           allowFullScreen
           width="100%"
           height="100%"
-          data-src={`https://www.youtube.com/embed/${getYouTubeId(url)}`}
+          data-src={`https://www.youtube.com/embed/${getYoutubeId(url)}`}
         />
       </div>
     </Wrapper>
