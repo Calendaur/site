@@ -62,7 +62,7 @@ const Card = styled(A)`
     }
 
     &:not(.isAmp) {
-      & > img {
+      img {
         position: absolute;
         top: 0;
         left: 0;
@@ -187,7 +187,11 @@ function ReleaseCard({
       )}
       <ExpectButton className="expect-button" release={release} />
       <div className={isAmp ? 'aspectRatio isAmp' : 'aspectRatio'}>
-        <Image src={release.cover} alt={release.title} />
+        <picture>
+          <source srcSet={release.covers.preview + '.webp'} type="image/webp" />
+          <source srcSet={release.covers.preview} type="image/jpeg" />
+          <Image src={release.cover} alt={release.title} />
+        </picture>
       </div>
       <Info release={release} type={type} showType={showType} />
     </Card>
