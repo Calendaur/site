@@ -7,8 +7,6 @@ import { gamesJSON } from './mocks/games'
 
 export default { title: 'Calendar' }
 
-console.log(filmsJSON, seriesJSON, gamesJSON)
-
 export const films = () => (
   <Calendar
     releases={filmsJSON}
