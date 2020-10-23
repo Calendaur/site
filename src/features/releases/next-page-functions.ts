@@ -1,9 +1,9 @@
-import { GetStaticPaths, GetStaticPropsContext, GetStaticProps } from 'next'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import compareAsc from 'date-fns/compareAsc'
 import { releases, homePageReleases } from 'shared/api'
 import { months } from 'shared/constants'
-import { groupBy } from 'shared/utils'
-import { FRONTEND_RELEASE_TYPES, ParsedURL } from 'types/releases'
+import { groupBy, releaseAdapter } from 'shared/utils'
+import { ReleaseType } from 'types/common'
 import { generateReleasesPages, getWeeks } from './helpers'
 import { meta } from './seo'
 
@@ -14,7 +14,7 @@ export const getPaths: GetStaticPaths = async () => ({
 
 export const getProps = async (
   { params }: any,
-  type: FRONTEND_RELEASE_TYPES,
+  type: ReleaseType,
 ): Promise<{
   props: any
 }> => {
@@ -23,9 +23,9 @@ export const getProps = async (
   const month = months.find(({ eng }) => eng === m)
   const year = +y
 
-  const sorted = result.sort((a, b) =>
-    compareAsc(new Date(a.released), new Date(b.released)),
-  )
+  const sorted = result
+    .sort((a, b) => compareAsc(new Date(a.released), new Date(b.released)))
+    .map(release => releaseAdapter(release, type))
   const grouped = groupBy('released')(sorted)
 
   return {

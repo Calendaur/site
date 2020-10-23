@@ -24,9 +24,9 @@
 
   .FloatPart {
     position: fixed;
+    z-index: 1;
     bottom: 30px;
     left: 16px;
-    z-index: 1;
     display: flex;
 
     @media (min-width: 768px) {
@@ -52,11 +52,11 @@
   --size: 36px;
 
   display: flex;
-  align-items: center;
-  justify-content: center;
   width: var(--size);
   min-width: var(--size);
   height: var(--size);
+  align-items: center;
+  justify-content: center;
   background-image: var(--avatar-gradient);
   border-radius: 50%;
   font-weight: var(--bold);
@@ -66,7 +66,7 @@
 
     font-size: var(--md-fz);
     opacity: 0.75;
-    transition: opacity 250ms;
+    transition: opacity 100ms;
 
     &:hover {
       opacity: 1;
@@ -93,12 +93,12 @@
 
   &.fixed {
     display: flex;
+    overflow: hidden;
     align-items: center;
     margin-left: var(--sm-space);
-    box-shadow: var(--dark-drop-shadow);
-    border-radius: 5px;
     background-color: var(--primary-color);
-    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: var(--dark-drop-shadow);
 
     @media (min-width: 768px) {
       display: none;
@@ -117,21 +117,21 @@
       --size: 32px;
 
       display: flex;
-      align-items: center;
-      justify-content: center;
       width: var(--size);
       height: var(--size);
-      opacity: 0.5;
+      align-items: center;
+      justify-content: center;
       background-color: transparent;
-      transition: opacity 250ms;
+      opacity: 0.5;
+      transition: opacity 100ms;
 
       &:hover {
         opacity: 1;
       }
 
       &:disabled {
-        opacity: 0.15;
         cursor: not-allowed;
+        opacity: 0.15;
         pointer-events: none;
       }
     }
@@ -141,8 +141,8 @@
       margin: 0 var(--xs-space);
       font-size: var(--sm-fz);
       font-weight: var(--medium);
-      text-transform: capitalize;
       text-align: center;
+      text-transform: capitalize;
 
       @media (min-width: 768px) {
         width: 170px;
@@ -161,10 +161,10 @@
   --size: 45px;
 
   display: flex;
-  align-items: center;
-  justify-content: center;
   width: var(--size);
   height: var(--size);
+  align-items: center;
+  justify-content: center;
   background-color: var(--primary-color);
   border-radius: 5px;
   box-shadow: var(--dark-drop-shadow);
@@ -173,12 +173,12 @@
 .Logo {
   position: relative;
   display: inline-flex;
-  font-family: var(--logo-font);
-  font-size: var(--lg-fz);
-  line-height: 1;
-  letter-spacing: 0.12em;
   animation: glitchSkew 5s infinite linear alternate-reverse;
   animation-delay: 2s;
+  font-family: var(--logo-font);
+  font-size: var(--lg-fz);
+  letter-spacing: 0.12em;
+  line-height: 1;
   will-change: transform;
 
   @media (min-width: 576px) {
@@ -233,10 +233,10 @@
 
   &::before {
     left: 2px;
-    clip: rect(44px, 450px, 56px, 0);
-    text-shadow: -2px 0 var(--glitch-purple-color);
     animation: glitchAnim1 10s infinite linear alternate-reverse;
     animation-delay: 2s;
+    clip: rect(44px, 450px, 56px, 0);
+    text-shadow: -2px 0 var(--glitch-purple-color);
 
     @keyframes glitchAnim1 {
       0% {
@@ -328,10 +328,10 @@
 
   &::after {
     left: -2px;
-    text-shadow: -2px 0 var(--glitch-cyan-color),
-      2px 2px var(--glitch-purple-color);
     animation: glitchAnim2 5s infinite linear alternate-reverse;
     animation-delay: 2s;
+    text-shadow: -2px 0 var(--glitch-cyan-color),
+      2px 2px var(--glitch-purple-color);
 
     @keyframes glitchAnim2 {
       0% {
@@ -424,12 +424,12 @@
 
 .Navigation {
   position: fixed;
+  z-index: 1;
   top: 64px;
   bottom: 0;
   left: 0;
-  z-index: 1;
   display: none;
-  width: calc(100% - var(--mobile-page-spaceX) * 2);
+  width: 100%;
   flex-direction: column;
   padding-right: var(--mobile-page-spaceX);
   padding-left: var(--mobile-page-spaceX);
@@ -445,8 +445,8 @@
     flex-direction: row;
     padding-right: initial;
     padding-left: initial;
-    background-color: initial;
     margin-right: var(--md-space);
+    background-color: initial;
   }
 
   & > a {
@@ -454,9 +454,9 @@
     padding-bottom: var(--xxs-space);
     font-size: var(--sm-fz);
     font-weight: var(--medium);
-    white-space: nowrap;
     opacity: 0.75;
-    transition: opacity 250ms;
+    transition: opacity 100ms;
+    white-space: nowrap;
 
     &:hover {
       opacity: 1;
@@ -469,8 +469,8 @@
     @media (min-width: 768px) {
       padding-top: 0;
       padding-bottom: 0;
-      font-size: var(--xs-fz);
       margin-left: var(--sm-space);
+      font-size: var(--xs-fz);
     }
 
     &.hasRedDot > span {
@@ -483,9 +483,9 @@
         right: -8px;
         width: var(--size);
         height: var(--size);
-        content: '';
         background-color: var(--red-color);
         border-radius: 50%;
+        content: '';
       }
     }
   }

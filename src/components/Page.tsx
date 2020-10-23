@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react'
 import Meta from './Meta'
-import Header from './Header'
+import Header from '../components-css/Header'
 import Footer from './Footer'
 
 function Page({ children }: PropsWithChildren<{}>) {

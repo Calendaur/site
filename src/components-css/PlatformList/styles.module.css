@@ -1,0 +1,17 @@
+.Platforms {
+  --gap: var(--xxs-space);
+
+  display: flex;
+  flex-wrap: wrap;
+  margin: calc(var(--gap) / 2 * (-1));
+
+  li {
+    display: flex;
+    padding: 2px 8px;
+    margin: calc(var(--gap) / 2);
+    border-radius: 12px;
+    cursor: default;
+    font-size: var(--xxs-fz);
+    font-weight: var(--bold);
+  }
+}

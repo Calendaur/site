@@ -50,25 +50,25 @@ function CalendarNavigation({ position, data }: Props) {
         </Button>
       ) : null}
       <div className={styles.ChangeMonthButtons}>
-        <Button
+        <button
           disabled={disabledPrev}
           onClick={() => {
             push(prevLink.href, prevLink.as)
           }}
         >
           <img width="16" height="16" src="/icons/left.svg" alt="Назад" />
-        </Button>
+        </button>
         <p className={styles.CurrentMonth}>
           {format(date, 'LLLL', { locale: ru })} <span>{year}</span>
         </p>
-        <Button
+        <button
           disabled={disabledNext}
           onClick={() => {
             push(nextLink.href, nextLink.as)
           }}
         >
           <img width="16" height="16" src="/icons/right.svg" alt="Вперед" />
-        </Button>
+        </button>
       </div>
     </div>
   )

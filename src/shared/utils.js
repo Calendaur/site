@@ -115,3 +115,48 @@ export function getYoutubeId(youtubeUrl) {
 
   return id
 }
+
+export function releaseAdapter(release, type) {
+  const common = {
+    release_id: release.release_id,
+    released: release.released,
+    cover: release.covers.preview,
+    title: release.title,
+  }
+
+  if (type === 'films') {
+    return {
+      ...common,
+      director: release.director,
+      ...(release.foreign_ratings
+        ? {
+            imdb_rating: release.foreign_ratings.imdb_rating,
+            kinopoisk_rating: release.foreign_ratings.kinopoisk_rating,
+          }
+        : {}),
+      type,
+    }
+  }
+
+  if (type === 'games') {
+    return {
+      ...common,
+      platforms: release.platforms,
+      type,
+    }
+  }
+
+  if (type === 'series') {
+    return {
+      ...common,
+      season: release.season,
+      ...(release.foreign_ratings
+        ? {
+            imdb_rating: release.foreign_ratings.imdb_rating,
+            kinopoisk_rating: release.foreign_ratings.kinopoisk_rating,
+          }
+        : {}),
+      type,
+    }
+  }
+}

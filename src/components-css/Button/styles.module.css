@@ -3,20 +3,20 @@
 
   position: relative;
   display: inline-block;
-  height: var(--height);
   width: auto;
   min-width: min-content;
-  font-size: var(--sm-fz);
-  font-weight: var(--medium);
-  text-transform: capitalize;
-  line-height: var(--height);
-  color: var(--secondary-text-color);
-  vertical-align: bottom;
+  height: var(--height);
+  padding: 0 1.25rem;
   background-color: var(--white-color);
   border-radius: 5px;
+  color: var(--secondary-text-color);
+  font-size: var(--sm-fz);
+  font-weight: var(--medium);
+  line-height: var(--height);
+  text-transform: capitalize;
+  transition: background-color 100ms, box-shadow 100ms;
+  vertical-align: bottom;
   white-space: nowrap;
-  padding: 0 1.25rem;
-  transition: background-color 250ms, box-shadow 250ms;
 
   &:hover {
     background-color: var(--lighter-grey-color);
@@ -36,8 +36,8 @@
 }
 
 .primary {
-  color: var(--primary-text-color);
   background-color: var(--primary-color);
+  color: var(--primary-text-color);
 
   &:hover {
     background-color: var(--primary-light-color);
@@ -73,6 +73,9 @@
 }
 
 .small {
+  --height: 2.24rem;
+
+  padding: 0 1rem;
   font-size: var(--xs-fz);
 }
 
