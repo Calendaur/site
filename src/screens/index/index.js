@@ -4,8 +4,8 @@ import styled from '@emotion/styled'
 import { ReleaseTypeChooser } from 'components'
 import CalendarHeader from './CalendarHeader'
 import Meta from './Meta'
+import Calendar from '../../components-css/Calendar'
 
-const Calendar = dynamic(() => import('./Calendar'))
 const Notifications = dynamic(() => import('../../components/Notifications'), {
   ssr: false,
 })
@@ -29,7 +29,7 @@ const FilterBar = styled.div`
   }
 `
 
-function MainPage({ parsedURL, releases, grouped, meta, weeks }) {
+function MainPage({ parsedURL, grouped, meta, weeks }) {
   const { year, month, type } = parsedURL
 
   return (
@@ -42,11 +42,9 @@ function MainPage({ parsedURL, releases, grouped, meta, weeks }) {
       <CalendarHeader />
       <Calendar
         weeks={weeks}
-        type={type}
         month={month.jsNumber}
         year={year}
-        releases={releases}
-        grouped={grouped}
+        releases={grouped}
       />
     </div>
   )

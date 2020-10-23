@@ -49,9 +49,9 @@ export const getPropsForIndexPage: GetStaticProps = async () => {
 
   const result = await homePageReleases()
 
-  const sorted = result.sort((a, b) =>
-    compareAsc(new Date(a.released), new Date(b.released)),
-  )
+  const sorted = result
+    .sort((a, b) => compareAsc(new Date(a.released), new Date(b.released)))
+    .map(release => releaseAdapter(release, 'films'))
   const grouped = groupBy('released')(sorted)
 
   return {
