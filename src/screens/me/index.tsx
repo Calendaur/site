@@ -7,28 +7,38 @@ import compareAsc from 'date-fns/compareAsc'
 import { Button, Title, Text } from 'components-css'
 import { logout } from 'shared/api'
 import { routes, endpoints, cookies } from 'shared/constants'
+import { UserProfile, ReleaseInList } from 'types/common'
 import ReleasesGrid from './ReleasesGrid'
 
 import styles from './styles.module.css'
 
-function prepareData(arr) {
+function prepareData(
+  releases: ReleaseInList[],
+): {
+  actual: ReleaseInList[]
+  nonActual: ReleaseInList[]
+} {
   let result = {
     actual: [],
     nonActual: [],
   }
 
-  arr.forEach(i => {
-    if (compareAsc(new Date(), new Date(i.released)) <= 0) {
-      result.actual.push(i)
+  releases.forEach(release => {
+    if (compareAsc(new Date(), new Date(release.released)) <= 0) {
+      result.actual.push(release)
     } else {
-      result.nonActual.push(i)
+      result.nonActual.push(release)
     }
   })
 
   return result
 }
 
-function Me({ user }) {
+interface Props {
+  user: UserProfile
+}
+
+function Me({ user }: Props) {
   const queryCache = useQueryCache()
   const { push } = useRouter()
   const [signOut] = useMutation(logout, {

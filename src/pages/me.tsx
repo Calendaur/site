@@ -5,8 +5,13 @@ import { me } from 'shared/api'
 import { redirect, getCookie, releaseAdapter } from 'shared/utils'
 import { routes, cookies } from 'shared/constants'
 import { usePushNotifications } from 'features/notifications/use-push-notifications'
+import { UserProfile } from 'types/common'
 
-function MePage({ user }) {
+interface Props {
+  user: UserProfile
+}
+
+function MePage({ user }: Props) {
   usePushNotifications()
 
   return <Me user={user} />

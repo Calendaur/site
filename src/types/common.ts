@@ -52,3 +52,12 @@ export type GameInList = {
 }
 
 export type ReleaseInList = FilmInList | SeriesInList | GameInList
+
+export interface UserProfile {
+  email: string
+  expected: {
+    films: ReleaseInList[]
+    series: ReleaseInList[]
+    games: ReleaseInList[]
+  }
+}
