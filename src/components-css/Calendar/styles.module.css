@@ -2,6 +2,7 @@
   --gap: var(--xs-space);
 
   position: relative;
+  margin-bottom: var(--xl-space);
   user-select: none;
 
   @media (min-width: 1440px) {
@@ -10,6 +11,28 @@
 
   @media (min-width: 1920px) {
     --gap: var(--lg-space);
+  }
+}
+
+.Header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sm-space);
+
+  @media (min-width: 768px) {
+    margin-bottom: var(--md-space);
+  }
+
+  h1 {
+    margin-bottom: 0;
+    font-size: var(--lg-fz);
+    line-height: 1;
+
+    @media (min-width: 768px) {
+      font-size: var(--xl-fz);
+    }
   }
 }
 
@@ -35,12 +58,12 @@
 }
 
 .Grid {
-  --rows: minmax(140px, auto);
+  --rows: minmax(180px, auto);
 
   grid-auto-rows: var(--rows);
 
   @media (max-width: 1199px) {
-    grid-gap: var(--xxl-space);
+    grid-gap: var(--xl-space);
     grid-template-columns: repeat(1, 1fr);
   }
 
@@ -96,8 +119,7 @@
   }
 
   &.hasReleases {
-    background-color: var(--lighter-grey-color);
-    color: var(--secondary-text-color);
+    display: none;
   }
 
   &.isToday {
@@ -110,7 +132,6 @@
   position: relative;
   display: grid;
   height: 100%;
-  grid-auto-rows: 25vh;
   grid-gap: var(--xs-space);
 
   @media (min-width: 768px) and (max-width: 1199px) {
@@ -123,7 +144,7 @@
     background-color: var(--neumorphic-bg);
     border-radius: 20px;
     box-shadow: var(--neumorphic-shadow);
-    grid-auto-rows: 140px;
+    grid-auto-rows: 180px;
   }
 
   @media (min-width: 1920px) {

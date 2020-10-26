@@ -13,5 +13,6 @@
     cursor: default;
     font-size: var(--xxs-fz);
     font-weight: var(--bold);
+    letter-spacing: 0.025em;
   }
 }

@@ -4,6 +4,7 @@
   justify-content: space-between;
   padding-top: var(--sm-space);
   padding-bottom: var(--sm-space);
+  margin-bottom: var(--md-space);
 
   @media (min-width: 576px) {
     padding-top: var(--md-space);
@@ -12,7 +13,7 @@
 
   @media (min-width: 768px) and (max-width: 1024px) {
     &:not(.withoutMarginBottom) {
-      margin-bottom: 38px;
+      margin-bottom: calc(38px + var(--md-space));
     }
   }
 
@@ -20,6 +21,16 @@
   .RightPart {
     display: flex;
     align-items: center;
+  }
+
+  .RightPart {
+    --mh: 36px;
+
+    min-height: var(--mh);
+
+    @media (min-width: 768px) {
+      --mh: 42px;
+    }
   }
 
   .FloatPart {
@@ -174,7 +185,6 @@
   position: relative;
   display: inline-flex;
   animation: glitchSkew 5s infinite linear alternate-reverse;
-  animation-delay: 2s;
   font-family: var(--logo-font);
   font-size: var(--lg-fz);
   letter-spacing: 0.12em;
@@ -234,7 +244,6 @@
   &::before {
     left: 2px;
     animation: glitchAnim1 10s infinite linear alternate-reverse;
-    animation-delay: 2s;
     clip: rect(44px, 450px, 56px, 0);
     text-shadow: -2px 0 var(--glitch-purple-color);
 
@@ -329,7 +338,6 @@
   &::after {
     left: -2px;
     animation: glitchAnim2 5s infinite linear alternate-reverse;
-    animation-delay: 2s;
     text-shadow: -2px 0 var(--glitch-cyan-color),
       2px 2px var(--glitch-purple-color);
 
@@ -463,7 +471,7 @@
     }
 
     &:first-child {
-      margin-left: '0';
+      margin-left: 0;
     }
 
     @media (min-width: 768px) {

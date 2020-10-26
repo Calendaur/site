@@ -9,7 +9,7 @@ import { AppProps } from 'next/app'
 import { CacheProvider } from '@emotion/react'
 import { cache } from '@emotion/css'
 import { configure, start, done } from 'nprogress'
-import { Page } from 'components'
+import Page from 'components-css/Page'
 
 configure({ showSpinner: false })
 

@@ -2,18 +2,18 @@ import React from 'react'
 import { GetServerSideProps } from 'next'
 import Me from 'screens/me'
 import { me } from 'shared/api'
-import { redirect, getCookie } from 'shared/utils'
-import { routes } from 'shared/constants'
+import { redirect, getCookie, releaseAdapter } from 'shared/utils'
+import { routes, cookies } from 'shared/constants'
 import { usePushNotifications } from 'features/notifications/use-push-notifications'
 
-function MePage(props) {
+function MePage({ user }) {
   usePushNotifications()
 
-  return <Me {...props} />
+  return <Me user={user} />
 }
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  const token = getCookie(ctx.req.headers.cookie)
+  const token = getCookie(ctx.req.headers.cookie, cookies.AUTHORIZATION)
 
   if (!token) {
     redirect(ctx, routes.SIGN_UP)
@@ -24,7 +24,14 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
 
     return {
       props: {
-        user,
+        user: {
+          ...user.current_user,
+          expected: {
+            films: user.expected.movies.map(r => releaseAdapter(r, 'films')),
+            series: user.expected.serials.map(r => releaseAdapter(r, 'series')),
+            games: user.expected.games.map(r => releaseAdapter(r, 'games')),
+          },
+        },
       },
     }
   } catch (e) {

@@ -1,0 +1,57 @@
+.Base {
+  margin-top: 0;
+  margin-bottom: var(--sm-space);
+  font-size: var(--xxl-fz);
+  font-weight: var(--bold);
+  letter-spacing: -0.066875rem;
+  line-height: 1.5;
+}
+
+.H1 {
+  margin-bottom: var(--md-space);
+  font-size: var(--xl-fz);
+  line-height: 1.2;
+
+  @media (min-width: 768px) {
+    margin-bottom: var(--lg-space);
+    font-size: var(--xxl-fz);
+    line-height: 1.5;
+  }
+}
+
+.H2 {
+  font-size: var(--lg-fz);
+  letter-spacing: -0.020625rem;
+  line-height: 1.4;
+
+  @media (min-width: 768px) {
+    margin-bottom: var(--md-space);
+    font-size: var(--xl-fz);
+    line-height: 1.5;
+  }
+}
+
+.H3 {
+  font-size: var(--lg-fz);
+  font-weight: var(--medium);
+  letter-spacing: -0.029375rem;
+}
+
+.H4 {
+  font-size: var(--md-fz);
+  font-weight: var(--medium);
+  letter-spacing: -0.020625rem;
+}
+
+.H5 {
+  font-size: var(--sm-fz);
+  font-weight: var(--medium);
+  letter-spacing: -0.01125rem;
+}
+
+.H6 {
+  margin-bottom: var(--xs-space);
+  font-size: var(--xs-fz);
+  font-weight: var(--medium);
+  letter-spacing: -0.005625rem;
+}

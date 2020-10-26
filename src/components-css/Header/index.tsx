@@ -8,7 +8,7 @@ import CalendarNavigation, {
 } from './CalendarNavigation'
 import Navigation from './Navigation'
 import AuthButtons from './AuthButtons'
-import UserAvatar from './Avatar'
+import Avatar from './Avatar'
 import FloatNavigationButton from './FloatNavigationButton'
 import Spinner from '../Spinner'
 import { useMonthChanger } from './useMonthChanger'
@@ -55,7 +55,7 @@ function Header() {
       <div className={styles.RightPart}>
         <Navigation isVisible={isVisibleNavigation} />
         {isLoading ? <Spinner /> : null}
-        {user ? <UserAvatar user={user} /> : isLoading ? null : <AuthButtons />}
+        {user ? <Avatar user={user} /> : isLoading ? null : <AuthButtons />}
       </div>
       <div className={styles.FloatPart}>
         <FloatNavigationButton

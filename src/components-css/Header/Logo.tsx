@@ -12,7 +12,7 @@ function Logo() {
   if (isIndex) {
     return (
       <p
-        style={{ cursor: 'default' }}
+        style={{ cursor: 'default', margin: 0 }}
         className={styles.Logo}
         data-text="released"
       >

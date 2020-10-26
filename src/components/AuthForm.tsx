@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
+import { useMutation, useQueryCache } from 'react-query'
 import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
 import { useFormik } from 'formik'
 import addMinutes from 'date-fns/addMinutes'
 import addHours from 'date-fns/addHours'
 import Cookies from 'js-cookie'
-import { sendConfirmCode, confirm } from 'shared/api'
-import { routes, cookies } from 'shared/constants'
+import { sendConfirmCode, confirm, me } from 'shared/api'
+import { routes, cookies, endpoints } from 'shared/constants'
 import Input from './Input'
 import A from './A'
 
@@ -81,6 +82,7 @@ function AuthText({ type, codeWasSended, email }) {
 }
 
 function AuthForm({ buttonTitle, type }) {
+  const queryCache = useQueryCache()
   const [currentField, setCurrentField] = useState(FIELDS.EMAIL)
   const [authAttemtps] = useState<number>(
     +Cookies.get(cookies.AUTH_ATTEMPTS) || 0,
@@ -113,6 +115,20 @@ function AuthForm({ buttonTitle, type }) {
   function clearError() {
     if (error) setError(null)
   }
+
+  const [signIn] = useMutation(confirm, {
+    onSuccess: async ({ token }) => {
+      Cookies.set(cookies.AUTHORIZATION, token, {
+        expires: 365,
+      })
+      const user = await me(token)
+      queryCache.setQueryData(endpoints.PROFILE, user)
+      Cookies.remove(cookies.AUTH_ATTEMPTS)
+      Cookies.remove(cookies.CODE_HAS_BEEN_SENT)
+      push(routes.ME)
+    },
+    throwOnError: true,
+  })
 
   const {
     handleSubmit,
@@ -161,11 +177,10 @@ function AuthForm({ buttonTitle, type }) {
         }
         case FIELDS.CODE: {
           try {
-            const { token } = await confirm(values.email, values.code)
-            Cookies.remove(cookies.AUTH_ATTEMPTS)
-            Cookies.remove(cookies.CODE_HAS_BEEN_SENT)
-            Cookies.set(cookies.AUTHORIZATION, token, { expires: 365 })
-            push(routes.ME)
+            await signIn({
+              code: values.code,
+              email: values.email,
+            })
           } catch (e) {
             console.error(e)
             setError(

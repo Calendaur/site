@@ -1,0 +1,27 @@
+.FilmsSeriesGames {
+  display: flex;
+  margin-bottom: var(--md-space);
+
+  a {
+    margin-right: var(--sm-space);
+    font-size: var(--lg-fz);
+    font-weight: var(--bold);
+    letter-spacing: -0.020625rem;
+    line-height: 1;
+    opacity: 0.4;
+    transition: opacity 250ms;
+
+    @media (min-width: 768px) {
+      font-size: var(--xl-fz);
+    }
+
+    &:hover,
+    &.isActive {
+      opacity: 1;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

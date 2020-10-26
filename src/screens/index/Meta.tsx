@@ -1,6 +1,5 @@
 import React from 'react'
 import Head from 'next/head'
-import { useAmp } from 'next/amp'
 import { useRouter } from 'next/router'
 
 interface Props {
@@ -11,20 +10,12 @@ interface Props {
 }
 
 function Meta({ meta }: Props) {
-  const isAmp = useAmp()
   const { asPath } = useRouter()
   const fullURL =
     asPath === '/' ? 'https://released.at' : `https://released.at${asPath}`
 
   return (
     <Head>
-      {asPath !== '/' ? (
-        isAmp ? (
-          <link rel="canonical" href={fullURL.replace('/amp', '')} />
-        ) : (
-          <link rel="amphtml" href={`${fullURL}/amp`} />
-        )
-      ) : null}
       <meta property="og:type" content="website" />
       <meta property="og:url" content={fullURL} />
       <meta property="twitter:url" content={fullURL} />

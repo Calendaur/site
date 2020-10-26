@@ -1,0 +1,19 @@
+.UpdateSection {
+  margin-bottom: var(--md-space);
+
+  .UpdateSectionLabel {
+    display: inline-block;
+    padding: 4px 12px;
+    margin-bottom: var(--sm-space);
+    background-color: #fff;
+    border-radius: 4px;
+    color: var(--secondary-text-color);
+    font-size: var(--xs-fz);
+    font-weight: var(--medium);
+    line-height: 1;
+  }
+
+  ul li p a {
+    text-decoration: underline;
+  }
+}

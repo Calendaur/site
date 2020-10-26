@@ -8,6 +8,7 @@ import ru from 'date-fns/locale/ru'
 import cx from 'classnames'
 import { ReleaseType, ReleaseInList } from 'types/common'
 import PlatformList from '../PlatformList'
+import Text from '../Text'
 
 import styles from './styles.module.css'
 
@@ -22,7 +23,7 @@ function renderDate(today: boolean, tomorrow: boolean, date: Date) {
 
   if (tomorrow) return 'завтра'
 
-  return format(date, 'EEEEEE, d MMMM', {
+  return format(date, 'EEEEEE, d MMM', {
     locale: ru,
   })
 }
@@ -47,7 +48,6 @@ function ReleaseCard({ release, source }: Props) {
         <div className={styles.Header}>
           <div
             className={cx(styles.Date, {
-              [styles.fromCalendar]: source === Source.Calendar,
               [styles.isToday]: today,
             })}
           >
@@ -60,12 +60,18 @@ function ReleaseCard({ release, source }: Props) {
           <img src={release.cover} alt={release.title} loading="lazy" />
         </picture>
         <div className={styles.Footer}>
-          <p className={styles.Title}>{release.title}</p>
+          <Text b className={styles.Title}>
+            {release.title}
+          </Text>
           {release.type === ReleaseType.Films && (
-            <p className={styles.Info}>{release.director}</p>
+            <Text i className={styles.Info}>
+              {release.director}
+            </Text>
           )}
           {release.type === ReleaseType.Series && (
-            <p className={styles.Info}>{release.season} сезон</p>
+            <Text i className={styles.Info}>
+              {release.season} сезон
+            </Text>
           )}
           {release.type === ReleaseType.Games && (
             <PlatformList platforms={release.platforms} />

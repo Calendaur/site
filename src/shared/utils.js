@@ -28,6 +28,7 @@ export async function fetchJSON(input, init = {}) {
       ...(init.headers || {}),
       'Content-Type': 'application/json',
     },
+    credentials: 'same-origin',
   })
   return parse(response)
 }
@@ -40,6 +41,7 @@ export async function fetchWithToken(input, init = {}, token) {
       'Content-Type': 'application/json',
       Authorization: token || Cookies.get('authorization'),
     },
+    credentials: 'same-origin',
   })
   return parse(response)
 }
@@ -87,6 +89,7 @@ export function getCookie(source, name) {
     )
     return matches ? decodeURIComponent(matches[1]) : null
   } catch (e) {
+    console.error(e)
     return null
   }
 }

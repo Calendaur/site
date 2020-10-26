@@ -1,32 +1,28 @@
 import { useQuery } from 'react-query'
 import { get, remove } from 'js-cookie'
 import { endpoints, cookies } from 'shared/constants'
+import { me } from 'shared/api'
 
-async function fetchWithToken() {
-  const token = get(cookies.AUTHORIZATION)
-
+async function fetchUser(url: string, token?: string) {
   if (!token) return
 
-  return fetch(endpoints.PROFILE, {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: token,
-    },
-  })
-    .then(res => res.json())
-    .catch(() => {
+  return me(token).catch(e => {
+    console.error(e)
+
+    if (e.response && e.response.status && e.response.status >= 400) {
       remove(cookies.AUTHORIZATION)
-    })
+    }
+  })
 }
 
-export function useUser() {
+export function useUser(initial?: any) {
+  const token = get(cookies.AUTHORIZATION)
   const { isLoading, error, data } = useQuery(
-    endpoints.PROFILE,
-    fetchWithToken,
+    [endpoints.PROFILE, token],
+    fetchUser,
     {
       retry: false,
-      refetchOnMount: true,
-      refetchOnReconnect: true,
+      initialData: initial,
     },
   )
 

@@ -22,7 +22,7 @@ export function useUser(initial?: User): UseUser {
   )
 
   if (token && error && !data) {
-    Cookies.remove(cookies.AUTHORIZATION)
+    // Cookies.remove(cookies.AUTHORIZATION)
   }
 
   if (!token) {
