@@ -34,7 +34,7 @@
 .Link {
   font-size: var(--sm-fz);
   font-weight: var(--medium);
-  opacity: 0.75;
+  opacity: 0.6;
   transition: opacity 100ms;
 
   &:hover {

@@ -76,7 +76,7 @@
     --size: 42px;
 
     font-size: var(--md-fz);
-    opacity: 0.75;
+    opacity: 0.6;
     transition: opacity 100ms;
 
     &:hover {
@@ -462,7 +462,7 @@
     padding-bottom: var(--xxs-space);
     font-size: var(--sm-fz);
     font-weight: var(--medium);
-    opacity: 0.75;
+    opacity: 0.6;
     transition: opacity 100ms;
     white-space: nowrap;
 

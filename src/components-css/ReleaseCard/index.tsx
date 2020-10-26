@@ -56,13 +56,11 @@ function ReleaseCard({ release, source }: Props) {
         </div>
         <picture>
           <source srcSet={`${release.cover}.webp`} type="image/webp" />
-          <source srcSet={release.cover} type="image/jpeg " />
+          <source srcSet={release.cover} type="image/jpeg" />
           <img src={release.cover} alt={release.title} loading="lazy" />
         </picture>
         <div className={styles.Footer}>
-          <Text b className={styles.Title}>
-            {release.title}
-          </Text>
+          <Text className={styles.Title}>{release.title}</Text>
           {release.type === ReleaseType.Films && (
             <Text i className={styles.Info}>
               {release.director}

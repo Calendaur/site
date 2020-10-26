@@ -1,0 +1,11 @@
+.Section {
+  margin-bottom: var(--lg-space);
+}
+
+.ReleasesGrid {
+  margin-bottom: var(--md-space);
+
+  &.isLast {
+    margin-bottom: 0;
+  }
+}

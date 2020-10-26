@@ -9,13 +9,13 @@ import styles from './styles.module.css'
 
 interface Props {
   className?: string
-  tileWidth: number
+  minTileWidth?: number
 }
 
 function ResponsiveGrid({
   className,
   children,
-  tileWidth,
+  minTileWidth = 288,
   ...rest
 }: PropsWithChildren<
   Props & DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
@@ -25,7 +25,7 @@ function ResponsiveGrid({
       className={cx(styles.Grid, className)}
       {...rest}
       style={{
-        gridTemplateColumns: `repeat(auto-fill, minmax(${tileWidth}px, 1fr))`,
+        gridTemplateColumns: `repeat(auto-fill, minmax(${minTileWidth}px, 1fr))`,
       }}
     >
       {children}

@@ -226,6 +226,10 @@ button {
   cursor: pointer;
 }
 
+main {
+  margin-bottom: var(--lg-space);
+}
+
 header,
 main,
 footer {

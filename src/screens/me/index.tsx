@@ -4,52 +4,12 @@ import { useRouter } from 'next/router'
 import { useQueryCache, useMutation } from 'react-query'
 import { remove } from 'js-cookie'
 import compareAsc from 'date-fns/compareAsc'
-import { Button, ResponsiveGrid, Title, Text } from 'components-css'
-import ReleaseCard, { Source } from 'components-css/ReleaseCard'
+import { Button, Title, Text } from 'components-css'
 import { logout } from 'shared/api'
 import { routes, endpoints, cookies } from 'shared/constants'
+import ReleasesGrid from './ReleasesGrid'
 
-// const ExpectedReleases = styled.section`
-//   margin-bottom: var(--vertical-1);
-
-//   & > h1 {
-//     line-height: 1;
-//   }
-
-//   & > h3 {
-//     margin-bottom: var(--vertical-6);
-//   }
-// `
-
-// const Note = styled.p`
-//   margin: 0;
-//   margin-bottom: var(--vertical-5);
-//   font-size: 14px;
-//   color: var(--secondary-text);
-
-//   & > span {
-//     padding: 1px 4px;
-//     margin-left: var(--horizontal-6);
-//     color: var(--black);
-//     white-space: nowrap;
-//     background-color: #dbdbdb;
-//     border-radius: 4px;
-//   }
-// `
-
-// const ReleasesSection = styled.div`
-//   margin-bottom: var(--vertical-4);
-// `
-
-// const Grid = styled.div`
-//   display: grid;
-//   grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
-//   grid-gap: 16px;
-
-//   & > a {
-//     height: 200px;
-//   }
-// `
+import styles from './styles.module.css'
 
 function prepareData(arr) {
   let result = {
@@ -88,61 +48,41 @@ function Me({ user }) {
   const hasNonActual =
     [...films.nonActual, ...games.nonActual, ...series.nonActual].length > 0
 
+  const noReleases = !hasActual && !hasNonActual
+
   return (
     <>
       <Head>
         <title>Личный кабинет</title>
       </Head>
       <Title>{email}</Title>
+      {noReleases && (
+        <Text>
+          Сейчас у&nbsp;вас нет ожидаемых релизов. Чтобы их&nbsp;добавить,
+          нажмите на&nbsp;кнопку с&nbsp;огнем или с&nbsp;закладкой
+          в&nbsp;карточке релиза. В&nbsp;день релиза вы&nbsp;получите
+          пуш-уведомление, поэтому не&nbsp;забудьте их&nbsp;включить. Если релиз
+          еще не&nbsp;вышел, то&nbsp;он&nbsp;попадет в&nbsp;секцию
+          &laquo;Ожидаемые релизы&raquo;, а&nbsp;если уже вышел,
+          то&nbsp;в&nbsp;секцию &laquo;Уже вышло&raquo;.
+        </Text>
+      )}
       {hasActual ? (
-        <section>
+        <section className={styles.Section}>
           <Title h2>Ожидаемые релизы</Title>
-          <Title h3>Кино</Title>
-          {films.actual.length ? (
-            <ResponsiveGrid tileWidth={288}>
-              {films.actual.map(r => (
-                <ReleaseCard
-                  key={r.release_id}
-                  release={r}
-                  source={Source.Profile}
-                />
-              ))}
-            </ResponsiveGrid>
-          ) : null}
-          <Title h3>Сериалы</Title>
-          {series.actual.length ? (
-            <ResponsiveGrid tileWidth={288}>
-              {series.actual.map(r => (
-                <ReleaseCard
-                  key={r.release_id}
-                  release={r}
-                  source={Source.Profile}
-                />
-              ))}
-            </ResponsiveGrid>
-          ) : null}
-          <Title h3>Игры</Title>
-          {games.actual.length ? (
-            <ResponsiveGrid tileWidth={288}>
-              {games.actual.map(r => (
-                <ReleaseCard
-                  key={r.release_id}
-                  release={r}
-                  source={Source.Profile}
-                />
-              ))}
-            </ResponsiveGrid>
-          ) : null}
+          <ReleasesGrid title="Кино" releases={films.actual} />
+          <ReleasesGrid title="Сериалы" releases={series.actual} />
+          <ReleasesGrid title="Игры" releases={games.actual} last />
         </section>
       ) : (
         <Text>Нет ожидаемых релизов</Text>
       )}
       {hasNonActual && (
-        <section>
+        <section className={styles.Section}>
           <Title h2>Вышедшие релизы</Title>
-          <Title h3>Кино</Title>
-          <Title h3>Сериалы</Title>
-          <Title h3>Игры</Title>
+          <ReleasesGrid title="Кино" releases={films.nonActual} />
+          <ReleasesGrid title="Сериалы" releases={series.nonActual} />
+          <ReleasesGrid title="Игры" releases={games.nonActual} last />
         </section>
       )}
       <Button
