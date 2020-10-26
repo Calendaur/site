@@ -9,7 +9,7 @@ export const releases = (type, date) =>
   fetchJSON(endpoints.RELEASES(type, date))
 export const release = id => fetchJSON(endpoints.RELEASE(id))
 export const today = () => fetchJSON(endpoints.TODAY)
-export const expect = id =>
+export const expect = ({ id }) =>
   fetchWithToken(endpoints.EXPECT(id), {
     method: 'post',
   })

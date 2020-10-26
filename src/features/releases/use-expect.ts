@@ -4,29 +4,30 @@ import { useRouter } from 'next/router'
 import { useUser } from 'features/user/use-user2'
 import { endpoints, routes } from 'shared/constants'
 import * as api from 'shared/api'
+import {
+  UserResponse,
+  ReleaseType,
+  BackendReleaseType,
+  ReleaseInList,
+} from 'types/common'
 
-function typeAdapter(type) {
+function typeAdapter(type: ReleaseType): BackendReleaseType {
   switch (type) {
-    case 'films':
-    case 'movie':
-    case 'movies':
-      return 'movies'
-    case 'games':
-    case 'game':
-      return 'games'
-    case 'series':
-    case 'serial':
-    case 'serials':
-      return 'serials'
+    case ReleaseType.Films:
+      return BackendReleaseType.Films
+    case ReleaseType.Games:
+      return BackendReleaseType.Games
+    case ReleaseType.Series:
+      return BackendReleaseType.Series
   }
 }
 
-export function useExpect(releaseId, frontendType) {
+export function useExpect(release: ReleaseInList) {
   const { push } = useRouter()
   const cache = useQueryCache()
   const { user } = useUser()
   const { PROFILE } = endpoints
-  const backendType = useMemo(() => typeAdapter(frontendType), [frontendType])
+  const backendType = typeAdapter(release.type)
 
   const [expect] = useMutation(api.expect, {
     onMutate: ({ id }) => {
@@ -34,7 +35,7 @@ export function useExpect(releaseId, frontendType) {
 
       const prevValue = cache.getQueryData(PROFILE)
 
-      cache.setQueryData(PROFILE, cachedUser => {
+      cache.setQueryData(PROFILE, (cachedUser: UserResponse) => {
         const releaseIdsSet = new Set(
           cachedUser.expected[backendType].map(i => i.release_id),
         )
@@ -43,11 +44,11 @@ export function useExpect(releaseId, frontendType) {
           ...cachedUser,
           expected: {
             ...cachedUser.expected,
-            [type]: releaseIdsSet.has(id)
-              ? cachedUser.expected[type].filter(
+            [backendType]: releaseIdsSet.has(id)
+              ? cachedUser.expected[backendType].filter(
                   ({ release_id }) => release_id !== id,
                 )
-              : [...cachedUser.expected[type], release],
+              : [...cachedUser.expected[backendType], release],
           },
         }
 
@@ -64,11 +65,15 @@ export function useExpect(releaseId, frontendType) {
   })
 
   const releaseIdsSet = useMemo(() => {
+    if (!user) return new Set()
+
     return new Set(user.expected[backendType].map(i => i.release_id))
   }, [user, backendType])
 
   return {
-    expect: user ? () => expect({ id: releaseId }) : () => push(routes.SIGN_UP),
-    isExpected: user ? releaseIdsSet.has(releaseId) : false,
+    expect: user
+      ? () => expect({ id: release.release_id })
+      : () => push(routes.SIGN_UP),
+    isExpected: user ? releaseIdsSet.has(release.release_id) : false,
   }
 }

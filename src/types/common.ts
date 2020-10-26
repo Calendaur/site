@@ -11,6 +11,12 @@ export enum ReleaseType {
   Series = 'series',
 }
 
+export enum BackendReleaseType {
+  Films = 'movies',
+  Games = 'games',
+  Series = 'serials',
+}
+
 export enum GamePlatform {
   PC = 'pc',
   PS4 = 'ps_4',
@@ -58,6 +64,17 @@ export interface UserProfile {
   expected: {
     films: ReleaseInList[]
     series: ReleaseInList[]
+    games: ReleaseInList[]
+  }
+}
+
+export interface UserResponse {
+  current_user: {
+    email: string
+  }
+  expected: {
+    movies: ReleaseInList[]
+    serials: ReleaseInList[]
     games: ReleaseInList[]
   }
 }

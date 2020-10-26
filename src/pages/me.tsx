@@ -1,20 +1,17 @@
 import React from 'react'
 import { GetServerSideProps } from 'next'
+import { QueryCache } from 'react-query'
+import { dehydrate } from 'react-query/hydration'
 import Me from 'screens/me'
 import { me } from 'shared/api'
-import { redirect, getCookie, releaseAdapter } from 'shared/utils'
-import { routes, cookies } from 'shared/constants'
+import { redirect, getCookie } from 'shared/utils'
+import { routes, cookies, endpoints } from 'shared/constants'
 import { usePushNotifications } from 'features/notifications/use-push-notifications'
-import { UserProfile } from 'types/common'
 
-interface Props {
-  user: UserProfile
-}
-
-function MePage({ user }: Props) {
+function MePage() {
   usePushNotifications()
 
-  return <Me user={user} />
+  return <Me />
 }
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
@@ -25,18 +22,20 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   }
 
   try {
-    const user = await me(token)
+    const queryCache = new QueryCache()
+    await queryCache.prefetchQuery(endpoints.PROFILE, () => me(token))
 
     return {
       props: {
-        user: {
-          ...user.current_user,
-          expected: {
-            films: user.expected.movies.map(r => releaseAdapter(r, 'films')),
-            series: user.expected.serials.map(r => releaseAdapter(r, 'series')),
-            games: user.expected.games.map(r => releaseAdapter(r, 'games')),
-          },
-        },
+        dehydratedState: dehydrate(queryCache),
+        // user: {
+        //   ...user.current_user,
+        //   expected: {
+        //     films: user.expected.movies.map(r => releaseAdapter(r, 'films')),
+        //     series: user.expected.serials.map(r => releaseAdapter(r, 'series')),
+        //     games: user.expected.games.map(r => releaseAdapter(r, 'games')),
+        //   },
+        // },
       },
     }
   } catch (e) {

@@ -9,6 +9,7 @@ import cx from 'classnames'
 import { ReleaseType, ReleaseInList } from 'types/common'
 import PlatformList from '../PlatformList'
 import Text from '../Text'
+import ExpectButton from '../ExpectButton'
 
 import styles from './styles.module.css'
 
@@ -53,6 +54,7 @@ function ReleaseCard({ release, source }: Props) {
           >
             {renderDate(today, tomorrow, releasedDate)}
           </div>
+          <ExpectButton release={release} />
         </div>
         <picture>
           <source srcSet={`${release.cover}.webp`} type="image/webp" />

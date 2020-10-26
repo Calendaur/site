@@ -5,15 +5,18 @@ import { useQueryCache, useMutation } from 'react-query'
 import { remove } from 'js-cookie'
 import compareAsc from 'date-fns/compareAsc'
 import { Button, Title, Text } from 'components-css'
+import { useUser } from 'features/user/use-user2'
 import { logout } from 'shared/api'
+import { releaseAdapter } from 'shared/utils'
 import { routes, endpoints, cookies } from 'shared/constants'
-import { UserProfile, ReleaseInList } from 'types/common'
+import { ReleaseInList } from 'types/common'
 import ReleasesGrid from './ReleasesGrid'
 
 import styles from './styles.module.css'
 
 function prepareData(
   releases: ReleaseInList[],
+  type: 'films' | 'series' | 'games',
 ): {
   actual: ReleaseInList[]
   nonActual: ReleaseInList[]
@@ -24,21 +27,20 @@ function prepareData(
   }
 
   releases.forEach(release => {
+    const adaptedRelease = releaseAdapter(release, type)
+
     if (compareAsc(new Date(), new Date(release.released)) <= 0) {
-      result.actual.push(release)
+      result.actual.push(adaptedRelease)
     } else {
-      result.nonActual.push(release)
+      result.nonActual.push(adaptedRelease)
     }
   })
 
   return result
 }
 
-interface Props {
-  user: UserProfile
-}
-
-function Me({ user }: Props) {
+function Me() {
+  const { user } = useUser()
   const queryCache = useQueryCache()
   const { push } = useRouter()
   const [signOut] = useMutation(logout, {
@@ -48,11 +50,19 @@ function Me({ user }: Props) {
       push(routes.HOME)
     },
   })
-  const { expected, email } = user
+  const {
+    current_user: { email },
+  } = user
 
-  const films = prepareData(expected.films)
-  const games = prepareData(expected.games)
-  const series = prepareData(expected.series)
+  const expected = {
+    films: user.expected.movies,
+    series: user.expected.serials,
+    games: user.expected.games,
+  }
+
+  const films = prepareData(expected.films, 'films')
+  const games = prepareData(expected.games, 'games')
+  const series = prepareData(expected.series, 'series')
 
   const hasActual = [...films.actual, games.actual, series.actual].length > 0
   const hasNonActual =

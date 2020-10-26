@@ -1,23 +1,19 @@
 .ReleaseCard {
   position: relative;
   overflow: hidden;
+  background-color: var(--black-color);
   border-radius: 20px;
 
   @media (min-width: 768px) {
-    transition: transform 250ms;
-
-    &:hover {
-      transform: translate(0, -4px);
-    }
-
-    &:active {
-      transform: translate(0, 0);
+    &:hover picture {
+      opacity: 0.65;
     }
   }
 
   picture {
     display: flex;
     height: 100%;
+    transition: opacity 250ms;
 
     &::after {
       position: absolute;
@@ -38,10 +34,11 @@
 
 .Header {
   position: absolute;
-  z-index: 3;
+  z-index: 20;
   top: 0;
   display: flex;
   width: 100%;
+  align-items: flex-start;
   justify-content: space-between;
   padding: 8px;
 }

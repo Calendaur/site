@@ -6,12 +6,16 @@ import 'styles/nprogress.css'
 
 import React, { useEffect } from 'react'
 import { AppProps } from 'next/app'
+import { ReactQueryCacheProvider, QueryCache } from 'react-query'
+import { Hydrate } from 'react-query/hydration'
 import { CacheProvider } from '@emotion/react'
 import { cache } from '@emotion/css'
 import { configure, start, done } from 'nprogress'
 import Page from 'components-css/Page'
 
 configure({ showSpinner: false })
+
+const queryCache = new QueryCache()
 
 function CustomApp({ Component, pageProps, router: { events } }: AppProps) {
   useEffect(() => {
@@ -27,11 +31,15 @@ function CustomApp({ Component, pageProps, router: { events } }: AppProps) {
   }, []) // eslint-disable-line
 
   return (
-    <CacheProvider value={cache}>
-      <Page>
-        <Component {...pageProps} />
-      </Page>
-    </CacheProvider>
+    <ReactQueryCacheProvider queryCache={queryCache}>
+      <Hydrate state={pageProps.dehydratedState}>
+        <CacheProvider value={cache}>
+          <Page>
+            <Component {...pageProps} />
+          </Page>
+        </CacheProvider>
+      </Hydrate>
+    </ReactQueryCacheProvider>
   )
 }
 

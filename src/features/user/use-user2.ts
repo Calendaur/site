@@ -2,8 +2,11 @@ import { useQuery } from 'react-query'
 import { get, remove } from 'js-cookie'
 import { endpoints, cookies } from 'shared/constants'
 import { me } from 'shared/api'
+import { UserResponse } from 'types/common'
 
-async function fetchUser(url: string, token?: string) {
+async function fetchUser() {
+  const token = get(cookies.AUTHORIZATION)
+
   if (!token) return
 
   return me(token).catch(e => {
@@ -15,10 +18,9 @@ async function fetchUser(url: string, token?: string) {
   })
 }
 
-export function useUser(initial?: any) {
-  const token = get(cookies.AUTHORIZATION)
-  const { isLoading, error, data } = useQuery(
-    [endpoints.PROFILE, token],
+export function useUser(initial?: UserResponse) {
+  const { isLoading, error, data } = useQuery<UserResponse>(
+    endpoints.PROFILE,
     fetchUser,
     {
       retry: false,
