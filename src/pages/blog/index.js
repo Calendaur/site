@@ -1,4 +1,3 @@
-import React from 'react'
 import PostList from 'screens/blog/PostList'
 import * as api from 'shared/api'
 

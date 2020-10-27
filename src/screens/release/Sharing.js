@@ -1,4 +1,3 @@
-import React from 'react'
 import { useAmp } from 'next/amp'
 import styled from '@emotion/styled'
 import { center } from 'shared/css-utils'

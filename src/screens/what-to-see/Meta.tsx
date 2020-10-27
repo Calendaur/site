@@ -1,4 +1,3 @@
-import React from 'react'
 import Head from 'next/head'
 import { useFullURL } from 'shared/hooks'
 import { META_IMG } from 'shared/constants'

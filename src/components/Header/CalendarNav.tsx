@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { routes } from 'shared/constants'
 import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'

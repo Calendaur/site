@@ -1,4 +1,5 @@
-import React from 'react'
+import format from 'date-fns/format'
+import ru from 'date-fns/locale/ru'
 import slugify from '@sindresorhus/slugify'
 import { A } from 'components'
 import { routes } from 'shared/constants'

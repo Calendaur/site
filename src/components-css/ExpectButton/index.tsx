@@ -1,4 +1,3 @@
-import React from 'react'
 import cx from 'classnames'
 import compareAsc from 'date-fns/compareAsc'
 import { useExpect } from 'features/releases/use-expect'

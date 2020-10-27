@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 import Meta from './Meta'
 import Header from '../components-css/Header'
 import Footer from './Footer'

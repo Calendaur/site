@@ -1,4 +1,4 @@
-import React from 'react'
+
 import cx from 'classnames'
 import { GamePlatform } from 'types/common'
 

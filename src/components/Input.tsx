@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes } from 'react'
+import  { InputHTMLAttributes } from 'react'
 import styled from '@emotion/styled'
 
 interface Props {

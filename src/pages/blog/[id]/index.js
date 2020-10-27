@@ -1,4 +1,3 @@
-import React from 'react'
 import slugify from '@sindresorhus/slugify'
 import Post from 'screens/blog/Post'
 import * as api from 'shared/api'

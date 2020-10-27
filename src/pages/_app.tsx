@@ -4,7 +4,7 @@ import 'styles/global.css'
 import 'styles/lazyload.css'
 import 'styles/nprogress.css'
 
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { AppProps } from 'next/app'
 import { ReactQueryCacheProvider, QueryCache } from 'react-query'
 import { Hydrate } from 'react-query/hydration'

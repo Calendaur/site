@@ -1,4 +1,4 @@
-import React from 'react'
+
 import styled from '@emotion/styled'
 import { routes } from 'shared/constants'
 import Button from '../Button'

@@ -1,4 +1,4 @@
-import React, { useMemo, memo, useState, SyntheticEvent } from 'react'
+import  { useMemo, memo, useState, SyntheticEvent } from 'react'
 import { useRouter } from 'next/router'
 import { useAmp } from 'next/amp'
 import styled from '@emotion/styled'

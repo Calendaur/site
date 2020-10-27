@@ -1,4 +1,3 @@
-import React from 'react'
 import Head from 'next/head'
 import { Title, ChangeLog } from 'components-css'
 import { routes } from 'shared/constants'
@@ -67,7 +66,7 @@ function WhatsNew() {
 
 export default WhatsNew
 
-// import React from 'react'
+//
 // import Head from 'next/head'
 // import styled from '@emotion/styled'
 // import { Emoji, A, Button } from 'components'

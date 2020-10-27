@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, HTMLAttributes } from 'react'
+import { PropsWithChildren, HTMLAttributes } from 'react'
 
 interface Props {
   label: string

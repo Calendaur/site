@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, PropsWithChildren } from 'react'
+import { HTMLAttributes, PropsWithChildren } from 'react'
 import Link from 'next/link'
 
 export interface Props {

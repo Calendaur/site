@@ -1,4 +1,3 @@
-import React from 'react'
 import Head from 'next/head'
 import styled from '@emotion/styled'
 import format from 'date-fns/format'

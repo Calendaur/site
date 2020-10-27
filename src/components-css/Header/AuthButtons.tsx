@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { useRouter } from 'next/router'
 import { routes } from 'shared/constants'
 import Button from '../Button'

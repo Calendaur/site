@@ -1,4 +1,3 @@
-import React from 'react'
 import dynamic from 'next/dynamic'
 import { Calendar, FilmsSeriesGames } from 'components-css'
 import Meta from './Meta'

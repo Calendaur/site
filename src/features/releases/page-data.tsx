@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react'
+import  { createContext, useContext } from 'react'
 import { Month } from 'types/common'
 import { getPageData } from './helpers'
 import { ReleaseType } from './types'

@@ -1,4 +1,3 @@
-import React from 'react'
 import cx from 'classnames'
 import ResponsiveGrid from 'components-css/ResponsiveGrid'
 import ReleaseCard, { Source } from 'components-css/ReleaseCard'

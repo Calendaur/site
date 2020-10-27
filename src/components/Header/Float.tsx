@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import  { useEffect } from 'react'
 import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
 import { useDateCarousel } from './useDateCarousel'

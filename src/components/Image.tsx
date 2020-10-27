@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react'
+import  { HTMLAttributes } from 'react'
 import { useAmp } from 'next/amp'
 import { IMG_PLACEHOLDER } from 'shared/constants'
 

@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { useRouter } from 'next/router'
 import { months, monthsDict } from 'shared/constants'
 import Title from '../Title'

@@ -1,4 +1,4 @@
-import React from 'react'
+
 import styled from '@emotion/styled'
 import { routes } from 'shared/constants'
 import A from './A'

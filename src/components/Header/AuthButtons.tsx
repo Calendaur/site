@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { useRouter } from 'next/router'
 import { useUser } from 'features/user/use-user'
 import { routes } from 'shared/constants'

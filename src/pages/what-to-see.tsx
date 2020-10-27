@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { GetServerSideProps } from 'next'
 import shuffle from 'lodash.shuffle'
 import WhatToSeeScreen from 'screens/what-to-see'

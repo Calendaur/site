@@ -1,4 +1,4 @@
-import React from 'react'
+
 import format from 'date-fns/format'
 import isToday from 'date-fns/isToday'
 import cx from 'classnames'

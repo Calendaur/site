@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from '@emotion/styled'
 import { Film } from 'types/releases'
 import ReleaseCard from '../index/ReleaseCard'

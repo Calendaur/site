@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { GetServerSideProps } from 'next'
 import { QueryCache } from 'react-query'
 import { dehydrate } from 'react-query/hydration'

@@ -1,4 +1,4 @@
-import React from 'react'
+
 import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
 import cx from 'classnames'

@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Link from 'next/link'
 import { routes } from 'shared/constants'
 import Text from '../Text'

@@ -1,4 +1,3 @@
-import React from 'react'
 import TodayScreen from 'screens/today'
 import { today } from 'shared/api'
 

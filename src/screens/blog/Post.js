@@ -1,4 +1,3 @@
-import React from 'react'
 import Head from 'next/head'
 import slugify from '@sindresorhus/slugify'
 import styled from '@emotion/styled'

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import styled from '@emotion/styled'
 import { addMonths, eachMonthOfInterval, format } from 'date-fns'
