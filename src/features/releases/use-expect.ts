@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { useQueryCache, useMutation } from 'react-query'
 import { useRouter } from 'next/router'
+import { toast, Slide } from 'react-toastify'
 import { useUser } from 'features/user/use-user2'
 import { endpoints, routes } from 'shared/constants'
 import * as api from 'shared/api'
@@ -22,7 +23,11 @@ function typeAdapter(type: ReleaseType): BackendReleaseType {
   }
 }
 
-export function useExpect(release: ReleaseInList) {
+export function useExpect(
+  release: ReleaseInList,
+  isActual: boolean,
+  toastClassName: string,
+) {
   const { push } = useRouter()
   const cache = useQueryCache()
   const { user } = useUser()
@@ -70,10 +75,31 @@ export function useExpect(release: ReleaseInList) {
     return new Set(user.expected[backendType].map(i => i.release_id))
   }, [user, backendType])
 
+  const isExpected = user ? releaseIdsSet.has(release.release_id) : false
+
   return {
     expect: user
-      ? () => expect({ id: release.release_id })
+      ? () => {
+          function toastMessage() {
+            if (isActual) {
+              return isExpected
+                ? `Вы отписались от «${release.title}»`
+                : `Вы подписались на «${release.title}»`
+            }
+
+            return isExpected
+              ? `Вы удалили «${release.title}» из избранного`
+              : `Вы добавили «${release.title}» в избранное`
+          }
+
+          expect({ id: release.release_id })
+          toast(toastMessage(), {
+            autoClose: 2400,
+            className: toastClassName,
+            transition: Slide,
+          })
+        }
       : () => push(routes.SIGN_UP),
-    isExpected: user ? releaseIdsSet.has(release.release_id) : false,
+    isExpected,
   }
 }

@@ -1,4 +1,3 @@
-
 import Link from 'next/link'
 import slugify from '@sindresorhus/slugify'
 import format from 'date-fns/format'

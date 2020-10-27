@@ -30,6 +30,9 @@ const nextConfig = {
       },
     ]
   },
+  images: {
+    domains: ['api.released.at'],
+  },
 }
 
 module.exports = withOffline(nextConfig)
