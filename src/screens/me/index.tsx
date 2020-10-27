@@ -89,7 +89,10 @@ function Me() {
       )}
       {hasActual ? (
         <section className={styles.Section}>
-          <Title h2>Ожидаемые релизы</Title>
+          <Title h2>
+            Ожидаемые релизы{' '}
+            <img width="24" height="24" src="/icons/fire-on.svg" alt="" />
+          </Title>
           <ReleasesGrid title="Кино" releases={films.actual} />
           <ReleasesGrid title="Сериалы" releases={series.actual} />
           <ReleasesGrid title="Игры" releases={games.actual} last />
@@ -99,7 +102,10 @@ function Me() {
       )}
       {hasNonActual && (
         <section className={styles.Section}>
-          <Title h2>Вышедшие релизы</Title>
+          <Title h2>
+            Избранное{' '}
+            <img width="24" height="24" src="/icons/star-on.svg" alt="" />
+          </Title>
           <ReleasesGrid title="Кино" releases={films.nonActual} />
           <ReleasesGrid title="Сериалы" releases={series.nonActual} />
           <ReleasesGrid title="Игры" releases={games.nonActual} last />

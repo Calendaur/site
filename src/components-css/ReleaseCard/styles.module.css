@@ -14,12 +14,14 @@
     display: flex;
     height: 100%;
     transition: opacity 250ms;
+    user-select: none;
 
     &::after {
       position: absolute;
+      top: 20%;
       left: 0;
       width: 100%;
-      height: 100%;
+      height: 80%;
       background-image: var(--release-card-cover-gradient);
       content: '';
     }
@@ -28,6 +30,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      user-select: none;
     }
   }
 }
@@ -45,10 +48,9 @@
 
 .Date {
   padding: 4px 12px;
-  background-color: var(--lighter-grey-color);
+  background-color: hsla(0, 0%, 0%, 0.5);
   border-radius: 16px;
-  box-shadow: 0 2px 8px hsla(0, 0%, 0%, 0.3);
-  color: var(--secondary-text-color);
+  color: var(--primary-text-color);
   font-size: var(--xs-fz);
   font-weight: var(--medium);
   letter-spacing: -0.020625rem;
@@ -82,7 +84,6 @@
     font-size: var(--sm-fz);
     font-weight: var(--medium);
     line-height: 1.3;
-    text-shadow: 2px 4px 3px hsla(0, 0%, 0%, 0.3);
   }
 
   .Info {

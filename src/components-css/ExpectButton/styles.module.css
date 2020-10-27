@@ -1,20 +1,46 @@
 .Button {
+  position: relative;
   display: flex;
   width: 42px;
   height: 28px;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(to right, rgb(255, 153, 102), rgb(255, 94, 98));
+  background: var(--accent-gradient);
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
-  transition: box-shadow 250ms, transition 300ms ease-in-out;
+  box-shadow: var(--drop-shadow);
+  transition: box-shadow 300ms, transform 300ms;
+
+  &::after {
+    position: absolute;
+    z-index: 999;
+    top: calc(100% + 4px);
+    right: 0;
+    padding: 4px 8px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
+    color: #fff;
+    content: attr(aria-label);
+    font-size: var(--xxs-fz);
+    opacity: 0;
+    pointer-events: none;
+    transition: 300ms;
+    white-space: nowrap;
+
+    @media (min-width: 1200px) and (max-width: 1441px) {
+      font-size: 10px;
+    }
+  }
 
   &:hover {
-    background: rgb(255, 153, 102);
+    background: var(--accent-hover-color);
+
+    &::after {
+      opacity: 1;
+    }
   }
 
   &:active {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0);
+    box-shadow: none;
     transform: translateY(1px);
   }
 }

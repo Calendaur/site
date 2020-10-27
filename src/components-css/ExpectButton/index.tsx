@@ -26,12 +26,21 @@ function ExpectButton({ release, className }: Props) {
     }
 
     return (
-      <img width="16" height="16" src={`/icons/bookmark-${onOff}.svg`} alt="" />
+      <img width="20" height="20" src={`/icons/star-${onOff}.svg`} alt="" />
     )
+  }
+
+  function renderTooltip() {
+    if (isActual) {
+      return isExpected ? 'Отписаться от релиза' : 'Следить за релизом'
+    }
+
+    return isExpected ? 'Удалить из избранного' : 'Добавить в избранное'
   }
 
   return (
     <button
+      aria-label={renderTooltip()}
       className={cx(styles.Button, className)}
       onClick={e => {
         e.preventDefault()

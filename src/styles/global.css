@@ -66,6 +66,7 @@
   --secondary-lighter-color: hsl(0, 0%, 90%);
   --secondary-light-color: hsl(0, 0%, 82%);
   --secondary-dark-color: hsl(0, 0%, 65%);
+  --accent-hover-color: hsl(20, 100%, 70%);
   --bg-color: hsl(0, 0%, 4%);
   --primary-text-color: hsl(0, 0%, 96%);
   --secondary-text-color: hsl(0, 0%, 10%);
@@ -120,15 +121,21 @@
   --xxl-space: 84px;
 
   /* OTHER */
+  --accent-gradient: linear-gradient(
+    to right,
+    hsl(20, 100%, 70%),
+    hsl(359, 100%, 68%)
+  );
   --avatar-gradient: linear-gradient(90deg, #8e2de2, #4a00e0);
+  --drop-shadow: 0 2px 8px hsla(0, 0%, 0%, 0.15);
   --dark-drop-shadow: 0 2px 8px hsla(0, 0%, 0%, 0.65);
   --neumorphic-bg: hsl(0, 0%, 4%);
   --neumorphic-shadow: 6px 6px 12px hsl(0, 0%, 3%),
     -6px -6px 12px hsl(0, 0%, 5%);
   --release-card-cover-gradient: linear-gradient(
     180deg,
-    hsla(0, 0%, 0%, 0.2) 0%,
-    hsla(0, 0%, 0%, 0.85) 100%
+    hsla(0, 0%, 0%, 0) 0%,
+    hsla(0, 0%, 5%, 0.95) 100%
   );
   --mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
 
