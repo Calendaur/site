@@ -3,6 +3,7 @@ import 'lazysizes'
 import 'styles/global.css'
 import 'styles/lazyload.css'
 import 'styles/nprogress.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 import { useEffect } from 'react'
 import { AppProps } from 'next/app'

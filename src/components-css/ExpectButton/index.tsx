@@ -1,4 +1,5 @@
 import cx from 'classnames'
+import { toast, Slide } from 'react-toastify'
 import compareAsc from 'date-fns/compareAsc'
 import { useExpect } from 'features/releases/use-expect'
 import { ReleaseInList } from 'types/common'
@@ -37,6 +38,18 @@ function ExpectButton({ release, className }: Props) {
     return isExpected ? 'Удалить из избранного' : 'Добавить в избранное'
   }
 
+  function toastMessage() {
+    if (isActual) {
+      return isExpected
+        ? `Вы отписались от «${release.title}»`
+        : `Вы подписались на «${release.title}»`
+    }
+
+    return isExpected
+      ? `Вы удалили «${release.title}» из избранного`
+      : `Вы добавили «${release.title}» в избранное`
+  }
+
   return (
     <button
       aria-label={renderTooltip()}
@@ -45,6 +58,11 @@ function ExpectButton({ release, className }: Props) {
         e.preventDefault()
         e.stopPropagation()
         expect()
+        toast(toastMessage(), {
+          autoClose: 2400,
+          className: styles.Toast,
+          transition: Slide,
+        })
       }}
     >
       {renderIcon()}
