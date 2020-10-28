@@ -1,22 +1,11 @@
-const withOffline = require('next-offline')
+const withPWA = require('next-pwa')
+const runtimeCaching = require('next-pwa/cache')
 
 const nextConfig = {
-  workboxOpts: {
-    importScripts: ['./scripts/push.js'],
-    swDest: 'static/service-worker.js',
-    runtimeCaching: [
-      {
-        urlPattern: /^https?.*/,
-        handler: 'NetworkFirst',
-        options: {
-          cacheName: 'offlineCache',
-          networkTimeoutSeconds: 15,
-          expiration: {
-            maxEntries: 200,
-          },
-        },
-      },
-    ],
+  pwa: {
+    disable: process.env.NODE_ENV === 'development',
+    dest: 'public',
+    runtimeCaching,
   },
   async rewrites() {
     return [
@@ -35,4 +24,4 @@ const nextConfig = {
   },
 }
 
-module.exports = withOffline(nextConfig)
+module.exports = withPWA(nextConfig)
