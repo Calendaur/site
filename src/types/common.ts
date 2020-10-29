@@ -59,6 +59,57 @@ export type GameInList = {
 
 export type ReleaseInList = FilmInList | SeriesInList | GameInList
 
+export type FilmWithDetails = {
+  id: number
+  release_id: number
+  released: string
+  cover: string
+  title: string
+  original_title?: string
+  description: string
+  kinopoisk_url: string
+  imdb_url: string
+  type: ReleaseType.Films
+  director: string
+  imdb_rating?: number
+  kinopoisk_rating?: number
+  trailer?: string
+}
+export type SeriesWithDetails = {
+  id: number
+  release_id: number
+  released: string
+  cover: string
+  title: string
+  original_title?: string
+  description: string
+  kinopoisk_url: string
+  imdb_url: string
+  type: ReleaseType.Series
+  season: string
+  imdb_rating?: number
+  kinopoisk_rating?: number
+  trailer?: string
+}
+export type GameWithDetails = {
+  id: number
+  release_id: number
+  released: string
+  cover: string
+  title: string
+  description: string
+  type: ReleaseType.Games
+  platforms: GamePlatform[]
+  genres: string[]
+  ratings: {}[]
+  stores: {}[]
+  trailer?: string
+}
+export type ReleaseWithDetails =
+  | FilmWithDetails
+  | SeriesWithDetails
+  | GameWithDetails
+
 export interface UserProfile {
   email: string
   expected: {

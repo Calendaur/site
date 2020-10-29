@@ -43,6 +43,22 @@
     box-shadow: none;
     transform: translateY(1px);
   }
+
+  &.withText {
+    width: 250px;
+    color: var(--secondary-text-color);
+    font-family: inherit;
+    font-size: var(--sm-fz);
+    font-weight: var(--medium);
+
+    img {
+      margin-right: var(--xs-space);
+    }
+
+    &::after {
+      display: none;
+    }
+  }
 }
 
 .Toast {

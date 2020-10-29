@@ -1,29 +1,24 @@
+import { GetServerSideProps } from 'next'
 import smoothscroll from 'smoothscroll-polyfill'
 import slugify from '@sindresorhus/slugify'
-import ReleasePage from 'screens/release'
+import Release from 'screens/release'
 import { release } from 'shared/api'
-import { redirect } from 'shared/utils'
+import { redirect, releaseWithDetailsAdapter } from 'shared/utils'
 import { routes } from 'shared/constants'
+import { ReleaseWithDetails } from 'types/common'
 
 if (typeof window !== 'undefined') smoothscroll.polyfill()
 
-function changeType(t) {
-  switch (t) {
-    case 'movie':
-      return 'films'
-    case 'game':
-      return 'games'
-    case 'serial':
-      return 'series'
-  }
+interface Props {
+  release: ReleaseWithDetails
 }
 
-export const config = {
-  amp: 'hybrid',
+function ReleasePage({ release }: Props) {
+  return <Release release={release} />
 }
 
-export async function getServerSideProps(context) {
-  const idWithSlug = context.query.id
+export const getServerSideProps: GetServerSideProps = async context => {
+  const idWithSlug = context.query.id as string
   const result = await release(idWithSlug)
 
   if (idWithSlug.split('-').length === 1) {
@@ -35,8 +30,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      ...result,
-      type: changeType(result.type),
+      release: releaseWithDetailsAdapter(result),
     },
   }
 }

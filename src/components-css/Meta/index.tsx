@@ -1,4 +1,3 @@
-
 import Head from 'next/head'
 
 function Meta() {
@@ -48,6 +47,11 @@ function Meta() {
         defer
         data-domain="released.at"
         src="https://plausible.io/js/plausible.js"
+      ></script>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }`,
+        }}
       ></script>
       <link
         rel="preconnect"

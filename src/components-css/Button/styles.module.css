@@ -2,10 +2,12 @@
   --height: 2.5rem;
 
   position: relative;
-  display: inline-block;
+  display: inline-flex;
   width: auto;
   min-width: min-content;
   height: var(--height);
+  align-items: center;
+  justify-content: center;
   padding: 0 1.25rem;
   background-color: var(--white-color);
   border-radius: 5px;

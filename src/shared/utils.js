@@ -162,4 +162,64 @@ export function releaseAdapter(release, type) {
       type,
     }
   }
+
+  return release
+}
+
+export function releaseWithDetailsAdapter(release) {
+  const common = {
+    id: release.id,
+    release_id: release.release_id,
+    released: release.released,
+    cover: release.covers.default,
+    title: release.title,
+    trailer: release.trailer_url,
+    description: release.description,
+  }
+
+  if (release.type === 'movie') {
+    return {
+      ...common,
+      type: 'films',
+      original_title: release.original_title,
+      director: release.director,
+      kinopoisk_url: release.kinopoisk_url,
+      imdb_url: release.imdb_url,
+      ...(release.foreign_ratings
+        ? {
+            imdb_rating: release.foreign_ratings.imdb_rating,
+            kinopoisk_rating: release.foreign_ratings.kinopoisk_rating,
+          }
+        : {}),
+    }
+  }
+
+  if (release.type === 'game') {
+    return {
+      ...common,
+      type: 'games',
+      platforms: release.platforms,
+      stores: release.stores,
+      genres: release.rawg_io_fields.genres.map(genre => genre.name),
+      ratings: release.rawg_io_fields.metacritic_platforms,
+    }
+  }
+
+  if (release.type === 'serial') {
+    return {
+      ...common,
+      type: 'series',
+      season: release.season,
+      kinopoisk_url: release.kinopoisk_url,
+      imdb_url: release.imdb_url,
+      ...(release.foreign_ratings
+        ? {
+            imdb_rating: release.foreign_ratings.imdb_rating,
+            kinopoisk_rating: release.foreign_ratings.kinopoisk_rating,
+          }
+        : {}),
+    }
+  }
+
+  return release
 }

@@ -1,28 +1,10 @@
-import styled from '@emotion/styled'
 import { getYoutubeId } from 'shared/utils'
 
-const Wrapper = styled.div`
-  flex: 1;
-
-  & > .aspectRatio {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%;
-
-    & > iframe {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      border-radius: 12px;
-    }
-  }
-`
+import styles from './styles.module.css'
 
 function Trailer({ url }) {
   return (
-    <Wrapper id="trailer">
+    <div className={styles.Trailer} id="trailer">
       <div className="aspectRatio">
         <iframe
           title="Trailer"
@@ -34,7 +16,7 @@ function Trailer({ url }) {
           data-src={`https://www.youtube.com/embed/${getYoutubeId(url)}`}
         />
       </div>
-    </Wrapper>
+    </div>
   )
 }
 

@@ -55,6 +55,7 @@
     "@types/node": "^14.0.27",
     "@types/nprogress": "^0.2.0",
     "@types/react": "^16.9.53",
+    "@types/smoothscroll-polyfill": "^0.3.1",
     "@typescript-eslint/eslint-plugin": "4.0.0",
     "@typescript-eslint/parser": "4.0.0",
     "babel-eslint": "10.0.0",
@@ -75,7 +76,7 @@
     "husky": "^4.2.5",
     "jest": "^25.1.0",
     "lint-staged": "^10.2.11",
-    "postcss-nested": "^5.0.1",
+    "postcss-nested": "4.2.0",
     "prettier": "^2.1.2",
     "storybook-addon-next-router": "^2.0.0",
     "stylelint": "^13.7.2",
@@ -113,7 +114,11 @@
           ]
         }
       ],
-      "default-case": "off"
+      "default-case": "off",
+      "import/no-anonymous-default-export": "off"
+    },
+    "globals": {
+      "plausible": "readonly"
     }
   },
   "prettier": {

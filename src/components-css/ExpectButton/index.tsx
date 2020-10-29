@@ -1,16 +1,17 @@
 import cx from 'classnames'
 import compareAsc from 'date-fns/compareAsc'
 import { useExpect } from 'features/releases/use-expect'
-import { ReleaseInList } from 'types/common'
+import { ReleaseInList, ReleaseWithDetails } from 'types/common'
 
 import styles from './styles.module.css'
 
 interface Props {
-  release: ReleaseInList
+  release: ReleaseInList | ReleaseWithDetails
   className?: string
+  withText?: boolean
 }
 
-function ExpectButton({ release, className }: Props) {
+function ExpectButton({ release, className, withText = false }: Props) {
   const isActual = compareAsc(new Date(), new Date(release.released)) <= 0
   const { expect, isExpected } = useExpect(release, isActual, styles.Toast)
 
@@ -39,14 +40,21 @@ function ExpectButton({ release, className }: Props) {
   return (
     <button
       aria-label={renderTooltip()}
-      className={cx(styles.Button, className)}
+      className={cx(
+        styles.Button,
+        {
+          [styles.withText]: withText,
+        },
+        className,
+      )}
       onClick={e => {
         e.preventDefault()
         e.stopPropagation()
+        ;(window as any).plausible('Expect button clicked')
         expect()
       }}
     >
-      {renderIcon()}
+      {renderIcon()} {withText ? renderTooltip() : null}
     </button>
   )
 }

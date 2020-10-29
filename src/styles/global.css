@@ -73,7 +73,11 @@
   --glitch-purple-color: hsl(315, 100%, 50%);
   --glitch-cyan-color: hsl(179, 100%, 50%);
   --kinopoisk-color: hsl(24, 100%, 50%);
+  --kinopoisk-hover-color: hsl(24, 100%, 55%);
+  --kinopoisk-active-color: hsl(24, 100%, 45%);
   --imdb-color: hsl(47, 92%, 53%);
+  --imdb-hover-color: hsl(47, 92%, 57%);
+  --imdb-active-color: hsl(47, 92%, 48%);
   --amediateka-color: hsl(225, 7%, 11%);
   --ivi-color: hsl(344, 94%, 52%);
   --kinopoisk-hd-color: hsl(0, 0%, 20%);
@@ -136,6 +140,16 @@
     180deg,
     hsla(0, 0%, 0%, 0) 0%,
     hsla(0, 0%, 5%, 0.95) 100%
+  );
+  --release-image-gradient: linear-gradient(
+    0deg,
+    hsl(0, 0%, 0%) 0%,
+    hsla(0, 0%, 0%, 0.94) 7.25%,
+    hsla(0, 0%, 0%, 0.86) 12.45%,
+    hsla(0, 0%, 0%, 0.78) 16.48%,
+    hsla(0, 0%, 0%, 0.09) 40.26%,
+    hsla(0, 0%, 0%, 0.04) 44%,
+    hsla(0, 0%, 0%, 0) 52%
   );
   --mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
 
@@ -257,5 +271,19 @@ footer {
   @media (min-width: 1920px) {
     padding-right: var(--xxl-space);
     padding-left: var(--xxl-space);
+  }
+}
+
+.aspectRatio {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+
+  & > * {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
   }
 }

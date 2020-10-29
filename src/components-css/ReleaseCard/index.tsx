@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import slugify from '@sindresorhus/slugify'
 import format from 'date-fns/format'
 import isToday from 'date-fns/isToday'
@@ -55,20 +56,18 @@ function ReleaseCard({ release, source }: Props) {
           </div>
           <ExpectButton release={release} />
         </div>
-        <picture>
-          <source srcSet={`${release.cover}.webp`} type="image/webp" />
-          <source srcSet={release.cover} type="image/jpeg" />
-          <img src={release.cover} alt={release.title} loading="lazy" />
-        </picture>
+        <div className={styles.Cover}>
+          <Image src={release.cover} alt={release.title} unsized />
+        </div>
         <div className={styles.Footer}>
           <Text className={styles.Title}>{release.title}</Text>
           {release.type === ReleaseType.Films && (
-            <Text i className={styles.Info}>
+            <Text secondary i className={styles.Info}>
               {release.director}
             </Text>
           )}
           {release.type === ReleaseType.Series && (
-            <Text i className={styles.Info}>
+            <Text secondary i className={styles.Info}>
               {release.season} сезон
             </Text>
           )}

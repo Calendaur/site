@@ -10,6 +10,7 @@ import {
   ReleaseType,
   BackendReleaseType,
   ReleaseInList,
+  ReleaseWithDetails,
 } from 'types/common'
 
 function typeAdapter(type: ReleaseType): BackendReleaseType {
@@ -24,7 +25,7 @@ function typeAdapter(type: ReleaseType): BackendReleaseType {
 }
 
 export function useExpect(
-  release: ReleaseInList,
+  release: ReleaseInList | ReleaseWithDetails,
   isActual: boolean,
   toastClassName: string,
 ) {

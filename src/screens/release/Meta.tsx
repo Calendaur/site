@@ -1,30 +1,40 @@
 import Head from 'next/head'
+import { GamePlatform, ReleaseType, ReleaseWithDetails } from 'types/common'
 
 const platformsDict = {
-  pc: 'PC',
-  ps_4: 'Playstation 4',
-  xbox_one: 'Xbox One',
-  nintendo_switch: 'Nintendo Switch',
+  [GamePlatform.PC]: 'PC',
+  [GamePlatform.PS4]: 'Playstation 4',
+  [GamePlatform.PS5]: 'Playstation 5',
+  [GamePlatform.XboxOne]: 'Xbox One',
+  [GamePlatform.XboxSeries]: 'Xbox Series X, Xbox Series S',
+  [GamePlatform.NintendoSwitch]: 'Nintendo Switch',
 }
 
-function Meta({ title: releaseTitle, url, cover, type, platforms, season }) {
-  let title
-  let description
+interface Props {
+  url: string
+  release: ReleaseWithDetails
+}
 
-  if (type === 'films') {
+function Meta({ release, url }: Props) {
+  const { title: releaseTitle, cover } = release
+
+  let title = ''
+  let description = ''
+
+  if (release.type === ReleaseType.Films) {
     title = `${releaseTitle} дата выхода на Released`
     description = `Узнайте дату выхода фильма ${releaseTitle}. Подпишитесь на уведомления, чтобы не пропустить релиз`
   }
 
-  if (type === 'games') {
-    title = `${releaseTitle} дата выхода на ${platforms
+  if (release.type === ReleaseType.Games) {
+    title = `${releaseTitle} дата выхода на ${release.platforms
       .map(p => platformsDict[p])
       .join(', ')}, купить игру ${releaseTitle} на Released`
     description = `Узнайте дату выхода игры ${releaseTitle}. Подпишитесь на уведомления, чтобы не пропустить релиз`
   }
 
-  if (type === 'series') {
-    title = `${releaseTitle} дата выхода ${season} сезон на Released`
+  if (release.type === ReleaseType.Series) {
+    title = `${releaseTitle} дата выхода ${release.season} сезон на Released`
     description = `Узнайте дату выхода нового сезона сериала ${releaseTitle}. Подпишитесь на уведомления, чтобы не пропустить релиз`
   }
 

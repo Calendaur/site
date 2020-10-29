@@ -1,5 +1,6 @@
-import styled from '@emotion/styled'
-import { Button } from 'components'
+import { Button } from 'components-css'
+
+import styles from './styles.module.css'
 
 const getStoreLinkContent = store => {
   switch (store.type) {
@@ -76,72 +77,26 @@ const getStoreLinkContent = store => {
   }
 }
 
-const Buttons = styled.div`
-  margin-bottom: calc(var(--vertical-5) - var(--horizontal-6));
-
-  & > p {
-    margin-bottom: var(--vertical-6);
-    color: var(--secondary-text);
-  }
-`
-
-const Stores = styled.div`
-  margin: calc(var(--horizontal-6) * -1);
-`
-
-const Btn = styled(Button)`
-  height: inherit;
-  margin: var(--horizontal-6);
-
-  & > img {
-    height: 24px;
-    margin-right: var(--horizontal-5);
-  }
-
-  & > b {
-    font-weight: 800;
-    color: #222;
-  }
-`
-
 const renderStores = stores =>
   stores.map(store => (
-    <Btn
+    <Button
       key={store.type}
-      as="a"
-      href={store.link}
-      target="_blank"
-      rel="nofollow"
+      onClick={() => {
+        window.open(store.link, '_blank')
+      }}
+      className={styles.Btn}
     >
       {getStoreLinkContent(store)}
       {store.price && store.price !== '$0.00' && <b>&nbsp;[{store.price}]</b>}
-    </Btn>
+    </Button>
   ))
 
-function prepareStores(stores, rawgStores) {
-  if (stores.length) return stores
-
-  if (rawgStores && rawgStores.length)
-    return rawgStores.map(store => ({
-      link: store.url,
-      type: store.store.slug,
-    }))
-
-  return []
-}
-
-function StoreButtons({ stores, rawgStores, type }) {
-  if (type !== 'games') return null
-
-  const preparedStores = prepareStores(stores, rawgStores)
-
-  if (!preparedStores.length) return null
-
+function StoreButtons({ stores }) {
   return (
-    <Buttons>
+    <div className={styles.StoreButtons}>
       <p>Где купить:</p>
-      <Stores>{renderStores(preparedStores)}</Stores>
-    </Buttons>
+      <div className={styles.Stores}>{renderStores(stores)}</div>
+    </div>
   )
 }
 
