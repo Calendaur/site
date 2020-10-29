@@ -1,6 +1,8 @@
+import { GetStaticPaths, GetStaticProps } from 'next'
 import Releases from 'screens/index'
 import { getProps, getPaths } from 'features/releases/next-page-functions'
 import { PageDataProvider } from 'features/releases/page-data'
+import { ReleaseType } from 'types/common'
 
 function GamesPage(props) {
   return (
@@ -10,12 +12,12 @@ function GamesPage(props) {
   )
 }
 
-export async function getStaticPaths() {
-  return getPaths()
+export const getStaticPaths: GetStaticPaths = async context => {
+  return getPaths(context)
 }
 
-export async function getStaticProps(context) {
-  return getProps(context, 'games')
+export const getStaticProps: GetStaticProps = async context => {
+  return getProps(context, ReleaseType.Games)
 }
 
 export default GamesPage

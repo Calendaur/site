@@ -1,10 +1,9 @@
 import Head from 'next/head'
-import styled from '@emotion/styled'
 import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
-import { A } from 'components'
+import { ReleaseCard, ResponsiveGrid, Title, Text } from 'components-css'
 import { routes } from 'shared/constants'
-import ReleaseCard from '../index/ReleaseCard'
+import { ReleaseInList } from 'types/common'
 
 const Wrapper = styled.div`
   display: grid;
@@ -26,7 +25,11 @@ const Zero = styled.p`
   }
 `
 
-function TodayScreen({ releases }) {
+interface Props {
+  releases: ReleaseInList[]
+}
+
+function TodayScreen({ releases }: Props) {
   const title = 'Сегодняшние премьеры на released.at'
   const description =
     'На какой фильм сегодня сходить в кино? Сезон какого сериала вышел сегодня? Узнайте на released.at'
@@ -57,34 +60,29 @@ function TodayScreen({ releases }) {
         <link rel="image_src" href="https://released.at/images/banner.jpg" />
         <title>{title}</title>
       </Head>
-      <h1>Премьеры {format(new Date(), 'd MMMM', { locale: ru })}</h1>
-      <Description>
+      <Title>Премьеры {format(new Date(), 'd MMMM', { locale: ru })}</Title>
+      <Text>
         Сегодняшние премьеры из&nbsp;мира игр, кино и&nbsp;сериалов
         на&nbsp;одной странице{' '}
         <span role="img" aria-label="high-voltage">
           ⚡
         </span>
-      </Description>
+      </Text>
       {releases.length ? null : (
-        <Zero>
+        <Text>
           Сегодня ничего нового не&nbsp;вышло{' '}
           <span role="img" aria-label="face">
             😑
           </span>
           . Все релизы месяца можно посмотреть&nbsp;
           <A href={routes.HOME}>здесь</A>
-        </Zero>
+        </Text>
       )}
-      <Wrapper>
+      <ResponsiveGrid>
         {releases.map(release => (
-          <ReleaseCard
-            showType
-            className="card"
-            release={release}
-            type={release.type}
-          />
+          <ReleaseCard className="card" release={release} type={release.type} />
         ))}
-      </Wrapper>
+      </ResponsiveGrid>
     </>
   )
 }
