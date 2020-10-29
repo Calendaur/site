@@ -3,8 +3,13 @@ import Post from 'screens/blog/Post'
 import * as api from 'shared/api'
 import { redirect } from 'shared/utils'
 import { routes } from 'shared/constants'
+import { BlogArticleWithDetails } from 'types/common'
 
-function PostPage({ post }) {
+interface Props {
+  post: BlogArticleWithDetails
+}
+
+function PostPage({ post }: Props) {
   return <Post post={post} />
 }
 

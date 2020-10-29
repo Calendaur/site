@@ -129,3 +129,18 @@ export interface UserResponse {
     games: ReleaseInList[]
   }
 }
+
+export interface BlogArticleInList {
+  cover: string
+  id: number
+  title: string
+  updated_at: string
+}
+
+export interface BlogArticleWithDetails {
+  cover: string
+  id: number
+  title: string
+  updated_at: string
+  body: string
+}

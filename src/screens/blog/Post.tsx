@@ -1,84 +1,18 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import slugify from '@sindresorhus/slugify'
-import styled from '@emotion/styled'
 import Md from 'react-markdown'
-import { A } from 'components'
+import { Title } from 'components-css'
 import { getYoutubeId } from 'shared/utils'
+import { BlogArticleWithDetails } from 'types/common'
 
-const Styled = styled.div`
-  h1 {
-    width: 100%;
-    max-width: 768px;
-    margin: 0 auto;
-    margin-bottom: var(--vertical-6);
-    font-size: 34px;
-    line-height: 42px;
+import styles from './styles.module.css'
 
-    @media (min-width: 768px) {
-      margin-bottom: var(--vertical-2);
-      font-size: 48px;
-      line-height: 60px;
-    }
-  }
+interface Props {
+  post: BlogArticleWithDetails
+}
 
-  .md-wrapper {
-    display: flex;
-    justify-content: center;
-  }
-
-  .text-wrapper {
-    width: 100%;
-    max-width: 768px;
-
-    h2 {
-      line-height: 1.3;
-    }
-
-    a {
-      text-decoration: underline;
-    }
-
-    .p {
-      margin-top: 28px;
-      margin-bottom: 1rem;
-      font-size: 18px;
-      line-height: 28px;
-
-      &:first-child {
-        margin-top: 0;
-      }
-
-      .aspectRatio {
-        margin-top: 28px;
-      }
-
-      @media (min-width: 768px) {
-        font-size: 21px;
-        line-height: 32px;
-      }
-    }
-
-    .aspectRatio {
-      position: relative;
-      width: 100%;
-      padding-top: 56.25%;
-
-      & > iframe {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-      }
-    }
-
-    .img-wrapper {
-      display: flex;
-    }
-  }
-`
-
-function Post({ post }) {
+function Post({ post }: Props) {
   const slug = slugify(post.title)
   const metaTitle = `${post.title}. Читать на Released`
   const url = `https://released.at/blog/${post.id}-${slug}`
@@ -97,20 +31,24 @@ function Post({ post }) {
         <meta name="twitter:title" content={metaTitle} />
         <meta name="twitter:description" content={description} />
       </Head>
-      <Styled>
-        <h1>{post.title}</h1>
-        <div className="md-wrapper">
-          <div className="text-wrapper">
+      <div>
+        <div className={styles.PageWrapper}>
+          <Title>{post.title}</Title>
+          <article className={styles.Markdown}>
             <Md
               source={post.body}
               renderers={{
                 paragraph: ({ children }) => {
-                  return <div className="p">{children}</div>
+                  return (
+                    <div role="paragraph" className={styles.p}>
+                      {children}
+                    </div>
+                  )
                 },
                 link: ({ href, children }) => {
                   if (href.includes('youtube.com')) {
                     return (
-                      <div className="aspectRatio">
+                      <div className={styles.aspectRatio}>
                         <iframe
                           title="Trailer"
                           frameBorder="0"
@@ -130,28 +68,27 @@ function Post({ post }) {
                     const { pathname } = new URL(href)
 
                     return (
-                      <A href="/release/[id]" as={pathname} target="_blank">
-                        {children}
-                      </A>
+                      <Link href="/release/[id]" as={pathname}>
+                        <a target="_blank">{children}</a>
+                      </Link>
                     )
                   }
 
                   return (
-                    <A
+                    <a
                       href={href}
-                      next={false}
                       target="_blank"
                       rel="nofollow noopener noreferrer"
                     >
                       {children}
-                    </A>
+                    </a>
                   )
                 },
               }}
             />
-          </div>
+          </article>
         </div>
-      </Styled>
+      </div>
     </>
   )
 }

@@ -1,8 +1,8 @@
-import  { useEffect } from 'react'
+import { useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { AuthForm } from 'components'
-import { useUser } from 'features/user/use-user'
+import { AuthForm } from 'components-css'
+import { useUser } from 'features/user/use-user2'
 import { routes } from 'shared/constants'
 
 function SignInPage() {

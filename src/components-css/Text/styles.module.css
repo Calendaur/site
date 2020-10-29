@@ -22,4 +22,5 @@
 
 .Secondary {
   font-family: var(--secondary-font);
+  line-height: 1.825rem;
 }

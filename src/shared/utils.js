@@ -175,6 +175,9 @@ export function releaseWithDetailsAdapter(release) {
     title: release.title,
     trailer: release.trailer_url,
     description: release.description,
+    ...(release.related_articles
+      ? { related_articles: release.related_articles }
+      : {}),
   }
 
   if (release.type === 'movie') {

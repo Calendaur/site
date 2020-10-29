@@ -1,0 +1,15 @@
+.TitleWithDescription {
+  margin-bottom: var(--md-space);
+
+  @media (min-width: 768px) {
+    margin-bottom: var(--lg-space);
+  }
+
+  h1 {
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+}
