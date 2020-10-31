@@ -1,7 +1,7 @@
 {
   "name": "released.at",
   "description": "web app for released.at",
-  "version": "1.0.36",
+  "version": "1.0.37",
   "license": "MIT",
   "private": true,
   "scripts": {
