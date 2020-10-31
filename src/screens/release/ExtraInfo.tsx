@@ -1,4 +1,4 @@
-import { PlatformList } from 'components-css'
+import { PlatformList } from 'components'
 import { ReleaseType, ReleaseWithDetails } from 'types/common'
 
 import styles from './styles.module.css'

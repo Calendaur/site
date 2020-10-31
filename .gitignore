@@ -2,8 +2,12 @@
 
 # dependencies
 /node_modules
-/.pnp
-.pnp.js
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
 
 # testing
 /coverage
@@ -19,6 +23,7 @@
 .DS_Store
 .env.local
 /.idea
+/.vscode
 
 # debug
 npm-debug.log*

@@ -1,4 +1,3 @@
-
 import { GetServerSideProps } from 'next'
 import { QueryCache } from 'react-query'
 import { dehydrate } from 'react-query/hydration'
@@ -28,14 +27,6 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     return {
       props: {
         dehydratedState: dehydrate(queryCache),
-        // user: {
-        //   ...user.current_user,
-        //   expected: {
-        //     films: user.expected.movies.map(r => releaseAdapter(r, 'films')),
-        //     series: user.expected.serials.map(r => releaseAdapter(r, 'series')),
-        //     games: user.expected.games.map(r => releaseAdapter(r, 'games')),
-        //   },
-        // },
       },
     }
   } catch (e) {

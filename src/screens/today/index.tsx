@@ -8,8 +8,8 @@ import {
   TitleWithDescription,
   Title,
   Text,
-} from 'components-css'
-import { Source } from 'components-css/ReleaseCard'
+} from 'components'
+import { Source } from 'components/ReleaseCard'
 import { routes } from 'shared/constants'
 import { ReleaseInList } from 'types/common'
 

@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
-import { Calendar, FilmsSeriesGames } from 'components-css'
+import { Calendar, FilmsSeriesGames } from 'components'
 import Meta from './Meta'
 
-const Notifications = dynamic(() => import('../../components/Notifications'), {
+const Notifications = dynamic(() => import('components/Notifications'), {
   ssr: false,
 })
 

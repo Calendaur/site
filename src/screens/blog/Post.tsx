@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import slugify from '@sindresorhus/slugify'
 import Md from 'react-markdown'
-import { Title } from 'components-css'
+import { Title } from 'components'
 import { getYoutubeId } from 'shared/utils'
 import { BlogArticleWithDetails } from 'types/common'
 

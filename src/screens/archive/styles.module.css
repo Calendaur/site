@@ -1,0 +1,12 @@
+.Section {
+  margin-bottom: var(--lg-space);
+
+  h2 {
+    margin-bottom: var(--xxs-space);
+  }
+
+  li {
+    padding: 4px 0;
+    font-size: var(--md-fz);
+  }
+}

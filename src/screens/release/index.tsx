@@ -1,8 +1,16 @@
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
 import slugify from '@sindresorhus/slugify'
-import { Title, Text, Button, ExpectButton, Breadcrumbs } from 'components-css'
+import {
+  Title,
+  Text,
+  Button,
+  ExpectButton,
+  Breadcrumbs,
+  PostsGrid,
+} from 'components'
 import { ReleaseType, ReleaseWithDetails } from 'types/common'
 import Meta from './Meta'
 import ExtraInfo from './ExtraInfo'
@@ -64,7 +72,7 @@ function Release({ release }: Props) {
         />
         <div className={styles.Cover}>
           <div className={styles.Gradient} />
-          <img src={cover} alt={title} />
+          <Image src={cover} alt={title} unsized />
         </div>
         <div className={styles.ReleaseDate}>
           {format(new Date(released), 'd MMMM yyyy', {
@@ -120,6 +128,12 @@ function Release({ release }: Props) {
               <StoreButtons stores={release.stores} />
             ) : null}
             <Sharing title={title} url={url} />
+            {release.related_articles ? (
+              <div className={styles.Articles}>
+                <p>Статьи, в которых упомянут релиз:</p>
+                <PostsGrid posts={release.related_articles} />
+              </div>
+            ) : null}
           </div>
           {trailer && <Trailer url={trailer} />}
         </div>

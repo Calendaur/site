@@ -9,10 +9,8 @@ import { useEffect } from 'react'
 import { AppProps } from 'next/app'
 import { ReactQueryCacheProvider, QueryCache } from 'react-query'
 import { Hydrate } from 'react-query/hydration'
-import { CacheProvider } from '@emotion/react'
-import { cache } from '@emotion/css'
 import { configure, start, done } from 'nprogress'
-import Page from 'components-css/Page'
+import Page from 'components/Page'
 
 configure({ showSpinner: false })
 
@@ -34,11 +32,9 @@ function CustomApp({ Component, pageProps, router: { events } }: AppProps) {
   return (
     <ReactQueryCacheProvider queryCache={queryCache}>
       <Hydrate state={pageProps.dehydratedState}>
-        <CacheProvider value={cache}>
-          <Page>
-            <Component {...pageProps} />
-          </Page>
-        </CacheProvider>
+        <Page>
+          <Component {...pageProps} />
+        </Page>
       </Hydrate>
     </ReactQueryCacheProvider>
   )

@@ -74,6 +74,7 @@ export type FilmWithDetails = {
   imdb_rating?: number
   kinopoisk_rating?: number
   trailer?: string
+  related_articles?: BlogArticleInList[]
 }
 export type SeriesWithDetails = {
   id: number
@@ -90,6 +91,7 @@ export type SeriesWithDetails = {
   imdb_rating?: number
   kinopoisk_rating?: number
   trailer?: string
+  related_articles?: BlogArticleInList[]
 }
 export type GameWithDetails = {
   id: number
@@ -104,6 +106,7 @@ export type GameWithDetails = {
   ratings: {}[]
   stores: {}[]
   trailer?: string
+  related_articles?: BlogArticleInList[]
 }
 export type ReleaseWithDetails =
   | FilmWithDetails
@@ -134,13 +137,13 @@ export interface BlogArticleInList {
   cover: string
   id: number
   title: string
-  updated_at: string
+  created_at: number
 }
 
 export interface BlogArticleWithDetails {
   cover: string
   id: number
   title: string
-  updated_at: string
+  created_at: number
   body: string
 }

@@ -1,47 +1,37 @@
-import useSWR from 'swr'
-import Cookies from 'js-cookie'
+import { useQuery } from 'react-query'
+import { get, remove } from 'js-cookie'
 import { endpoints, cookies } from 'shared/constants'
-import { fetchWithToken } from 'shared/utils'
-import { User } from './types'
+import { me } from 'shared/api'
+import { UserResponse } from 'types/common'
 
-interface UseUser {
-  user: User | undefined
-  isLoading: boolean
-  isError: any
-  mutateUser: (data?: any, shouldRevalidate?: boolean) => Promise<any>
-  token: string | undefined
-  isLoggedIn: boolean
+async function fetchUser() {
+  const token = get(cookies.AUTHORIZATION)
+
+  if (!token) return
+
+  return me(token).catch(e => {
+    console.error(e)
+
+    if (e.response && e.response.status && e.response.status >= 400) {
+      remove(cookies.AUTHORIZATION)
+    }
+  })
 }
 
-export function useUser(initial?: User): UseUser {
-  const token = Cookies.get(cookies.AUTHORIZATION)
-  const { data, error, mutate } = useSWR<User>(
-    token ? [endpoints.PROFILE, token] : null,
-    fetchWithToken,
-    initial ? { initialData: initial } : undefined,
+export function useUser(initial?: UserResponse) {
+  const { isLoading, error, data } = useQuery<UserResponse>(
+    endpoints.PROFILE,
+    fetchUser,
+    {
+      retry: false,
+      initialData: initial,
+    },
   )
 
-  if (token && error && !data) {
-    // Cookies.remove(cookies.AUTHORIZATION)
-  }
-
-  if (!token) {
-    return {
-      user: undefined,
-      isLoading: undefined,
-      isError: true,
-      mutateUser: mutate,
-      token: undefined,
-      isLoggedIn: false,
-    }
-  }
-
   return {
+    isLoading,
+    error,
     user: data,
-    isLoading: !error && !data,
-    isError: error,
-    mutateUser: mutate,
-    token,
-    isLoggedIn: Boolean(data),
+    isLoggedIn: !!data,
   }
 }

@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { useQueryCache, useMutation } from 'react-query'
 import { useRouter } from 'next/router'
 import { toast, Slide } from 'react-toastify'
-import { useUser } from 'features/user/use-user2'
+import { useUser } from 'features/user/use-user'
 import { endpoints, routes } from 'shared/constants'
 import * as api from 'shared/api'
 import {

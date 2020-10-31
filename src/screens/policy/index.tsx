@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Title, Text } from 'components-css'
+import { Title, Text } from 'components'
 
 import styles from './styles.module.css'
 

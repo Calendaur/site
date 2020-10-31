@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { TitleWithDescription, Title, Text, PostsGrid } from 'components-css'
+import { TitleWithDescription, Title, Text, PostsGrid } from 'components'
 import { BlogArticleInList } from 'types/common'
 
 interface Props {
