@@ -1,6 +1,6 @@
 {
   "name": "released.at",
-  "description": "web app for released.at",
+  "description": "web app for released.at site",
   "version": "2.0.0",
   "license": "MIT",
   "private": true,
