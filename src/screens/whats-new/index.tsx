@@ -9,7 +9,6 @@ const updates = {
     improves: [],
     features: [
       `Сделали <a href="${routes.BLOG}">блог</a> с&nbsp;авторскими статьями`,
-      `Сделали <a href="${routes.WHAT_TO_SEE}">тиндер с&nbsp;фильмами</a>`,
       `Добавили <a href="${routes.TODAY}">страницу</a> с сегодняшними релизами`,
     ],
   },
