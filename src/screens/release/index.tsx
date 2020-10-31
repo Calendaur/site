@@ -128,7 +128,7 @@ function Release({ release }: Props) {
               <StoreButtons stores={release.stores} />
             ) : null}
             <Sharing title={title} url={url} />
-            {release.related_articles ? (
+            {release.related_articles && release.related_articles.length > 0 ? (
               <div className={styles.Articles}>
                 <p>Статьи, в которых упомянут релиз:</p>
                 <PostsGrid posts={release.related_articles} />
