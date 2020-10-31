@@ -63,7 +63,7 @@ function Calendar({ weeks, releases }: Props) {
                 <div
                   className={cx(styles.DayOfMonth, {
                     [styles.hasReleases]: hasReleases,
-                    [styles.isToday]: isToday(date),
+                    [styles.isToday]: isToday(date) && day !== null,
                   })}
                 >
                   {day}
