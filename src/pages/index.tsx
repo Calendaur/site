@@ -1,13 +1,8 @@
 import Releases from 'screens/index'
 import { getPropsForIndexPage } from 'features/releases/next-page-functions'
-import { PageDataProvider } from 'features/releases/page-data'
 
 function IndexPage(props) {
-  return (
-    <PageDataProvider parsedUrl={props.parsedURL}>
-      <Releases {...props} />
-    </PageDataProvider>
-  )
+  return <Releases {...props} />
 }
 
 export async function getStaticProps(context) {

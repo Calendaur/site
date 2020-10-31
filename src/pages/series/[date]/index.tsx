@@ -1,15 +1,10 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Releases from 'screens/index'
 import { getPaths, getProps } from 'features/releases/next-page-functions'
-import { PageDataProvider } from 'features/releases/page-data'
 import { ReleaseType } from 'types/common'
 
 function SeriesPage(props) {
-  return (
-    <PageDataProvider parsedUrl={props.parsedURL}>
-      <Releases {...props} />
-    </PageDataProvider>
-  )
+  return <Releases {...props} />
 }
 
 export const getStaticPaths: GetStaticPaths = async context => {
@@ -17,7 +12,7 @@ export const getStaticPaths: GetStaticPaths = async context => {
 }
 
 export const getStaticProps: GetStaticProps = async context => {
-  return getProps(context, ReleaseType.Series)
+  return getProps(ReleaseType.Series)(context)
 }
 
 export default SeriesPage

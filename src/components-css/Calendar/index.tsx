@@ -1,8 +1,9 @@
-
+import { useRouter } from 'next/router'
 import format from 'date-fns/format'
 import isToday from 'date-fns/isToday'
 import cx from 'classnames'
 import { ReleaseInList } from 'types/common'
+import { monthsDict } from 'shared/constants'
 import Header from './Header'
 import ReleaseCard, { Source } from '../ReleaseCard'
 
@@ -12,15 +13,29 @@ const daysOfWeek = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс']
 
 interface Props {
   weeks: string
-  month: number
-  year: number
   releases: {
     [date: string]: ReleaseInList[]
   }
 }
 
-function Calendar({ month, year, weeks, releases }: Props) {
+const currentMonth = new Date().getMonth()
+const currentYear = new Date().getFullYear()
+
+function Calendar({ weeks, releases }: Props) {
+  const { asPath } = useRouter()
   const weeksArray = JSON.parse(weeks) as Array<number | null>
+
+  let url = asPath
+  let month = currentMonth
+  let year = currentYear
+
+  if (url !== '/') {
+    const [, date] = asPath.split('/').slice(1)
+    const [m, y] = date.split('-')
+
+    month = monthsDict[m] - 1
+    year = +y
+  }
 
   return (
     <>

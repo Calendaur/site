@@ -127,7 +127,7 @@ export function releaseAdapter(release, type) {
     title: release.title,
   }
 
-  if (type === 'films') {
+  if (type === 'films' || (release.type && release.type.includes('film'))) {
     return {
       ...common,
       director: release.director,
@@ -137,19 +137,19 @@ export function releaseAdapter(release, type) {
             kinopoisk_rating: release.foreign_ratings.kinopoisk_rating,
           }
         : {}),
-      type,
+      type: 'films',
     }
   }
 
-  if (type === 'games') {
+  if (type === 'games' || (release.type && release.type.includes('game'))) {
     return {
       ...common,
       platforms: release.platforms,
-      type,
+      type: 'games',
     }
   }
 
-  if (type === 'series') {
+  if (type === 'series' || (release.type && release.type.includes('series'))) {
     return {
       ...common,
       season: release.season,
@@ -159,9 +159,11 @@ export function releaseAdapter(release, type) {
             kinopoisk_rating: release.foreign_ratings.kinopoisk_rating,
           }
         : {}),
-      type,
+      type: 'series',
     }
   }
+
+  console.error(`I can't prepare release ${release.title}`)
 
   return release
 }

@@ -6,20 +6,13 @@ const Notifications = dynamic(() => import('../../components/Notifications'), {
   ssr: false,
 })
 
-function MainPage({ parsedURL, grouped, meta, weeks }) {
-  const { year, month } = parsedURL
-
+function MainPage({ grouped, meta, weeks }) {
   return (
     <div>
       <Notifications />
       <Meta meta={meta} />
       <FilmsSeriesGames />
-      <Calendar
-        weeks={weeks}
-        month={month.jsNumber}
-        year={year}
-        releases={grouped}
-      />
+      <Calendar weeks={weeks} releases={grouped} />
     </div>
   )
 }

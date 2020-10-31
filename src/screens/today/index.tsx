@@ -1,29 +1,17 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
-import { ReleaseCard, ResponsiveGrid, Title, Text } from 'components-css'
+import {
+  ReleaseCard,
+  ResponsiveGrid,
+  TitleWithDescription,
+  Title,
+  Text,
+} from 'components-css'
+import { Source } from 'components-css/ReleaseCard'
 import { routes } from 'shared/constants'
 import { ReleaseInList } from 'types/common'
-
-const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
-  grid-gap: 16px;
-
-  > .card {
-    height: 288px;
-  }
-`
-
-const Description = styled.p`
-  margin-bottom: var(--vertical-2);
-`
-
-const Zero = styled.p`
-  a {
-    text-decoration: underline;
-  }
-`
 
 interface Props {
   releases: ReleaseInList[]
@@ -60,27 +48,32 @@ function TodayScreen({ releases }: Props) {
         <link rel="image_src" href="https://released.at/images/banner.jpg" />
         <title>{title}</title>
       </Head>
-      <Title>Премьеры {format(new Date(), 'd MMMM', { locale: ru })}</Title>
-      <Text>
-        Сегодняшние премьеры из&nbsp;мира игр, кино и&nbsp;сериалов
-        на&nbsp;одной странице{' '}
-        <span role="img" aria-label="high-voltage">
-          ⚡
-        </span>
-      </Text>
-      {releases.length ? null : (
-        <Text>
-          Сегодня ничего нового не&nbsp;вышло{' '}
-          <span role="img" aria-label="face">
-            😑
-          </span>
-          . Все релизы месяца можно посмотреть&nbsp;
-          <A href={routes.HOME}>здесь</A>
-        </Text>
-      )}
+      <TitleWithDescription>
+        <Title>Премьеры {format(new Date(), 'd MMMM', { locale: ru })}</Title>
+        {releases.length ? (
+          <Text>
+            Сегодняшние премьеры из&nbsp;мира игр, кино и&nbsp;сериалов
+            на&nbsp;одной странице{' '}
+            <span role="img" aria-label="high-voltage">
+              ⚡
+            </span>
+          </Text>
+        ) : (
+          <Text>
+            Сегодня ничего нового не&nbsp;вышло{' '}
+            <span role="img" aria-label="face">
+              😑
+            </span>
+            . Все релизы месяца можно посмотреть&nbsp;
+            <Link href={routes.HOME}>
+              <a className="underline">здесь</a>
+            </Link>
+          </Text>
+        )}
+      </TitleWithDescription>
       <ResponsiveGrid>
         {releases.map(release => (
-          <ReleaseCard className="card" release={release} type={release.type} />
+          <ReleaseCard release={release} source={Source.Today} />
         ))}
       </ResponsiveGrid>
     </>
