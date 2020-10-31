@@ -1,0 +1,98 @@
+.ReleaseCard {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--black-color);
+  border-radius: 20px;
+
+  @media (min-width: 768px) {
+    &:hover .Cover {
+      opacity: 0.65;
+    }
+  }
+}
+
+.Cover {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  transition: opacity 250ms;
+
+  &::after {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 100%;
+    height: 80%;
+    background-image: var(--release-card-cover-gradient);
+    content: '';
+  }
+
+  * {
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.Header {
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 8px;
+}
+
+.Date {
+  padding: 4px 12px;
+  background-color: hsla(0, 0%, 0%, 0.5);
+  border-radius: 16px;
+  color: var(--primary-text-color);
+  font-size: var(--xs-fz);
+  font-weight: var(--medium);
+  letter-spacing: -0.020625rem;
+  line-height: 1;
+
+  @media (min-width: 768px) {
+    padding: 4px 8px;
+    font-size: var(--xxs-fz);
+  }
+
+  @media (min-width: 1440px) {
+    font-size: var(--sm-fz);
+  }
+
+  &.isToday {
+    background-color: var(--primary-color);
+    color: var(--primary-text-color);
+  }
+}
+
+.Footer {
+  position: absolute;
+  z-index: 3;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  padding: 8px;
+
+  .Title {
+    margin: 0 0 var(--xxs-space) 0;
+    font-size: var(--sm-fz);
+    font-weight: var(--medium);
+    line-height: 1.3;
+  }
+
+  .Info {
+    display: block;
+    margin: 0;
+    font-size: var(--xxs-fz);
+    line-height: 1.4;
+  }
+}

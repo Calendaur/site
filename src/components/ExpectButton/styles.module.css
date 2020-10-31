@@ -1,0 +1,78 @@
+.Button {
+  position: relative;
+  display: flex;
+  width: 42px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-gradient);
+  border-radius: 8px;
+  box-shadow: var(--drop-shadow);
+  transition: box-shadow 300ms, transform 300ms;
+
+  &::after {
+    position: absolute;
+    z-index: 999;
+    top: calc(100% + 4px);
+    right: 0;
+    padding: 4px 8px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
+    color: #fff;
+    content: attr(aria-label);
+    font-size: var(--xxs-fz);
+    opacity: 0;
+    pointer-events: none;
+    transition: 300ms;
+    white-space: nowrap;
+
+    @media (min-width: 1200px) and (max-width: 1441px) {
+      font-size: 10px;
+    }
+  }
+
+  &:hover {
+    background: var(--accent-hover-color);
+
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    box-shadow: none;
+    transform: translateY(1px);
+  }
+
+  &.withText {
+    width: 250px;
+    color: var(--secondary-text-color);
+    font-family: inherit;
+    font-size: var(--sm-fz);
+    font-weight: var(--medium);
+
+    img {
+      margin-right: var(--xs-space);
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+}
+
+.Toast {
+  padding: 12px;
+  padding-bottom: 16px;
+  background-color: var(--white-color);
+  border-radius: 0;
+
+  @media (min-width: 768px) {
+    border-radius: 4px;
+  }
+
+  & > div {
+    color: var(--secondary-text-color);
+    font-family: var(--primary-font);
+  }
+}

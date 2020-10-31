@@ -1,0 +1,381 @@
+.Release {
+  .Breadcrumbs {
+    margin-top: 190px;
+    margin-bottom: var(--lg-space);
+
+    @media (min-width: 768px) {
+      margin-top: 0;
+    }
+  }
+
+  .Cover {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 260px;
+    background-image: var(--release-image-gradient);
+    opacity: 0.8;
+
+    @media (min-width: 768px) {
+      height: 100%;
+      background-image: unset;
+      opacity: 0.2;
+    }
+
+    & > div:not(.Gradient) {
+      width: 100%;
+      height: 100%;
+
+      * {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    img {
+      position: relative;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      @media (min-width: 768px) {
+        filter: blur(8px);
+      }
+    }
+  }
+
+  .Gradient {
+    --gradient-rgb: 0, 0, 0;
+
+    position: absolute;
+    width: 100%;
+    height: 260px;
+    background-image: linear-gradient(
+      0deg,
+      rgb(var(--gradient-rgb)) 0%,
+      rgba(var(--gradient-rgb), 0.94) 7.25%,
+      rgba(var(--gradient-rgb), 0.86) 12.45%,
+      rgba(var(--gradient-rgb), 0.78) 16.48%,
+      rgba(var(--gradient-rgb), 0.09) 40.26%,
+      rgba(var(--gradient-rgb), 0.04) 44%,
+      rgba(var(--gradient-rgb), 0) 52%
+    );
+
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  .ReleaseDate {
+    display: inline-block;
+    padding: 5px 12px;
+    margin-bottom: var(--xs-space);
+    background-color: var(--primary-lighter-color);
+    border-radius: 16px;
+    color: var(--secondary-text-color);
+    font-size: var(--xs-fz);
+    font-weight: var(--medium);
+    letter-spacing: -0.020625rem;
+    line-height: 1;
+  }
+
+  .Titles {
+    margin-bottom: var(--md-space);
+
+    h1 {
+      margin-bottom: 0;
+    }
+
+    h2 {
+      margin-bottom: 0;
+      color: var(--dark-grey-color);
+      line-height: 1.2;
+    }
+  }
+
+  .Description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    margin-bottom: var(--lg-space);
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+
+    .Data {
+      flex: 1;
+      margin-right: 0;
+
+      @media (min-width: 768px) {
+        margin-right: var(--horizontal-2);
+      }
+
+      @media (min-width: 1024px) {
+        margin-right: var(--horizontal-1);
+      }
+
+      header {
+        display: flex;
+        height: 24px;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-bottom: var(--vertical-1);
+
+        > div {
+          display: flex;
+          align-items: center;
+          margin-right: var(--xs-space);
+          font-size: var(--sm-fz);
+          letter-spacing: 0.08em;
+          line-height: 22px;
+
+          @media (min-width: 768px) {
+            font-size: var(--md-fz);
+          }
+
+          img {
+            width: 24px;
+          }
+        }
+      }
+
+      .Buttons {
+        margin-bottom: var(--xs-space);
+
+        .ScrollToTrailer {
+          margin-bottom: var(--sm-space);
+
+          @media (min-width: 768px) {
+            display: none;
+          }
+        }
+
+        .Expect {
+          height: 40px;
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+
+  .Articles {
+    margin-bottom: var(--sm-space);
+
+    & > p {
+      margin-bottom: var(--xs-space);
+      color: var(--grey-color);
+    }
+
+    a {
+      min-height: 250px;
+    }
+  }
+}
+
+.ExtraInfo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--xxs-space);
+
+  .Label {
+    margin: 0;
+
+    span {
+      margin-bottom: var(--xs-space);
+      color: var(--grey-color);
+    }
+  }
+
+  .Platforms {
+    margin: 0;
+
+    li {
+      font-size: var(--xs-fz);
+    }
+  }
+}
+
+.FilmButtons {
+  margin-bottom: var(--sm-space);
+
+  & > p {
+    margin-bottom: var(--xs-space);
+    color: var(--grey-color);
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.isKinopoisk {
+      margin-bottom: var(--sm-space);
+      background-color: var(--kinopoisk-color);
+
+      img {
+        filter: invert(1);
+      }
+
+      &:hover {
+        background-color: var(--kinopoisk-hover-color);
+      }
+
+      &:active {
+        background-color: var(--kinopoisk-active-color);
+      }
+
+      &:focus:not(:active) {
+        box-shadow: 0 0 0 0.125em rgba(255, 102, 0, 0.25);
+      }
+
+      @media (min-width: 380px) {
+        display: inline-flex;
+        margin-right: var(--sm-space);
+        margin-bottom: 0;
+      }
+    }
+
+    &.isImdb {
+      background-color: var(--imdb-color);
+
+      img {
+        margin: 0 -9px;
+      }
+
+      &:hover {
+        background-color: var(--imdb-hover-color);
+      }
+
+      &:active {
+        background-color: var(--imdb-active-color);
+      }
+
+      &:focus:not(:active) {
+        box-shadow: 0 0 0 0.125em rgba(245, 197, 24, 0.25);
+      }
+
+      @media (min-width: 380px) {
+        display: inline-flex;
+      }
+    }
+
+    span {
+      margin-left: var(--xs-space);
+      font-size: var(--xs-fz);
+      font-weight: var(--bold);
+    }
+  }
+}
+
+.Sharing {
+  margin-bottom: var(--sm-space);
+
+  p {
+    margin-bottom: var(--xs-space);
+    color: var(--grey-color);
+  }
+
+  .SocialList {
+    display: flex;
+    align-items: center;
+
+    a {
+      --size: 24px;
+
+      display: flex;
+      width: var(--size);
+      height: var(--size);
+      align-items: center;
+      justify-content: center;
+      margin-right: var(--xs-space);
+      opacity: 0.65;
+      transition: opacity 250ms;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.StoreButtons {
+  margin-bottom: calc(var(--xs-space) - var(--xxs-space));
+
+  & > p {
+    margin-bottom: var(--xs-space);
+    color: var(--grey-color);
+  }
+
+  .Stores {
+    margin: calc(var(--xxs-space) * -1);
+  }
+
+  .Btn {
+    height: inherit;
+    margin: var(--xxs-space);
+
+    & > img {
+      height: 24px;
+      margin-right: var(--xs-space);
+    }
+
+    & > b {
+      color: #222;
+      font-weight: var(--bold);
+    }
+  }
+}
+
+.StreamingServicesButtons {
+  margin-bottom: calc(var(--xs-space) - var(--xxs-space));
+
+  & > p {
+    margin-bottom: var(--xs-space);
+    color: var(--grey-color);
+  }
+
+  .Services {
+    margin: calc(var(--xxs-space) * -1);
+  }
+
+  .Btn {
+    margin: var(--xxs-space);
+
+    &.amediateka {
+      background-color: var(--amediateka-color);
+    }
+
+    &.ivi {
+      background-color: var(--ivi-color);
+    }
+
+    &.kinopoisk-hd {
+      background-color: var(--kinopoisk-hd-color);
+    }
+
+    &.netflix {
+      background-color: var(--netflix-color);
+    }
+
+    &.okko {
+      background-color: var(--okko-color);
+    }
+
+    & > img {
+      height: 24px;
+    }
+  }
+}
+
+.Trailer {
+  flex: 1;
+
+  iframe {
+    border-radius: 12px;
+  }
+}

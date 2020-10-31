@@ -1,7 +1,7 @@
 {
   "name": "released.at",
-  "description": "web app for released.at",
-  "version": "1.0.37",
+  "description": "web app for released.at site",
+  "version": "2.0.0",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -9,55 +9,52 @@
     "build": "next build",
     "start": "next start",
     "test": "jest",
-    "create-sitemap": "cross-env babel-node src/shared/create-sitemap.js  && git add public/sitemap.xml"
+    "create-sitemap": "cross-env babel-node src/shared/create-sitemap.js  && git add public/sitemap.xml",
+    "storybook": "start-storybook -s ./public -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@emotion/cache": "^11.0.0-next.19",
-    "@emotion/css": "^11.0.0-next.19",
-    "@emotion/react": "^11.0.0-next.19",
-    "@emotion/server": "^11.0.0-next.19",
-    "@emotion/styled": "^11.0.0-next.19",
-    "@released-at/core": "^1.0.1",
     "@sindresorhus/slugify": "^1.1.0",
     "classnames": "^2.2.6",
     "date-fns": "^2.16.1",
     "formik": "^2.1.5",
-    "get-youtube-id": "^1.0.1",
-    "isomorphic-unfetch": "^3.0.0",
+    "isomorphic-unfetch": "^3.1.0",
     "js-cookie": "^2.2.1",
     "lazysizes": "^5.2.2",
-    "lodash.debounce": "^4.0.8",
-    "lodash.shuffle": "^4.2.0",
-    "next": "^9.5.5",
-    "next-offline": "^5.0.2",
-    "nookies": "^2.4.0",
+    "next": "^10.0.0",
+    "next-pwa": "^3.1.5",
     "nprogress": "^0.2.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "react-markdown": "^4.3.1",
-    "react-spring": "^9.0.0-rc.3",
-    "react-use-gesture": "^7.0.16",
-    "smoothscroll-polyfill": "^0.4.4",
-    "swr": "^0.3.5"
+    "react-query": "^2.23.1",
+    "react-toastify": "^6.0.9",
+    "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/node": "^7.10.5",
+    "@storybook/addon-actions": "^6.0.26",
+    "@storybook/addon-links": "^6.0.26",
+    "@storybook/addons": "^6.0.26",
+    "@storybook/react": "^6.0.26",
     "@types/classnames": "^2.2.10",
     "@types/js-cookie": "^2.2.6",
-    "@types/lodash.shuffle": "^4.2.6",
     "@types/node": "^14.0.27",
     "@types/nprogress": "^0.2.0",
-    "@types/react": "^16.9.46",
+    "@types/react": "^16.9.53",
+    "@types/smoothscroll-polyfill": "^0.3.1",
     "@typescript-eslint/eslint-plugin": "4.0.0",
     "@typescript-eslint/parser": "4.0.0",
     "babel-eslint": "10.0.0",
     "babel-jest": "^25.1.0",
+    "babel-loader": "^8.1.0",
     "babel-plugin-import": "^1.13.0",
     "cross-env": "^7.0.2",
     "eslint": "^7.9.0",
     "eslint-config-prettier": "^6.9.0",
-    "eslint-config-react-app": "^5.2.1",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-import-resolver-node": "^0.3.4",
     "eslint-plugin-flowtype": "5.2.0",
     "eslint-plugin-import": "2.22.0",
     "eslint-plugin-jest": "24.0.0",
@@ -68,19 +65,17 @@
     "husky": "^4.2.5",
     "jest": "^25.1.0",
     "lint-staged": "^10.2.11",
-    "postcss-nested": "4.2.3",
+    "postcss-nested": "4.2.0",
     "prettier": "^2.1.2",
-    "stylelint": "^13.0.0",
+    "storybook-addon-next-router": "^2.0.0",
+    "stylelint": "^13.7.2",
+    "stylelint-config-idiomatic-order": "^8.1.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-recess-order": "^2.0.3",
-    "stylelint-config-standard": "^19.0.0",
-    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-order": "^4.1.0",
     "stylelint-prettier": "^1.1.2",
-    "stylelint-processor-styled-components": "^1.10.0",
-    "typescript": "^4.0.3"
-  },
-  "resolutions": {
-    "webpack": "~4.43.0"
+    "typescript": "^4.0.5"
   },
   "eslintConfig": {
     "extends": [
@@ -108,7 +103,11 @@
           ]
         }
       ],
-      "default-case": "off"
+      "default-case": "off",
+      "import/no-anonymous-default-export": "off"
+    },
+    "globals": {
+      "plausible": "readonly"
     }
   },
   "prettier": {
@@ -124,23 +123,17 @@
     "endOfLine": "auto"
   },
   "stylelint": {
-    "processors": [
-      "stylelint-processor-styled-components"
-    ],
     "extends": [
       "stylelint-config-standard",
-      "stylelint-config-styled-components",
-      "stylelint-config-recess-order",
+      "stylelint-config-idiomatic-order",
       "stylelint-prettier/recommended"
     ],
+    "plugins": [
+      "stylelint-order"
+    ],
     "rules": {
-      "prettier/prettier": true,
-      "declaration-colon-newline-after": null,
-      "value-list-comma-newline-after": null,
       "no-descending-specificity": null,
-      "media-feature-name-no-unknown": null,
-      "property-no-vendor-prefix": null,
-      "selector-type-no-unknown": null
+      "value-keyword-case": null
     }
   },
   "browserslist": [

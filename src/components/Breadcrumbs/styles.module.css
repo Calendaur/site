@@ -1,0 +1,37 @@
+.Breadcrumbs {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  text-overflow: ellipsis;
+
+  a,
+  p {
+    font-size: var(--xs-fz);
+    letter-spacing: 0.05em;
+    opacity: 0.5;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  a {
+    transition: opacity 250ms;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  p {
+    display: inline;
+    overflow: hidden;
+    margin: 0;
+  }
+}
+
+.Separator {
+  display: block;
+  margin: 0 var(--xxs-space);
+  font-size: var(--xs-fz);
+  opacity: 0.5;
+}

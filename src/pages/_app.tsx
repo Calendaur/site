@@ -1,14 +1,20 @@
 import 'lazysizes'
-import '../components/styles.css'
 
-import React, { useEffect } from 'react'
+import 'styles/global.css'
+import 'styles/lazyload.css'
+import 'styles/nprogress.css'
+import 'react-toastify/dist/ReactToastify.css'
+
+import { useEffect } from 'react'
 import { AppProps } from 'next/app'
-import { CacheProvider } from '@emotion/react'
-import { cache } from '@emotion/css'
+import { ReactQueryCacheProvider, QueryCache } from 'react-query'
+import { Hydrate } from 'react-query/hydration'
 import { configure, start, done } from 'nprogress'
-import { Page } from 'components'
+import Page from 'components/Page'
 
 configure({ showSpinner: false })
+
+const queryCache = new QueryCache()
 
 function CustomApp({ Component, pageProps, router: { events } }: AppProps) {
   useEffect(() => {
@@ -24,11 +30,13 @@ function CustomApp({ Component, pageProps, router: { events } }: AppProps) {
   }, []) // eslint-disable-line
 
   return (
-    <CacheProvider value={cache}>
-      <Page>
-        <Component {...pageProps} />
-      </Page>
-    </CacheProvider>
+    <ReactQueryCacheProvider queryCache={queryCache}>
+      <Hydrate state={pageProps.dehydratedState}>
+        <Page>
+          <Component {...pageProps} />
+        </Page>
+      </Hydrate>
+    </ReactQueryCacheProvider>
   )
 }
 

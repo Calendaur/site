@@ -1,0 +1,26 @@
+.Text {
+  max-width: 768px;
+  margin-top: 0;
+  margin-bottom: var(--sm-space);
+  font-size: var(--sm-fz);
+  letter-spacing: -0.005625rem;
+  line-height: 1.625rem;
+}
+
+.Italic {
+  font-style: italic;
+}
+
+.Small {
+  font-size: var(--xs-fz);
+  line-height: 1;
+}
+
+.Bold {
+  font-weight: var(--bold);
+}
+
+.Secondary {
+  font-family: var(--secondary-font);
+  line-height: 1.825rem;
+}

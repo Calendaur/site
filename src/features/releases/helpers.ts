@@ -6,6 +6,7 @@ import startOfMonth from 'date-fns/startOfMonth'
 import getDaysInMonth from 'date-fns/getDaysInMonth'
 import locale from 'date-fns/locale/ru'
 import { months } from 'shared/constants'
+import { ReleaseType } from 'types/common'
 
 export function generateReleasesPages(): { params: { date: string } }[] {
   const startDate = new Date(2020, 0, 1)

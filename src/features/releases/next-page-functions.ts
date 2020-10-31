@@ -1,9 +1,9 @@
-import { GetStaticPaths, GetStaticPropsContext, GetStaticProps } from 'next'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import compareAsc from 'date-fns/compareAsc'
 import { releases, homePageReleases } from 'shared/api'
 import { months } from 'shared/constants'
-import { groupBy } from 'shared/utils'
-import { FRONTEND_RELEASE_TYPES, ParsedURL } from 'types/releases'
+import { groupBy, releaseAdapter } from 'shared/utils'
+import { ReleaseType } from 'types/common'
 import { generateReleasesPages, getWeeks } from './helpers'
 import { meta } from './seo'
 
@@ -12,35 +12,28 @@ export const getPaths: GetStaticPaths = async () => ({
   fallback: false,
 })
 
-export const getProps = async (
-  { params }: any,
-  type: FRONTEND_RELEASE_TYPES,
-): Promise<{
-  props: any
-}> => {
-  const result = await releases(type, params.date)
-  const [m, y] = params.date.split('-')
-  const month = months.find(({ eng }) => eng === m)
-  const year = +y
+export const getProps = (type: ReleaseType) => {
+  const getStaticProps: GetStaticProps = async ({ params: { date } }) => {
+    const result = await releases(type, date)
+    const [m, y] = (date as string).split('-')
+    const month = months.find(({ eng }) => eng === m)
+    const year = +y
 
-  const sorted = result.sort((a, b) =>
-    compareAsc(new Date(a.released), new Date(b.released)),
-  )
-  const grouped = groupBy('released')(sorted)
+    const sorted = result
+      .sort((a, b) => compareAsc(new Date(a.released), new Date(b.released)))
+      .map(release => releaseAdapter(release, type))
+    const grouped = groupBy('released')(sorted)
 
-  return {
-    props: {
-      parsedURL: {
-        type,
-        month,
-        year,
+    return {
+      props: {
+        meta: meta[type](month.jsNumber, year),
+        grouped,
+        weeks: JSON.stringify(getWeeks(year, month.jsNumber).flat()),
       },
-      releases: sorted,
-      meta: meta[type](month.jsNumber, year),
-      grouped,
-      weeks: JSON.stringify(getWeeks(year, month.jsNumber).flat()),
-    },
+    }
   }
+
+  return getStaticProps
 }
 
 export const getPropsForIndexPage: GetStaticProps = async () => {
@@ -49,19 +42,13 @@ export const getPropsForIndexPage: GetStaticProps = async () => {
 
   const result = await homePageReleases()
 
-  const sorted = result.sort((a, b) =>
-    compareAsc(new Date(a.released), new Date(b.released)),
-  )
+  const sorted = result
+    .sort((a, b) => compareAsc(new Date(a.released), new Date(b.released)))
+    .map(release => releaseAdapter(release, 'films'))
   const grouped = groupBy('released')(sorted)
 
   return {
     props: {
-      parsedURL: {
-        type: 'films',
-        month: months[currentMonth - 1],
-        year: currentYear,
-      },
-      releases: sorted,
       meta: meta.main,
       grouped,
       weeks: JSON.stringify(

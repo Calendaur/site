@@ -1,0 +1,49 @@
+.Input {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  input {
+    position: relative;
+    display: inline-flex;
+    height: 2.5em;
+    align-items: center;
+    justify-content: flex-start;
+    padding: calc(0.5em - 1px) calc(0.75em - 1px);
+    border: 1px solid transparent;
+    -webkit-appearance: none;
+    background-color: rgba(255, 255, 255, 0.13);
+    border-radius: 4px;
+    caret-color: var(--white);
+    font-size: 1rem;
+    transition: var(--transition);
+    vertical-align: top;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    &:focus {
+      background-color: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 0 0.2em rgba(50, 115, 220, 0.25);
+    }
+  }
+
+  label {
+    padding: 4px 0;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    line-height: 14px;
+    text-transform: uppercase;
+  }
+
+  span {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin: 2px 0;
+    color: #f56b3d;
+    font-size: 12px;
+    line-height: 14px;
+  }
+}

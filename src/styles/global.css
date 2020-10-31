@@ -1,0 +1,293 @@
+:root {
+  /* LEGACY DON'T USE THIS */
+  --background-color-rgb-values: 11, 11, 11;
+  --background-color: rgb(var(--background-color-rgb-values));
+  --white-color: #e0e0e0;
+  --black-color: #070404;
+  --grey-color: #b5b5b5;
+  --sans: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  --logo-font: Montserrat;
+  --page-vertical-padding: 16px;
+  --transition: 0.3s;
+  --primary: #281b24;
+  --secondary: #a6b12e;
+  --light-blue: #8bb5f9;
+  --blue: #1977f3;
+  --blue-hover: #2c82f4;
+  --blue-active: #0f71f2;
+  --pink: #dc6175;
+  --kinopoisk: #f60;
+  --imdb: #f5c518;
+  --black: #0f0f0f;
+  --primary-text: #f9f9f9;
+  --secondary-text: #b5b5b5;
+  --bg-rgb: 10, 10, 10;
+  --transition: 0.25s;
+  --drop-shadow: 0 2px 8px rgba(244, 244, 244, 0.15);
+  --tablet: 768px;
+  --desktop: 1200px;
+  --desktop-2k: 1920px;
+  --footer-height: 124px;
+  --animation-time: 0.25s;
+  --vertical-1: 48px;
+  --vertical-2: 40px;
+  --vertical-3: 32px;
+  --vertical-4: 24px;
+  --vertical-5: 16px;
+  --vertical-6: 8px;
+  --horizontal-1: 80px;
+  --horizontal-2: 40px;
+  --horizontal-3: 32px;
+  --horizontal-4: 12px;
+  --horizontal-5: 8px;
+  --horizontal-6: 4px;
+  --amediateka: #191a1d;
+  --ivi: #f8104d;
+  --kinopoisk-hd: #333;
+  --netflix: #141414;
+  --okko: #1a082c;
+
+  /* COLORS */
+  --white-color: hsl(0, 0%, 96%);
+  --black-color: hsl(0, 0%, 4%);
+  --grey-color: hsl(0, 0%, 68%);
+  --lighter-grey-color: hsl(0, 0%, 98%);
+  --light-grey-color: hsl(0, 0%, 91%);
+  --dark-grey-color: hsl(0, 0%, 58%);
+  --red-color: hsl(354, 100%, 65%);
+  --primary-color: hsl(214, 90%, 53%);
+  --primary-lighter-color: hsl(214, 90%, 70%);
+  --primary-light-color: hsl(214, 90%, 60%);
+  --primary-dark-color: hsl(214, 90%, 45%);
+  --accent-color: hsl(332, 100%, 80%);
+  --secondary-color: hsl(0, 0%, 77%);
+  --secondary-lighter-color: hsl(0, 0%, 90%);
+  --secondary-light-color: hsl(0, 0%, 82%);
+  --secondary-dark-color: hsl(0, 0%, 65%);
+  --accent-hover-color: hsl(20, 100%, 70%);
+  --bg-color: hsl(0, 0%, 4%);
+  --primary-text-color: hsl(0, 0%, 96%);
+  --secondary-text-color: hsl(0, 0%, 10%);
+  --glitch-purple-color: hsl(315, 100%, 50%);
+  --glitch-cyan-color: hsl(179, 100%, 50%);
+  --kinopoisk-color: hsl(24, 100%, 50%);
+  --kinopoisk-hover-color: hsl(24, 100%, 55%);
+  --kinopoisk-active-color: hsl(24, 100%, 45%);
+  --imdb-color: hsl(47, 92%, 53%);
+  --imdb-hover-color: hsl(47, 92%, 57%);
+  --imdb-active-color: hsl(47, 92%, 48%);
+  --amediateka-color: hsl(225, 7%, 11%);
+  --ivi-color: hsl(344, 94%, 52%);
+  --kinopoisk-hd-color: hsl(0, 0%, 20%);
+  --netflix-color: hsl(0, 0%, 8%);
+  --okko-color: hsl(270, 69%, 10%);
+  --playstation-color: hsl(219, 100%, 26%);
+  --xbox-color: hsl(112, 45%, 48%);
+  --pc-color: hsl(0, 0%, 0%);
+  --nintendo-switch-color: hsl(355, 100%, 45%);
+
+  /* FONTS */
+  --primary-font: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  --secondary-font: Merriweather, serif;
+  --logo-font: Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+
+  /* FONT WEIGHTS */
+  --thin: 200;
+  --regular: 400;
+  --medium: 600;
+  --bold: 700;
+  --extra-bold: 800;
+
+  /* FONT SIZES */
+  --base-fz: 16px;
+  --xxs-fz: 0.75rem;
+  --xs-fz: 0.875rem;
+  --sm-fz: 1rem;
+  --md-fz: 1.25rem;
+  --lg-fz: 1.5rem;
+  --xl-fz: 2.25rem;
+  --xxl-fz: 3rem;
+
+  /* SPACES */
+  --mobile-page-spaceX: 16px;
+  --xxs-space: 4px;
+  --xs-space: 8px;
+  --sm-space: 12px;
+  --md-space: 20px;
+  --lg-space: 32px;
+  --xl-space: 52px;
+  --xxl-space: 84px;
+
+  /* OTHER */
+  --accent-gradient: linear-gradient(
+    to right,
+    hsl(20, 100%, 70%),
+    hsl(359, 100%, 68%)
+  );
+  --avatar-gradient: linear-gradient(90deg, #8e2de2, #4a00e0);
+  --drop-shadow: 0 2px 8px hsla(0, 0%, 0%, 0.15);
+  --dark-drop-shadow: 0 2px 8px hsla(0, 0%, 0%, 0.65);
+  --neumorphic-bg: hsl(0, 0%, 4%);
+  --neumorphic-shadow: 6px 6px 12px hsl(0, 0%, 3%),
+    -6px -6px 12px hsl(0, 0%, 5%);
+  --release-card-cover-gradient: linear-gradient(
+    180deg,
+    hsla(0, 0%, 0%, 0) 0%,
+    hsla(0, 0%, 5%, 0.95) 100%
+  );
+  --release-image-gradient: linear-gradient(
+    0deg,
+    hsl(0, 0%, 0%) 0%,
+    hsla(0, 0%, 0%, 0.94) 7.25%,
+    hsla(0, 0%, 0%, 0.86) 12.45%,
+    hsla(0, 0%, 0%, 0.78) 16.48%,
+    hsla(0, 0%, 0%, 0.09) 40.26%,
+    hsla(0, 0%, 0%, 0.04) 44%,
+    hsla(0, 0%, 0%, 0) 52%
+  );
+  --mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+
+  font-size: var(--base-fz);
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+  touch-action: manipulation;
+}
+
+body {
+  position: relative;
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--primary-text-color);
+  direction: ltr;
+  font-family: var(--primary-font);
+  font-feature-settings: kern;
+  font-size: 1rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+}
+
+#__next {
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+input,
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+input,
+textarea:invalid,
+:-moz-submit-invalid,
+:-moz-ui-invalid,
+:not(output):-moz-ui-invalid:-moz-focusring {
+  box-shadow: none !important;
+}
+
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+
+button {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+main {
+  margin-bottom: var(--lg-space);
+}
+
+header,
+main,
+footer {
+  padding-right: var(--mobile-page-spaceX);
+  padding-left: var(--mobile-page-spaceX);
+
+  @media (min-width: 768px) {
+    padding-right: var(--lg-space);
+    padding-left: var(--lg-space);
+  }
+
+  @media (min-width: 1200px) {
+    padding-right: var(--xl-space);
+    padding-left: var(--xl-space);
+  }
+
+  @media (min-width: 1920px) {
+    padding-right: var(--xxl-space);
+    padding-left: var(--xxl-space);
+  }
+}
+
+.aspectRatio {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+
+  & > * {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.underline {
+  text-decoration: underline;
+}

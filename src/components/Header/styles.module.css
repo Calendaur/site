@@ -1,515 +1,507 @@
-.header {
+.Header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
-  padding: 0 var(--page-padding);
+  padding-top: var(--sm-space);
+  padding-bottom: var(--sm-space);
+  margin-bottom: var(--md-space);
 
-  .logoAndNav {
+  @media (min-width: 576px) {
+    padding-top: var(--md-space);
+    padding-bottom: var(--md-space);
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    &:not(.withoutMarginBottom) {
+      margin-bottom: calc(38px + var(--md-space));
+    }
+  }
+
+  .LeftPart,
+  .RightPart {
     display: flex;
     align-items: center;
   }
 
-  @media (min-width: 768px) {
+  .RightPart {
+    --mh: 36px;
+
+    min-height: var(--mh);
+
+    @media (min-width: 768px) {
+      --mh: 42px;
+    }
+  }
+
+  .FloatPart {
+    position: fixed;
     z-index: 1;
+    bottom: 30px;
+    left: 16px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 64px;
-    padding: 0 var(--page-padding);
-  }
-
-  @media (min-width: 768px) and (max-width: 980px) {
-    margin-bottom: 64px;
-
-    .calendarNav {
-      position: absolute;
-      top: 64px;
-      left: -16px;
-    }
-  }
-
-  .logo {
-    --glitch-color-1: #ff00c1;
-    --glitch-color-2: #00fff9;
-
-    position: relative;
-    display: flex;
-    font-family: var(--logo-font);
-    font-size: 32px;
-    font-weight: 200;
-    line-height: 1;
-    letter-spacing: 0.15em;
-    animation: glitchSkew 5s infinite linear alternate-reverse;
-    animation-delay: 2s;
-    will-change: transform;
-
-    @keyframes glitchSkew {
-      0% {
-        transform: skew(-1deg);
-      }
-      10% {
-        transform: skew(2deg);
-      }
-      20% {
-        transform: skew(-1deg);
-      }
-      30% {
-        transform: skew(-3deg);
-      }
-      40% {
-        transform: skew(4deg);
-      }
-      50% {
-        transform: skew(5deg);
-      }
-      60% {
-        transform: skew(4deg);
-      }
-      70% {
-        transform: skew(-3deg);
-      }
-      80% {
-        transform: skew(-4deg);
-      }
-      90% {
-        transform: skew(-3deg);
-      }
-      100% {
-        transform: skew(4deg);
-      }
-    }
-
-    &::before,
-    &::after {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      content: attr(data-text);
-      will-change: clip, transform;
-    }
-
-    &::before {
-      left: 2px;
-      clip: rect(44px, 450px, 56px, 0);
-      text-shadow: -2px 0 var(--glitch-color-1);
-      animation: glitchAnim1 10s infinite linear alternate-reverse;
-      animation-delay: 2s;
-
-      @keyframes glitchAnim1 {
-        0% {
-          clip: rect(24px, 9999px, 72px, 0);
-          transform: skew(0.03deg);
-        }
-        5% {
-          clip: rect(69px, 9999px, 57px, 0);
-          transform: skew(0.71deg);
-        }
-        10% {
-          clip: rect(95px, 9999px, 46px, 0);
-          transform: skew(0.06deg);
-        }
-        15% {
-          clip: rect(69px, 9999px, 20px, 0);
-          transform: skew(0.06deg);
-        }
-        20% {
-          clip: rect(45px, 9999px, 70px, 0);
-          transform: skew(0.11deg);
-        }
-        25% {
-          clip: rect(51px, 9999px, 50px, 0);
-          transform: skew(0.67deg);
-        }
-        30% {
-          clip: rect(15px, 9999px, 27px, 0);
-          transform: skew(0.09deg);
-        }
-        35% {
-          clip: rect(48px, 9999px, 99px, 0);
-          transform: skew(0.47deg);
-        }
-        40% {
-          clip: rect(67px, 9999px, 95px, 0);
-          transform: skew(0.53deg);
-        }
-        45% {
-          clip: rect(46px, 9999px, 70px, 0);
-          transform: skew(0.08deg);
-        }
-        50% {
-          clip: rect(60px, 9999px, 3px, 0);
-          transform: skew(0.32deg);
-        }
-        55% {
-          clip: rect(56px, 9999px, 68px, 0);
-          transform: skew(0.08deg);
-        }
-        60% {
-          clip: rect(56px, 9999px, 87px, 0);
-          transform: skew(0.7deg);
-        }
-        65% {
-          clip: rect(7px, 9999px, 18px, 0);
-          transform: skew(0.1deg);
-        }
-        70% {
-          clip: rect(20px, 9999px, 64px, 0);
-          transform: skew(0.71deg);
-        }
-        75% {
-          clip: rect(21px, 9999px, 34px, 0);
-          transform: skew(1deg);
-        }
-        80% {
-          clip: rect(90px, 9999px, 55px, 0);
-          transform: skew(0.06deg);
-        }
-        85% {
-          clip: rect(56px, 9999px, 80px, 0);
-          transform: skew(0.05deg);
-        }
-        90% {
-          clip: rect(55px, 9999px, 8px, 0);
-          transform: skew(0.72deg);
-        }
-        95% {
-          clip: rect(89px, 9999px, 34px, 0);
-          transform: skew(0.66deg);
-        }
-        100% {
-          clip: rect(81px, 9999px, 13px, 0);
-          transform: skew(0.42deg);
-        }
-      }
-    }
-
-    &::after {
-      left: -2px;
-      text-shadow: -2px 0 var(--glitch-color-2), 2px 2px var(--glitch-color-1);
-      animation: glitchAnim2 5s infinite linear alternate-reverse;
-      animation-delay: 2s;
-
-      @keyframes glitchAnim2 {
-        0% {
-          clip: rect(48px, 9999px, 9px, 0);
-          transform: skew(0.83deg);
-        }
-        5% {
-          clip: rect(41px, 9999px, 46px, 0);
-          transform: skew(0.98deg);
-        }
-        10% {
-          clip: rect(22px, 9999px, 96px, 0);
-          transform: skew(0.96deg);
-        }
-        15% {
-          clip: rect(37px, 9999px, 3px, 0);
-          transform: skew(0.05deg);
-        }
-        20% {
-          clip: rect(56px, 9999px, 8px, 0);
-          transform: skew(0.22deg);
-        }
-        25% {
-          clip: rect(16px, 9999px, 58px, 0);
-          transform: skew(0.83deg);
-        }
-        30% {
-          clip: rect(24px, 9999px, 94px, 0);
-          transform: skew(0.51deg);
-        }
-        35% {
-          clip: rect(46px, 9999px, 24px, 0);
-          transform: skew(0.78deg);
-        }
-        40% {
-          clip: rect(72px, 9999px, 29px, 0);
-          transform: skew(0.65deg);
-        }
-        45% {
-          clip: rect(20px, 9999px, 13px, 0);
-          transform: skew(0.55deg);
-        }
-        50% {
-          clip: rect(21px, 9999px, 99px, 0);
-          transform: skew(0.32deg);
-        }
-        55% {
-          clip: rect(54px, 9999px, 72px, 0);
-          transform: skew(0.06deg);
-        }
-        60% {
-          clip: rect(99px, 9999px, 41px, 0);
-          transform: skew(0.06deg);
-        }
-        65% {
-          clip: rect(87px, 9999px, 89px, 0);
-          transform: skew(0.84deg);
-        }
-        70% {
-          clip: rect(26px, 9999px, 98px, 0);
-          transform: skew(0.81deg);
-        }
-        75% {
-          clip: rect(81px, 9999px, 88px, 0);
-          transform: skew(0.87deg);
-        }
-        80% {
-          clip: rect(84px, 9999px, 33px, 0);
-          transform: skew(0.07deg);
-        }
-        85% {
-          clip: rect(20px, 9999px, 96px, 0);
-          transform: skew(0.28deg);
-        }
-        90% {
-          clip: rect(93px, 9999px, 59px, 0);
-          transform: skew(0.64deg);
-        }
-        95% {
-          clip: rect(8px, 9999px, 54px, 0);
-          transform: skew(0.45deg);
-        }
-        100% {
-          clip: rect(33px, 9999px, 100px, 0);
-          transform: skew(0.21deg);
-        }
-      }
-    }
 
     @media (min-width: 768px) {
-      margin: 0;
-    }
-  }
-
-  nav {
-    .home {
-      @media (min-width: 768px) {
-        display: none;
-      }
-    }
-
-    a {
-      font-size: 0.875rem;
-      font-weight: 600;
-      opacity: 0.75;
-    }
-
-    @media (max-width: 767px) {
-      position: fixed;
-      top: 64px;
-      bottom: 0;
-      left: 0;
-      z-index: 1;
-      flex-direction: column;
-      width: 100vw;
-      padding: var(--page-padding);
-      background: var(--background-color);
-      overscroll-behavior: none;
-
-      &.is-visible {
-        display: flex;
-      }
-
-      &.is-hidden {
-        display: none;
-      }
-
-      a {
-        padding: 8px 0;
-
-        &.has-notification {
-          position: relative;
-
-          &::after {
-            position: absolute;
-            right: -8px;
-            width: 12px;
-            height: 12px;
-            content: '';
-            background-color: #ff4b5c;
-            border-radius: 50%;
-          }
-        }
-      }
-
-      button {
-        margin: 8px 0;
-      }
-    }
-
-    @media (min-width: 768px) {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      & > * {
-        margin-left: 12px;
-        font-size: 0.875rem;
-
-        &:first-child {
-          margin-left: 0;
-        }
-      }
+      display: none;
     }
   }
 }
 
-.float {
-  position: fixed;
-  bottom: 30px;
-  left: 16px;
-  z-index: 3;
+.AuthButtons {
   display: flex;
-  align-items: center;
 
-  .dateCarouselFloat {
+  .SignIn {
+    display: none;
+
+    @media (min-width: 576px) {
+      display: inline-block;
+      margin-left: var(--sm-space);
+    }
+  }
+}
+
+.Avatar {
+  --size: 36px;
+
+  display: flex;
+  width: var(--size);
+  min-width: var(--size);
+  height: var(--size);
+  align-items: center;
+  justify-content: center;
+  background-image: var(--avatar-gradient);
+  border-radius: 50%;
+  font-weight: var(--bold);
+
+  @media (min-width: 768px) {
+    --size: 42px;
+
+    font-size: var(--md-fz);
+    opacity: 0.6;
+    transition: opacity 100ms;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.CalendarNavigation {
+  @media (min-width: 768px) and (max-width: 1024px) {
+    position: absolute;
+    top: 78px;
+    left: 0;
+  }
+
+  &.inHeader {
+    display: none;
+
+    @media (min-width: 768px) {
+      display: flex;
+      align-items: center;
+      margin-left: var(--lg-space);
+    }
+  }
+
+  &.fixed {
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    margin-left: var(--sm-space);
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    box-shadow: var(--dark-drop-shadow);
+
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  .ChangeMonthButtons {
     display: flex;
     align-items: center;
-    margin-left: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
-    border-radius: 4px;
-    overflow: hidden;
 
-    & > span {
-      width: 120px;
-      padding: 0 8px;
-      box-sizing: content-box;
-      font-size: 0.875rem;
-      line-height: 45px;
-      text-align: center;
-      background-color: var(--blue);
-
-      .dateCarouselMonth {
-        font-weight: 600;
-        text-transform: capitalize;
-      }
-
-      .dateCarouselYear {
-        opacity: 0.75;
-      }
+    @media (min-width: 768px) {
+      margin-left: var(--md-space);
     }
 
-    button {
-      box-shadow: none;
-      border-radius: 0;
+    & > button {
+      --size: 32px;
+
+      display: flex;
+      width: var(--size);
+      height: var(--size);
+      align-items: center;
+      justify-content: center;
+      background-color: transparent;
+      opacity: 0.5;
+      transition: opacity 100ms;
+
+      &:hover {
+        opacity: 1;
+      }
 
       &:disabled {
         cursor: not-allowed;
+        opacity: 0.15;
         pointer-events: none;
-
-        img,
-        amp-img {
-          opacity: 0.1;
-        }
-      }
-    }
-  }
-
-  button {
-    --size: 45px;
-    --icon-size: 24px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: var(--size);
-    height: var(--size);
-    background-color: var(--blue);
-    border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
-
-    img {
-      width: var(--icon-size);
-      height: var(--icon-size);
-    }
-  }
-}
-
-.userAvatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  margin-left: 12px;
-  background-image: linear-gradient(to right, #8e2de2, #4a00e0);
-  font-weight: bold;
-  text-transform: uppercase;
-  border-radius: 50%;
-}
-
-.signIn,
-.signUp {
-  font-size: 0.875rem !important;
-  margin-left: 12px;
-}
-
-.signUp {
-  @media (max-width: 767px) {
-    display: none !important;
-  }
-}
-
-.calendarNav {
-  display: none;
-
-  @media (min-width: 768px) {
-    display: flex;
-    align-items: center;
-    margin-left: 32px;
-
-    .today {
-      margin-right: 16px;
-      font-size: 0.875rem;
-    }
-
-    .changeMonthButtons {
-      display: flex;
-      align-items: center;
-      margin-right: 24px;
-
-      button {
-        display: flex;
-        align-items: center;
-        padding: 8px;
-        opacity: 0.5;
-        transition: 0.25s;
-
-        &:disabled {
-          opacity: 0.15;
-          cursor: not-allowed;
-          pointer-events: none;
-        }
-
-        &:hover {
-          opacity: 1;
-        }
       }
     }
 
-    .currentMonth {
-      margin: 0 8px;
-      font-size: 22px;
-      font-weight: 600;
-      text-transform: capitalize;
-      text-edge: cap alphabetic;
-      leading-trim: both;
-      width: 170px;
+    .CurrentMonth {
+      width: 120px;
+      margin: 0 var(--xs-space);
+      font-size: var(--sm-fz);
+      font-weight: var(--medium);
       text-align: center;
+      text-transform: capitalize;
 
-      span {
-        font-weight: normal;
+      @media (min-width: 768px) {
+        width: 170px;
+        font-size: var(--md-fz);
+      }
+
+      & > span {
+        font-weight: var(--regular);
         opacity: 0.75;
       }
     }
   }
 }
 
-.todayInNav {
+.FloatNavigationButton {
+  --size: 45px;
+
+  display: flex;
+  width: var(--size);
+  height: var(--size);
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  box-shadow: var(--dark-drop-shadow);
+}
+
+.Logo {
+  position: relative;
+  display: inline-flex;
+  animation: glitchSkew 5s infinite linear alternate-reverse;
+  font-family: var(--logo-font);
+  font-size: var(--lg-fz);
+  letter-spacing: 0.12em;
+  line-height: 1;
+  will-change: transform;
+
+  @media (min-width: 576px) {
+    font-size: var(--xl-fz);
+  }
+
+  @keyframes glitchSkew {
+    0% {
+      transform: skew(-1deg);
+    }
+    10% {
+      transform: skew(2deg);
+    }
+    20% {
+      transform: skew(-1deg);
+    }
+    30% {
+      transform: skew(-3deg);
+    }
+    40% {
+      transform: skew(4deg);
+    }
+    50% {
+      transform: skew(5deg);
+    }
+    60% {
+      transform: skew(4deg);
+    }
+    70% {
+      transform: skew(-3deg);
+    }
+    80% {
+      transform: skew(-4deg);
+    }
+    90% {
+      transform: skew(-3deg);
+    }
+    100% {
+      transform: skew(4deg);
+    }
+  }
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    content: attr(data-text);
+    will-change: clip, transform;
+  }
+
+  &::before {
+    left: 2px;
+    animation: glitchAnim1 10s infinite linear alternate-reverse;
+    clip: rect(44px, 450px, 56px, 0);
+    text-shadow: -2px 0 var(--glitch-purple-color);
+
+    @keyframes glitchAnim1 {
+      0% {
+        clip: rect(24px, 9999px, 72px, 0);
+        transform: skew(0.03deg);
+      }
+      5% {
+        clip: rect(69px, 9999px, 57px, 0);
+        transform: skew(0.71deg);
+      }
+      10% {
+        clip: rect(95px, 9999px, 46px, 0);
+        transform: skew(0.06deg);
+      }
+      15% {
+        clip: rect(69px, 9999px, 20px, 0);
+        transform: skew(0.06deg);
+      }
+      20% {
+        clip: rect(45px, 9999px, 70px, 0);
+        transform: skew(0.11deg);
+      }
+      25% {
+        clip: rect(51px, 9999px, 50px, 0);
+        transform: skew(0.67deg);
+      }
+      30% {
+        clip: rect(15px, 9999px, 27px, 0);
+        transform: skew(0.09deg);
+      }
+      35% {
+        clip: rect(48px, 9999px, 99px, 0);
+        transform: skew(0.47deg);
+      }
+      40% {
+        clip: rect(67px, 9999px, 95px, 0);
+        transform: skew(0.53deg);
+      }
+      45% {
+        clip: rect(46px, 9999px, 70px, 0);
+        transform: skew(0.08deg);
+      }
+      50% {
+        clip: rect(60px, 9999px, 3px, 0);
+        transform: skew(0.32deg);
+      }
+      55% {
+        clip: rect(56px, 9999px, 68px, 0);
+        transform: skew(0.08deg);
+      }
+      60% {
+        clip: rect(56px, 9999px, 87px, 0);
+        transform: skew(0.7deg);
+      }
+      65% {
+        clip: rect(7px, 9999px, 18px, 0);
+        transform: skew(0.1deg);
+      }
+      70% {
+        clip: rect(20px, 9999px, 64px, 0);
+        transform: skew(0.71deg);
+      }
+      75% {
+        clip: rect(21px, 9999px, 34px, 0);
+        transform: skew(1deg);
+      }
+      80% {
+        clip: rect(90px, 9999px, 55px, 0);
+        transform: skew(0.06deg);
+      }
+      85% {
+        clip: rect(56px, 9999px, 80px, 0);
+        transform: skew(0.05deg);
+      }
+      90% {
+        clip: rect(55px, 9999px, 8px, 0);
+        transform: skew(0.72deg);
+      }
+      95% {
+        clip: rect(89px, 9999px, 34px, 0);
+        transform: skew(0.66deg);
+      }
+      100% {
+        clip: rect(81px, 9999px, 13px, 0);
+        transform: skew(0.42deg);
+      }
+    }
+  }
+
+  &::after {
+    left: -2px;
+    animation: glitchAnim2 5s infinite linear alternate-reverse;
+    text-shadow: -2px 0 var(--glitch-cyan-color),
+      2px 2px var(--glitch-purple-color);
+
+    @keyframes glitchAnim2 {
+      0% {
+        clip: rect(48px, 9999px, 9px, 0);
+        transform: skew(0.83deg);
+      }
+      5% {
+        clip: rect(41px, 9999px, 46px, 0);
+        transform: skew(0.98deg);
+      }
+      10% {
+        clip: rect(22px, 9999px, 96px, 0);
+        transform: skew(0.96deg);
+      }
+      15% {
+        clip: rect(37px, 9999px, 3px, 0);
+        transform: skew(0.05deg);
+      }
+      20% {
+        clip: rect(56px, 9999px, 8px, 0);
+        transform: skew(0.22deg);
+      }
+      25% {
+        clip: rect(16px, 9999px, 58px, 0);
+        transform: skew(0.83deg);
+      }
+      30% {
+        clip: rect(24px, 9999px, 94px, 0);
+        transform: skew(0.51deg);
+      }
+      35% {
+        clip: rect(46px, 9999px, 24px, 0);
+        transform: skew(0.78deg);
+      }
+      40% {
+        clip: rect(72px, 9999px, 29px, 0);
+        transform: skew(0.65deg);
+      }
+      45% {
+        clip: rect(20px, 9999px, 13px, 0);
+        transform: skew(0.55deg);
+      }
+      50% {
+        clip: rect(21px, 9999px, 99px, 0);
+        transform: skew(0.32deg);
+      }
+      55% {
+        clip: rect(54px, 9999px, 72px, 0);
+        transform: skew(0.06deg);
+      }
+      60% {
+        clip: rect(99px, 9999px, 41px, 0);
+        transform: skew(0.06deg);
+      }
+      65% {
+        clip: rect(87px, 9999px, 89px, 0);
+        transform: skew(0.84deg);
+      }
+      70% {
+        clip: rect(26px, 9999px, 98px, 0);
+        transform: skew(0.81deg);
+      }
+      75% {
+        clip: rect(81px, 9999px, 88px, 0);
+        transform: skew(0.87deg);
+      }
+      80% {
+        clip: rect(84px, 9999px, 33px, 0);
+        transform: skew(0.07deg);
+      }
+      85% {
+        clip: rect(20px, 9999px, 96px, 0);
+        transform: skew(0.28deg);
+      }
+      90% {
+        clip: rect(93px, 9999px, 59px, 0);
+        transform: skew(0.64deg);
+      }
+      95% {
+        clip: rect(8px, 9999px, 54px, 0);
+        transform: skew(0.45deg);
+      }
+      100% {
+        clip: rect(33px, 9999px, 100px, 0);
+        transform: skew(0.21deg);
+      }
+    }
+  }
+}
+
+.Navigation {
+  position: fixed;
+  z-index: 1;
+  top: 64px;
+  bottom: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  padding-right: var(--mobile-page-spaceX);
+  padding-left: var(--mobile-page-spaceX);
+  background-color: var(--bg-color);
+
+  &.isVisible {
+    display: flex;
+  }
+
   @media (min-width: 768px) {
-    display: none;
+    position: initial;
+    display: flex;
+    flex-direction: row;
+    padding-right: initial;
+    padding-left: initial;
+    margin-right: var(--md-space);
+    background-color: initial;
+  }
+
+  & > a {
+    padding-top: var(--xxs-space);
+    padding-bottom: var(--xxs-space);
+    font-size: var(--sm-fz);
+    font-weight: var(--medium);
+    opacity: 0.6;
+    transition: opacity 100ms;
+    white-space: nowrap;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    @media (min-width: 768px) {
+      padding-top: 0;
+      padding-bottom: 0;
+      margin-left: var(--sm-space);
+      font-size: var(--xs-fz);
+    }
+
+    &.hasRedDot > span {
+      position: relative;
+
+      &::after {
+        --size: 12px;
+
+        position: absolute;
+        right: -8px;
+        width: var(--size);
+        height: var(--size);
+        background-color: var(--red-color);
+        border-radius: 50%;
+        content: '';
+      }
+    }
+  }
+
+  & > .Index,
+  & > .Today {
+    @media (min-width: 768px) {
+      display: none;
+    }
   }
 }

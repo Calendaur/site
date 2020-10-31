@@ -1,0 +1,15 @@
+.Section {
+  margin-bottom: var(--lg-space);
+
+  h2 img {
+    filter: invert(1);
+  }
+}
+
+.ReleasesGrid {
+  margin-bottom: var(--md-space);
+
+  &.isLast {
+    margin-bottom: 0;
+  }
+}
