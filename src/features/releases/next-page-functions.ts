@@ -30,6 +30,7 @@ export const getProps = (type: ReleaseType) => {
         grouped,
         weeks: JSON.stringify(getWeeks(year, month.jsNumber).flat()),
       },
+      revalidate: 120,
     }
   }
 
@@ -55,6 +56,6 @@ export const getPropsForIndexPage: GetStaticProps = async () => {
         getWeeks(currentYear, months[currentMonth - 1].jsNumber).flat(),
       ),
     },
-    revalidate: 60,
+    revalidate: 120,
   }
 }
