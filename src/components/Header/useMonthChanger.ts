@@ -82,6 +82,18 @@ export function useMonthChanger() {
     year,
   )
 
+  function getDisableNext() {
+    if (currentMonth === 10) {
+      return nextMonth === 'january'
+    }
+
+    if (currentMonth === 11) {
+      return nextMonth === 'february'
+    }
+
+    return nextMonth === months[currentMonth + 2].eng
+  }
+
   return {
     push,
     date,
@@ -90,7 +102,7 @@ export function useMonthChanger() {
     nextMonth,
     prevMonth,
     goToday: () => push(routes.TODAY),
-    disabledNext: nextMonth === months[currentMonth + 2].eng,
+    disabledNext: getDisableNext(),
     disabledPrev: month.eng === 'january' && year === 2020,
     year,
   }
