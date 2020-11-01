@@ -206,8 +206,13 @@ export function releaseWithDetailsAdapter(release) {
       type: 'games',
       platforms: release.platforms,
       stores: release.stores,
-      genres: release.rawg_io_fields.genres.map(genre => genre.name),
-      ratings: release.rawg_io_fields.metacritic_platforms,
+      genres:
+        release.rawg_io_fields && release.rawg_io_fields.genres
+          ? release.rawg_io_fields.genres.map(genre => genre.name)
+          : [],
+      ratings: release.rawg_io_fields
+        ? release.rawg_io_fields.metacritic_platforms || null
+        : null,
     }
   }
 
