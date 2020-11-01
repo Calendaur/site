@@ -31,6 +31,9 @@ function Footer() {
             href="https://t.me/released_at"
             target="_blank"
             rel="noopener noreferrer nofollow"
+            onClick={() => {
+              ;(window as any).plausible('Click on social network link')
+            }}
           >
             Телеграм канал
           </a>
@@ -39,6 +42,9 @@ function Footer() {
             href="https://zen.yandex.ru/id/5f702b5d243429689bde2890"
             target="_blank"
             rel="noopener noreferrer nofollow"
+            onClick={() => {
+              ;(window as any).plausible('Click on social network link')
+            }}
           >
             Яндекс Дзен
           </a>

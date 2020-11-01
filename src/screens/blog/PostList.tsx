@@ -7,8 +7,7 @@ interface Props {
 }
 
 function PostList({ posts }: Props) {
-  const title =
-    'Блог released.at. Новости игр, кино и сериалов. Обзоры и рецензии'
+  const title = 'Блог Released. Новости игр, кино и сериалов. Обзоры и рецензии'
   const description =
     'В нашем блоге вы узнаете, что посмотреть или во что поиграть в текущем месяце, а также новости, обзоры и рецензии'
 
@@ -52,6 +51,9 @@ function PostList({ posts }: Props) {
             href="https://zen.yandex.ru/id/5f702b5d243429689bde2890"
             target="_blank"
             rel="noopener noreferrer nofollow"
+            onClick={() => {
+              ;(window as any).plausible('Click on social network link')
+            }}
             style={{
               textDecoration: 'underline',
             }}
@@ -63,6 +65,9 @@ function PostList({ posts }: Props) {
             href="https://t.me/released_at"
             target="_blank"
             rel="noopener noreferrer nofollow"
+            onClick={() => {
+              ;(window as any).plausible('Click on social network link')
+            }}
             style={{
               textDecoration: 'underline',
             }}
