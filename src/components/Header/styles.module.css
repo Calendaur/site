@@ -39,6 +39,12 @@
     bottom: 30px;
     left: 16px;
     display: flex;
+    opacity: 1;
+    transition: opacity 250ms;
+
+    &.isHidden {
+      opacity: 0;
+    }
 
     @media (min-width: 768px) {
       display: none;
@@ -114,6 +120,10 @@
     @media (min-width: 768px) {
       display: none;
     }
+  }
+
+  &.hideIfNavigationOpened {
+    display: none;
   }
 
   .ChangeMonthButtons {
@@ -433,12 +443,13 @@
 .Navigation {
   position: fixed;
   z-index: 1;
-  top: 64px;
+  top: 0;
   bottom: 0;
   left: 0;
   display: none;
   width: 100%;
   flex-direction: column;
+  padding-top: var(--lg-space);
   padding-right: var(--mobile-page-spaceX);
   padding-left: var(--mobile-page-spaceX);
   background-color: var(--bg-color);
@@ -451,6 +462,7 @@
     position: initial;
     display: flex;
     flex-direction: row;
+    padding-top: 0;
     padding-right: initial;
     padding-left: initial;
     margin-right: var(--md-space);
@@ -460,7 +472,7 @@
   & > a {
     padding-top: var(--xxs-space);
     padding-bottom: var(--xxs-space);
-    font-size: var(--sm-fz);
+    font-size: var(--md-fz);
     font-weight: var(--medium);
     opacity: 0.6;
     transition: opacity 100ms;

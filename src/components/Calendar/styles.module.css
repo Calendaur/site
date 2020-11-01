@@ -131,6 +131,7 @@
   position: relative;
   display: grid;
   height: 100%;
+  grid-auto-rows: 280px;
   grid-gap: var(--xs-space);
 
   @media (min-width: 768px) and (max-width: 1199px) {

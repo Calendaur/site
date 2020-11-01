@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import cx from 'classnames'
 import { useUser } from 'features/user/use-user'
@@ -17,12 +17,26 @@ import styles from './styles.module.css'
 
 function Header() {
   const [isVisibleNavigation, toggleNavigation] = useState(false)
+  const [isVisibleFloatPart, toggleVisibleFloatPart] = useState(true)
   const { events } = useRouter()
   const { isLoading, user } = useUser()
   const monthChangerData = useMonthChanger()
 
   useEffect(() => {
     if (window.innerWidth > 768) return
+
+    function detectScroll() {
+      if (
+        window.innerHeight + window.pageYOffset >=
+        document.body.offsetHeight
+      ) {
+        toggleVisibleFloatPart(false)
+      } else {
+        toggleVisibleFloatPart(true)
+      }
+    }
+
+    window.addEventListener('scroll', detectScroll)
 
     function hideNav() {
       toggleNavigation(false)
@@ -31,6 +45,7 @@ function Header() {
     events.on('routeChangeStart', hideNav)
 
     return () => {
+      window.removeEventListener('scroll', detectScroll)
       events.off('routeChangeStart', hideNav)
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
@@ -57,7 +72,11 @@ function Header() {
         {isLoading ? <Spinner /> : null}
         {user ? <Avatar user={user} /> : isLoading ? null : <AuthButtons />}
       </div>
-      <div className={styles.FloatPart}>
+      <div
+        className={cx(styles.FloatPart, {
+          [styles.isHidden]: !isVisibleFloatPart,
+        })}
+      >
         <FloatNavigationButton
           isVisibleNavigation={isVisibleNavigation}
           toggleNavigation={toggleNavigation}
@@ -66,6 +85,7 @@ function Header() {
           <CalendarNavigation
             position={CalendarNavigationPosition.Fixed}
             data={monthChangerData}
+            isVisibleNavigation={isVisibleNavigation}
           />
         ) : null}
       </div>

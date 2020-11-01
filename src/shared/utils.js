@@ -138,6 +138,7 @@ export function releaseAdapter(release, type) {
           }
         : {}),
       type: 'films',
+      is_digital: release.is_digital,
     }
   }
 

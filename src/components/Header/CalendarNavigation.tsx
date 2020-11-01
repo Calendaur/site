@@ -1,4 +1,3 @@
-
 import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
 import cx from 'classnames'
@@ -23,9 +22,10 @@ interface Props {
     date: Date
     year: number
   }
+  isVisibleNavigation?: boolean
 }
 
-function CalendarNavigation({ position, data }: Props) {
+function CalendarNavigation({ position, data, isVisibleNavigation }: Props) {
   const {
     push,
     goToday,
@@ -42,6 +42,7 @@ function CalendarNavigation({ position, data }: Props) {
       className={cx(styles.CalendarNavigation, {
         [styles.inHeader]: position === CalendarNavigationPosition.InHeader,
         [styles.fixed]: position === CalendarNavigationPosition.Fixed,
+        [styles.hideIfNavigationOpened]: isVisibleNavigation,
       })}
     >
       {position === CalendarNavigationPosition.InHeader ? (

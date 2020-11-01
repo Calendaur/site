@@ -92,7 +92,11 @@
   .Info {
     display: block;
     margin: 0;
-    font-size: var(--xxs-fz);
+    font-size: var(--xs-fz);
     line-height: 1.4;
+  }
+
+  .IsDigitalLabel {
+    margin-bottom: var(--xxs-space);
   }
 }

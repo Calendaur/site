@@ -1,6 +1,6 @@
-
 import cx from 'classnames'
 import { GamePlatform } from 'types/common'
+import Tag from '../Tag'
 
 import styles from './styles.module.css'
 
@@ -54,15 +54,15 @@ function PlatformList({ className, platforms }: Props) {
     .sort((a, b) => a.position - b.position)
 
   return (
-    <ul className={cx(styles.Platforms, className)}>
+    <div className={cx(styles.Platforms, className)}>
       {preparedPlatforms.map(({ title, color, bgColor }) => {
         return (
-          <li key={title} style={{ color, backgroundColor: bgColor }}>
+          <Tag key={title} color={color} bgColor={bgColor}>
             {title}
-          </li>
+          </Tag>
         )
       })}
-    </ul>
+    </div>
   )
 }
 

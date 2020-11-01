@@ -10,6 +10,7 @@ import { ReleaseType, ReleaseInList } from 'types/common'
 import PlatformList from '../PlatformList'
 import Text from '../Text'
 import ExpectButton from '../ExpectButton'
+import Tag from '../Tag'
 
 import styles from './styles.module.css'
 
@@ -60,6 +61,25 @@ function ReleaseCard({ release, source }: Props) {
           <Image src={release.cover} alt={release.title} unsized />
         </div>
         <div className={styles.Footer}>
+          {release.type === ReleaseType.Films ? (
+            release.is_digital ? (
+              <Tag
+                className={styles.IsDigitalLabel}
+                color="#000"
+                bgColor="#9ad3bc"
+              >
+                В цифре
+              </Tag>
+            ) : (
+              <Tag
+                className={styles.IsDigitalLabel}
+                color="#000"
+                bgColor="#f4abc4"
+              >
+                В кино
+              </Tag>
+            )
+          ) : null}
           <Text className={styles.Title}>{release.title}</Text>
           {release.type === ReleaseType.Films && (
             <Text secondary i className={styles.Info}>

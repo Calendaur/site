@@ -13,6 +13,7 @@ import PostsGrid from './PostsGrid'
 import ReleaseCard from './ReleaseCard'
 import ResponsiveGrid from './ResponsiveGrid'
 import Spinner from './Spinner'
+import Tag from './Tag'
 import Text from './Text'
 import Title from './Title'
 import TitleWithDescription from './TitleWithDescription'
@@ -33,6 +34,7 @@ export {
   ReleaseCard,
   ResponsiveGrid,
   Spinner,
+  Tag,
   Text,
   Title,
   TitleWithDescription,

@@ -35,6 +35,7 @@ export type FilmInList = {
   director: string
   imdb_rating: number
   kinopoisk_rating: number
+  is_digital?: boolean
 }
 
 export type SeriesInList = {

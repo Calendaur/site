@@ -3,6 +3,16 @@ import { Title, ChangeLog } from 'components'
 import { routes } from 'shared/constants'
 
 const updates = {
+  'v10.20': {
+    date: new Date('2020-09-01'),
+    fixes: [],
+    improves: [
+      'Редизайн сайта',
+      'Сейчас добавление/удаление из избранного происходит мгновенно',
+      'Переделали хэдэр: добавили в него переключалку месяцев',
+    ],
+    features: [`Статьи связаны с релизами`],
+  },
   'v9.20': {
     date: new Date('2020-09-01'),
     fixes: [],

@@ -1,0 +1,9 @@
+.Tag {
+  display: inline-flex;
+  padding: 2px 8px;
+  border-radius: 12px;
+  cursor: default;
+  font-size: var(--xxs-fz);
+  font-weight: var(--bold);
+  letter-spacing: -0.005625rem;
+}

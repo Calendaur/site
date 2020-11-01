@@ -73,9 +73,8 @@
     display: inline-block;
     padding: 5px 12px;
     margin-bottom: var(--xs-space);
-    background-color: var(--primary-lighter-color);
+    background-color: hsla(0, 0%, 0%, 0.5);
     border-radius: 16px;
-    color: var(--secondary-text-color);
     font-size: var(--xs-fz);
     font-weight: var(--medium);
     letter-spacing: -0.020625rem;
