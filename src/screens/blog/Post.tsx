@@ -16,7 +16,7 @@ function Post({ post }: Props) {
   const slug = slugify(post.title)
   const metaTitle = `${post.title}. Читать на Released`
   const url = `https://released.at/blog/${post.id}-${slug}`
-  const description = `Новости из мира игр, кино и сериалов в блоге Released`
+  const description = `Статьи на Released. Самая свежая и интересная информация из мира кино, игр и сериалах: новости, подборки, переносы, обзоры премьер.`
 
   return (
     <>
@@ -30,6 +30,10 @@ function Post({ post }: Props) {
         <meta property="og:site_name" content={metaTitle} />
         <meta name="twitter:title" content={metaTitle} />
         <meta name="twitter:description" content={description} />
+        <meta property="og:image" content={post.cover} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image:src" content={post.cover} />
+        <link rel="image_src" href={post.cover} />
       </Head>
       <div>
         <div className={styles.PageWrapper}>
