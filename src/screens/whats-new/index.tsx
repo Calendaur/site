@@ -4,7 +4,7 @@ import { routes } from 'shared/constants'
 
 const updates = {
   'v10.20': {
-    date: new Date('2020-09-01'),
+    date: new Date('2020-10-01'),
     fixes: [],
     improves: [
       'Редизайн сайта',
