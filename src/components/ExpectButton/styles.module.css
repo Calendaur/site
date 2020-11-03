@@ -10,6 +10,11 @@
   box-shadow: var(--drop-shadow);
   transition: box-shadow 300ms, transform 300ms;
 
+  @media (max-width: 1199px) {
+    width: 56px;
+    height: 34px;
+  }
+
   &::after {
     position: absolute;
     z-index: 999;

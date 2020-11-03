@@ -14,10 +14,6 @@
 }
 
 .Header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
   margin-bottom: var(--sm-space);
 
   @media (min-width: 768px) {
@@ -25,12 +21,28 @@
   }
 
   h1 {
-    margin-bottom: 0;
     font-size: var(--lg-fz);
     line-height: 1;
 
     @media (min-width: 768px) {
       font-size: var(--xl-fz);
+    }
+  }
+
+  .HeaderText {
+    margin-bottom: var(--md-space);
+
+    a {
+      display: inline-block;
+      padding: 0 4px;
+      background: var(--accent-gradient);
+      border-radius: 4px;
+      color: var(--secondary-text-color);
+      font-weight: var(--medium);
+
+      &:hover {
+        background: var(--accent-hover-color);
+      }
     }
   }
 }

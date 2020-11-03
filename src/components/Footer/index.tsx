@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import cx from 'classnames'
 import { routes } from 'shared/constants'
 import Text from '../Text'
 
@@ -27,7 +28,7 @@ function Footer() {
         <Text>Мы в соцсетях:</Text>
         <div>
           <a
-            className={styles.Link}
+            className={cx(styles.Link, styles.LinkButton, styles.Tg)}
             href="https://t.me/released_at"
             target="_blank"
             rel="noopener noreferrer nofollow"
@@ -35,10 +36,10 @@ function Footer() {
               ;(window as any).plausible('Click on social network link')
             }}
           >
-            Телеграм канал
+            Телеграм
           </a>
           <a
-            className={styles.Link}
+            className={cx(styles.Link, styles.LinkButton, styles.Zen)}
             href="https://zen.yandex.ru/id/5f702b5d243429689bde2890"
             target="_blank"
             rel="noopener noreferrer nofollow"
@@ -46,7 +47,7 @@ function Footer() {
               ;(window as any).plausible('Click on social network link')
             }}
           >
-            Яндекс Дзен
+            Дзен
           </a>
         </div>
       </div>
