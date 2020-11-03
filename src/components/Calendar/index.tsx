@@ -1,9 +1,8 @@
-import { useRouter } from 'next/router'
 import format from 'date-fns/format'
 import isToday from 'date-fns/isToday'
 import cx from 'classnames'
 import { ReleaseInList } from 'types/common'
-import { monthsDict } from 'shared/constants'
+import { useParsedUrl } from 'features/releases/use-parsed-url'
 import Header from './Header'
 import ReleaseCard, { Source } from '../ReleaseCard'
 
@@ -18,24 +17,12 @@ interface Props {
   }
 }
 
-const currentMonth = new Date().getMonth()
-const currentYear = new Date().getFullYear()
-
 function Calendar({ weeks, releases }: Props) {
-  const { asPath } = useRouter()
+  const routeData = useParsedUrl()
+
+  if (routeData === null) return null
+
   const weeksArray = JSON.parse(weeks) as Array<number | null>
-
-  let url = asPath.replace('?' + asPath.split('?')[1], '')
-  let month = currentMonth
-  let year = currentYear
-
-  if (url !== '/') {
-    const [, date] = asPath.split('/').slice(1)
-    const [m, y] = date.split('-')
-
-    month = monthsDict[m] - 1
-    year = +y
-  }
 
   return (
     <>
@@ -48,7 +35,7 @@ function Calendar({ weeks, releases }: Props) {
         </div>
         <div className={styles.Grid}>
           {weeksArray.map((day, index) => {
-            const date = new Date(year, month, day)
+            const date = new Date(routeData.year, routeData.month.jsNumber, day)
             const formatted = format(date, 'yyyy-LL-dd')
             const releasesInDay = releases[formatted]
             const hasReleases = !!releasesInDay

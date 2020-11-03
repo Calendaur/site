@@ -1,8 +1,7 @@
-import { useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { months, routes } from 'shared/constants'
+import { useParsedUrl } from 'features/releases/use-parsed-url'
 
-const currentYear = new Date().getFullYear()
 const currentMonth = new Date().getMonth()
 
 function dateCarousel(type: string, month: number, year: number) {
@@ -26,51 +25,10 @@ function dateCarousel(type: string, month: number, year: number) {
   }
 }
 
-const pagesWithCalendar = new Set([
-  '/',
-  '/games/[date]',
-  '/films/[date]',
-  '/series/[date]',
-])
-
-const monthsDict = {
-  january: 0,
-  february: 1,
-  march: 2,
-  april: 3,
-  may: 4,
-  june: 5,
-  july: 6,
-  august: 7,
-  september: 8,
-  october: 9,
-  november: 10,
-  december: 11,
-}
-
 export function useMonthChanger() {
-  const { route, asPath, push } = useRouter()
+  const { push } = useRouter()
 
-  const clearAsPath = asPath.replace('?' + asPath.split('?')[1], '')
-
-  const routeData = useMemo(() => {
-    if (!pagesWithCalendar.has(route) || !clearAsPath) return null
-
-    let [type, date] = clearAsPath.split('/').slice(1)
-
-    if (type === '') {
-      type = 'films'
-      date = `${months[currentMonth].eng}-${currentYear}`
-    }
-
-    const [engMonth, year] = date.split('-')
-
-    return {
-      type,
-      month: months[monthsDict[engMonth]],
-      year: +year,
-    }
-  }, [clearAsPath, route])
+  const routeData = useParsedUrl()
 
   if (routeData === null) return null
 
