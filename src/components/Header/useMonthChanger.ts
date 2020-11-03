@@ -51,10 +51,12 @@ const monthsDict = {
 export function useMonthChanger() {
   const { route, asPath, push } = useRouter()
 
-  const routeData = useMemo(() => {
-    if (!pagesWithCalendar.has(route) || !asPath) return null
+  const clearAsPath = asPath.replace('?' + asPath.split('?')[1], '')
 
-    let [type, date] = asPath.split('/').slice(1)
+  const routeData = useMemo(() => {
+    if (!pagesWithCalendar.has(route) || !clearAsPath) return null
+
+    let [type, date] = clearAsPath.split('/').slice(1)
 
     if (type === '') {
       type = 'films'
@@ -68,7 +70,7 @@ export function useMonthChanger() {
       month: months[monthsDict[engMonth]],
       year: +year,
     }
-  }, [asPath, route])
+  }, [clearAsPath, route])
 
   if (routeData === null) return null
 

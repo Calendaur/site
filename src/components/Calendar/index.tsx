@@ -25,7 +25,7 @@ function Calendar({ weeks, releases }: Props) {
   const { asPath } = useRouter()
   const weeksArray = JSON.parse(weeks) as Array<number | null>
 
-  let url = asPath
+  let url = asPath.replace('?' + asPath.split('?')[1], '')
   let month = currentMonth
   let year = currentYear
 

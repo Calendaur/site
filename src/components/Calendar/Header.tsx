@@ -1,8 +1,6 @@
-
 import { useRouter } from 'next/router'
 import { months, monthsDict } from 'shared/constants'
 import Title from '../Title'
-import Button from '../Button'
 
 import styles from './styles.module.css'
 
@@ -17,8 +15,11 @@ const typesDict = {
 
 function Header() {
   const { asPath } = useRouter()
-  const isIndex = asPath === '/'
-  let [, type, date] = asPath.split('/')
+
+  const clearAsPath = asPath.replace('?' + asPath.split('?')[1], '')
+
+  const isIndex = clearAsPath === '/'
+  let [, type, date] = clearAsPath.split('/')
 
   let title = ''
 
