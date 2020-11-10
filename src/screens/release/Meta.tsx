@@ -22,20 +22,20 @@ function Meta({ release, url }: Props) {
   let description = ''
 
   if (release.type === ReleaseType.Films) {
-    title = `${releaseTitle} дата выхода на Released`
-    description = `Узнайте дату выхода фильма ${releaseTitle}. Подпишитесь на уведомления, чтобы не пропустить релиз`
+    title = `${releaseTitle} дата выхода`
+    description = `Узнайте дату выхода фильма «${releaseTitle}». Подпишитесь на уведомления, чтобы не пропустить релиз`
   }
 
   if (release.type === ReleaseType.Games) {
     title = `${releaseTitle} дата выхода на ${release.platforms
       .map(p => platformsDict[p])
-      .join(', ')}, купить игру ${releaseTitle} на Released`
-    description = `Узнайте дату выхода игры ${releaseTitle}. Подпишитесь на уведомления, чтобы не пропустить релиз`
+      .join(', ')}, купить игру ${releaseTitle}`
+    description = `Узнайте дату выхода игры «${releaseTitle}». Подпишитесь на уведомления, чтобы не пропустить релиз`
   }
 
   if (release.type === ReleaseType.Series) {
-    title = `${releaseTitle} дата выхода ${release.season} сезон на Released`
-    description = `Узнайте дату выхода нового сезона сериала ${releaseTitle}. Подпишитесь на уведомления, чтобы не пропустить релиз`
+    title = `${releaseTitle} дата выхода ${release.season} сезон`
+    description = `Узнайте дату выхода нового сезона сериала «${releaseTitle}». Подпишитесь на уведомления, чтобы не пропустить релиз`
   }
 
   return (

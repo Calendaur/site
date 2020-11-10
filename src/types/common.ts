@@ -126,6 +126,7 @@ export interface UserProfile {
 export interface UserResponse {
   current_user: {
     email: string
+    telegram_auth_link: string
   }
   expected: {
     movies: ReleaseInList[]

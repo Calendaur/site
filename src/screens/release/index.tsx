@@ -72,7 +72,7 @@ function Release({ release }: Props) {
         />
         <div className={styles.Cover}>
           <div className={styles.Gradient} />
-          <Image src={cover} alt={title} unsized />
+          <Image src={cover} alt={title} layout="fill" />
         </div>
         <div className={styles.ReleaseDate}>
           {format(new Date(released), 'd MMMM yyyy', {

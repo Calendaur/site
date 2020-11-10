@@ -18,7 +18,7 @@ function PostCard({ title, cover, id, created_at }: BlogArticleInList) {
       <a className={styles.PostCard}>
         {cover && (
           <div className={styles.Cover}>
-            <Image src={cover} unsized />
+            <Image src={cover} quality={75} layout="fill" />
           </div>
         )}
         <div className={styles.Footer}>

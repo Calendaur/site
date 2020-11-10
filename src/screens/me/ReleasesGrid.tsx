@@ -22,7 +22,7 @@ function ReleasesGrid({ releases, title, last }: Props) {
       })}
     >
       <Title h3>{title}</Title>
-      <ResponsiveGrid>
+      <ResponsiveGrid className={styles.Grid}>
         {releases.map(release => (
           <ReleaseCard
             key={release.release_id}

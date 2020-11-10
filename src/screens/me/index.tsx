@@ -63,7 +63,8 @@ function Me() {
   const games = prepareData(expected.games, 'games')
   const series = prepareData(expected.series, 'series')
 
-  const hasActual = [...films.actual, games.actual, series.actual].length > 0
+  const hasActual =
+    [...films.actual, ...games.actual, ...series.actual].length > 0
   const hasNonActual =
     [...films.nonActual, ...games.nonActual, ...series.nonActual].length > 0
 
@@ -75,6 +76,17 @@ function Me() {
         <title>Личный кабинет</title>
       </Head>
       <Title>{email}</Title>
+      <Button
+        className={styles.TgButton}
+        onClick={() => {
+          const w = window as any
+          w.open(user.current_user.telegram_auth_link, '_target')
+          w.plausible('Click on tg bot in me')
+        }}
+      >
+        <img width="24" height="24" src="/icons/telegram-blue.svg" alt="" />
+        Телеграм-бот
+      </Button>
       {noReleases && (
         <Text>
           Сейчас у&nbsp;вас нет ожидаемых релизов. Чтобы их&nbsp;добавить,
@@ -86,19 +98,27 @@ function Me() {
           то&nbsp;в&nbsp;секцию &laquo;Уже вышло&raquo;.
         </Text>
       )}
-      {hasActual ? (
-        <section className={styles.Section}>
-          <Title h2>
-            Ожидаемые релизы{' '}
-            <img width="24" height="24" src="/icons/fire-on.svg" alt="" />
-          </Title>
-          <ReleasesGrid title="Кино" releases={films.actual} />
-          <ReleasesGrid title="Сериалы" releases={series.actual} />
-          <ReleasesGrid title="Игры" releases={games.actual} last />
-        </section>
-      ) : (
-        <Text>Нет ожидаемых релизов</Text>
-      )}
+      <section className={styles.Section}>
+        <Title h2>
+          Ожидаемые релизы{' '}
+          <img width="24" height="24" src="/icons/fire-on.svg" alt="" />
+        </Title>
+        {hasActual ? (
+          <>
+            <ReleasesGrid title="Кино" releases={films.actual} />
+            <ReleasesGrid title="Сериалы" releases={series.actual} />
+            <ReleasesGrid title="Игры" releases={games.actual} last />
+          </>
+        ) : (
+          <Text>
+            Нет ожидаемых релизов, чтобы их&nbsp;добавить нажмите на&nbsp;
+            <span role="img" aria-label="fire">
+              🔥
+            </span>
+            &nbsp;в&nbsp;карточке релиза
+          </Text>
+        )}
+      </section>
       {hasNonActual && (
         <section className={styles.Section}>
           <Title h2>

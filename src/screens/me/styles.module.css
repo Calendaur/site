@@ -12,4 +12,21 @@
   &.isLast {
     margin-bottom: 0;
   }
+
+  .Grid {
+    grid-template-rows: 220px;
+  }
+}
+
+.TgButton {
+  margin-bottom: var(--md-space);
+  color: #08c;
+
+  @media (min-width: 768px) {
+    margin-bottom: var(--lg-space);
+  }
+
+  img {
+    margin-right: var(--xxs-space);
+  }
 }

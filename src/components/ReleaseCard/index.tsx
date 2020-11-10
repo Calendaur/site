@@ -58,7 +58,12 @@ function ReleaseCard({ release, source }: Props) {
           <ExpectButton release={release} />
         </div>
         <div className={styles.Cover}>
-          <Image src={release.cover} alt={release.title} unsized />
+          <Image
+            src={release.cover}
+            alt={release.title}
+            quality={75}
+            layout="fill"
+          />
         </div>
         <div className={styles.Footer}>
           {release.type === ReleaseType.Films ? (
