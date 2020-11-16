@@ -100,3 +100,17 @@ export const cookies = {
   AUTH_ATTEMPTS: 'auth_attempts',
   NEED_CHECK_WHATS_NEW: 'need_check_whats_new',
 }
+
+export const analyticEvents = {
+  // Click on streaming service button
+  CLICK_ON_MORETV: 'Click on more.tv',
+  CLICK_ON_IVI: 'Click on ivi',
+  CLICK_ON_AMEDIATEKA: 'Click on Amediateka',
+  CLICK_ON_APPLE_TV_PLUS: 'Click on Apple TV+',
+  CLICK_ON_HULU: 'Click on Hulu',
+  CLICK_ON_OKKO: 'Click on Okko',
+  CLICK_ON_DISNEY_PLUS: 'Click on Disney+',
+  CLICK_ON_NETFLIX: 'Click on Netflix',
+  CLICK_ON_KINOPOISKHD: 'Click on KinopoiskHD',
+  CLICK_ON_AMAZON_PRIME: 'Click on Amazon Prime',
+}

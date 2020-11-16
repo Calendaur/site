@@ -78,6 +78,7 @@
     "typescript": "^4.0.5"
   },
   "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
     "extends": [
       "react-app",
       "plugin:prettier/recommended"

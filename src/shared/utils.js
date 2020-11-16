@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-unfetch'
 import Router from 'next/router'
 import Cookies from 'js-cookie'
+import { analyticEvents } from 'shared/constants'
 
 async function parse(response) {
   if (response.status === 204 || response.statusText === 'No Content') {
@@ -170,6 +171,69 @@ export function releaseAdapter(release, type) {
 }
 
 export function releaseWithDetailsAdapter(release) {
+  const streamingServices = [
+    {
+      type: 'netflix',
+      icon: '/icons/streaming-services/netflix.svg',
+      event: analyticEvents.CLICK_ON_NETFLIX,
+      title: 'Netflix',
+    },
+    {
+      type: 'kinopoisk_hd',
+      icon: '/icons/streaming-services/kinopoisk-hd.svg',
+      event: analyticEvents.CLICK_ON_KINOPOISKHD,
+      title: 'Kinopoisk HD',
+    },
+    {
+      type: 'okko',
+      icon: '/icons/streaming-services/okko.svg',
+      event: analyticEvents.CLICK_ON_OKKO,
+      title: 'Okko',
+    },
+    {
+      type: 'amediateka',
+      icon: '/icons/streaming-services/amediateka.svg',
+      event: analyticEvents.CLICK_ON_AMEDIATEKA,
+      title: 'Amediateka',
+    },
+    {
+      type: 'ivi',
+      icon: '/icons/streaming-services/ivi.svg',
+      event: analyticEvents.CLICK_ON_IVI,
+      title: 'ivi',
+    },
+    {
+      type: 'more_tv',
+      icon: '/icons/streaming-services/more-tv.svg',
+      event: analyticEvents.CLICK_ON_MORETV,
+      title: 'more.tv',
+    },
+    {
+      type: 'apple_tv_plus',
+      icon: '/icons/streaming-services/apple-tv-plus.svg',
+      event: analyticEvents.CLICK_ON_APPLE_TV_PLUS,
+      title: 'Apple TV+',
+    },
+    {
+      type: 'amazon_prime',
+      icon: '/icons/streaming-services/amazon-prime.svg',
+      event: analyticEvents.CLICK_ON_AMAZON_PRIME,
+      title: 'Amazon Prime',
+    },
+    {
+      type: 'disney_plus',
+      icon: '/icons/streaming-services/disney-plus.svg',
+      event: analyticEvents.CLICK_ON_DISNEY_PLUS,
+      title: 'Disney+',
+    },
+    {
+      type: 'hulu',
+      icon: '/icons/streaming-services/hulu.svg',
+      event: analyticEvents.CLICK_ON_HULU,
+      title: 'Hulu',
+    },
+  ]
+
   const common = {
     id: release.id,
     release_id: release.release_id,
@@ -191,6 +255,13 @@ export function releaseWithDetailsAdapter(release) {
       director: release.director,
       kinopoisk_url: release.kinopoisk_url,
       imdb_url: release.imdb_url,
+      streaming_services:
+        release.streaming_services && release.streaming_services.length > 0
+          ? release.streaming_services.map(service => ({
+              ...streamingServices.find(ss => ss.type === service.type),
+              link: service.link,
+            }))
+          : [],
       ...(release.foreign_ratings
         ? {
             imdb_rating: release.foreign_ratings.imdb_rating,
@@ -223,6 +294,13 @@ export function releaseWithDetailsAdapter(release) {
       season: release.season,
       kinopoisk_url: release.kinopoisk_url,
       imdb_url: release.imdb_url,
+      streaming_services:
+        release.streaming_services && release.streaming_services.length > 0
+          ? release.streaming_services.map(service => ({
+              ...streamingServices.find(ss => ss.type === service.type),
+              link: service.link,
+            }))
+          : [],
       ...(release.foreign_ratings
         ? {
             imdb_rating: release.foreign_ratings.imdb_rating,

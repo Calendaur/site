@@ -343,7 +343,7 @@
     margin: calc(var(--xxs-space) * -1);
   }
 
-  .Btn {
+  .ServiceButton {
     margin: var(--xxs-space);
 
     &.amediateka {
@@ -354,8 +354,12 @@
       background-color: var(--ivi-color);
     }
 
-    &.kinopoisk-hd {
+    &.kinopoisk_hd {
       background-color: var(--kinopoisk-hd-color);
+    }
+
+    &.more_tv {
+      background-color: #000;
     }
 
     &.netflix {
@@ -366,8 +370,12 @@
       background-color: var(--okko-color);
     }
 
-    & > img {
-      height: 24px;
+    &:focus:not(:active) {
+      box-shadow: none;
+    }
+
+    img {
+      height: 65%;
     }
   }
 }

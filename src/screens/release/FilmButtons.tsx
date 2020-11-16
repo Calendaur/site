@@ -31,7 +31,7 @@ function FilmButtons({ kinopoisk, imdb }: Props) {
             alt="КиноПоиск"
           />
           {kinopoisk.rating && kinopoisk.rating > 0 ? (
-            <span>[{kinopoisk.rating.toFixed(1)}]</span>
+            <span>{kinopoisk.rating.toFixed(1)}</span>
           ) : null}
         </Button>
       )}
@@ -44,7 +44,7 @@ function FilmButtons({ kinopoisk, imdb }: Props) {
         >
           <img width="64" height="32" src="/icons/imdb.svg" alt="IMDB" />
           {imdb.rating && imdb.rating > 0 ? (
-            <span>[{imdb.rating.toFixed(1)}]</span>
+            <span>{imdb.rating.toFixed(1)}</span>
           ) : null}
         </Button>
       )}

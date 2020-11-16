@@ -60,6 +60,14 @@ export type GameInList = {
 
 export type ReleaseInList = FilmInList | SeriesInList | GameInList
 
+export type StreamingService = {
+  type: string
+  icon: string
+  event: string
+  title: string
+  link: string
+}
+
 export type FilmWithDetails = {
   id: number
   release_id: number
@@ -76,6 +84,7 @@ export type FilmWithDetails = {
   kinopoisk_rating?: number
   trailer?: string
   related_articles?: BlogArticleInList[]
+  streaming_services: StreamingService[]
 }
 export type SeriesWithDetails = {
   id: number
@@ -93,6 +102,7 @@ export type SeriesWithDetails = {
   kinopoisk_rating?: number
   trailer?: string
   related_articles?: BlogArticleInList[]
+  streaming_services: StreamingService[]
 }
 export type GameWithDetails = {
   id: number

@@ -15,7 +15,7 @@ import { ReleaseType, ReleaseWithDetails } from 'types/common'
 import Meta from './Meta'
 import ExtraInfo from './ExtraInfo'
 import StoreButtons from './StoreButtons'
-// import StreamingServicesButtons from './StreamingServicesButtons'
+import StreamingServicesButtons from './StreamingServicesButtons'
 import FilmButtons from './FilmButtons'
 import Sharing from './Sharing'
 import Trailer from './Trailer'
@@ -113,16 +113,23 @@ function Release({ release }: Props) {
             <ExtraInfo release={release} />
             {release.type === ReleaseType.Films ||
             release.type === ReleaseType.Series ? (
-              <FilmButtons
-                kinopoisk={{
-                  link: release.kinopoisk_url,
-                  rating: release.kinopoisk_rating,
-                }}
-                imdb={{
-                  link: release.imdb_url,
-                  rating: release.imdb_rating,
-                }}
-              />
+              <>
+                <FilmButtons
+                  kinopoisk={{
+                    link: release.kinopoisk_url,
+                    rating: release.kinopoisk_rating,
+                  }}
+                  imdb={{
+                    link: release.imdb_url,
+                    rating: release.imdb_rating,
+                  }}
+                />
+                {release.streaming_services.length > 0 && (
+                  <StreamingServicesButtons
+                    services={release.streaming_services}
+                  />
+                )}
+              </>
             ) : null}
             {release.type === ReleaseType.Games && release.stores.length > 0 ? (
               <StoreButtons stores={release.stores} />
