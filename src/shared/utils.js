@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-unfetch'
 import Router from 'next/router'
 import Cookies from 'js-cookie'
-import { analyticEvents } from 'shared/constants'
+import { analyticEvents } from './constants'
 
 async function parse(response) {
   if (response.status === 204 || response.statusText === 'No Content') {
