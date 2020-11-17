@@ -14,7 +14,7 @@ interface Props {
 }
 
 function ReleasePage({ release }: Props) {
-  return <Release release={release} />
+  return <Release release={releaseWithDetailsAdapter(release)} />
 }
 
 export const getServerSideProps: GetServerSideProps = async context => {
@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
   return {
     props: {
-      release: releaseWithDetailsAdapter(result),
+      release: result,
     },
   }
 }
