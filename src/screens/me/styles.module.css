@@ -14,19 +14,25 @@
   }
 
   .Grid {
-    grid-template-rows: 220px;
+    & > a {
+      height: 220px;
+    }
   }
 }
 
-.TgButton {
+.TgButtonWrapper {
   margin-bottom: var(--md-space);
-  color: #08c;
+
+  & > button {
+    margin-bottom: var(--xxs-space);
+    color: #08c;
+
+    img {
+      margin-right: var(--xxs-space);
+    }
+  }
 
   @media (min-width: 768px) {
     margin-bottom: var(--lg-space);
-  }
-
-  img {
-    margin-right: var(--xxs-space);
   }
 }

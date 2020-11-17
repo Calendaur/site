@@ -1,8 +1,4 @@
-import  {
-  PropsWithChildren,
-  DetailedHTMLProps,
-  HTMLAttributes,
-} from 'react'
+import { PropsWithChildren, DetailedHTMLProps, HTMLAttributes } from 'react'
 import cx from 'classnames'
 
 import styles from './styles.module.css'

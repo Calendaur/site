@@ -24,14 +24,9 @@ function FilmButtons({ kinopoisk, imdb }: Props) {
           }}
           className={styles.isKinopoisk}
         >
-          <img
-            width="120"
-            height="15"
-            src="/icons/kinopoisk.svg"
-            alt="КиноПоиск"
-          />
+          КиноПоиск
           {kinopoisk.rating && kinopoisk.rating > 0 ? (
-            <span>{kinopoisk.rating.toFixed(1)}</span>
+            <span>&nbsp;{kinopoisk.rating.toFixed(1)}</span>
           ) : null}
         </Button>
       )}
@@ -42,9 +37,9 @@ function FilmButtons({ kinopoisk, imdb }: Props) {
           }}
           className={styles.isImdb}
         >
-          <img width="64" height="32" src="/icons/imdb.svg" alt="IMDB" />
+          iMDB
           {imdb.rating && imdb.rating > 0 ? (
-            <span>{imdb.rating.toFixed(1)}</span>
+            <span>&nbsp;{imdb.rating.toFixed(1)}</span>
           ) : null}
         </Button>
       )}

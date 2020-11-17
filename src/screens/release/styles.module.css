@@ -73,12 +73,16 @@
     display: inline-block;
     padding: 5px 12px;
     margin-bottom: var(--xs-space);
-    background-color: hsla(0, 0%, 0%, 0.5);
+    background-color: hsla(0, 0%, 100%, 0.25);
     border-radius: 16px;
     font-size: var(--xs-fz);
     font-weight: var(--medium);
     letter-spacing: -0.020625rem;
     line-height: 1;
+
+    @media (min-width: 768px) {
+      background-color: hsla(0, 0%, 0%, 0.5);
+    }
   }
 
   .Titles {
@@ -158,6 +162,7 @@
           width: 288px;
           height: 40px;
           border-radius: 4px;
+          white-space: nowrap;
         }
       }
     }
@@ -216,6 +221,7 @@
     &.isKinopoisk {
       margin-bottom: var(--sm-space);
       background-color: var(--kinopoisk-color);
+      color: var(--white-color);
 
       img {
         filter: invert(1);
@@ -242,6 +248,7 @@
 
     &.isImdb {
       background-color: var(--imdb-color);
+      text-transform: none;
 
       img {
         margin: 0 -9px;
@@ -262,12 +269,6 @@
       @media (min-width: 380px) {
         display: inline-flex;
       }
-    }
-
-    span {
-      margin-left: var(--xs-space);
-      font-size: var(--xs-fz);
-      font-weight: var(--bold);
     }
   }
 }

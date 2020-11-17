@@ -76,17 +76,22 @@ function Me() {
         <title>Личный кабинет</title>
       </Head>
       <Title>{email}</Title>
-      <Button
-        className={styles.TgButton}
-        onClick={() => {
-          const w = window as any
-          w.open(user.current_user.telegram_auth_link, '_target')
-          w.plausible('Click on tg bot in me')
-        }}
-      >
-        <img width="24" height="24" src="/icons/telegram-blue.svg" alt="" />
-        Телеграм-бот
-      </Button>
+      <div className={styles.TgButtonWrapper}>
+        <Button
+          onClick={() => {
+            const w = window as any
+            w.open(user.current_user.telegram_auth_link, '_target')
+            w.plausible('Click on tg bot in me')
+          }}
+        >
+          <img width="24" height="24" src="/icons/telegram-blue.svg" alt="" />
+          Телеграм-бот
+        </Button>
+        <Text>
+          Используйте бота для получения уведомлений о&nbsp;выходе релизов,
+          которые вы&nbsp;ожидаете
+        </Text>
+      </div>
       {noReleases && (
         <Text>
           Сейчас у&nbsp;вас нет ожидаемых релизов. Чтобы их&nbsp;добавить,
