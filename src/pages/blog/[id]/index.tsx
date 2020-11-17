@@ -15,7 +15,7 @@ function PostPage({ post }: Props) {
 
 export async function getServerSideProps(context) {
   const idWithSlug = context.query.id
-  const { post } = await api.post(idWithSlug)
+  const { post } = await api.post(idWithSlug.split('-')[0])
 
   if (idWithSlug.split('-').length === 1) {
     redirect(context, routes.BLOG_POST(`${idWithSlug}-${slugify(post.title)}`))

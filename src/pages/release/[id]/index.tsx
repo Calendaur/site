@@ -19,7 +19,7 @@ function ReleasePage({ release }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async context => {
   const idWithSlug = context.query.id as string
-  const result = await release(idWithSlug)
+  const result = await release(idWithSlug.split('-')[0])
 
   if (idWithSlug.split('-').length === 1) {
     redirect(
