@@ -157,15 +157,15 @@
   </url>
 
   <url>
+    <loc>https://released.at/release/199-proshhanie-so-stalinym</loc>
+  </url>
+
+  <url>
     <loc>https://released.at/release/171-vse-radostnye-mesta</loc>
   </url>
 
   <url>
     <loc>https://released.at/release/18253-strelczov</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/199-proshhanie-so-stalinym</loc>
   </url>
 
   <url>
@@ -193,11 +193,11 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/206-istoriya-beastie-boys</loc>
+    <loc>https://released.at/release/18105-shaft</loc>
   </url>
 
   <url>
-    <loc>https://released.at/release/18105-shaft</loc>
+    <loc>https://released.at/release/206-istoriya-beastie-boys</loc>
   </url>
 
   <url>
@@ -213,7 +213,15 @@
   </url>
 
   <url>
+    <loc>https://released.at/release/18287-eshhyo-po-odnoj</loc>
+  </url>
+
+  <url>
     <loc>https://released.at/release/18149-v-ozhidanii-varvarov</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18138-pervaya-vedma</loc>
   </url>
 
   <url>
@@ -239,10 +247,6 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18287-eshhyo-po-odnoj</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/18112-solncze-v-nochi</loc>
   </url>
 
@@ -259,10 +263,6 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18325-vsya-zhizn-vperedi</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/18162-artur-i-merlin-ryczari-kamelota</loc>
   </url>
 
@@ -275,7 +275,23 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18138-pervaya-vedma</loc>
+    <loc>https://released.at/release/18325-vsya-zhizn-vperedi</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18375-otkuda-ty-rodom</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18193-lvicza</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/183-czvet-iz-inyh-mirov</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18322-kolskaya-sverhglubokaya</loc>
   </url>
 
   <url>
@@ -291,10 +307,6 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18193-lvicza</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/184-prosto-pomilovat</loc>
   </url>
 
@@ -304,6 +316,18 @@
 
   <url>
     <loc>https://released.at/release/18289-kitoboy</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18134-mulan</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18268-knigi-krovi</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/174-bladshot</loc>
   </url>
 
   <url>
@@ -319,15 +343,11 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18268-knigi-krovi</loc>
+    <loc>https://released.at/release/18295-amerikanskaya-utopiya</loc>
   </url>
 
   <url>
     <loc>https://released.at/release/18288-vybivaya-dolgi</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/18295-amerikanskaya-utopiya</loc>
   </url>
 
   <url>
@@ -355,10 +375,6 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/187-pravosudie-spensera</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/18182-bill-i-ted</loc>
   </url>
 
@@ -371,15 +387,7 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/158-koshki</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/18375-otkuda-ty-rodom</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/18323-velikij</loc>
+    <loc>https://released.at/release/187-pravosudie-spensera</loc>
   </url>
 
   <url>
@@ -387,9 +395,11 @@
   </url>
 
   <url>
-    <loc
-      >https://released.at/release/18324-piter-pen-i-alisa-v-strane-chudes</loc
-    >
+    <loc>https://released.at/release/18323-velikij</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/158-koshki</loc>
   </url>
 
   <url>
@@ -401,6 +411,12 @@
   </url>
 
   <url>
+    <loc
+      >https://released.at/release/18324-piter-pen-i-alisa-v-strane-chudes</loc
+    >
+  </url>
+
+  <url>
     <loc>https://released.at/release/18124-neistovyj</loc>
   </url>
 
@@ -409,11 +425,11 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18320-czoj</loc>
+    <loc>https://released.at/release/18150-bekki</loc>
   </url>
 
   <url>
-    <loc>https://released.at/release/18150-bekki</loc>
+    <loc>https://released.at/release/18163-poezd-v-pusan-2-poluostrov</loc>
   </url>
 
   <url>
@@ -421,7 +437,7 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18163-poezd-v-pusan-2-poluostrov</loc>
+    <loc>https://released.at/release/18320-czoj</loc>
   </url>
 
   <url>
@@ -445,6 +461,10 @@
   </url>
 
   <url>
+    <loc>https://released.at/release/18349-serebryanye-konki</loc>
+  </url>
+
+  <url>
     <loc>https://released.at/release/18261-8-s-polovinoj</loc>
   </url>
 
@@ -453,15 +473,7 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18349-serebryanye-konki</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/18282-handra</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/183-czvet-iz-inyh-mirov</loc>
   </url>
 
   <url>
@@ -481,6 +493,10 @@
   </url>
 
   <url>
+    <loc>https://released.at/release/18108-nezvanyj-gost</loc>
+  </url>
+
+  <url>
     <loc>https://released.at/release/18350-poezdka-v-ameriku-2</loc>
   </url>
 
@@ -493,10 +509,6 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18108-nezvanyj-gost</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/208-bezuprechnyj</loc>
   </url>
 
@@ -505,11 +517,11 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18017-shirli</loc>
+    <loc>https://released.at/release/18142-dovod</loc>
   </url>
 
   <url>
-    <loc>https://released.at/release/18142-dovod</loc>
+    <loc>https://released.at/release/18017-shirli</loc>
   </url>
 
   <url>
@@ -517,11 +529,11 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18264-na-svyazi</loc>
+    <loc>https://released.at/release/182-pushki-akimbo</loc>
   </url>
 
   <url>
-    <loc>https://released.at/release/182-pushki-akimbo</loc>
+    <loc>https://released.at/release/18264-na-svyazi</loc>
   </url>
 
   <url>
@@ -555,11 +567,11 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18322-kolskaya-sverhglubokaya</loc>
+    <loc>https://released.at/release/18359-ma-rejni-mat-blyuza</loc>
   </url>
 
   <url>
-    <loc>https://released.at/release/18359-ma-rejni-mat-blyuza</loc>
+    <loc>https://released.at/release/234-justice-league-dark-apokolips-war</loc>
   </url>
 
   <url>
@@ -575,11 +587,11 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/234-justice-league-dark-apokolips-war</loc>
+    <loc>https://released.at/release/18363-legenda-o-volkah</loc>
   </url>
 
   <url>
-    <loc>https://released.at/release/18363-legenda-o-volkah</loc>
+    <loc>https://released.at/release/18378-da-bozhe-da</loc>
   </url>
 
   <url>
@@ -588,10 +600,6 @@
 
   <url>
     <loc>https://released.at/release/18362-zvuk-metalla</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/18378-da-bozhe-da</loc>
   </url>
 
   <url>
@@ -615,19 +623,11 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18134-mulan</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/18019-artemis-faul</loc>
   </url>
 
   <url>
     <loc>https://released.at/release/18250-nyanya-koroleva-ubijcz</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/18159-antebellum</loc>
   </url>
 
   <url>
@@ -643,15 +643,19 @@
   </url>
 
   <url>
+    <loc>https://released.at/release/18159-antebellum</loc>
+  </url>
+
+  <url>
     <loc>https://released.at/release/166-osobennye</loc>
   </url>
 
   <url>
-    <loc>https://released.at/release/18022-7500</loc>
+    <loc>https://released.at/release/18259-moj-sosed-totoro</loc>
   </url>
 
   <url>
-    <loc>https://released.at/release/18259-moj-sosed-totoro</loc>
+    <loc>https://released.at/release/18022-7500</loc>
   </url>
 
   <url>
@@ -683,7 +687,7 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18297-poslednyaya-kaplya</loc>
+    <loc>https://released.at/release/18132-grenlandiya</loc>
   </url>
 
   <url>
@@ -691,19 +695,19 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18132-grenlandiya</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/18255-kapone-liczo-so-shramom</loc>
   </url>
 
   <url>
-    <loc>https://released.at/release/18020-korol-stejten-ajlenda</loc>
+    <loc>https://released.at/release/18297-poslednyaya-kaplya</loc>
   </url>
 
   <url>
     <loc>https://released.at/release/18284-dusha</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/18020-korol-stejten-ajlenda</loc>
   </url>
 
   <url>
@@ -731,10 +735,6 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/18260-doktor-liza</loc>
-  </url>
-
-  <url>
     <loc
       >https://released.at/release/181-potryasayushhaya-istoriya-harli-kvinn</loc
     >
@@ -745,11 +745,15 @@
   </url>
 
   <url>
+    <loc>https://released.at/release/197-bankir</loc>
+  </url>
+
+  <url>
     <loc>https://released.at/release/169-poslednee-chego-on-hotel</loc>
   </url>
 
   <url>
-    <loc>https://released.at/release/197-bankir</loc>
+    <loc>https://released.at/release/18260-doktor-liza</loc>
   </url>
 
   <url>
@@ -773,15 +777,11 @@
   </url>
 
   <url>
-    <loc>https://released.at/release/191-chelovek-nevidimka</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/174-bladshot</loc>
-  </url>
-
-  <url>
     <loc>https://released.at/release/164-mayak</loc>
+  </url>
+
+  <url>
+    <loc>https://released.at/release/191-chelovek-nevidimka</loc>
   </url>
 
   <url>
@@ -1118,10 +1118,6 @@
 
   <url>
     <loc>https://released.at/release/18330-spasyonnye-zvonkom</loc>
-  </url>
-
-  <url>
-    <loc>https://released.at/release/18339-nastya-soberis</loc>
   </url>
 
   <url>
